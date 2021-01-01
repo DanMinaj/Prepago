@@ -1,0 +1,3 @@
+[2019-03-10 02:20:02] Automated Meters Readings.INFO: Perform manual reading for dhu entry {"dhu_entry":1412360} []
+[2019-03-10 02:20:02] Automated Meters Readings.INFO: Manual Reading started for customer {"customer_id":1457} []
+[2019-03-10 02:20:02] Automated Meters Readings.INFO: Manual Reading performed for permanent meter {"pm_id":1699} []

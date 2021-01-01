@@ -1,0 +1,5 @@
+[2019-03-22 00:00:11] Shut off reset log.INFO: Shut off reset {"customer_id":1,"balance":34.26} []
+[2019-03-22 00:00:11] Shut off reset log.INFO: Shut off reset {"customer_id":1061,"balance":24.6} []
+[2019-03-22 06:00:12] Shut off reset log.INFO: Shut off reset {"customer_id":1,"balance":33.51} []
+[2019-03-22 12:00:11] Shut off reset log.INFO: Shut off reset {"customer_id":1,"balance":33.51} []
+[2019-03-22 18:00:12] Shut off reset log.INFO: Shut off reset {"customer_id":1,"balance":33.51} []

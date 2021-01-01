@@ -1,0 +1,4 @@
+[2020-06-19 00:00:12] Shut off reset log.INFO: Shut off reset {"customer_id":2090,"balance":22.808} []
+[2020-06-19 06:00:12] Shut off reset log.INFO: No customers to reset shut off [] []
+[2020-06-19 12:00:11] Shut off reset log.INFO: No customers to reset shut off [] []
+[2020-06-19 18:00:12] Shut off reset log.INFO: No customers to reset shut off [] []

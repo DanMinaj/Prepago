@@ -1,0 +1,6 @@
+[2019-05-10 00:00:12] Shut off resend log.INFO: Schedule shut off resent {"customer_id":790,"balance":-174.8} []
+[2019-05-10 06:00:11] Shut off resend log.INFO: Schedule shut off resent {"customer_id":790,"balance":-174.8} []
+[2019-05-10 12:00:12] Shut off resend log.INFO: Schedule shut off resent {"customer_id":693,"balance":-2.02522} []
+[2019-05-10 12:00:12] Shut off resend log.INFO: Schedule shut off resent {"customer_id":1305,"balance":-11.824} []
+[2019-05-10 18:00:11] Shut off resend log.INFO: Schedule shut off resent {"customer_id":790,"balance":-174.8} []
+[2019-05-10 18:00:11] Shut off resend log.INFO: Schedule shut off resent {"customer_id":1514,"balance":0} []

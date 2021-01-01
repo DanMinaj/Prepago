@@ -1,0 +1,5 @@
+[2019-04-19 00:00:11] Shut off reset log.INFO: Shut off reset {"customer_id":1,"balance":26.6} []
+[2019-04-19 06:00:11] Shut off reset log.INFO: Shut off reset {"customer_id":1,"balance":26.6} []
+[2019-04-19 12:00:11] Shut off reset log.INFO: Shut off reset {"customer_id":1,"balance":26.6} []
+[2019-04-19 12:00:11] Shut off reset log.INFO: Shut off reset {"customer_id":1131,"balance":23.7316} []
+[2019-04-19 18:00:11] Shut off reset log.INFO: No customers to reset shut off [] []
