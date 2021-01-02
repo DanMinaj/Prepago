@@ -1,7 +1,13 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
+namespace App\Models;
+
 use Carbon\Carbon as Carbon;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+
+
 
 class Scheme extends Model
 {
@@ -80,12 +86,12 @@ class Scheme extends Model
 
     public function users()
     {
-        return $this->belongsToMany('User', 'users_schemes');
+        return $this->belongsToMany('App\Models\User', 'users_schemes');
     }
 
     public function getTariffAttribute()
     {
-        return $this->hasOne('Tariff', 'scheme_number', 'id')->first();
+        return $this->hasOne('App\Models\Tariff', 'scheme_number', 'id')->first();
     }
 
     public function refreshFAQ()
@@ -191,7 +197,7 @@ class Scheme extends Model
 
     public function customers()
     {
-        return $this->hasMany('Customer', 'scheme_number', 'scheme_number');
+        return $this->hasMany('App\Models\Customer', 'scheme_number', 'scheme_number');
     }
 
     public function getLookupAttribute()

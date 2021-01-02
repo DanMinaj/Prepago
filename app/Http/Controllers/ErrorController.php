@@ -1,5 +1,12 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
+
+
 class ErrorController extends Controller
 {
     protected $layout = 'layouts.admin_website';

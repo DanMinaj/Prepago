@@ -1,9 +1,17 @@
 <?php
 
+namespace App\Http\Controllers\Reports;
+
+use App\Models\AdminActivity;
+use App\Models\CustomerActivity;
+use App\Models\RegisteredPhonesWithApps;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+
+
 
 class TrackingReportController extends ReportsBaseController
 {

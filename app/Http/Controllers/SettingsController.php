@@ -1,8 +1,34 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Customer;
+use App\Models\DataLogger;
+use App\Models\Email;
+use App\Models\MBusAddressTranslation;
+use App\Models\PaymentStorage;
+use App\Models\PermanentMeterData;
+use App\Models\Scheme;
+use App\Models\Simcard;
+use App\Models\SMSMessage;
+use App\Models\SMSMessagePreset;
+use App\Models\SystemSetting;
+use App\Models\Tariff;
+use App\Models\TariffChanges;
+use App\Models\TestScan;
+use App\Models\TrackingCustomerActivity;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
+
+
 
 class SettingsController extends Controller
 {

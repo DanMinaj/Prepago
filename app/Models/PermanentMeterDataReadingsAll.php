@@ -1,5 +1,9 @@
 <?php
+
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
+
 
 class PermanentMeterDataReadingsAll extends Model
 {
@@ -13,11 +17,11 @@ class PermanentMeterDataReadingsAll extends Model
 
     public function permanentMeterData()
     {
-        return $this->hasOne('PermanentMeterData', 'ID', 'permanent_meter_id');
+        return $this->hasOne('App\Models\PermanentMeterData', 'ID', 'permanent_meter_id');
     }
 
     public function scheme()
     {
-        return $this->belongsTo('Scheme', 'scheme_number', 'scheme_number');
+        return $this->belongsTo('App\Models\Scheme', 'scheme_number', 'scheme_number');
     }
 }

@@ -1,8 +1,32 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Customer;
+use App\Models\DataLogger;
+use App\Models\DistrictHeatingMeter;
+use App\Models\DistrictHeatingUsageLog;
+use App\Models\DistrictMeterStat;
+use App\Models\MBus;
+use App\Models\MBusAddressTranslation;
+use App\Models\PermanentMeterData;
+use App\Models\PermanentMeterDataMeterReadWebsite;
+use App\Models\RemoteControlStatus;
+use App\Models\RTUCommandQueWebsite;
+use App\Models\Scheme;
+use App\Models\Simcard;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Validator;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+
+
 
 class InstallerController extends Controller
 {

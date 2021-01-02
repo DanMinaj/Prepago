@@ -1,5 +1,11 @@
 <?php
 
+namespace App\Repositories;
+
+use App\Models\PermanentMeterData;
+use Illuminate\Support\Facades\Auth;
+
+
 class BoilerReportRepository extends ReportsRepository
 {
     public function getReportData()

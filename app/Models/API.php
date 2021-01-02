@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Models;
+
+
 class API
 {
     public static function get($url)

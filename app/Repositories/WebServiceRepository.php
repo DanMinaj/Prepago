@@ -1,7 +1,33 @@
 <?php
 
+namespace App\Repositories;
+
+use App\Models\Customer;
+use App\Models\CustomerActivity;
+use App\Models\CustomerRC;
+use App\Models\DistrictHeatingMeter;
+use App\Models\DistrictHeatingUsage;
+use App\Models\IOUExtraStorage;
+use App\Models\IOUStorage;
+use App\Models\PaymentLocations;
+use App\Models\PaymentStorage;
+use App\Models\PaymentStorageError;
+use App\Models\PermanentMeterData;
+use App\Models\RegisteredPhonesWithApps;
+use App\Models\RemoteControlStatus;
+use App\Models\RemoteControlTimes;
+use App\Models\RTUCommandQue;
+use App\Models\Scheme;
+use App\Models\SMSMessage;
+use App\Models\SystemSetting;
+use App\Models\TemporaryPayments;
+use App\Models\Weather;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+
+
 
 class WebServiceRepository implements WebServiceRepositoryInterface
 {

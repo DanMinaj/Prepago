@@ -1,5 +1,9 @@
 <?php
+
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
+
 
 class Tariff extends Model
 {
@@ -20,6 +24,6 @@ class Tariff extends Model
 
     public function scheme()
     {
-        return $this->belongsTo('Scheme', 'scheme_number', 'scheme_number');
+        return $this->belongsTo('App\Models\Scheme', 'scheme_number', 'scheme_number');
     }
 }

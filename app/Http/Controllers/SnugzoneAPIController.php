@@ -1,8 +1,37 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Announcement;
+use App\Models\AnnouncementComment;
+use App\Models\AnnouncementView;
+use App\Models\Customer;
+use App\Models\DistrictHeatingUsage;
+use App\Models\InAppNotification;
+use App\Models\PaymentLocations;
+use App\Models\PaymentStorage;
+use App\Models\RemoteControlLogging;
+use App\Models\RemoteControlStatus;
+use App\Models\ReportABug;
+use App\Models\Scheme;
+use App\Models\SMSMessage;
+use App\Models\SMSMessagePreset;
+use App\Models\SnugzoneAppStatementSchedule;
+use App\Models\Stripe\StripeCustomerSubscription;
+use App\Models\Stripe\StripePaymentSource;
+use App\Models\SystemGraphData;
+use App\Models\SystemSetting;
+use App\Models\TrackingAppData;
+use App\Models\TrackingFaqClick;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Response as Response;
+
+
 
 class SnugzoneAPIController extends Controller
 {

@@ -1,6 +1,11 @@
 <?php
 
+namespace App\Models;
+
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
+
 
 class MBus
 {

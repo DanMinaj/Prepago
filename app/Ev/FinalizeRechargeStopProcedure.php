@@ -1,5 +1,11 @@
 <?php
 
+namespace App\Ev;
+
+use App\Models\EVRechargeReport;
+use App\Models\Scheme;
+
+
 class FinalizeRechargeStopProcedure extends EVRechargeManager
 {
     public function handle($manually)

@@ -1,5 +1,10 @@
 <?php
 
+namespace App\Ev;
+
+use App\Models\Scheme;
+
+
 class EVRechargeOn extends EVRechargeManager
 {
     protected $initiatedBySameCustomer = false;

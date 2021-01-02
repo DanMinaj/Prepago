@@ -1,8 +1,14 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Data;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
+
+
 
 class BackupController extends Controller
 {

@@ -1,6 +1,13 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Scheme;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\View;
+
+
 
 class CustomerDuplicatesController extends Controller
 {

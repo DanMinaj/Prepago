@@ -1,5 +1,18 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Changelog;
+use App\Models\ChangelogComment;
+use App\Models\Email;
+use App\Models\SystemSetting;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
+
+
 class ChangelogController extends Controller
 {
     protected $layout = 'layouts.admin_website';

@@ -1,5 +1,24 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\ReportABug;
+use App\Models\ReportABugPrepayGO;
+use App\Models\SMSMessage;
+use App\Models\SMSMessagePreset;
+use App\Models\SupportIssue;
+use App\Models\SystemSetting;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
+
+
 class SupportController extends Controller
 {
     protected $layout = 'layouts.admin_website';

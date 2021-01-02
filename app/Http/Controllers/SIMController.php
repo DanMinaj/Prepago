@@ -1,8 +1,18 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Emnify;
+use App\Models\EseyeConnection;
+use App\Models\Scheme;
+use App\Models\Simcard;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
+
+
 
 class SIMController extends Controller
 {

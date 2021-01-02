@@ -1,5 +1,9 @@
 <?php
+
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
+
 
 class DistrictHeatingMeter extends Model
 {
@@ -80,22 +84,22 @@ class DistrictHeatingMeter extends Model
 
     public function permanentMeterData()
     {
-        return $this->hasOne('PermanentMeterData', 'ID', 'permanent_meter_ID');
+        return $this->hasOne('App\Models\PermanentMeterData', 'ID', 'permanent_meter_ID');
     }
 
     public function districtHeatingUsage()
     {
-        return $this->hasMany('DistrictHeatingUsage', 'ev_meter_ID', 'meter_ID');
+        return $this->hasMany('App\Models\DistrictHeatingUsage', 'ev_meter_ID', 'meter_ID');
     }
 
     public function EVUsage()
     {
-        return $this->hasMany('EVUsage', 'ev_meter_ID', 'meter_ID');
+        return $this->hasMany('App\Models\EVUsage', 'ev_meter_ID', 'meter_ID');
     }
 
     public function customers()
     {
-        return $this->hasOne('Customer', 'meter_ID', 'meter_ID');
+        return $this->hasOne('App\Models\Customer', 'meter_ID', 'meter_ID');
     }
 
     public function getCustomerAttribute()

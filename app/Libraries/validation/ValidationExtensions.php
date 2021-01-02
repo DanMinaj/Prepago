@@ -1,5 +1,11 @@
 <?php
 
+namespace App\Libraries\validation;
+
+use App\Models\Customer;
+use Illuminate\Support\Facades\Validator;
+
+
 class ValidationException extends Exception
 {
 }

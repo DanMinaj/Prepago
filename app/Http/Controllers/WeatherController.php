@@ -1,5 +1,16 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\DistrictHeatingUsage;
+use App\Models\PaymentStorage;
+use App\Models\Weather;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\URL;
+
+
 class WeatherController extends Controller
 {
     protected $layout = 'layouts.admin_website';

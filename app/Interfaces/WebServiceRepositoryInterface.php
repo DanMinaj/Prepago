@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Interfaces;
+
+
 interface WebServiceRepositoryInterface
 {
     public function getCustomerLoginRequest($email, $username, $password, $phoneID, $model = '');

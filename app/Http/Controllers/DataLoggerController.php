@@ -1,5 +1,15 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\DataLogger;
+use App\Models\DistrictHeatingMeter;
+use App\Models\PermanentMeterData;
+use App\Models\Scheme;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
+
+
 class DataLoggerController extends Controller
 {
     protected $layout = 'layouts.admin_website';

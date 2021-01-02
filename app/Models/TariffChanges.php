@@ -1,5 +1,9 @@
 <?php
+
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
+
 
 class TariffChanges extends Model
 {
@@ -14,11 +18,11 @@ class TariffChanges extends Model
 
     public function scheme()
     {
-        return $this->belongsTo('Scheme', 'scheme_number', 'scheme_number');
+        return $this->belongsTo('App\Models\Scheme', 'scheme_number', 'scheme_number');
     }
 
     public function tarrif()
     {
-        return $this->belongsTo('Tariff', 'scheme_number', 'scheme_number');
+        return $this->belongsTo('App\Models\Tariff', 'scheme_number', 'scheme_number');
     }
 }

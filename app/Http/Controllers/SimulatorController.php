@@ -1,9 +1,16 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Scheme;
+use App\Models\UserScheme;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+
+
 
 class SimulatorController extends Controller
 {

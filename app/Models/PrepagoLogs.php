@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Models;
+
+
 class pLog
 {
     public $date;

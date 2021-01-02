@@ -1,5 +1,9 @@
 <?php
+
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
+
 
 class PermanentMeterDataReadings extends Model
 {
@@ -16,6 +20,6 @@ class PermanentMeterDataReadings extends Model
 
     public function permanentMeter()
     {
-        return $this->belongsTo('PermanentMeterData', 'permanent_meter_id', 'ID');
+        return $this->belongsTo('App\Models\PermanentMeterData', 'permanent_meter_id', 'ID');
     }
 }

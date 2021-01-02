@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Models;
+
+
 class Stripe
 {
     public static $mode = 'live';

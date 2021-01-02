@@ -1,9 +1,17 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Customer;
+use App\Models\DistrictHeatingUsage;
+use App\Models\Scheme;
+use App\Models\Tariff;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+
+
 
 class SystemController extends Controller
 {

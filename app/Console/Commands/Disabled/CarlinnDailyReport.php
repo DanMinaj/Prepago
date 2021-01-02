@@ -1,8 +1,14 @@
 <?php
 
+namespace App\Console\Commands\Disabled;
+
+use App\Models\DistrictHeatingMeter;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+
+
 
 class CarlinnDailyReport extends Command
 {

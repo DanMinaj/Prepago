@@ -1,5 +1,11 @@
 <?php
 
+namespace App\Http\Controllers\Reports;
+
+use App\Models\Customer;
+use Illuminate\Support\Facades\URL;
+
+
 class CarlinnReportController extends ReportController
 {
     protected $layout = 'layouts.admin_website';

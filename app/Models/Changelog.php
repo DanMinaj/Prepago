@@ -1,8 +1,12 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
+namespace App\Models;
+
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
+
 
 class Changelog extends Model
 {
@@ -24,6 +28,6 @@ class Changelog extends Model
 
     public function comments()
     {
-        return $this->hasMany('ChangelogComment', 'changelog_id', 'id');
+        return $this->hasMany('App\Models\ChangelogComment', 'changelog_id', 'id');
     }
 }

@@ -1,5 +1,9 @@
 <?php
+
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
+
 
 class PermanentMeterData extends Model
 {
@@ -28,7 +32,7 @@ class PermanentMeterData extends Model
 
     public function rctimes()
     {
-        return $this->hasMany('RemoteControlTimes', 'permanent_meter_id');
+        return $this->hasMany('App\Models\RemoteControlTimes', 'permanent_meter_id');
     }
 
     public function scopeInScheme($query, $schemeNumber)
@@ -38,22 +42,22 @@ class PermanentMeterData extends Model
 
     public function readings()
     {
-        return $this->hasMany('PermanentMeterDataReadings', 'permanent_meter_id', 'ID');
+        return $this->hasMany('App\Models\PermanentMeterDataReadings', 'permanent_meter_id', 'ID');
     }
 
     public function simcard()
     {
-        return $this->belongsTo('Simcard', 'sim_ID', 'ID');
+        return $this->belongsTo('App\Models\Simcard', 'sim_ID', 'ID');
     }
 
     public function latestReadings()
     {
-        return $this->hasMany('PermanentMeterDataReadings', 'permanent_meter_id', 'ID')->orderBy('time_date', 'desc');
+        return $this->hasMany('App\Models\PermanentMeterDataReadings', 'permanent_meter_id', 'ID')->orderBy('time_date', 'desc');
     }
 
     public function districtHeatingMeters()
     {
-        return $this->hasMany('DistrictHeatingMeter', 'permanent_meter_ID', 'ID');
+        return $this->hasMany('App\Models\DistrictHeatingMeter', 'permanent_meter_ID', 'ID');
     }
 
     public function getDistrictMeterAttribute()
@@ -220,7 +224,7 @@ class PermanentMeterData extends Model
 
     public function remoteControlStatus()
     {
-        return $this->hasOne('RemoteControlStatus', 'permanent_meter_id', 'ID');
+        return $this->hasOne('App\Models\RemoteControlStatus', 'permanent_meter_id', 'ID');
     }
 
     public function getMeterNumberCleanAttribute()

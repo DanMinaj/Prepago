@@ -1,5 +1,10 @@
 <?php
+
+namespace App\Models\Stripe;
+
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Model;
+
 
 class StripeCustomer extends Model
 {

@@ -1,5 +1,20 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Customer;
+use App\Models\DistrictHeatingMeter;
+use App\Models\PaymentStorage;
+use App\Models\PermanentMeterDataReadings;
+use App\Models\PermanentMeterDataReadingsAll;
+use App\Models\Scheme;
+use App\Models\TemporaryPayments;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Route;
+
+
 class CSVController extends Controller
 {
     public function supply_report_units()

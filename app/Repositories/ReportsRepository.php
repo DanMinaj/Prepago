@@ -1,6 +1,11 @@
 <?php
 
+namespace App\Repositories;
+
 use Carbon\Carbon;
+use Illuminate\Support\Facades\URL;
+
+
 
 class ReportsRepository
 {

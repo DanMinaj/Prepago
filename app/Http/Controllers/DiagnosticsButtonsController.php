@@ -1,5 +1,17 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\DataLogger;
+use App\Models\DataLoggersDiagnostics;
+use App\Models\MBusAddressTranslation;
+use App\Models\PermanentMeterData;
+use App\Models\PermanentMeterDataMeterReadWebsite;
+use App\Models\PermanentMeterDataTelegramRelaycheckWebsite;
+use App\Models\Scheme;
+use App\Models\Simcard;
+
+
 class DiagnosticsButtonsController extends Controller
 {
     public function meterTelegramTest($unitID)

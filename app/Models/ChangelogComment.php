@@ -1,8 +1,12 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
+namespace App\Models;
+
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
+
 
 class ChangelogComment extends Model
 {

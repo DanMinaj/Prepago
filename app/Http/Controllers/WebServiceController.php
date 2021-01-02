@@ -1,7 +1,14 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Customer;
+use App\Models\PermanentMeterData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Response as Response;
+
+
 
 class WebServiceController extends Controller
 {

@@ -1,10 +1,17 @@
 <?php
 
+namespace App\Console\Commands;
+
+use App\Models\BillingEngineLogsNew;
+use App\Models\Customer;
+use App\Models\DistrictHeatingUsage;
 use Illuminate\Console\Command;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+
+
 
 class QuickCommand extends Command
 {

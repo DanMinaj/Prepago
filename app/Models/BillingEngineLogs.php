@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Models;
+
+
 class logPackage
 {
     public $customer;

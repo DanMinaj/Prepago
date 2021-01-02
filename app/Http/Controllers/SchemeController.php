@@ -1,6 +1,26 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\DataLogger;
+use App\Models\MBusAddressTranslation;
+use App\Models\MeterLookup;
+use App\Models\PermanentMeterData;
+use App\Models\Scheme;
+use App\Models\Simcard;
+use App\Models\Tariff;
+use App\Models\TrackingOperatorAction;
+use App\Models\User;
+use App\Models\UserScheme;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
+
+
 
 class SchemeController extends Controller
 {

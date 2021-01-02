@@ -1,5 +1,19 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Email;
+use App\Models\Paypal;
+use App\Models\Stripe\StripeCustomer;
+use App\Models\Stripe\StripeCustomerFailedPayment;
+use App\Models\Stripe\StripeCustomerPayment;
+use App\Models\Stripe\StripeErrorLog;
+use App\Models\Stripe\StripeLog;
+use App\Models\Stripe\StripePaymentSource;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
+
+
 class PaymentController extends Controller
 {
     protected $layout = 'layouts.admin_website';

@@ -1,10 +1,20 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Models\Customer;
+use App\Models\EVUsage;
+use App\Models\PermanentMeterData;
+use App\Models\Scheme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Response as Response;
+
+
 
 class EVWebServiceController extends Controller
 {

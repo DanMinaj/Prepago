@@ -1,7 +1,18 @@
 <?php
 
+namespace App\Repositories;
+
+use App\Models\IOUStorage;
+use App\Models\PaymentStorage;
+use App\Models\PermanentMeterData;
+use App\Models\RegisteredPhonesWithApps;
+use App\Models\Scheme;
+use App\Models\SMSMessage;
+use App\Models\Tariff;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+
+
 
 class PayoutReportRepository extends ReportsRepository
 {

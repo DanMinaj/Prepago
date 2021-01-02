@@ -1,5 +1,14 @@
 <?php
 
+namespace App\Http\Controllers\CSV;
+
+use App\Models\Customer;
+use App\Models\SnugzoneAppStatement;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+
+
 class CSVPayoutController extends CSVBaseController
 {
     protected $repo;

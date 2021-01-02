@@ -1,10 +1,17 @@
 <?php
 
+namespace App\Console\Commands\Disabled;
+
+use App\Models\PermanentMeterData;
+use App\Models\PermanentMeterDataReadingsAll;
+use App\Models\Scheme;
 use Illuminate\Console\Command;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+
+
 
 /*
 The Use case - Run a server & scheme modem connection check

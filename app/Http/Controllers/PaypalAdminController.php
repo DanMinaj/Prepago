@@ -1,5 +1,14 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Paypal;
+use App\Models\SystemSetting;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
+
+
 class PaypalAdminController extends Controller
 {
     protected $layout = 'layouts.admin_website';

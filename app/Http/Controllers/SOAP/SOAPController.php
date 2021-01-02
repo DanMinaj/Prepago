@@ -1,6 +1,17 @@
 <?php
 
+namespace App\Http\Controllers\SOAP;
+
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
+use App\Models\PaymentStorage;
+use App\Models\PaymentStorageTest;
+use App\Models\PaymentStorageTestLog;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Schema;
+
+
 
 class SOAPController extends Controller
 {

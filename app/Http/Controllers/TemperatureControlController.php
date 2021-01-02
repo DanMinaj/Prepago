@@ -1,6 +1,15 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\CalendarDailySchedule;
+use App\Models\System;
+use App\Models\SystemSetting;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+
+
 
 class TemperatureControlController extends Controller
 {

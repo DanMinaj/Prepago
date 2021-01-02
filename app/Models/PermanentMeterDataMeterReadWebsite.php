@@ -1,7 +1,11 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
+namespace App\Models;
+
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
+
+
 
 class PermanentMeterDataMeterReadWebsite extends Model
 {

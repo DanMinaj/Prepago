@@ -1,5 +1,28 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Customer;
+use App\Models\DistrictHeatingMeter;
+use App\Models\DistrictHeatingUsage;
+use App\Models\PaymentStorage;
+use App\Models\PermanentMeterDataReadingsAll;
+use App\Models\PrepagoDailyRecords;
+use App\Models\Scheme;
+use App\Models\Tariff;
+use App\Models\TemporaryPayments;
+use App\Models\TrackingScheme;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
+
+
 class ReportController extends Controller
 {
     protected $layout = 'layouts.admin_website';

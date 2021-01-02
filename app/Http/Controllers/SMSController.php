@@ -1,6 +1,24 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Customer;
+use App\Models\DistrictHeatingMeter;
+use App\Models\IOUStorage;
+use App\Models\Result;
+use App\Models\Scheme;
+use App\Models\SMS;
+use App\Models\SMSMessage;
+use App\Models\SMSMeterCommand;
+use App\Models\Smsque;
+use App\Models\SMSResponse;
+use App\Models\SystemSetting;
+use App\Models\Tariff;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use Whoops\Example\Exception;
+
+
 
 class SMSController extends Controller
 {

@@ -1,11 +1,17 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Auth\Passwords\CanResetPassword;
+namespace App\Models;
+
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
+
+
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
@@ -113,17 +119,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /*public function scheme() {
-        return $this->belongsTo('Scheme', 'scheme_number', 'scheme_number');
+        return $this->belongsTo('App\Models\Scheme', 'scheme_number', 'scheme_number');
     }*/
 
     public function group()
     {
-        return $this->belongsTo('Group', 'group_id');
+        return $this->belongsTo('App\Models\Group', 'group_id');
     }
 
     public function schemes()
     {
-        return $this->belongsToMany('Scheme', 'users_schemes', 'user_id', 'scheme_id');
+        return $this->belongsToMany('App\Models\Scheme', 'users_schemes', 'user_id', 'scheme_id');
     }
 
     public function activeSchemes()
@@ -133,7 +139,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function settings()
     {
-        return $this->hasOne('UserSetting');
+        return $this->hasOne('App\Models\UserSetting');
     }
 
     public function scopeExcludeAdmin($query)

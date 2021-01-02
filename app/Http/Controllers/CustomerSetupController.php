@@ -1,7 +1,11 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
+
+
 
 class CustomerSetupController extends Controller
 {

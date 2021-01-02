@@ -1,10 +1,16 @@
 <?php
 
+namespace App\Console\Commands;
+
+use App\Models\PermanentMeterData;
+use App\Models\WatchDog;
 use Illuminate\Console\Command;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+
+
 
 class WatchDogManager extends Command
 {

@@ -1,5 +1,22 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Cme3100Log;
+use App\Models\MBusAddressTranslation;
+use App\Models\MeterLookup;
+use App\Models\PermanentMeterData;
+use App\Models\PermanentMeterDataReadings;
+use App\Models\PermanentMeterDataReadingsAll;
+use App\Models\Scheme;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\URL;
+
+
 class MeterController extends Controller
 {
     protected $layout = 'layouts.admin_website';

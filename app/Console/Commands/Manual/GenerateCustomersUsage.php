@@ -1,10 +1,18 @@
 <?php
 
+namespace App\Console\Commands\Manual;
+
+use App\Models\BillingEngineLogs;
+use App\Models\Customer;
+use App\Models\DistrictHeatingUsage;
+use App\Models\Tariff;
 use Illuminate\Console\Command;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+
+
 
 class GenerateCustomersUsage extends Command
 {

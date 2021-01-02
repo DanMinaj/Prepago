@@ -1,7 +1,12 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Input;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+
+
 
 class TestIPNController extends Controller
 {

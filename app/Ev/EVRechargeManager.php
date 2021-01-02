@@ -1,5 +1,12 @@
 <?php
 
+namespace App\Ev;
+
+use App\Models\Customer;
+use App\Models\EVUsage;
+use App\Models\Tariff;
+
+
 class EVRechargeManager
 {
     protected $rsCode;

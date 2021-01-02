@@ -1,6 +1,13 @@
 <?php
 
+namespace App\Libraries\validation;
+
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
+
+
 
 class BaseValidator
 {

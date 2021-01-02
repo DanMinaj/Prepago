@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Models;
+
+
 class Chart
 {
     public static function createContext($name, $width = 'default', $height = 'default')

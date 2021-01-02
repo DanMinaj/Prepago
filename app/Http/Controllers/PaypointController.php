@@ -1,9 +1,15 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Customer;
+use App\Models\PaymentStorage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+
+
 
 class PaypointController extends Controller
 {

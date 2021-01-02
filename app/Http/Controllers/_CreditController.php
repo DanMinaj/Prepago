@@ -1,5 +1,18 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\AdminIssuedCredit;
+use App\Models\Customer;
+use App\Models\CustomerArrears;
+use App\Models\RTUCommandQue;
+use App\Models\Scheme;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
+
+
 class CreditController extends Controller
 {
     protected $layout = 'layouts.admin_website';

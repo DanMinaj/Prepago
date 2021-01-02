@@ -1,8 +1,21 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Customer;
+use App\Models\DistrictHeatingUsage;
+use App\Models\MBusAddressTranslation;
+use App\Models\Tariff;
+use App\Models\TemporaryPayments;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Response;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Whoops\Example\Exception;
+
+
 
 class TestRouteController extends Controller
 {

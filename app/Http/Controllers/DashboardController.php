@@ -1,10 +1,28 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Announcement;
+use App\Models\Chart;
+use App\Models\DataSet;
+use App\Models\DistrictHeatingMeter;
+use App\Models\IOUStorage;
+use App\Models\PaymentStorage;
+use App\Models\RemoteControlLogging;
+use App\Models\ReportABug;
+use App\Models\System;
+use App\Models\SystemGraphData;
+use App\Models\TrackingAppClick;
+use App\Models\TrackingAppData;
+use App\Models\TrackingScheme;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+
+
 
 class DashboardController extends Controller
 {

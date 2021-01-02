@@ -1,8 +1,34 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\Customer;
+use App\Models\CustomerArrears;
+use App\Models\CustomerDeletion;
+use App\Models\CustomerQueue;
+use App\Models\CustomerReinstation;
+use App\Models\DistrictHeatingMeter;
+use App\Models\DistrictHeatingUsage;
+use App\Models\IOUStorage;
+use App\Models\PermanentMeterData;
+use App\Models\PermanentMeterDataMeterReadWebsite;
+use App\Models\PermanentMeterDataReadingsAll;
+use App\Models\RemoteControlStatus;
+use App\Models\RTUCommandQue;
+use App\Models\Scheme;
+use App\Models\Tariff;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Whoops\Example\Exception;
+
+
 
 class AccountController extends Controller
 {

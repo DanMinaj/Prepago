@@ -1,8 +1,17 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
+namespace App\Models;
+
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
+
+
 
 class Customer extends Model
 {
@@ -460,7 +469,7 @@ class Customer extends Model
 
     public function scheme()
     {
-        return $this->belongsTo('Scheme', 'scheme_number', 'scheme_number');
+        return $this->belongsTo('App\Models\Scheme', 'scheme_number', 'scheme_number');
     }
 
     public function getSchemeAttribute()
@@ -796,32 +805,32 @@ class Customer extends Model
 
     public function paymentsStorage()
     {
-        return $this->hasMany('PaymentStorage', 'customer_id', 'id');
+        return $this->hasMany('App\Models\PaymentStorage', 'customer_id', 'id');
     }
 
     public function temporaryPayments()
     {
-        return $this->hasMany('TemporaryPayments', 'customer_id', 'id');
+        return $this->hasMany('App\Models\TemporaryPayments', 'customer_id', 'id');
     }
 
     public function adminIssuedCredit()
     {
-        return $this->hasMany('AdminIssuedCredit', 'customer_id', 'id');
+        return $this->hasMany('App\Models\AdminIssuedCredit', 'customer_id', 'id');
     }
 
     public function adminDeductedCredit()
     {
-        return $this->hasMany('AdminDeductedCredit', 'customer_id', 'id');
+        return $this->hasMany('App\Models\AdminDeductedCredit', 'customer_id', 'id');
     }
 
     public function districtHeatingMeter()
     {
-        return $this->hasOne('DistrictHeatingMeter', 'meter_ID', 'meter_ID');
+        return $this->hasOne('App\Models\DistrictHeatingMeter', 'meter_ID', 'meter_ID');
     }
 
     public function EVDistrictHeatingMeter()
     {
-        return $this->hasOne('DistrictHeatingMeter', 'meter_ID', 'ev_meter_ID');
+        return $this->hasOne('App\Models\DistrictHeatingMeter', 'meter_ID', 'ev_meter_ID');
     }
 
     public function enhancedUsage($range = null)
@@ -993,7 +1002,7 @@ class Customer extends Model
 
     public function latestDistrictHeatingReading()
     {
-        return $this->hasOne('DistrictHeatingUsage')->orderBy('date', 'DESC');
+        return $this->hasOne('App\Models\DistrictHeatingUsage')->orderBy('date', 'DESC');
     }
 
     public function districtHeatingTotalUsage()

@@ -1,6 +1,15 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Models\PDF;
+use App\Models\ReportSchedule;
+use App\Models\Scheme;
 use Carbon\Carbon as Carbon;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
+
+
 
 class AidanReportController extends Controller
 {

@@ -1,5 +1,10 @@
 <?php
 
+namespace App\Repositories;
+
+use Illuminate\Support\Facades\Mail;
+
+
 class MailRepository
 {
     public function sendCustomerSetUpEmail($data = null)
