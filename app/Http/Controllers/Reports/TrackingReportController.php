@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Input;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-
-
 class TrackingReportController extends ReportsBaseController
 {
     protected $layout = 'layouts.admin_website';

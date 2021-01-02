@@ -11,8 +11,6 @@ use Monolog\Logger;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-
-
 /*
 The Use case - Run a server & scheme modem connection check
 This is automatically checks the scheme log 15 minutes if any meters in the scheme have successfully been read in the last 1 hour/ 2 hours or appropriate reading cycle.

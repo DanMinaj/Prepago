@@ -27,8 +27,6 @@ use Illuminate\Support\Facades\Session;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-
-
 class WebServiceRepository implements WebServiceRepositoryInterface
 {
     private $customer_type = 'regular';
@@ -2182,7 +2180,7 @@ class WebServiceRepository implements WebServiceRepositoryInterface
         $returnResult = true;
 
         if ($curl1Res == '') { //tmp code line - remove
-         //tmp code line - remove
+            //tmp code line - remove
             $transactionState = '';
             $transactionAmountTotal = '';
             $transactionAmountCurrency = '';

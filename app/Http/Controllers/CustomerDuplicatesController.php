@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 
-
-
 class CustomerDuplicatesController extends Controller
 {
     protected $layout = 'layouts.admin_website';

@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-
 class CustomerStripePayments extends Model
 {
     public static function getPendingNotifications($customer_id)

@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Schema;
 
-
-
 class SOAPController extends Controller
 {
     protected $layout = 'layouts.admin_website';

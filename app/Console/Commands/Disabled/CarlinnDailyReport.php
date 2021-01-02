@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Mail;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-
-
 class CarlinnDailyReport extends Command
 {
     /**

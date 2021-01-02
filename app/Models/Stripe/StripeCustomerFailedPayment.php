@@ -5,7 +5,6 @@ namespace App\Models\Stripe;
 use App\Models\Customer;
 use Illuminate\Database\Eloquent\Model;
 
-
 class StripeCustomerFailedPayment extends Model
 {
     protected $table = 'customers_stripe_failed_payments';

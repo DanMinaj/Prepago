@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\CSV;
 
-
 class CSVBoilerReportController extends CSVBaseController
 {
     public function __construct(BoilerReportRepository $repo)

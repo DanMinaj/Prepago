@@ -5,8 +5,6 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
-
-
 class MBus
 {
     // Run a scan/check to get the meters 16 digit address & insert the 8digit&16digit into the database

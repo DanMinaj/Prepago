@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\ReadinessTask;
 use Illuminate\Support\Collection;
 
-
-
 class ValveTestController extends Controller
 {
     protected $layout = 'layouts.admin_website';

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\PermanentMeterDataReadingsAll;
 use App\Models\Scheme;
 
-
 class SchemesReadingsController extends Controller
 {
     public function index()

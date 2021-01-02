@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Response;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-
-
 class GuardDogController extends Controller
 {
     protected $layout = 'layouts.admin_website';

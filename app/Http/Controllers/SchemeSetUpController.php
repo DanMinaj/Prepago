@@ -14,8 +14,6 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 
-
-
 class SchemeSetUpController extends Controller
 {
     protected $layout = 'layouts.admin_website';

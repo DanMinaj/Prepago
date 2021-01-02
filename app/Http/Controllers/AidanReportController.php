@@ -9,8 +9,6 @@ use Carbon\Carbon as Carbon;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 
-
-
 class AidanReportController extends Controller
 {
     protected $layout = 'layouts.admin_website';

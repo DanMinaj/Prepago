@@ -9,8 +9,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
-
-
 class TemperatureControlController extends Controller
 {
     protected $layout = 'layouts.admin_website';

@@ -5,8 +5,6 @@ namespace App\Models;
 use Carbon\Carbon as Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-
-
 class SchemeWatch extends Model
 {
     //protected $appends = ['permissions'];

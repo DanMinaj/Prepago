@@ -9,7 +9,6 @@ use App\Models\Scheme;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 
-
 class DataLoggerController extends Controller
 {
     protected $layout = 'layouts.admin_website';

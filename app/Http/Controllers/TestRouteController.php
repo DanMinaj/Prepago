@@ -15,8 +15,6 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Whoops\Example\Exception;
 
-
-
 class TestRouteController extends Controller
 {
     public function getCustomerInfo($username)

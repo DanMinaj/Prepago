@@ -13,8 +13,6 @@ use Monolog\Logger;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-
-
 class FixOverCharge extends Command
 {
     /**

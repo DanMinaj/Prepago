@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response as Response;
 
-
-
 class CampaignController extends Controller
 {
     protected $layout = 'layouts.admin_website';

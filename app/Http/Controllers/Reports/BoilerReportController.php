@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Reports;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 
-
 class BoilerReportController extends ReportsBaseController
 {
     protected $layout = 'layouts.admin_website';

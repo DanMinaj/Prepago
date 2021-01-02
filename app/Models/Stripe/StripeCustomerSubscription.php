@@ -5,7 +5,6 @@ namespace App\Models\Stripe;
 use App\Models\Customer;
 use Illuminate\Database\Eloquent\Model;
 
-
 class StripeCustomerSubscription extends Model
 {
     protected $table = 'customers_stripe_subs';

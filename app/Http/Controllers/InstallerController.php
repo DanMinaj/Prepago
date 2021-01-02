@@ -26,8 +26,6 @@ use Illuminate\Support\Facades\Validator;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-
-
 class InstallerController extends Controller
 {
     protected $layout = 'layouts.prepago_installer';

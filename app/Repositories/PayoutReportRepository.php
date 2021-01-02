@@ -12,8 +12,6 @@ use App\Models\Tariff;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-
-
 class PayoutReportRepository extends ReportsRepository
 {
     public function __construct()

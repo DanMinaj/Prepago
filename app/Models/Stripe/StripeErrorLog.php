@@ -4,7 +4,6 @@ namespace App\Models\Stripe;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 class StripeErrorLog extends Model
 {
     protected $table = 'stripe_error_logs';

@@ -12,8 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
-
-class CreditController extends Controller
+class _CreditController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

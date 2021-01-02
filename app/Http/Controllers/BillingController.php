@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Redirect;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-
-
 class BillingController extends Controller
 {
     protected $layout = 'layouts.admin_website';

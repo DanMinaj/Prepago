@@ -13,7 +13,6 @@ use App\Models\Stripe\StripePaymentSource;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 
-
 class PaymentController extends Controller
 {
     protected $layout = 'layouts.admin_website';

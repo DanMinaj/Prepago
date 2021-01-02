@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 
-
-
 class BaseValidator
 {
     protected $passes;

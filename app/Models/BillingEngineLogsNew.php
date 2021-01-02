@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 class BillingEngineLogsNew
 {
     public $file;

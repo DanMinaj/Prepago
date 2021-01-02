@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Models\PermanentMeterData;
 use Illuminate\Support\Facades\Auth;
 
-
 class BoilerReportRepository extends ReportsRepository
 {
     public function getReportData()
@@ -18,11 +17,11 @@ class BoilerReportRepository extends ReportsRepository
                 $query->where('time_date', '>=', $from)
                     ->where('time_date', '<=', $to)
                     ->orderBy('time_date');
-            }, ])->where('is_boiler_room_meter', 1)->where('scheme_number', '=', Auth::user()->scheme_number)->get();
+            }])->where('is_boiler_room_meter', 1)->where('scheme_number', '=', Auth::user()->scheme_number)->get();
         } else {
             $meters = PermanentMeterData::with(['latestReadings' => function ($query) {
                 $query->orderBy('time_date')->paginate(11);
-            }, ])->where('is_boiler_room_meter', 1)->where('scheme_number', '=', Auth::user()->scheme_number)->get();
+            }])->where('is_boiler_room_meter', 1)->where('scheme_number', '=', Auth::user()->scheme_number)->get();
         }
 
         return $meters;

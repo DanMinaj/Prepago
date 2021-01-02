@@ -14,8 +14,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Response as Response;
 
-
-
 class EVWebServiceController extends Controller
 {
     private $ws;

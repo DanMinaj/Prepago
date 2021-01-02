@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 class EseyeConnection
 {
     public $command_url;

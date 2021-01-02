@@ -5,8 +5,7 @@ namespace App\Libraries\validation;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Validator;
 
-
-class ValidationException extends Exception
+class ValidationExtensions extends Exception
 {
 }
 

@@ -7,8 +7,6 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 
-
-
 class UserScheme extends Model
 {
     /**

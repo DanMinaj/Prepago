@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
-
 class BossUsersController extends BOSSController
 {
     protected $adminID;

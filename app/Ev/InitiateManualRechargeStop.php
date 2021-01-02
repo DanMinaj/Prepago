@@ -2,7 +2,6 @@
 
 namespace App\Ev;
 
-
 class InitiateManualRechargeStop extends EVRechargeManager
 {
     public function handle()

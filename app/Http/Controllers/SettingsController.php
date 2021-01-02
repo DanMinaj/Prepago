@@ -28,8 +28,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 
-
-
 class SettingsController extends Controller
 {
     protected $layout = 'layouts.admin_website';

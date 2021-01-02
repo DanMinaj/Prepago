@@ -8,8 +8,6 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Whoops\Example\Exception;
 
-
-
 class PrepagoServiceController extends Controller
 {
     private $internal_link = 'http://prepago-admin.biz/services/list/internal';

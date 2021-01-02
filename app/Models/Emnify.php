@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 class Emnify
 {
     public static function getSIM($IP, $auth_token = null)

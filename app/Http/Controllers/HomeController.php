@@ -37,8 +37,6 @@ use Illuminate\Support\Facades\View;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-
-
 class HomeController extends Controller
 {
     protected $layout = 'layouts.admin_website';

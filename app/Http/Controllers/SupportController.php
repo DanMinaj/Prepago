@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 
-
 class SupportController extends Controller
 {
     protected $layout = 'layouts.admin_website';

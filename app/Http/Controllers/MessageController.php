@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
-
 class MessageController extends Controller
 {
     protected $layout = 'layouts.admin_website';

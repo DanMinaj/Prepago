@@ -9,8 +9,6 @@ use Monolog\Logger;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-
-
 class SupportCommand extends Command
 {
     /**
