@@ -1,0 +1,78 @@
+<?php
+
+class SystemSetting extends Eloquent{
+
+	/**
+	 * The database table used by the model.
+	 *
+	 * @var string
+	 */
+	protected $table = 'system_settings';
+	
+	public function getValueAttribute()
+	{
+		$req_url = '';
+		try {
+			$req_url = Request::getRequestUri();
+		} catch(Exception $e) {}
+		
+		$value = $this->attributes['value'];
+		
+		if(strpos($req_url, 'settings/autotopup') === false) {
+		$value = preg_replace_callback("/[$][a-zA-Z0-9]+/", function($varname) {
+			return SystemSetting::get(str_replace('$', '', $varname[0]));
+		}, $value);
+		}
+		
+		return $value;
+		
+	}
+	
+	public static function get($setting)
+	{
+		
+		$setting = SystemSetting::where('name', $setting)->first();
+		
+		if($setting) return $setting->value;
+		
+		
+		return null;
+		
+	}
+	
+	public static function build($key, $value, $desc = null, $type = null)
+	{
+		
+		$setting = new SystemSetting();
+		$setting->name = $key;
+		$setting->value = $value;
+		$setting->desc = $desc;
+		$setting->type = $type;
+		$setting->save();
+		
+		return $setting;
+		
+	}
+	
+	public static function modify($key, $modifying, $newvalue, $type = 'unassigned') 
+	{
+
+		$setting = SystemSetting::where('name', $key)->first();
+		
+		if(!$setting)
+		{
+			$setting = new SystemSetting();
+			$setting->name = $key;
+			$setting->type = $type;
+			$setting->value = $newvalue;
+		}
+		
+		$setting->$modifying = $newvalue;
+		$setting->save();
+		
+		return $setting;
+		
+	}
+
+	
+}

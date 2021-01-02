@@ -1,0 +1,119 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Application & Route Filters
+|--------------------------------------------------------------------------
+|
+| Below you will find the "before" and "after" events for the application
+| which may be used to do any work before or after a request into your
+| application. Here you may also register your custom route filters.
+|
+*/
+
+App::before(function($request)
+{
+	//
+});
+
+
+App::after(function($request, $response)
+{
+	//
+});
+
+/*
+|--------------------------------------------------------------------------
+| Authentication Filters
+|--------------------------------------------------------------------------
+|
+| The following filters are used to verify that the user of the current
+| session is logged into this application. The "basic" filter easily
+| integrates HTTP Basic authentication for quick, simple checking.
+|
+*/
+
+Route::filter('auth', function()
+{
+	if (Auth::guest()) return Redirect::guest('/');
+	//if (Auth::user()->isInstaller == 1) return Redirect::to('prepago_installer');
+});
+
+// Only installers can access this area
+Route::filter('isInstaller', function()
+{
+	if (Auth::guest())
+		return Redirect::guest('/');
+	else if (Auth::user()->isInstaller == 0)
+		return Redirect::to('/');
+});
+
+Route::filter('canAccessCRMFunction', function()
+{
+	$groupPermissions = getGroupPermissions();
+	if (!hasAccess('crm.functions', $groupPermissions))
+	{
+		return Redirect::to('/');
+	}
+});
+
+Route::filter('canAccessSystemReports', function()
+{
+	$groupPermissions = getGroupPermissions();
+	if (!hasAccess('system.reports', $groupPermissions))
+	{
+		return Redirect::to('/');
+	}
+});
+
+Route::filter('canAccessAdminSettings', function()
+{
+	$groupPermissions = getGroupPermissions();
+	if (!hasAccess('admin.settings', $groupPermissions))
+	{
+		return Redirect::to('/');
+	}
+});
+
+Route::filter('auth.basic', function()
+{
+	return Auth::basic();
+});
+
+/*
+|--------------------------------------------------------------------------
+| Guest Filter
+|--------------------------------------------------------------------------
+|
+| The "guest" filter is the counterpart of the authentication filters as
+| it simply checks that the current user is not logged in. A redirect
+| response will be issued if they are, which you may freely change.
+|
+*/
+
+Route::filter('guest', function()
+{
+	if (Auth::check()) return Redirect::to('/');
+});
+
+/*
+|--------------------------------------------------------------------------
+| CSRF Protection Filter
+|--------------------------------------------------------------------------
+|
+| The CSRF filter is responsible for protecting your application against
+| cross-site request forgery attacks. If this special token in a user
+| session does not match the one given in this request, we'll bail.
+|
+*/
+
+Route::filter('csrf', function()
+{
+	
+	if (Session::token() != Input::get('_token'))
+	{
+		return Redirect::back()->with([
+			'signinerror' => 'Login token expired. Please log in again.'
+		]);
+	}
+});
