@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class StripeCustomerSubscription extends Eloquent
+class StripeCustomerSubscription extends Model
 {
     protected $table = 'customers_stripe_subs';
 

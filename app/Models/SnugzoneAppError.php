@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class SnugzoneAppError extends Eloquent
+class SnugzoneAppError extends Model
 {
     /**
      * The database table used by the model.

@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class CustomerQueueLog extends Eloquent
+class CustomerQueueLog extends Model
 {
     /**
      * The database table used by the model.

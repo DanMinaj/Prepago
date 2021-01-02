@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class PermanentMeterData extends Eloquent
+class PermanentMeterData extends Model
 {
     /**
      * The database table used by the model.

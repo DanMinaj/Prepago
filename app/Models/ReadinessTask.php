@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class ReadinessTask extends Eloquent
+class ReadinessTask extends Model
 {
     /**
      * The database table used by the model.

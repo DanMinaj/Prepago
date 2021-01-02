@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class IOUStorage extends Eloquent
+class IOUStorage extends Model
 {
     /**
      * The database table used by the model.

@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class CorporateCitizenship extends Eloquent
+class CorporateCitizenship extends Model
 {
     protected $table = 'corporate_citizenship_initiative';
 

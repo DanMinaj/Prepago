@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class DistrictMeterStat extends Eloquent
+class DistrictMeterStat extends Model
 {
     /**
      * The database table used by the model.

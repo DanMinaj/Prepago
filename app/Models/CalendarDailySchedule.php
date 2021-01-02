@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class CalendarDailySchedule extends Eloquent
+class CalendarDailySchedule extends Model
 {
     /**
      * The database table used by the model.

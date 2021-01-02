@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class PaymentStorageArchived extends Eloquent
+class PaymentStorageArchived extends Model
 {
     /**
      * The database table used by the model.

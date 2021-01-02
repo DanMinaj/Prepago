@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class SMSMessagePreset extends Eloquent
+class SMSMessagePreset extends Model
 {
     /**
      * The database table used by the model.

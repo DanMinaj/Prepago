@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class PermanentMeterDataTelegramRelaycheckWebsite extends Eloquent
+class PermanentMeterDataTelegramRelaycheckWebsite extends Model
 {
     protected $table = 'permanent_meter_data_telegram_relaycheck_website';
 

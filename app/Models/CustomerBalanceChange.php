@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class CustomerBalanceChange extends Eloquent
+class CustomerBalanceChange extends Model
 {
     /**
      * The database table used by the model.

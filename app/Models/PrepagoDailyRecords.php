@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class PrepagoDailyRecords extends Eloquent
+class PrepagoDailyRecords extends Model
 {
     /**
      * The database table used by the model.

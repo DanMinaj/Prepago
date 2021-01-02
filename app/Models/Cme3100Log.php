@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Cme3100Log extends Eloquent
+class Cme3100Log extends Model
 {
     public static function error($error)
     {

@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class StripeLog extends Eloquent
+class StripeLog extends Model
 {
     protected $table = 'stripe_logs';
 

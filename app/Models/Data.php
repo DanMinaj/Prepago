@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Data extends Eloquent
+class Data extends Model
 {
     private static $username = 'root';
     private static $password = 'roslyn1234';

@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class RTUCommandQueWebsite extends Eloquent
+class RTUCommandQueWebsite extends Model
 {
     /**
      * The database table used by the model.

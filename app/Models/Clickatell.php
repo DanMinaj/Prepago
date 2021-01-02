@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Clickatell extends Eloquent
+class Clickatell extends Model
 {
     /**
      * The database table used by the model.

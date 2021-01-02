@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class GuardDog extends Eloquent
+class GuardDog extends Model
 {
     /**
      * The database table used by the model.

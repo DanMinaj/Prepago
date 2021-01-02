@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class RegisteredPhonesWithApps extends Eloquent
+class RegisteredPhonesWithApps extends Model
 {
     /**
      * The database table used by the model.

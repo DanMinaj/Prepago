@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class StripeCustomerFailedPayment extends Eloquent
+class StripeCustomerFailedPayment extends Model
 {
     protected $table = 'customers_stripe_failed_payments';
 

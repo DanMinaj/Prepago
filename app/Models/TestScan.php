@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class TestScan extends Eloquent
+class TestScan extends Model
 {
     /**
      * The database table used by the model.

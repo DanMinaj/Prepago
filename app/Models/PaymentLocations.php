@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class PaymentLocations extends Eloquent
+class PaymentLocations extends Model
 {
     /**
      * The database table used by the model.

@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class AdminDeductedCredit extends Eloquent
+class AdminDeductedCredit extends Model
 {
     /**
      * The database table used by the model.

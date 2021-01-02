@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Cronjob extends Eloquent
+class Cronjob extends Model
 {
     /**
      * The database table used by the model.

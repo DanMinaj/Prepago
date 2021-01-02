@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class DistrictHeatingUsage extends Eloquent
+class DistrictHeatingUsage extends Model
 {
     /**
      * The database table used by the model.

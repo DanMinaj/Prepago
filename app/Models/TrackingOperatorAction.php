@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class TrackingOperatorAction extends Eloquent
+class TrackingOperatorAction extends Model
 {
     /**
      * The database table used by the model.

@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class ReportABugPrepayGO extends Eloquent
+class ReportABugPrepayGO extends Model
 {
     /**
      * The database table used by the model.

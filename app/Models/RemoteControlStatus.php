@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class RemoteControlStatus extends Eloquent
+class RemoteControlStatus extends Model
 {
     /**
      * The database table used by the model.

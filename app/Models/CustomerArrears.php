@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class CustomerArrears extends Eloquent
+class CustomerArrears extends Model
 {
     /**
      * The database table used by the model.

@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class TrackingAppData extends Eloquent
+class TrackingAppData extends Model
 {
     /**
      * The database table used by the model.

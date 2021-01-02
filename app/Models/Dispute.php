@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Dispute extends Eloquent
+class Dispute extends Model
 {
     /**
      * The database table used by the model.

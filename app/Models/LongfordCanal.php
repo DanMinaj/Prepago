@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class LongfordCanal extends Eloquent
+class LongfordCanal extends Model
 {
     /**
      * The database table used by the model.

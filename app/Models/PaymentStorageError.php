@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class PaymentStorageError extends Eloquent
+class PaymentStorageError extends Model
 {
     /**
      * The database table used by the model.

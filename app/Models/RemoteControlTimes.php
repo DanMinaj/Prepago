@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class RemoteControlTimes extends Eloquent
+class RemoteControlTimes extends Model
 {
     /**
      * The database table used by the model.

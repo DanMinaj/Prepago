@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class AdminActivity extends Eloquent
+class AdminActivity extends Model
 {
     /**
      * The database table used by the model.

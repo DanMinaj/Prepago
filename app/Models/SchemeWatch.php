@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon as Carbon;
 
-class SchemeWatch extends Eloquent
+class SchemeWatch extends Model
 {
     //protected $appends = ['permissions'];
 

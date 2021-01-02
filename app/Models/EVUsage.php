@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class EVUsage extends Eloquent
+class EVUsage extends Model
 {
     /**
      * The database table used by the model.

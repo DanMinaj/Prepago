@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
-class PermanentMeterDataMeterReadWebsite extends Eloquent
+class PermanentMeterDataMeterReadWebsite extends Model
 {
     /**
      * The database table used by the model.

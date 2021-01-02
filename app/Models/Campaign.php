@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Campaign extends Eloquent
+class Campaign extends Model
 {
     /**
      * The database table used by the model.

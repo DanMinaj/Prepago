@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Group extends Eloquent
+class Group extends Model
 {
     /**
      * The database table used by the model.

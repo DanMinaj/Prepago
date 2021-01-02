@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class MeterLookup extends Eloquent
+class MeterLookup extends Model
 {
     /**
      * The database table used by the model.

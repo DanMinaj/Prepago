@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class UserSetting extends Eloquent
+class UserSetting extends Model
 {
     protected $table = 'users_settings';
 

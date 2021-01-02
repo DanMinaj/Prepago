@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class SMSMeterCommand extends Eloquent
+class SMSMeterCommand extends Model
 {
     /**
      * The database table used by the model.

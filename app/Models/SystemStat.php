@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class SystemStat extends Eloquent
+class SystemStat extends Model
 {
     /**
      * The database table used by the model.

@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class TemporaryPayments extends Eloquent
+class TemporaryPayments extends Model
 {
     /**
      * The database table used by the model.

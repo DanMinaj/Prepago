@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class DistrictHeatingUsageDeletion extends Eloquent
+class DistrictHeatingUsageDeletion extends Model
 {
     /**
      * The database table used by the model.

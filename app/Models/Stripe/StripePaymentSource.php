@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class StripePaymentSource extends Eloquent
+class StripePaymentSource extends Model
 {
     protected $table = 'customers_stripe_sources';
 

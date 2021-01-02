@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class SystemGraphData extends Eloquent
+class SystemGraphData extends Model
 {
     /**
      * The database table used by the model.

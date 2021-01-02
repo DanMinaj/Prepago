@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class UserSignIn extends Eloquent
+class UserSignIn extends Model
 {
     /**
      * The database table used by the model.

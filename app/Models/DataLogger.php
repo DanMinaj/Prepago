@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class DataLogger extends Eloquent
+class DataLogger extends Model
 {
     protected $table = 'data_loggers';
 

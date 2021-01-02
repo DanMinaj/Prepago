@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Support\Facades\Config;
 
-class UserScheme extends Eloquent
+class UserScheme extends Model
 {
     /**
      * The database table used by the model.

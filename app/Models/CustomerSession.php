@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class CustomerSession extends Eloquent
+class CustomerSession extends Model
 {
     protected $table = 'customers_sessions';
 

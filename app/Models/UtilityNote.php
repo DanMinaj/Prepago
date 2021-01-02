@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class UtilityNote extends Eloquent
+class UtilityNote extends Model
 {
     /**
      * The database table used by the model.

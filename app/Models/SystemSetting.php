@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class SystemSetting extends Eloquent
+class SystemSetting extends Model
 {
     /**
      * The database table used by the model.

@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class CustomerEngagement extends Eloquent
+class CustomerEngagement extends Model
 {
     protected $table = 'customers_engagement';
 

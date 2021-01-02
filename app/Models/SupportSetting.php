@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class SupportSetting extends Eloquent
+class SupportSetting extends Model
 {
     /**
      * The database table used by the model.

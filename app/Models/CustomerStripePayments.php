@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class CustomerStripePayments extends Eloquent
+class CustomerStripePayments extends Model
 {
     public static function getPendingNotifications($customer_id)
     {

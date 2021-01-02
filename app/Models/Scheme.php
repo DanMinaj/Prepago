@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon as Carbon;
 
-class Scheme extends Eloquent
+class Scheme extends Model
 {
     //protected $appends = ['permissions'];
 

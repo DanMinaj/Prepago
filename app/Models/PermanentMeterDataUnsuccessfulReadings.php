@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class PermanentMeterDataUnsuccessfulReadings extends Eloquent
+class PermanentMeterDataUnsuccessfulReadings extends Model
 {
     /**
      * The database table used by the model.

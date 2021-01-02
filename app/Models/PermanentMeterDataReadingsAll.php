@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class PermanentMeterDataReadingsAll extends Eloquent
+class PermanentMeterDataReadingsAll extends Model
 {
     protected $table = 'permanent_meter_data_readings_all';
 

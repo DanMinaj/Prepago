@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class EVRechargeReport extends Eloquent
+class EVRechargeReport extends Model
 {
     /**
      * The database table used by the model.

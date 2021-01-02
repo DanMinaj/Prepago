@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Email extends Eloquent
+class Email extends Model
 {
     protected $table = '';
 

@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Customer extends Eloquent
+class Customer extends Model
 {
-    use SoftDeletingTrait;
+    use SoftDeletes;
 
     /**
      * The database table used by the model.

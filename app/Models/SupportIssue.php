@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class SupportIssue extends Eloquent
+class SupportIssue extends Model
 {
     /**
      * The database table used by the model.

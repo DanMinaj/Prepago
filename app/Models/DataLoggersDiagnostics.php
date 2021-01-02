@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class DataLoggersDiagnostics extends Eloquent
+class DataLoggersDiagnostics extends Model
 {
     /**
      * The database table used by the model.

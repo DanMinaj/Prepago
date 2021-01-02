@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Changelog extends Eloquent
+class Changelog extends Model
 {
     /**
      * The database table used by the model.

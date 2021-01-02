@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class MBusAddressTranslation extends Eloquent
+class MBusAddressTranslation extends Model
 {
     /**
      * The database table used by the model.

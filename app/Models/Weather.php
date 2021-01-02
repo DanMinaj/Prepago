@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Weather extends Eloquent
+class Weather extends Model
 {
     /**
      * The database table used by the model.

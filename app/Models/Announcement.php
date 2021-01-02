@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Announcement extends Eloquent
+class Announcement extends Model
 {
     /**
      * The database table used by the model.

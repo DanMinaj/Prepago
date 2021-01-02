@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class CustomerDeletion extends Eloquent
+class CustomerDeletion extends Model
 {
     protected $table = 'customers_deletions';
 }

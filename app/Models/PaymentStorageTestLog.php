@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class PaymentStorageTestLog extends Eloquent
+class PaymentStorageTestLog extends Model
 {
     /**
      * The database table used by the model.
