@@ -11,33 +11,32 @@
 |
 */
 
-ClassLoader::addDirectories(array(
+ClassLoader::addDirectories([
 
-	
-	app_path().'/commands',
-	app_path().'/commands/Reminders',
-	app_path().'/commands/Management',
-	app_path().'/commands/Valve Tasks',
-	app_path().'/commands/Backup Tasks',
-	app_path().'/commands/Daily Tasks',
-	app_path().'/commands/Monthly Tasks',
-	app_path().'/commands/Hourly Tasks',
-	app_path().'/commands/End of day Tasks',
-	app_path().'/commands/Disabled',
-	app_path().'/controllers',
-	app_path().'/models',
-	app_path().'/models/Stripe',
-	app_path().'/models/SOAP',
-	app_path().'/models/SOAP/res',
-	app_path().'/database/seeds',
-	app_path().'/libraries/validation',
-	app_path().'/repositories',
-	app_path().'/controllers/Reports',
-	app_path().'/controllers/CSV',
-	app_path().'/controllers/SOAP',
-	app_path().'/ev',
-	
-));
+    app_path().'/commands',
+    app_path().'/commands/Reminders',
+    app_path().'/commands/Management',
+    app_path().'/commands/Valve Tasks',
+    app_path().'/commands/Backup Tasks',
+    app_path().'/commands/Daily Tasks',
+    app_path().'/commands/Monthly Tasks',
+    app_path().'/commands/Hourly Tasks',
+    app_path().'/commands/End of day Tasks',
+    app_path().'/commands/Disabled',
+    app_path().'/controllers',
+    app_path().'/models',
+    app_path().'/models/Stripe',
+    app_path().'/models/SOAP',
+    app_path().'/models/SOAP/res',
+    app_path().'/database/seeds',
+    app_path().'/libraries/validation',
+    app_path().'/repositories',
+    app_path().'/controllers/Reports',
+    app_path().'/controllers/CSV',
+    app_path().'/controllers/SOAP',
+    app_path().'/ev',
+
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -54,10 +53,9 @@ $logFile = 'log-'.php_sapi_name().'.txt';
 
 Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 
-
-
-App::bind('WebServiceRepositoryInterface', function () { return new WebServiceRepository; });
-
+App::bind('WebServiceRepositoryInterface', function () {
+    return new WebServiceRepository;
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -72,55 +70,48 @@ App::bind('WebServiceRepositoryInterface', function () { return new WebServiceRe
 |
 */
 
-App::error(function(Exception $exception, $code)
-{
-	
-	
-	if(isset($_SERVER['REMOTE_ADDR']))
-		$ip = $_SERVER['REMOTE_ADDR'];
-	else
-		$ip = 'prepago-admin.biz';
-	
-	if(isset($_SERVER['REQUEST_URI']))
-		$uri = $_SERVER['REQUEST_URI'];
-	else
-		$uri = 'undefined';
-	
-	if($code == 404)
-	{
-		$msg = "$ip tried to navigate to a non existent page: $uri";
-		//$msg .= "\n";
-		//$msg .= $exception;
-		Log::error($msg);
-		
-		return Redirect::to('404')->with([
-			'page' => $uri,
-		]);
-	}
-	
-	
-	if(!Auth::check()) {
-		if($code = 405) 
-		{
-			$msg = "$ip tried to use a method on page: $uri";
-			//$msg .= "\n";
-			//$msg .= $exception;
-			Log::error($msg);
-			
-			return Redirect::to('404')->with([
-				'page' => $uri,
-			]);
-		}
-	}
-	
-	$msg = "$ip sent a request to $uri. Page threw an error.";
-	$msg .= "\n";
-	$msg .= $exception;
-	Log::error($msg);
-	
+App::error(function (Exception $exception, $code) {
+    if (isset($_SERVER['REMOTE_ADDR'])) {
+        $ip = $_SERVER['REMOTE_ADDR'];
+    } else {
+        $ip = 'prepago-admin.biz';
+    }
+
+    if (isset($_SERVER['REQUEST_URI'])) {
+        $uri = $_SERVER['REQUEST_URI'];
+    } else {
+        $uri = 'undefined';
+    }
+
+    if ($code == 404) {
+        $msg = "$ip tried to navigate to a non existent page: $uri";
+        //$msg .= "\n";
+        //$msg .= $exception;
+        Log::error($msg);
+
+        return Redirect::to('404')->with([
+            'page' => $uri,
+        ]);
+    }
+
+    if (! Auth::check()) {
+        if ($code = 405) {
+            $msg = "$ip tried to use a method on page: $uri";
+            //$msg .= "\n";
+            //$msg .= $exception;
+            Log::error($msg);
+
+            return Redirect::to('404')->with([
+                'page' => $uri,
+            ]);
+        }
+    }
+
+    $msg = "$ip sent a request to $uri. Page threw an error.";
+    $msg .= "\n";
+    $msg .= $exception;
+    Log::error($msg);
 });
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -133,9 +124,8 @@ App::error(function(Exception $exception, $code)
 |
 */
 
-App::down(function()
-{
-	return Response::make("Be right back!", 503);
+App::down(function () {
+    return Response::make('Be right back!', 503);
 });
 
 /*
