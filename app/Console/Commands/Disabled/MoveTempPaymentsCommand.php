@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
-use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
-class MoveTempPaymentsCommand extends Command {
-
+class MoveTempPaymentsCommand extends Command
+{
     protected $name = 'payments:movetmp';
     protected $description = 'Move temp payments to payments_storage';
 
@@ -15,7 +15,7 @@ class MoveTempPaymentsCommand extends Command {
     {
         parent::__construct();
         $this->log = new Logger('Temporary Payments Logs');
-        $this->log->pushHandler(new StreamHandler(storage_path('logs/temporary_payments_' . date('Y-m-d') . '.log'), Logger::INFO));
+        $this->log->pushHandler(new StreamHandler(storage_path('logs/temporary_payments_'.date('Y-m-d').'.log'), Logger::INFO));
     }
 
     public function fire()
@@ -27,18 +27,17 @@ class MoveTempPaymentsCommand extends Command {
     {
         //fetch the temporary payment which are NOT made within the last 24hours
         $tempPayments = TemporaryPayments::readyToMove()->get();
-        foreach ($tempPayments as $tempPayment)
-        {
+        foreach ($tempPayments as $tempPayment) {
             //convert the object to array to prepare it for saving
             $paymentData = $tempPayment->toArray();
             $paymentData['payment_received'] = 1;
 
-            $this->info("Moving temp payment " . $tempPayment->ref_number);
+            $this->info('Moving temp payment '.$tempPayment->ref_number);
 
             //move the records from the temporary_payments table to the payments_storage table
-            if (!PaymentStorage::create($paymentData))
-            {
-                $this->error("Temp payment " . $tempPayment->ref_number . " could not be moved to payments_storage");
+            if (! PaymentStorage::create($paymentData)) {
+                $this->error('Temp payment '.$tempPayment->ref_number.' could not be moved to payments_storage');
+
                 return;
             }
 
@@ -46,13 +45,12 @@ class MoveTempPaymentsCommand extends Command {
             $this->log->addInfo('Temporary Payment Information', $paymentData);
 
             //delete current temporary payment
-            if (!TemporaryPayments::where('ref_number', $tempPayment->ref_number)->delete())
-            {
-                $this->error("Temp payment " . $tempPayment->ref_number . " could not be deleted");
+            if (! TemporaryPayments::where('ref_number', $tempPayment->ref_number)->delete()) {
+                $this->error('Temp payment '.$tempPayment->ref_number.' could not be deleted');
+
                 return;
             }
         }
-
     }
 
     protected function getArguments()
@@ -64,5 +62,4 @@ class MoveTempPaymentsCommand extends Command {
     {
         return [];
     }
-
 }

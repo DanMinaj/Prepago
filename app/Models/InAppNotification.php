@@ -1,24 +1,22 @@
 <?php
 
-class InAppNotification extends Eloquent{
+class InAppNotification extends Eloquent
+{
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'in_app_notifications';
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'in_app_notifications';
+    public function getStats()
+    {
+        $total = self::where('body', $this->body)->where('all_schemes', 1)->count();
+        $views = self::where('body', $this->body)->where('all_schemes', 1)->where('delivered', 1)->count();
 
-	public function getStats()
-	{
-		
-		$total = InAppNotification::where('body', $this->body)->where('all_schemes', 1)->count();
-		$views = InAppNotification::where('body', $this->body)->where('all_schemes', 1)->where('delivered', 1)->count();
-		
-		return (object)[
-			'total' => $total,
-			'views' => $views,
-		];
-	}
-	
+        return (object) [
+            'total' => $total,
+            'views' => $views,
+        ];
+    }
 }

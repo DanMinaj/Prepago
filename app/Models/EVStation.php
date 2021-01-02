@@ -1,7 +1,7 @@
 <?php
 
-class EVStation extends Eloquent{
-
+class EVStation extends Eloquent
+{
     /**
      * The database table used by the model.
      *
@@ -13,14 +13,13 @@ class EVStation extends Eloquent{
 
     //public $timestamps = false;
 
-	public function getLastCustomerAttribute()
-	{
-		return Customer::find($this->last_in_use_customer);
-	}
-	
-	public function getLastUsageAttribute()
-	{
-		return EVUsage::where('ev_meter_ID', $this->id)->orderBy('id', 'DESC')->first();
-	}
-   
+    public function getLastCustomerAttribute()
+    {
+        return Customer::find($this->last_in_use_customer);
+    }
+
+    public function getLastUsageAttribute()
+    {
+        return EVUsage::where('ev_meter_ID', $this->id)->orderBy('id', 'DESC')->first();
+    }
 }

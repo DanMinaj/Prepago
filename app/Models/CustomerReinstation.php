@@ -1,7 +1,6 @@
 <?php
-class CustomerReinstation extends Eloquent {
-	
-	protected $table = 'customers_reinstations';
-	
-	
+
+class CustomerReinstation extends Eloquent
+{
+    protected $table = 'customers_reinstations';
 }

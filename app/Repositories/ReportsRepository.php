@@ -1,13 +1,12 @@
 <?php
 
-use \Carbon\Carbon;
+use Carbon\Carbon;
 
-class ReportsRepository {
-
+class ReportsRepository
+{
     private $fromDate;
     private $toDate;
     private $csvURL;
-
 
     /* SETTERS */
     public function setCsvURL($url)
@@ -17,8 +16,7 @@ class ReportsRepository {
 
     public function setFromDate($date, $appendTime = false)
     {
-        if ($appendTime)
-        {
+        if ($appendTime) {
             $date = Carbon::createFromFormat('d-m-Y', $date)->startOfDay();
         }
         $this->fromDate = $date;
@@ -26,8 +24,7 @@ class ReportsRepository {
 
     public function setToDate($date, $appendTime = false)
     {
-        if ($appendTime)
-        {
+        if ($appendTime) {
             $date = Carbon::createFromFormat('d-m-Y', $date)->endOfDay();
         }
         $this->toDate = $date;
@@ -45,13 +42,11 @@ class ReportsRepository {
         $this->setToDate($to);
     }
 
-
     /* GETTERS */
     public function getCsvURL()
     {
-        if ($this->getDate('from') && $this->getDate('to'))
-        {
-            return $this->csvURL . '/' . $this->getDate('from') . '/' . $this->getDate('to');
+        if ($this->getDate('from') && $this->getDate('to')) {
+            return $this->csvURL.'/'.$this->getDate('from').'/'.$this->getDate('to');
         }
 
         return $this->csvURL;
@@ -61,15 +56,12 @@ class ReportsRepository {
     {
         //convert the date string to Carbon
         $carbonDate = $this->getDateAsCarbon($date);
-        if ($carbonDate)
-        {
-            if ($asCarbonObj)
-            {
+        if ($carbonDate) {
+            if ($asCarbonObj) {
                 return $carbonDate;
             }
 
-            if ($withTime)
-            {
+            if ($withTime) {
                 return $carbonDate->toDateTimeString();
             }
 
@@ -81,23 +73,20 @@ class ReportsRepository {
 
     protected function getDateAsCarbon($date)
     {
-        if ($this->{$date.'Date'})
-        {
+        if ($this->{$date.'Date'}) {
             return Carbon::createFromFormat('Y-m-d H:i:s', $this->{$date.'Date'});
         }
 
         return null;
     }
-	
-	public function validateDatepickerDate($date)
+
+    public function validateDatepickerDate($date)
     {
         //format should be dd-mm-yyyy
-        if (preg_match("/^(0[1-9]|[1-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-[0-9]{4}$/",$date))
-        {
+        if (preg_match('/^(0[1-9]|[1-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-[0-9]{4}$/', $date)) {
             return true;
         }
 
         return false;
     }
-
 }

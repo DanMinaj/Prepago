@@ -1,21 +1,20 @@
 <?php
 
-class CarlinnReportController extends ReportController {
-
+class CarlinnReportController extends ReportController
+{
     protected $layout = 'layouts.admin_website';
 
     public function index()
     {
-		ini_set('memory_limit', '-1');
-		ini_set('max_execution_time', 0);	
-	
+        ini_set('memory_limit', '-1');
+        ini_set('max_execution_time', 0);
+
         $to = '2017-03-01';
         $from = '2016-02-28';
 
-        $customers = Customer::where('customers.deleted_at', '=', NULL)->where('scheme_number', 3)->get();
+        $customers = Customer::where('customers.deleted_at', '=', null)->where('scheme_number', 3)->get();
 
-        foreach ($customers as $customer)
-        {
+        foreach ($customers as $customer) {
             $customer->readings = $customer->districtHeatingUsage()
                                         ->where('district_heating_usage.date', '>=', $from)
                                         ->where('district_heating_usage.date', '<=', $to)
@@ -27,9 +26,7 @@ class CarlinnReportController extends ReportController {
 
         $this->layout->page = View::make('report/carlinn_report', [
             'customers' => $customers,
-            'csv_url' => $csv_url
+            'csv_url' => $csv_url,
         ]);
-
     }
-
 }

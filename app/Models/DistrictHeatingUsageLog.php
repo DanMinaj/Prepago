@@ -1,7 +1,7 @@
 <?php
 
-class DistrictHeatingUsageLog extends Eloquent{
-
+class DistrictHeatingUsageLog extends Eloquent
+{
     /**
      * The database table used by the model.
      *
@@ -11,28 +11,24 @@ class DistrictHeatingUsageLog extends Eloquent{
 
     public $timestamps = false;
 
-	
-	public static function log($mID, $msg) 
-	{
-		
-		
-		$customer = Customer::where('meter_ID', $mID)->first();
-		if(!$customer)
-			return;
-		
-		$meter = DistrictHeatingMeter::where('meter_ID', $mID)->first();
-		if(!$meter)
-			return;
-		
-		
-		
-		$log = new DistrictHeatingUsageLog();
-		$log->customer_ID = $customer->id;
-		$log->meter_number = $meter->meter_number;
-		$log->permanent_meter_ID = $meter->permanent_meter_ID;
-		$log->log = $msg;
-		$log->timestamp = date('Y-m-d H:i:s');
-		$log->save();
-		
-	}
+    public static function log($mID, $msg)
+    {
+        $customer = Customer::where('meter_ID', $mID)->first();
+        if (! $customer) {
+            return;
+        }
+
+        $meter = DistrictHeatingMeter::where('meter_ID', $mID)->first();
+        if (! $meter) {
+            return;
+        }
+
+        $log = new self();
+        $log->customer_ID = $customer->id;
+        $log->meter_number = $meter->meter_number;
+        $log->permanent_meter_ID = $meter->permanent_meter_ID;
+        $log->log = $msg;
+        $log->timestamp = date('Y-m-d H:i:s');
+        $log->save();
+    }
 }

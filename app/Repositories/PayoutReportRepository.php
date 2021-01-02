@@ -1,17 +1,17 @@
 <?php
 
-use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
-class PayoutReportRepository extends ReportsRepository{
-
+class PayoutReportRepository extends ReportsRepository
+{
     public function __construct()
     {
         $this->log = new Logger('Temporary Payments Logs');
-        $this->log->pushHandler(new StreamHandler(storage_path('logs/temporary_payments_' . date('Y-m-d') . '.log'), Logger::INFO));
+        $this->log->pushHandler(new StreamHandler(storage_path('logs/temporary_payments_'.date('Y-m-d').'.log'), Logger::INFO));
     }
-	
-	public function setSchemeNumber($schemeNumber)
+
+    public function setSchemeNumber($schemeNumber)
     {
         $this->scheme_number = $schemeNumber;
     }
@@ -22,6 +22,7 @@ class PayoutReportRepository extends ReportsRepository{
         $toCarbonDate = $this->getDate('to', false, true)->addSecond(); // add 1 sec here so that we get the correct days diff (format is Y-m-d 23:59:59)
 
         $daysDiff = $toCarbonDate->diffInDays($fromCarbonDate);
+
         return $daysDiff;
     }
 
@@ -29,13 +30,11 @@ class PayoutReportRepository extends ReportsRepository{
     {
         $payments = PaymentStorage::inScheme($this->scheme_number)
                     ->whereBetween('time_date', [$this->getDate('from', true), $this->getDate('to', true)]);
-				
-        if ($param == 'count')
-        {
+
+        if ($param == 'count') {
             return $payments->count();
         }
-        if ($param == 'sum')
-        {
+        if ($param == 'sum') {
             return $payments->sum('amount');
         }
 
@@ -52,16 +51,16 @@ class PayoutReportRepository extends ReportsRepository{
 
     public function getAppsInstalled()
     {
-		if($this->getDate('from', true) >= '2020-01-01') {
-			return RegisteredPhonesWithApps::getNewApps($this->scheme_number, $this->getDate('from', true), $this->getDate('to', true));
-		}
-		
+        if ($this->getDate('from', true) >= '2020-01-01') {
+            return RegisteredPhonesWithApps::getNewApps($this->scheme_number, $this->getDate('from', true), $this->getDate('to', true));
+        }
+
         return RegisteredPhonesWithApps::inScheme($this->scheme_number)
                 ->whereBetween('date_added', [$this->getDate('from', true), $this->getDate('to', true)])
                 ->count();
     }
-	
-	public function getIOUChargeable()
+
+    public function getIOUChargeable()
     {
         return Scheme::where('scheme_number', $this->scheme_number)->pluck('IOU_chargeable');
     }
@@ -71,12 +70,10 @@ class PayoutReportRepository extends ReportsRepository{
         $iou = IOUStorage::inScheme($this->scheme_number)
                 ->whereBetween('time_date', [$this->getDate('from', true), $this->getDate('to', true)]);
 
-        if ($param == 'count')
-        {
+        if ($param == 'count') {
             return $iou->count();
         }
-        if ($param == 'sum')
-        {
+        if ($param == 'sum') {
             return $iou->sum('amount');
         }
 
@@ -88,34 +85,31 @@ class PayoutReportRepository extends ReportsRepository{
         $meterCharge = $this->getMeterCharge();
 
         $pmd = PermanentMeterData::inScheme($this->scheme_number);
-        if (!$all)
-        {
+        if (! $all) {
             $pmd = $pmd->whereBetween('install_date', [$this->getDate('from', true), $this->getDate('to', true)]);
         }
 
-        if ($param == 'count')
-        {
+        if ($param == 'count') {
             return $pmd->count();
         }
-        if ($param == 'total')
-        {
-            return $meterCharge * $pmd->count()* $this->calculateDaysDiff();
+        if ($param == 'total') {
+            return $meterCharge * $pmd->count() * $this->calculateDaysDiff();
         }
 
         return $pmd->get();
     }
-	
-	public function getMeterCharge()
+
+    public function getMeterCharge()
     {
         return Scheme::where('scheme_number', $this->scheme_number)->pluck('daily_customer_charge');
     }
-	
-	public function getSchemeTotalUsage()
+
+    public function getSchemeTotalUsage()
     {
         return Scheme::where('scheme_number', $this->scheme_number)->first()->totalUsage($this->getDate('from'), $this->getDate('to'));
     }
 
-	public function getSchemeAvgUsage()
+    public function getSchemeAvgUsage()
     {
         return Scheme::where('scheme_number', $this->scheme_number)->first()->avgDailyUsage($this->getDate('from'), $this->getDate('to'));
     }
@@ -124,15 +118,14 @@ class PayoutReportRepository extends ReportsRepository{
     {
         return Scheme::where('scheme_number', $this->scheme_number)->first()->avgDailyCost($this->getDate('from'), $this->getDate('to'));
     }
-	
-	public function getT1()
-	{
-		return $tariff = Tariff::where('scheme_number', $this->scheme_number)->first()->tariff_1;
-	}
-	
-	public function getT2()
-	{
-		return $tariff = Tariff::where('scheme_number', $this->scheme_number)->first()->tariff_2;
-	}
 
+    public function getT1()
+    {
+        return $tariff = Tariff::where('scheme_number', $this->scheme_number)->first()->tariff_1;
+    }
+
+    public function getT2()
+    {
+        return $tariff = Tariff::where('scheme_number', $this->scheme_number)->first()->tariff_2;
+    }
 }

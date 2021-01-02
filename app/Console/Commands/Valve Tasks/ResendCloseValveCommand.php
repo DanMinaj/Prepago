@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
-use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
-class ResendCloseValveCommand extends Command {
-
+class ResendCloseValveCommand extends Command
+{
     /**
      * The console command name.
      *
@@ -41,7 +41,7 @@ class ResendCloseValveCommand extends Command {
      */
     public function fire()
     {
-		/*
+        /*
         $closeValveCommandsForThePast10Minutes = RTUCommandQue::where('turn_service_off', 1)
                                                     ->where('time_date', '>', \Carbon\Carbon::now()->subMinutes(30))
                                                     ->where('resent', 0)
@@ -63,7 +63,7 @@ class ResendCloseValveCommand extends Command {
 
             $this->log->addInfo('Close valve command re-sent');
         }
-		*/
+        */
     }
 
     /**
@@ -85,5 +85,4 @@ class ResendCloseValveCommand extends Command {
     {
         return [];
     }
-
 }

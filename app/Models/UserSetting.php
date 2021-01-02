@@ -1,7 +1,7 @@
 <?php
 
-class UserSetting extends Eloquent {
-
+class UserSetting extends Eloquent
+{
     protected $table = 'users_settings';
 
     public $timestamps = false;
@@ -9,5 +9,4 @@ class UserSetting extends Eloquent {
     protected $primaryKey = 'id';
 
     protected $guarded = ['id'];
-
 }

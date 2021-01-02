@@ -1,16 +1,13 @@
 <?php
 
-class AdminDeductedCredit extends Eloquent{
+class AdminDeductedCredit extends Eloquent
+{
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'admin_deducted_credit';
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'admin_deducted_credit';
-
-	public $timestamps = false;
-
-
-
+    public $timestamps = false;
 }

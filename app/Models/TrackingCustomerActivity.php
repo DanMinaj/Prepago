@@ -1,17 +1,15 @@
 <?php
 
-class TrackingCustomerActivity extends Eloquent{
+class TrackingCustomerActivity extends Eloquent
+{
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'tracking_customer_activity';
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'tracking_customer_activity';
+    protected $primaryKey = 'id';
 
-	protected $primaryKey = 'id';
-	
-	public $timestamps = false;
-	
-	
+    public $timestamps = false;
 }

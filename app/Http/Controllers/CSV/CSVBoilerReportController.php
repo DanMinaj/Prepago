@@ -1,8 +1,7 @@
 <?php
 
-
-class CSVBoilerReportController extends CSVBaseController {
-
+class CSVBoilerReportController extends CSVBaseController
+{
     public function __construct(BoilerReportRepository $repo)
     {
         $this->repo = $repo;
@@ -10,8 +9,7 @@ class CSVBoilerReportController extends CSVBaseController {
 
     public function index($from = null, $to = null)
     {
-        if ($from && $to)
-        {
+        if ($from && $to) {
             //convert "from" and "to" dates from Y-m-d to d-m-Y
             $fromFormatted = $this->convertDateToFormat('d-m-Y', $from);
             $toFormatted = $this->convertDateToFormat('d-m-Y', $to);
@@ -20,7 +18,7 @@ class CSVBoilerReportController extends CSVBaseController {
             $this->repo->setToDate($toFormatted, true);
         }
 
-        $csvData = "";
+        $csvData = '';
         $data = $this->repo->getReportData();
 
         $csvData .= 'Meter Number,';
@@ -28,15 +26,12 @@ class CSVBoilerReportController extends CSVBaseController {
         $csvData .= 'Reading,';
         $csvData .= "\n";
 
-        foreach ($data as $meter)
-        {
-            if ($meter->latestReadings && $meter->latestReadings->count())
-            {
-                foreach ($meter->latestReadings as $meterReading)
-                {
-                    $csvData .= $meter->meter_number . ',';
-                    $csvData .= $meterReading->time_date . ',';
-                    $csvData .= $meterReading->reading1 . ',';
+        foreach ($data as $meter) {
+            if ($meter->latestReadings && $meter->latestReadings->count()) {
+                foreach ($meter->latestReadings as $meterReading) {
+                    $csvData .= $meter->meter_number.',';
+                    $csvData .= $meterReading->time_date.',';
+                    $csvData .= $meterReading->reading1.',';
                     $csvData .= "\n";
                 }
             }
@@ -44,11 +39,10 @@ class CSVBoilerReportController extends CSVBaseController {
 
         $csvFilename = 'boiler_report';
 
-        header("Content-type: text/csv");
-        header("Content-Disposition: attachment; filename=" . $csvFilename .".csv");
-        header("Pragma: no-cache");
-        header("Expires: 0");
-        print $csvData;
+        header('Content-type: text/csv');
+        header('Content-Disposition: attachment; filename='.$csvFilename.'.csv');
+        header('Pragma: no-cache');
+        header('Expires: 0');
+        echo $csvData;
     }
-
 }

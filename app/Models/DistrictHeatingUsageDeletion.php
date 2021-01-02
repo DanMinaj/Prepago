@@ -1,7 +1,7 @@
 <?php
 
-class DistrictHeatingUsageDeletion extends Eloquent{
-
+class DistrictHeatingUsageDeletion extends Eloquent
+{
     /**
      * The database table used by the model.
      *
@@ -10,5 +10,4 @@ class DistrictHeatingUsageDeletion extends Eloquent{
     protected $table = 'district_heating_usage_deletions';
 
     public $timestamps = false;
-
 }

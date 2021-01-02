@@ -1,7 +1,7 @@
 <?php
 
-class DataLoggersDiagnostics extends Eloquent {
-
+class DataLoggersDiagnostics extends Eloquent
+{
     /**
      * The database table used by the model.
      *
@@ -10,5 +10,4 @@ class DataLoggersDiagnostics extends Eloquent {
     protected $table = 'data_loggers_diagnostics';
 
     public $timestamps = false;
-
 }

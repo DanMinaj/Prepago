@@ -1,11 +1,10 @@
 <?php
 
-class InitiateManualRechargeStop extends EVRechargeManager {
-
+class InitiateManualRechargeStop extends EVRechargeManager
+{
     public function handle()
     {
-        if (!$this->performChecksAndInit())
-        {
+        if (! $this->performChecksAndInit()) {
             return $this->errorResponse();
         }
 
@@ -16,24 +15,22 @@ class InitiateManualRechargeStop extends EVRechargeManager {
         return [
             'ev_recharge_status' => 'off',
             'flag_message' => 0,
-            'error' => ''
+            'error' => '',
         ];
     }
 
     protected function performChecksAndInit()
     {
-        if (!parent::performChecksAndInit())
-        {
+        if (! parent::performChecksAndInit()) {
             return false;
         }
 
-        if (!$this->meter->rechargeInProgress())
-        {
-            $this->errorMsg = 'The EV Meter with RS Code ' . $this->rsCode . ' is currently not in use.';
+        if (! $this->meter->rechargeInProgress()) {
+            $this->errorMsg = 'The EV Meter with RS Code '.$this->rsCode.' is currently not in use.';
+
             return false;
         }
 
         return true;
     }
-
 }

@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
-use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Processes the entries inserted by the 'pmd:2hourcheck' command and updates the scheme status field
- * based on whether the reading was completed successfully or not
+ * based on whether the reading was completed successfully or not.
  *
  * Class CheckSchemesCommand
  */
@@ -21,14 +21,14 @@ class SMSReplyControlCommand extends Command
      */
     protected $name = 'sms:replies';
 
-	private $testMode = false;
+    private $testMode = false;
     /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Parses incoming customer SMS to execute events';
-	
+
     /**
      * Create a new command instance.
      *
@@ -38,8 +38,7 @@ class SMSReplyControlCommand extends Command
     {
         parent::__construct();
         $this->log = new Logger('Parsing SMS Replies');
-        $this->log->pushHandler(new StreamHandler(__DIR__ . '/SMSReplyControlCommand/' . date('Y-m-d') . '.log'), Logger::INFO);
-		
+        $this->log->pushHandler(new StreamHandler(__DIR__.'/SMSReplyControlCommand/'.date('Y-m-d').'.log'), Logger::INFO);
     }
 
     /**
@@ -48,13 +47,10 @@ class SMSReplyControlCommand extends Command
      * @return mixed
      */
     public function fire()
-    {	
-		ini_set('memory_limit', '-1');
-		ini_set('max_execution_time', 0);
-		
-		
+    {
+        ini_set('memory_limit', '-1');
+        ini_set('max_execution_time', 0);
     }
-	
 
     /**
      * Get the console command arguments.
@@ -63,7 +59,7 @@ class SMSReplyControlCommand extends Command
      */
     protected function getArguments()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -73,6 +69,6 @@ class SMSReplyControlCommand extends Command
      */
     protected function getOptions()
     {
-        return array();
+        return [];
     }
 }

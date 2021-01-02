@@ -1,7 +1,7 @@
 <?php
 
-class Group extends Eloquent {
-
+class Group extends Eloquent
+{
     /**
      * The database table used by the model.
      *
@@ -16,10 +16,10 @@ class Group extends Eloquent {
     public function getPermissionsAttribute($value)
     {
         $permissions = json_decode($value, true);
-        if ($permissions)
-        {
+        if ($permissions) {
             return array_keys($permissions);
         }
+
         return [];
     }
 
@@ -27,5 +27,4 @@ class Group extends Eloquent {
     {
         $this->attributes['permissions'] = json_encode($value);
     }
-
 }

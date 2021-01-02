@@ -1,20 +1,16 @@
 <?php
 
-use \Illuminate\Support\Facades\Redirect;
-use \Carbon\Carbon;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Redirect;
 
 class CustomerSetupController extends BaseController
 {
     protected $layout = 'layouts.admin_website';
 
-	public function index()
-	{
-		
-		
-		  $this->layout->page = View::make('home/customer_setup/index', [
-			
-		  ]);
-		  
-	}
-	
+    public function index()
+    {
+        $this->layout->page = View::make('home/customer_setup/index', [
+
+          ]);
+    }
 }

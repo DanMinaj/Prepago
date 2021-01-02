@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
-use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 /*
 The Use case - Run a server & scheme modem connection check
@@ -17,8 +17,8 @@ So let me walk you through the steps of the new task to make sure I understood i
 2) If no meters were read within the last 2 hours, I will randomly select a meter from the scheme and perform a manual reading.
 3) I will display the "status" word in red or green (depending on the manual reading result) on the  welcome schemes screen. And this scheme status will be visible only for the User Test.
  */
-class CheckPermanentMeterReadingsEvery2Hours extends Command {
-
+class CheckPermanentMeterReadingsEvery2Hours extends Command
+{
     /**
      * The console command name.
      *
@@ -42,7 +42,7 @@ class CheckPermanentMeterReadingsEvery2Hours extends Command {
     {
         parent::__construct();
         $this->log = new Logger('Permanent Meter Readings Check');
-        $this->log->pushHandler(new StreamHandler(storage_path('logs/pmd_2_hour_check_' . date('Y-m-d') . '.log'), Logger::INFO));
+        $this->log->pushHandler(new StreamHandler(storage_path('logs/pmd_2_hour_check_'.date('Y-m-d').'.log'), Logger::INFO));
     }
 
     /**
@@ -52,25 +52,25 @@ class CheckPermanentMeterReadingsEvery2Hours extends Command {
      */
     public function fire()
     {
-		
-		// Disabled on 09/07/2018 - Refer to ProcessPMReadings2HoursCheck code.
-		
-		return;
-		
+
+        // Disabled on 09/07/2018 - Refer to ProcessPMReadings2HoursCheck code.
+
+        return;
+
         $schemesRequiringManualRead = $this->schemesRequiringManualRead();
         $this->log->addInfo('Schemes requiring manual read', $schemesRequiringManualRead);
-		$this->info('Schemes requiring manual read', $schemesRequiringManualRead);
-		
+        $this->info('Schemes requiring manual read', $schemesRequiringManualRead);
+
         // randomly select a permanent meter from each scheme and perform a manual reading
         foreach ($schemesRequiringManualRead as $schemeNumber => $schemePrefix) {
-            $this->log->addInfo('Selecting random permanent meter for scheme with number ' . $schemeNumber);
+            $this->log->addInfo('Selecting random permanent meter for scheme with number '.$schemeNumber);
 
             $pm = PermanentMeterData::where('scheme_number', $schemeNumber)
-                        ->where("installation_confirmed", 1)
-                        ->orderByRaw("RAND()")
+                        ->where('installation_confirmed', 1)
+                        ->orderByRaw('RAND()')
                         ->limit(1)
                         ->first();
-            $this->log->addInfo('Scheme\'s random meter number ID is ' . ($pm ? $pm->ID : 'scheme has no meters'));
+            $this->log->addInfo('Scheme\'s random meter number ID is '.($pm ? $pm->ID : 'scheme has no meters'));
 
             if ($pm) {
                 $pmReading = $pm->performManualReading($schemeNumber, $schemePrefix);
@@ -80,14 +80,14 @@ class CheckPermanentMeterReadingsEvery2Hours extends Command {
                 $this->log->addInfo('Manual reading performed');
             }
         }
-		
-		// set remaining schemes status back to active
+
+        // set remaining schemes status back to active
         if ($schemesRequiringManualRead) {
             $schemesRequiringStatusReset = Scheme::whereNotIn('scheme_number', array_keys($schemesRequiringManualRead))->lists('scheme_number');
             $this->log->addInfo('Schemes requiring status reset', $schemesRequiringStatusReset);
             foreach ($schemesRequiringStatusReset as $schemeNumber) {
                 Scheme::where('scheme_number', $schemeNumber)->update(['status_ok' => 1]);
-                $this->log->addInfo('The status of scheme with number ' . $schemeNumber . ' was reset (set to active).');
+                $this->log->addInfo('The status of scheme with number '.$schemeNumber.' was reset (set to active).');
             }
         }
     }
@@ -99,7 +99,7 @@ class CheckPermanentMeterReadingsEvery2Hours extends Command {
         $schemesNumbersWithMeterReadsInTheLast2Hours = PermanentMeterDataReadingsAll::select('*')
                                                             ->from(\DB::raw(
                                                                 '(SELECT scheme_number FROM permanent_meter_data_readings_all 
-                                                                    WHERE time_date > "' . $twoHoursAgo . '" 
+                                                                    WHERE time_date > "'.$twoHoursAgo.'" 
                                                                     ORDER BY time_date DESC
                                                                 ) AS pm_readings')
                                                             )
@@ -121,7 +121,7 @@ class CheckPermanentMeterReadingsEvery2Hours extends Command {
      */
     protected function getArguments()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -131,7 +131,6 @@ class CheckPermanentMeterReadingsEvery2Hours extends Command {
      */
     protected function getOptions()
     {
-        return array();
+        return [];
     }
-
 }

@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
-use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 class CheckForOfflineServices extends Command
 {
@@ -31,7 +31,7 @@ class CheckForOfflineServices extends Command
     {
         parent::__construct();
         $this->log = new Logger('Offline Services');
-        $this->log->pushHandler(new StreamHandler(__DIR__ . '/OfflineServices/' . date('Y-m-d') . '.log'), Logger::INFO);
+        $this->log->pushHandler(new StreamHandler(__DIR__.'/OfflineServices/'.date('Y-m-d').'.log'), Logger::INFO);
     }
 
     /**
@@ -45,12 +45,13 @@ class CheckForOfflineServices extends Command
         $servicesThatAreCurrentlyRunning = (new \Illuminate\Support\Collection(PrepagoService::getServicesFromSSH()))->lists('name');
         $offlineServices = array_diff($servicesThatShouldBeRunning, $servicesThatAreCurrentlyRunning);
 
-        if ( ! $offlineServices) {
+        if (! $offlineServices) {
             $this->log->addInfo('No offline services detected');
+
             return;
         }
 
-        $this->log->addInfo('The following services are currently offline : ' . implode(', ', $offlineServices));
+        $this->log->addInfo('The following services are currently offline : '.implode(', ', $offlineServices));
     }
 
     protected function readingsWasTakenInThePast5Minutes($reading)
@@ -65,7 +66,7 @@ class CheckForOfflineServices extends Command
      */
     protected function getArguments()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -75,6 +76,6 @@ class CheckForOfflineServices extends Command
      */
     protected function getOptions()
     {
-        return array();
+        return [];
     }
 }

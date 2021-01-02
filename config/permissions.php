@@ -7,17 +7,17 @@ $open_close_account = [
                             'installed.meters',
                         ];
 
-$crm_function       = [
+$crm_function = [
                             'crm.functions',
                             'customer.search',
                             'crm.barcode.reports',
-                            'message.all.customers'
+                            'message.all.customers',
                         ];
 
-$system_reports     = [
+$system_reports = [
                             'system.reports',
                             'supply.report.units',
-								'boiler.report',
+                                'boiler.report',
                             'topup.reports',
                             'customer.topup.history',
                             'tariff.history',
@@ -35,12 +35,12 @@ $system_reports     = [
                             'weather.report',
                                 'weather.vs.topups',
                                 'weather.vs.heat.usage',
-							'bill.reports',
+                            'bill.reports',
                             'payout.reports',
-                            'not.read.meters.reports'	
+                            'not.read.meters.reports',
                         ];
 
-$settings           = [
+$settings = [
                             'settings',
                             'admin.settings',
                                 'sms.settings',
@@ -48,16 +48,16 @@ $settings           = [
                                 'tariff.settings',
                                 'credit.setting',
                                 'access.control',
-								'unassigned.users',
+                                'unassigned.users',
                                 /*'multiple.account.close',
                             'user.settings',
                                 'change.username',
                                 'change.password'*/
-								'groups.permissions',
+                                'groups.permissions',
                                 'schemes.list',
                                 'scheme.setup',
                             'boss',
-                                'boss.hierarchy'
+                                'boss.hierarchy',
                         ];
 
 return [
@@ -70,6 +70,6 @@ return [
 
   'group3' => array_merge($open_close_account, $crm_function, $system_reports),
 
-  'group4' => array_merge($open_close_account, $crm_function, $system_reports, $settings)
+  'group4' => array_merge($open_close_account, $crm_function, $system_reports, $settings),
 
 ];

@@ -1,15 +1,13 @@
 <?php
 
-class PaymentLocations extends Eloquent{
+class PaymentLocations extends Eloquent
+{
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'payment_locations';
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'payment_locations';
-
-	public $timestamps = false;
-
-
+    public $timestamps = false;
 }

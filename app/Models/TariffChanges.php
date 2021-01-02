@@ -1,24 +1,23 @@
 <?php
 
-class TariffChanges extends Eloquent{
+class TariffChanges extends Eloquent
+{
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'tariff_changes';
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'tariff_changes';
+    public $timestamps = false;
 
-	public $timestamps = false;
+    public function scheme()
+    {
+        return $this->belongsTo('Scheme', 'scheme_number', 'scheme_number');
+    }
 
-	public function scheme()
-	{
-		return $this->belongsTo('Scheme', 'scheme_number', 'scheme_number');
-	}
-
-	public function tarrif()
-	{
-		return $this->belongsTo('Tariff', 'scheme_number', 'scheme_number');
-	}
-
+    public function tarrif()
+    {
+        return $this->belongsTo('Tariff', 'scheme_number', 'scheme_number');
+    }
 }

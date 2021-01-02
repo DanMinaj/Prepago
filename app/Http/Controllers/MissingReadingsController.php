@@ -3,8 +3,8 @@
 ini_set('memory_limit', '-1');
 ini_set('max_execution_time', 300);
 
-class MissingReadingsController extends BaseController {
-
+class MissingReadingsController extends BaseController
+{
     protected $layout = 'layouts.admin_website';
 
     public function index()
@@ -12,28 +12,26 @@ class MissingReadingsController extends BaseController {
         $customerMissingReadings = new \Illuminate\Support\Collection();
 
         foreach (Customer::inScheme(3)->get() as $customer) {
-
             $readingToCompareTo = [
                 'date' => null,
-                'start_day_reading' => null
+                'start_day_reading' => null,
             ];
 
             $customerInfo = $this->extractRelevantCustomerInfo($customer);
 
             foreach ($customer->validDistrictHeatingUsage()->remember(1440)->get() as $reading) {
-                if ( ! $reading->end_day_reading >= $reading->start_day_reading) {
+                if (! $reading->end_day_reading >= $reading->start_day_reading) {
                     $readingToCompareTo['date'] = $reading->date;
                     $readingToCompareTo['start_day_reading'] = $reading->start_day_reading;
                     continue;
                 }
 
-                if ( ! is_null($readingToCompareTo['start_day_reading']) && $reading->start_day_reading > $readingToCompareTo['start_day_reading']) {
-
+                if (! is_null($readingToCompareTo['start_day_reading']) && $reading->start_day_reading > $readingToCompareTo['start_day_reading']) {
                     $customerInfo->missing_readings[] = [
                         'missing_reading_start_date' => $readingToCompareTo['date'],
                         'missing_reading_start_value' => $readingToCompareTo['start_day_reading'],
                         'missing_reading_end_date' => $reading->date,
-                        'missing_reading_end_value' => $reading->start_day_reading
+                        'missing_reading_end_value' => $reading->start_day_reading,
                     ];
 
                     $readingToCompareTo['date'] = null;
@@ -44,12 +42,12 @@ class MissingReadingsController extends BaseController {
             $customerMissingReadings->push($customerInfo);
         }
 
-        $this->layout->page = View::make('missing_readings', array(
-			'csv_url' => URL::to('create_csv/missing_readings_reports'),
-            'customers' => $customerMissingReadings->filter(function($item) {
-                                return count($item->missing_readings);
-                            })
-        ));
+        $this->layout->page = View::make('missing_readings', [
+            'csv_url' => URL::to('create_csv/missing_readings_reports'),
+            'customers' => $customerMissingReadings->filter(function ($item) {
+                return count($item->missing_readings);
+            }),
+        ]);
     }
 
     protected function extractRelevantCustomerInfo($customer)
@@ -75,5 +73,4 @@ class MissingReadingsController extends BaseController {
 
         return $customerInfo;
     }
-
 }

@@ -1,22 +1,21 @@
 <?php
 
-class EVRechargeOn extends EVRechargeManager {
-
-	protected $initiatedBySameCustomer = false;
+class EVRechargeOn extends EVRechargeManager
+{
+    protected $initiatedBySameCustomer = false;
 
     public function handle()
     {
-        if (!$this->performChecksAndInit())
-        {
+        if (! $this->performChecksAndInit()) {
             return $this->errorResponse();
         }
-		
-		if ($this->initiatedBySameCustomer) {
+
+        if ($this->initiatedBySameCustomer) {
             return [
                 'ev_recharge_status' => 'on',
                 'flag_message' => 0,
                'customer' => $this->customer,
-			   'meter'	=> $this->meter,
+               'meter'	=> $this->meter,
             ];
         }
 
@@ -30,8 +29,8 @@ class EVRechargeOn extends EVRechargeManager {
         $schemePrefix = $scheme ? $scheme->prefix : null;
 
         $this->meter->openValve($this->customer->scheme_number);
-		
-		if ($remoteControlStatus = $this->meter->remoteControlStatus) {
+
+        if ($remoteControlStatus = $this->meter->remoteControlStatus) {
             $remoteControlStatus->heating_on = 0;
             $remoteControlStatus->save();
         }
@@ -40,35 +39,34 @@ class EVRechargeOn extends EVRechargeManager {
             'ev_recharge_status' => 'on',
             'flag_message' => 0,
             'error' => '',
-			'customer' => $this->customer,
-			'meter'	=> $this->meter,
+            'customer' => $this->customer,
+            'meter'	=> $this->meter,
         ];
     }
 
     protected function performChecksAndInit()
     {
-        if (!parent::performChecksAndInit())
-        {
+        if (! parent::performChecksAndInit()) {
             return false;
         }
-		
-		if ($this->initiatedBySameCustomer = $this->isEVRechargeOnInitiatedBySameCustomer() && $this->meter->rechargeInProgress()) {
+
+        if ($this->initiatedBySameCustomer = $this->isEVRechargeOnInitiatedBySameCustomer() && $this->meter->rechargeInProgress()) {
             return true;
         }
 
-        if ($this->rechargeInProgress())
-        {
+        if ($this->rechargeInProgress()) {
             return false;
         }
 
-        if (!$this->isAvailableBalanceEnough())
-        {
+        if (! $this->isAvailableBalanceEnough()) {
             $this->errorMsg = 'Insufficient funds required for the recharge process.';
+
             return false;
         }
-		
-		if ( ! $this->meter->inUse()) {
+
+        if (! $this->meter->inUse()) {
             $this->errorMsg = 'This EV station is inactive.';
+
             return false;
         }
 
@@ -77,9 +75,9 @@ class EVRechargeOn extends EVRechargeManager {
 
     protected function rechargeInProgress()
     {
-        if ($this->meter->rechargeInProgress())
-        {
-            $this->errorMsg = 'The EV meter with RS Code ' . $this->rsCode . ' is currently in use';
+        if ($this->meter->rechargeInProgress()) {
+            $this->errorMsg = 'The EV meter with RS Code '.$this->rsCode.' is currently in use';
+
             return true;
         }
 
@@ -100,10 +98,9 @@ class EVRechargeOn extends EVRechargeManager {
     {
         $this->customer->associateDistrictHeatingMeter($this->districtHeatingMeter->meter_ID);
     }
-	
-	protected function isEVRechargeOnInitiatedBySameCustomer()
+
+    protected function isEVRechargeOnInitiatedBySameCustomer()
     {
         return $this->customer->ev_meter_ID == $this->districtHeatingMeter->meter_ID;
     }
-
 }

@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
-use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Process\Process;
 
 class RebootProgramsCommand extends Command
@@ -23,7 +23,6 @@ class RebootProgramsCommand extends Command
      */
     protected $description = 'Reboots prepago services';
 
-	
     /**
      * Create a new command instance.
      *
@@ -33,8 +32,8 @@ class RebootProgramsCommand extends Command
     {
         parent::__construct();
         $this->log = new Logger('RebootPrograms Command');
-        $this->log->pushHandler(new StreamHandler(__DIR__ . '/RebootProgramsCommand/' . date('Y-m-d') . '.log'), Logger::INFO);
-	}
+        $this->log->pushHandler(new StreamHandler(__DIR__.'/RebootProgramsCommand/'.date('Y-m-d').'.log'), Logger::INFO);
+    }
 
     /**
      * Execute the console command.
@@ -43,21 +42,18 @@ class RebootProgramsCommand extends Command
      */
     public function fire()
     {
-			
-		ini_set('memory_limit', '-1');
-		ini_set('max_execution_time', 0);
-		
-		try {
-			
-			$command = "sudo /var/www/app/commands/Management/r.sh";
-			exec($command, $output);
-			var_dump( $output);
-			
-		} catch(Exception $e) {		
-			echo $e->getMessage();
-		}
-		
-	}
+        ini_set('memory_limit', '-1');
+        ini_set('max_execution_time', 0);
+
+        try {
+            $command = 'sudo /var/www/app/commands/Management/r.sh';
+            exec($command, $output);
+            var_dump($output);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
     /**
      * Get the console command arguments.
      *
@@ -65,7 +61,7 @@ class RebootProgramsCommand extends Command
      */
     protected function getArguments()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -75,6 +71,6 @@ class RebootProgramsCommand extends Command
      */
     protected function getOptions()
     {
-        return array();
+        return [];
     }
 }

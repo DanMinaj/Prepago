@@ -1,7 +1,7 @@
 <?php
 
-class DistrictMeterStat extends Eloquent{
-
+class DistrictMeterStat extends Eloquent
+{
     /**
      * The database table used by the model.
      *
@@ -10,5 +10,4 @@ class DistrictMeterStat extends Eloquent{
     protected $table = 'district_heating_meters_stats';
 
     public $timestamps = false;
-
 }

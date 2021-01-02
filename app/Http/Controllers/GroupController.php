@@ -1,9 +1,9 @@
 <?php
 
-use \Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Redirect;
 
-class GroupController extends BaseController {
-
+class GroupController extends BaseController
+{
     protected $layout = 'layouts.admin_website';
 
     public function index()
@@ -16,16 +16,13 @@ class GroupController extends BaseController {
     public function update()
     {
         $passedPermissions = Input::get('permissions');
-        $permissions = array_fill_keys($passedPermissions, "1");
+        $permissions = array_fill_keys($passedPermissions, '1');
 
-        if (!Group::findOrFail(Input::get('group_id'))->update([
-               'permissions' => $permissions
-            ]))
-        {
+        if (! Group::findOrFail(Input::get('group_id'))->update([
+               'permissions' => $permissions,
+            ])) {
             Session::flash('errorMessage', 'The permissions cannot be updated at the moment');
-        }
-        else
-        {
+        } else {
             Session::flash('successMessage', 'The permissions were updated successfully');
         }
 

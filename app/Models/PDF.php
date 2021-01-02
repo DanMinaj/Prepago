@@ -1,17 +1,11 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
 class PDF
 {
-    
-	
-	public static function loadView($view, $data)
-	{
-		
-		
-		
-	}
-	
+    public static function loadView($view, $data)
+    {
+    }
 }

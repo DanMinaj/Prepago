@@ -1,7 +1,7 @@
 <?php
 
-class EVRechargeReport extends Eloquent{
-
+class EVRechargeReport extends Eloquent
+{
     /**
      * The database table used by the model.
      *
@@ -12,7 +12,6 @@ class EVRechargeReport extends Eloquent{
     protected $guarded = ['id'];
 
     public $timestamps = false;
-
 
     public function scopeWithEVMeterID($query, $meterID)
     {

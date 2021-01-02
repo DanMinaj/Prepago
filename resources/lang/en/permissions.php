@@ -11,7 +11,7 @@ return [
     'message.all.customers' => 'Message All Customers',
     'system.reports' => 'System reports',
     'supply.report.units' => 'Supply Report-Units',
-	'boiler.report' => 'Boiler Report',
+    'boiler.report' => 'Boiler Report',
     'topup.reports' => 'Top-Up Reports',
     'customer.topup.history' => 'Customer Top-Up History',
     'tariff.history' => 'Tariff History',
@@ -29,7 +29,7 @@ return [
     'weather.report' => 'Weather Reports',
     'weather.vs.topups' => 'Weather vs Top Ups',
     'weather.vs.heat.usage' => 'Weather vs Heat Usage',
-	'bill.reports' => 'Bill Reports',
+    'bill.reports' => 'Bill Reports',
     'payout.reports' => 'Payout Reports',
     'not.read.meters.reports' => 'Not Read Meters Reports',
     'settings' => 'Settings',
@@ -39,11 +39,11 @@ return [
     'tariff.settings' => 'Tariff Settings',
     'credit.setting' => 'Credit Setting',
     'access.control' => 'Access Control',
-	'unassigned.users' => 'Unassigned Users',
+    'unassigned.users' => 'Unassigned Users',
     //'multiple.account.close' => 'Multiple Account Close'
-	'groups.permissions' => 'Groups & Permissions',
+    'groups.permissions' => 'Groups & Permissions',
     'schemes.list' => 'Schemes List',
     'scheme.setup' => 'Scheme Set Up',
     'boss' => 'BOSS',
-    'boss.hierarchy' => 'BOSS Hierarchy'
+    'boss.hierarchy' => 'BOSS Hierarchy',
 ];

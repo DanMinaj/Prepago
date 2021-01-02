@@ -1,7 +1,7 @@
 <?php
 
-class UtilityNote extends Eloquent{
-
+class UtilityNote extends Eloquent
+{
     /**
      * The database table used by the model.
      *
@@ -14,5 +14,4 @@ class UtilityNote extends Eloquent{
     protected $primaryKey = 'id';
 
     protected $guarded = ['id'];
-
 }

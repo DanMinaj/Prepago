@@ -1,14 +1,10 @@
 <?php
 
-class CustomerEngagement extends Eloquent{
+class CustomerEngagement extends Eloquent
+{
+    protected $table = 'customers_engagement';
 
+    protected $guarded = ['id'];
 
-	protected $table = 'customers_engagement';
-	
-	protected $guarded = ['id'];
-	
-	//public $timestamps = false;
-	
-	
-	
+    //public $timestamps = false;
 }
