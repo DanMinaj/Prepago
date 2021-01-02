@@ -1,6 +1,6 @@
 <?php
 
-class WeatherController extends BaseController
+class WeatherController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

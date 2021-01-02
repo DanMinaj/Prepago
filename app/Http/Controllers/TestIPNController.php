@@ -3,7 +3,7 @@
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-class TestIPNController extends BaseController
+class TestIPNController extends Controller
 {
     private $log;
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
-class SetupController extends BaseController
+class SetupController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Redirect;
 
-class CustomerDuplicatesController extends \BaseController
+class CustomerDuplicatesController extends Controller
 {
     protected $layout = 'layouts.admin_website';
     private $validator;

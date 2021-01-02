@@ -1,6 +1,6 @@
 <?php
 
-class ProgramController extends BaseController
+class ProgramController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Collection;
 
-class TemperatureControlController extends BaseController
+class TemperatureControlController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

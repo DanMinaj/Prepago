@@ -1,6 +1,6 @@
 <?php
 
-class SupportController extends BaseController
+class SupportController extends Controller
 {
     protected $layout = 'layouts.admin_website';
     private $names = [

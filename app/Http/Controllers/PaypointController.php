@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Input;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-class PaypointController extends BaseController
+class PaypointController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

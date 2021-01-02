@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response as Response;
 
-class WebServiceController extends BaseController
+class WebServiceController extends Controller
 {
     private $ws;
     private $headers;

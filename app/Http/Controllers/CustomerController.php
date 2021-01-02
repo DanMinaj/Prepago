@@ -1,6 +1,6 @@
 <?php
 
-class CustomerController extends BaseController
+class CustomerController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

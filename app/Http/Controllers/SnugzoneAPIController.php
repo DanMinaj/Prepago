@@ -4,7 +4,7 @@ use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response as Response;
 
-class SnugzoneAPIController extends BaseController
+class SnugzoneAPIController extends Controller
 {
     private $ws;
     private $headers;

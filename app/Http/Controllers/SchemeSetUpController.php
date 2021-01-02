@@ -3,7 +3,7 @@
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 
-class SchemeSetUpController extends BaseController
+class SchemeSetUpController extends Controller
 {
     protected $layout = 'layouts.admin_website';
     private $validator;

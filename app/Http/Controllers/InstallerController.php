@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Input;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-class InstallerController extends BaseController
+class InstallerController extends Controller
 {
     protected $layout = 'layouts.prepago_installer';
 

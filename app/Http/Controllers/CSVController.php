@@ -1,6 +1,6 @@
 <?php
 
-class CSVController extends BaseController
+class CSVController extends Controller
 {
     public function supply_report_units()
     {

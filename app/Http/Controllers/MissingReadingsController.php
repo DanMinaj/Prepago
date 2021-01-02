@@ -3,7 +3,7 @@
 ini_set('memory_limit', '-1');
 ini_set('max_execution_time', 300);
 
-class MissingReadingsController extends BaseController
+class MissingReadingsController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

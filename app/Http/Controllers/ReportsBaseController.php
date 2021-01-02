@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 
-class ReportsBaseController extends BaseController
+class ReportsBaseController extends Controller
 {
     protected $fromDate;
     protected $toDate;

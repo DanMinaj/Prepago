@@ -2,7 +2,7 @@
 
 use Whoops\Example\Exception;
 
-class SMSController extends BaseController
+class SMSController extends Controller
 {
     /**
      * Sends a sms to the client's mobile number and nominated number.

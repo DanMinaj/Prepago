@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Collection;
 
-class ValveTestController extends BaseController
+class ValveTestController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

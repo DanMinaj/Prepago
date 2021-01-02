@@ -2,7 +2,7 @@
 
 use Carbon\Carbon as Carbon;
 
-class AidanReportController extends BaseController
+class AidanReportController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

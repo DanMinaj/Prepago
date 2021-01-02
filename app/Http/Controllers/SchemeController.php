@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Redirect;
 
-class SchemeController extends BaseController
+class SchemeController extends Controller
 {
     protected $layout = 'layouts.admin_website';
     private $validator;

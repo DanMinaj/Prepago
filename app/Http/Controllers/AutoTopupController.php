@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
-class AutoTopupController extends BaseController
+class AutoTopupController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

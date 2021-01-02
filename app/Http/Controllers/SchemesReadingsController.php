@@ -1,6 +1,6 @@
 <?php
 
-class SchemesReadingsController extends BaseController
+class SchemesReadingsController extends Controller
 {
     public function index()
     {

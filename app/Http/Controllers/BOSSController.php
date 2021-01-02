@@ -4,7 +4,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
-class BOSSController extends BaseController
+class BOSSController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

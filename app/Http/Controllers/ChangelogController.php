@@ -1,6 +1,6 @@
 <?php
 
-class ChangelogController extends BaseController
+class ChangelogController extends Controller
 {
     protected $layout = 'layouts.admin_website';
     private $names = [

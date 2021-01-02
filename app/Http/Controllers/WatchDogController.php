@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Input;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-class WatchDogController extends BaseController
+class WatchDogController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

@@ -1,6 +1,6 @@
 <?php
 
-class DiagnosticsButtonsController extends BaseController
+class DiagnosticsButtonsController extends Controller
 {
     public function meterTelegramTest($unitID)
     {

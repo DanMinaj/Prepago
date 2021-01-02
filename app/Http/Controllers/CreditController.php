@@ -1,6 +1,6 @@
 <?php
 
-class CreditController extends BaseController
+class CreditController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

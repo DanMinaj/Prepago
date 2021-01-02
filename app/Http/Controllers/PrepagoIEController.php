@@ -1,6 +1,6 @@
 <?php
 
-class PrepagoIEController extends BaseController
+class PrepagoIEController extends Controller
 {
     protected $layout = 'prepago_ie.layouts.main';
 

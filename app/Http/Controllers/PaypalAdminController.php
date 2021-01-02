@@ -1,6 +1,6 @@
 <?php
 
-class PaypalAdminController extends BaseController
+class PaypalAdminController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

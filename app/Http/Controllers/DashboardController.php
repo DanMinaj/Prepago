@@ -6,7 +6,7 @@ use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-class DashboardController extends BaseController
+class DashboardController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

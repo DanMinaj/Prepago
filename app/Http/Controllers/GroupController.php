@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Redirect;
 
-class GroupController extends BaseController
+class GroupController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

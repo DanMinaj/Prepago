@@ -1,6 +1,6 @@
 <?php
 
-class UserSettingsController extends BaseController
+class UserSettingsController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

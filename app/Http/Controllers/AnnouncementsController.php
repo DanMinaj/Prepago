@@ -4,7 +4,7 @@ use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response as Response;
 
-class AnnouncementsController extends BaseController
+class AnnouncementsController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

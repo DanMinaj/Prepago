@@ -1,6 +1,6 @@
 <?php
 
-class MeterController extends BaseController
+class MeterController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

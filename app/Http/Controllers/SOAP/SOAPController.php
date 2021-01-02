@@ -1,6 +1,8 @@
 <?php
 
-class SOAPController extends BaseController
+use App\Http\Controllers\Controller;
+
+class SOAPController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

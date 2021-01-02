@@ -1,6 +1,6 @@
 <?php
 
-class DataLoggerController extends BaseController
+class DataLoggerController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

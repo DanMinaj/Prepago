@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response as Response;
 
-class EVWebServiceController extends BaseController
+class EVWebServiceController extends Controller
 {
     private $ws;
     private $headers;

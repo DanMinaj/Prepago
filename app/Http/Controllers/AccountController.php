@@ -4,7 +4,7 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Whoops\Example\Exception;
 
-class AccountController extends BaseController
+class AccountController extends Controller
 {
     protected $layout = 'layouts.admin_website';
     private $validator;

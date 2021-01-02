@@ -1,6 +1,6 @@
 <?php
 
-class CSVBaseController extends BaseController
+class CSVBaseController extends Controller
 {
     protected function convertDateToFormat($format, $date)
     {

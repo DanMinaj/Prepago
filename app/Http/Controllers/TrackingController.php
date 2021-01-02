@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Input;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-class TrackingController extends BaseController
+class TrackingController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 

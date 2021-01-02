@@ -1,6 +1,6 @@
 <?php
 
-class MiscController extends BaseController
+class MiscController extends Controller
 {
     protected $layout = 'layouts.admin_website';
 }
