@@ -1,8 +1,0 @@
-[2020-08-19 00:00:12] Shut off resend log.INFO: Schedule shut off resent {"customer_id":790,"balance":-174.8} []
-[2020-08-19 00:00:12] Shut off resend log.INFO: Schedule shut off resent {"customer_id":1572,"balance":0} []
-[2020-08-19 06:00:12] Shut off resend log.INFO: Schedule shut off resent {"customer_id":790,"balance":-174.8} []
-[2020-08-19 12:00:11] Shut off resend log.INFO: Schedule shut off resent {"customer_id":790,"balance":-174.8} []
-[2020-08-19 12:00:12] Shut off resend log.INFO: Schedule shut off resent {"customer_id":1957,"balance":-0.052} []
-[2020-08-19 18:00:12] Shut off resend log.INFO: Schedule shut off resent {"customer_id":790,"balance":-174.8} []
-[2020-08-19 18:00:12] Shut off resend log.INFO: Schedule shut off resent {"customer_id":818,"balance":0} []
-[2020-08-19 18:00:12] Shut off resend log.INFO: Schedule shut off resent {"customer_id":1600,"balance":0} []

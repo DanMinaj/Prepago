@@ -1,4 +1,0 @@
-[2019-07-23 00:00:11] Shut off reset log.INFO: No customers to reset shut off [] []
-[2019-07-23 06:00:11] Shut off reset log.INFO: No customers to reset shut off [] []
-[2019-07-23 12:00:11] Shut off reset log.INFO: No customers to reset shut off [] []
-[2019-07-23 18:00:11] Shut off reset log.INFO: Shut off reset {"customer_id":314,"balance":10} []

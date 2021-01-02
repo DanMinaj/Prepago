@@ -1,7 +1,0 @@
-[2019-03-04 00:11:11] Shut off reset log.INFO: No customers to reset shut off [] []
-[2019-03-04 12:40:42] Shut off reset log.INFO: Shut off reset {"customer_id":786,"balance":19.605} []
-[2019-03-04 12:40:42] Shut off reset log.INFO: No customers to reset shut off [] []
-[2019-03-04 20:11:12] Shut off reset log.INFO: Shut off reset {"customer_id":673,"balance":16.595} []
-[2019-03-04 20:11:12] Shut off reset log.INFO: Shut off reset {"customer_id":734,"balance":19.03} []
-[2019-03-04 20:11:12] Shut off reset log.INFO: Shut off reset {"customer_id":1142,"balance":23.925} []
-[2019-03-04 20:11:12] Shut off reset log.INFO: No customers to reset shut off [] []
