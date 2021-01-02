@@ -15,13 +15,13 @@
 		<!-- Account information -->
 		<td style="vertical-align:top;width:70%">
 		<br/><br/>
-		{{ $customer->first_name }} {{ $customer->surname }}<br/>
-		{{ $address_1 }}<br/>
-		{{ $address_2 }}<br/>
-		{{ $address_3 }}<br/>
-		{{ $address_4 }}<br/><br/>
+		{!! $customer->first_name !!} {!! $customer->surname !!}<br/>
+		{!! $address_1 !!}<br/>
+		{!! $address_2 !!}<br/>
+		{!! $address_3 !!}<br/>
+		{!! $address_4 !!}<br/><br/>
 		
-		{{ $customer->barcode }}<br/>
+		{!! $customer->barcode !!}<br/>
 		<img class="barcode" src='http://prepago-admin.biz/Barcodes/9826004400000013877.png'>
 		</td>
 		
@@ -45,13 +45,13 @@
 	<tr>
 		<td>
 			<b>Date:</b><br/>
-			{{ date('d M Y') }}
+			{!! date('d M Y') !!}
 		</td>
 	</tr>
 	<tr>
 		<td>
 			<br/><b>Account commencement date:</b><br/>
-			{{ (new DateTime($customer->commencement_date))->format('d M Y') }}
+			{!! (new DateTime($customer->commencement_date))->format('d M Y') !!}
 		</td>
 	</tr>
 	<tr>
@@ -60,7 +60,7 @@
 	<tr>
 		<td>
 			<b>From - To:</b><br/>
-			{{ (new DateTime($from))->format('d M Y') }} - {{ (new DateTime($to))->format('d M Y') }} ({{ $no_of_days }} days)
+			{!! (new DateTime($from))->format('d M Y') !!} - {!! (new DateTime($to))->format('d M Y') !!} ({!! $no_of_days !!} days)
 		</td>
 	</tr>
 	<tr>
@@ -73,14 +73,14 @@
 
 	<tr>
 		<td colspan="3">
-			<h3> Payments received ({{ $topups->count() }})</h3>
+			<h3> Payments received ({!! $topups->count() !!})</h3>
 		</td>
 	</tr>
 
 	
 	<tr>
 		<td colspan="3">
-		 <b>Amount paid:</b> &euro;{{ number_format($topups->sum('amount'), 2) }}
+		 <b>Amount paid:</b> &euro;{!! number_format($topups->sum('amount'), 2) !!}
 		</td>
 	</tr>
 
@@ -92,9 +92,9 @@
 	
 	@foreach($topups->get() as $k => $t)
 	<tr>
-		<td>{{ (new DateTime($t->settlement_date ))->format('d M Y') }} </td>
-		<td>&euro;{{ number_format($t->amount, 2) }}</td>
-		<td>{{ $t->ref_number }}</td>
+		<td>{!! (new DateTime($t->settlement_date ))->format('d M Y') !!} </td>
+		<td>&euro;{!! number_format($t->amount, 2) !!}</td>
+		<td>{!! $t->ref_number !!}</td>
 	</tr>
 	@endforeach
 	
@@ -105,7 +105,7 @@
 	
 	<tr>
 		<td colspan="3">
-		 <b>Value of SMS Messages:</b> &euro;{{ number_format($smss->sum('charge'), 2) }}
+		 <b>Value of SMS Messages:</b> &euro;{!! number_format($smss->sum('charge'), 2) !!}
 		</td>
 	</tr>
 	<tr>
@@ -122,9 +122,9 @@
 	
 	@foreach($smss->get() as $k => $s)
 	<tr>
-		<td>{{ (new DateTime($s->date_time))->format('d M Y') }}</td>
-		<td>&euro;{{ $s->charge }}</td>
-		<td>{{ $s->message }}</td>
+		<td>{!! (new DateTime($s->date_time))->format('d M Y') !!}</td>
+		<td>&euro;{!! $s->charge !!}</td>
+		<td>{!! $s->message !!}</td>
 	</tr>
 	@endforeach
 	

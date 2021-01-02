@@ -1,20 +1,20 @@
 <br />
 <div class="cl"></div>
-<h1>Viewing watchdog #{{ $watchdog->id }}</h1>
+<h1>Viewing watchdog #{!! $watchdog->id !!}</h1>
 
 <div class="admin">
 
 @if(Session::has('successMessage'))
 <div class="alert alert-success alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('successMessage')}}
+{!!Session::get('successMessage')!!}
 </div>
 @endif
 
 @if(Session::has('errorMessage'))
 <div class="alert alert-danger alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('errorMessage')}}
+{!!Session::get('errorMessage')!!}
 </div>
 @endif
 	
@@ -31,9 +31,9 @@
 	
 	<hr/>
 	
-	<a class="btn btn-primary" href="{{ URL::to('view_csv_watchdog', ['id' => $watchdog->id]) }}"><i class="fa fa-download"></i> Download as CSV</a>
+	<a class="btn btn-primary" href="{!! URL::to('view_csv_watchdog', ['id' => $watchdog->id]) !!}"><i class="fa fa-download"></i> Download as CSV</a>
 	
-	<a data-toggle="modal" data-id="{{$watchdog->id}}" data-target="#watchdog-email"  class="btn btn-primary email_to" href='#' class="btn btn-primary" ><i class="fa fa-envelope"></i> Send as email</a>
+	<a data-toggle="modal" data-id="{!!$watchdog->id!!}" data-target="#watchdog-email"  class="btn btn-primary email_to" href='#' class="btn btn-primary" ><i class="fa fa-envelope"></i> Send as email</a>
 					
 	<h2> Information </h3>
 	
@@ -45,9 +45,9 @@
 			</td>
 			<td>
 				@if($watchdog->customer)
-					<a href='/customer/{{ $watchdog->customer_id}}'>{{ $watchdog->customer->username }} &horbar; #{{ $watchdog->customer_id }} </a>
+					<a href='/customer/{!! $watchdog->customer_id!!}'>{!! $watchdog->customer->username !!} &horbar; #{!! $watchdog->customer_id !!} </a>
 				@else
-					<a href='/customer/{{ $watchdog->customer_id}}'>{{ $watchdog->customer_id }}</a>
+					<a href='/customer/{!! $watchdog->customer_id!!}'>{!! $watchdog->customer_id !!}</a>
 				@endif
 			</td>
 		</tr>
@@ -56,7 +56,7 @@
 				<b>Started: </b>
 			</td>
 			<td>
-			{{ $watchdog->created_at }} ({{ Carbon\Carbon::parse($watchdog->created_at)->diffForHumans() }}) by operator <b>{{ (User::find($watchdog->operator_id)) ? User::find($watchdog->operator_id)->username : '' }}</b>
+			{!! $watchdog->created_at !!} ({!! Carbon\Carbon::parse($watchdog->created_at)->diffForHumans() !!}) by operator <b>{!! (User::find($watchdog->operator_id)) ? User::find($watchdog->operator_id)->username : '' !!}</b>
 			</td>
 		</tr>
 		<tr>
@@ -64,7 +64,7 @@
 				<b>Mode: </b>
 			</td>
 			<td>
-				Run <b>{{ $watchdog->run_times }}</b> times, every <b>{{ $watchdog->run_every }}</b> hours.
+				Run <b>{!! $watchdog->run_times !!}</b> times, every <b>{!! $watchdog->run_every !!}</b> hours.
 			</td>
 		</tr>
 		<tr>
@@ -73,10 +73,10 @@
 			</td>
 			<td>
 				@if($watchdog->completed)
-					<b>Completed</b> &horbar; {{ $watchdog->completed_at }} &horbar; ({{ Carbon\Carbon::parse($watchdog->completed_at)->diffForHumans() }})</b>
+					<b>Completed</b> &horbar; {!! $watchdog->completed_at !!} &horbar; ({!! Carbon\Carbon::parse($watchdog->completed_at)->diffForHumans() !!})</b>
 				@else
 					@if($watchdog->nextIteration != 'n/a')
-						<b>{{ $watchdog->nextIteration }} ({{ Carbon\Carbon::parse($watchdog->nextIteration)->diffForHumans() }})</b>
+						<b>{!! $watchdog->nextIteration !!} ({!! Carbon\Carbon::parse($watchdog->nextIteration)->diffForHumans() !!})</b>
 					@else
 						n/a
 					@endif
@@ -88,7 +88,7 @@
 				<b>Consecutive failure attempts: </b>
 			</td>
 			<td>
-			{{  $watchdog->failed_attempts }}/{{ $watchdog->max_failed_attempts }}
+			{!!  $watchdog->failed_attempts !!}/{!! $watchdog->max_failed_attempts !!}
 			</td>
 		</tr>
 		<tr>
@@ -96,9 +96,9 @@
 				<b>Progress: </b>
 			</td>
 			<td>
-			{{ $watchdog->ran_times }}/{{ $watchdog->run_times }} &horbar; 
+			{!! $watchdog->ran_times !!}/{!! $watchdog->run_times !!} &horbar; 
 			@if($watchdog->run_times > 0)
-				({{ (($watchdog->ran_times / $watchdog->run_times)*100) }}%)
+				({!! (($watchdog->ran_times / $watchdog->run_times)*100) !!}%)
 			@else
 				(0%)
 			@endif
@@ -108,7 +108,7 @@
 	
 	<h2> Output </h2>
 	
-	<textarea rows='20' style='width:95%'>{{ $watchdog->telegram_returned }}</textarea>
+	<textarea rows='20' style='width:95%'>{!! $watchdog->telegram_returned !!}</textarea>
 	
 </div>
 
@@ -145,4 +145,4 @@
 		</div>
 </div>
 			
-{{HTML::script('resources/js/util/watchdog/watchdog_tools.js')}}
+{!!HTML::script('resources/js/util/watchdog/watchdog_tools.js')!!}

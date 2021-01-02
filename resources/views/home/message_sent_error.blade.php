@@ -7,6 +7,6 @@
 
     <p>There were errors sending SMS messages to the following customers: </p>
 
-    <p>{{{ $customer_emails }}}</p>
+    <p>{{ $customer_emails }}</p>
 
     <div class="cl">&nbsp;</div>

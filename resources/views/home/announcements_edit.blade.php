@@ -2,20 +2,20 @@
 </div>
 
 <div><br/></div>
-<h1>Announcement Edit {{ $announcement->id }}: {{ $announcement->title }}</h1>
+<h1>Announcement Edit {!! $announcement->id !!}: {!! $announcement->title !!}</h1>
 
 
 <div class="admin2">
 
 	@if(Session::has('successMessage'))
 	<div class="alert alert-success">
-	{{ Session::get('successMessage') }}
+	{!! Session::get('successMessage') !!}
 	</div>
 	@endif
 	
 	@if(Session::has('errorMessage'))
 	<div class="alert alert-danger">
-	{{ Session::get('errorMessage') }}
+	{!! Session::get('errorMessage') !!}
 	</div>
 	@endif
 	
@@ -23,13 +23,13 @@
 	<div class="row-fluid">
 		
 		<div class="span6">
-		<a href="{{ URL::to('announcements/all') }}">
+		<a href="{!! URL::to('announcements/all') !!}">
 		<button class="btn btn-primary"> <i class="fa fa-long-arrow-alt-left"></i> View all announcements </button>
 		</a>
 		</div>
 		
 		<div class="span6 float-right" style="text-align: right">
-		<a href="{{ URL::to('announcements/view', ['id' => $announcement->id]) }}">
+		<a href="{!! URL::to('announcements/view', ['id' => $announcement->id]) !!}">
 						<button class="btn btn-success" type="button"><i class="fa fa-eye"></i> Preview</button>
 					</a>
 		</div>
@@ -41,8 +41,8 @@
 	<form action="" method="POST" class="form form-control">
 			<div class="row-fluid">
 			<div class="span12 pull-right">
-				<input type="text" name="show_at" class="form-control" value="{{ $announcement->show_at }}" placeholder="Show at">
-				<input type="text" name="stop_show_at" class="form-control" value="{{ $announcement->stop_show_at }}" placeholder="Stop show at">
+				<input type="text" name="show_at" class="form-control" value="{!! $announcement->show_at !!}" placeholder="Show at">
+				<input type="text" name="stop_show_at" class="form-control" value="{!! $announcement->stop_show_at !!}" placeholder="Stop show at">
 			</div>
 		</div>
 		<div class="row-fluid">
@@ -50,7 +50,7 @@
 				<h5>Image:</h5>
 			</div>
 			<div class="span6">
-				<input type="text" name="img" value="{{ $announcement->img }}" class="form-control" placeholder="Image">
+				<input type="text" name="img" value="{!! $announcement->img !!}" class="form-control" placeholder="Image">
 			</div>
 		</div>
 		<div class="row-fluid">
@@ -58,10 +58,10 @@
 				<h5>* Title:</h5>
 			</div>
 			<div class="span6">
-				<input type="text" name="title" class="form-control" value="{{ $announcement->title }}" placeholder="">
+				<input type="text" name="title" class="form-control" value="{!! $announcement->title !!}" placeholder="">
 			</div>
 			<div class="span6">
-				<input type="text" name="teaser" class="form-control" value="{{ $announcement->teaser }}" placeholder="Teaser">
+				<input type="text" name="teaser" class="form-control" value="{!! $announcement->teaser !!}" placeholder="Teaser">
 			</div>
 		</div>
 		<div class="row-fluid">
@@ -69,14 +69,14 @@
 				<h5>* Body:</h5>
 			</div>
 			<div class="span9">
-				<textarea placeholder=""  id="body" name="body" style="width:110%;height:200px;">{{ $announcement->body }}</textarea>
+				<textarea placeholder=""  id="body" name="body" style="width:110%;height:200px;">{!! $announcement->body !!}</textarea>
 			</div>
 		</div>
 		<hr/>
 		
 		<div class="row-fluid">
 			<div class="pull-right"> 
-				<input type="hidden" name="announcement_id" value="{{ $announcement->id }}"/>
+				<input type="hidden" name="announcement_id" value="{!! $announcement->id !!}"/>
 				<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save announcement</button> 
 			</div>
 		</div>

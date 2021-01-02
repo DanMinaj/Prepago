@@ -5,10 +5,10 @@
 
 <table width="100%">
 		
-		<a href="{{ URL::to('settings/ping') }}">
+		<a href="{!! URL::to('settings/ping') !!}">
 			<button type="button" class="btn btn-info"><i class="fas fa-sim-card"></i>  Manage SIMs</button>
 		</a>
-		<a href="{{ URL::to('settings/ping') }}">
+		<a href="{!! URL::to('settings/ping') !!}">
 			<button data-toggle="modal" data-target="#watch-schemes" class="btn btn-primary"><i class="fa fa-eye"></i> Watch Scheme</button>
 		</a>
 		<hr/>
@@ -17,13 +17,13 @@
 		
 		<td style='vertical-align:top;' width="10%">
 			
-			<input type="text" style='text-align:center' id="from" value="{{ date('Y-m-d', strtotime('3 days ago')) }}" placeholder="From"><br/>
-			<input type="text" style='text-align:center' id="date" value="{{ date('Y-m-d') }}" placeholder="To"><br/>
+			<input type="text" style='text-align:center' id="from" value="{!! date('Y-m-d', strtotime('3 days ago')) !!}" placeholder="From"><br/>
+			<input type="text" style='text-align:center' id="date" value="{!! date('Y-m-d') !!}" placeholder="To"><br/>
 		
 				@foreach($all_schemes as $s) 
-					<label class="check"><div style='border:1px solid #ccc;border-radius:3px;margin-bottom:10px;padding:5px;' value="{{ $s->scheme_number }}">
-					<input id="s_{{ $s->scheme_number }}" class="scheme_{{ $s->scheme_number }}" type="checkbox">
-					&nbsp;{{ ucfirst($s->scheme_nickname) }}
+					<label class="check"><div style='border:1px solid #ccc;border-radius:3px;margin-bottom:10px;padding:5px;' value="{!! $s->scheme_number !!}">
+					<input id="s_{!! $s->scheme_number !!}" class="scheme_{!! $s->scheme_number !!}" type="checkbox">
+					&nbsp;{!! ucfirst($s->scheme_nickname) !!}
 					</div>
 					</label>
 				@endforeach

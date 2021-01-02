@@ -6,11 +6,11 @@
 </tr>
 @foreach(System::getCustomers()->red as $k => $v)
 <tr>
-	<td><a href="{{ URL::to('customer_tabview_controller/show/' . $v->id) }}">Customer {{ $v->id }} {{ $v->username }}</a></td>
-	<td>&euro;{{ $v->balance }}</td>
+	<td><a href="{!! URL::to('customer_tabview_controller/show/' . $v->id) !!}">Customer {!! $v->id !!} {!! $v->username !!}</a></td>
+	<td>&euro;{!! $v->balance !!}</td>
 	<td>
 		@if($v->districtMeter) 
-			{{ $v->districtMeter->last_flow_temp }}&deg;C
+			{!! $v->districtMeter->last_flow_temp !!}&deg;C
 		@else
 			N/A
 		@endif

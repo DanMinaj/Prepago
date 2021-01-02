@@ -2,13 +2,13 @@
 
 </div>
 <div class="cl"></div>
-<h1>Closing {{ $customer->username  }}
+<h1>Closing {!! $customer->username  !!}
    
 </h1>
 <div class="admin2">
 	
 	@if (Session::has('successMsg') && Session::get('successMsg'))
-		<div class="alert alert-success">{{ Session::get('successMsg') }}</div>
+		<div class="alert alert-success">{!! Session::get('successMsg') !!}</div>
 	@endif
     @include('includes.notifications')
 	
@@ -26,11 +26,11 @@
 	
 	<!--<div class="alert alert-danger">The customers information will be wiped from the database.</div>-->
 	
-	<a href="{{ URL::to('close_account_alt') }}"> &lt;&lt; Go back </a>
+	<a href="{!! URL::to('close_account_alt') !!}"> &lt;&lt; Go back </a>
 	
 	<hr/>
 	
-	<a href="{{ URL::to('close_account_alt/confirm/download', ['id' => $customer->id]) }}"> <button type="button" class="btn btn-primary"><i class="fa fa-download"></i> Download as CSV</button> </a>
+	<a href="{!! URL::to('close_account_alt/confirm/download', ['id' => $customer->id]) !!}"> <button type="button" class="btn btn-primary"><i class="fa fa-download"></i> Download as CSV</button> </a>
 	
 	<table width="100%">
 		
@@ -47,27 +47,27 @@
 						</tr>
 						
 						<tr>
-							<td> <b> ID </b> </td> <td> <a href="{{ URL::to('customer_tabview_controller/show', ['customer_id' => $customer->id]) }}"> {{ $customer->id }} </a> </td>
+							<td> <b> ID </b> </td> <td> <a href="{!! URL::to('customer_tabview_controller/show', ['customer_id' => $customer->id]) !!}"> {!! $customer->id !!} </a> </td>
 						</tr>
 						
 						<tr>
-							<td> <b> Barcode </b> </td> <td> {{ $customer->barcode }} </td>
+							<td> <b> Barcode </b> </td> <td> {!! $customer->barcode !!} </td>
 						</tr>
 						
 						<tr>
-							<td> <b> Full name </b> </td> <td> {{ $customer->first_name . ' ' . $customer->surname }} </td>
+							<td> <b> Full name </b> </td> <td> {!! $customer->first_name . ' ' . $customer->surname !!} </td>
 						</tr>
 						
 						<tr>
-							<td> <b> Username </b> </td> <td> {{ $customer->username }} </td>
+							<td> <b> Username </b> </td> <td> {!! $customer->username !!} </td>
 						</tr>
 						
 						<tr>
-							<td> <b> Email address </b> </td> <td> {{ $customer->email_address }} </td>
+							<td> <b> Email address </b> </td> <td> {!! $customer->email_address !!} </td>
 						</tr>
 						
 						<tr>
-							<td> <b> Mobile number </b> </td> <td> {{ $customer->mobile_number }} </td>
+							<td> <b> Mobile number </b> </td> <td> {!! $customer->mobile_number !!} </td>
 						</tr>
 						
 				</table>
@@ -85,19 +85,19 @@
 					</tr>
 					
 					<tr>
-						<td> <b> Meter number </b> </td> <td> {{ $customer->districtMeter->meter_number }} </td>
+						<td> <b> Meter number </b> </td> <td> {!! $customer->districtMeter->meter_number !!} </td>
 					</tr>
 				
 					<tr>
-						<td> <b> Latest reading </b> </td> <td> {{ $customer->districtMeter->latest_reading }} kWh ( {{ $customer->districtMeter->latest_reading_time }} ) </td>
+						<td> <b> Latest reading </b> </td> <td> {!! $customer->districtMeter->latest_reading !!} kWh ( {!! $customer->districtMeter->latest_reading_time !!} ) </td>
 					</tr>
 					
 					<tr>
-						<td> <b> Sudo reading </b> </td> <td> {{ $customer->districtMeter->sudo_reading }} kWh ( {{ $customer->districtMeter->sudo_reading_time }} ) </td>
+						<td> <b> Sudo reading </b> </td> <td> {!! $customer->districtMeter->sudo_reading !!} kWh ( {!! $customer->districtMeter->sudo_reading_time !!} ) </td>
 					</tr>
 					
 					<tr>
-						<td> <b> Last return temp. </b> </td> <td> {{ $customer->districtMeter->last_return_temp }}&deg; </td>
+						<td> <b> Last return temp. </b> </td> <td> {!! $customer->districtMeter->last_return_temp !!}&deg; </td>
 					</tr>
 					
 					<tr>
@@ -105,7 +105,7 @@
 					</tr>
 					
 					<tr>
-						<td> <b> In use. </b> </td> <td> {{ $customer->permanentMeter->in_use }} </td>
+						<td> <b> In use. </b> </td> <td> {!! $customer->permanentMeter->in_use !!} </td>
 					</tr>
 				
 				</table>

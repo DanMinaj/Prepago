@@ -124,7 +124,7 @@
 
         if(from&&to&&!from2&&!to2){
 
-            $.post("{{ URL::to('weather_reports/heat_usage/get') }}",
+            $.post("{!! URL::to('weather_reports/heat_usage/get') !!}",
             {
                 from : from,
                 to : to
@@ -146,7 +146,7 @@
             $('#clear2').attr('disabled', false);
             $('#clear2').attr('checked', true);
 
-            $.post("{{ URL::to('weather_reports/heat_usage/get') }}",
+            $.post("{!! URL::to('weather_reports/heat_usage/get') !!}",
             {
                 from : from2,
                 to : to2
@@ -167,7 +167,7 @@
     }
 
     function loadExtraData(div, from, to){
-        $.post("{{ URL::to('weather_reports/heat_usage/extra') }}",
+        $.post("{!! URL::to('weather_reports/heat_usage/extra') !!}",
             {
                 from : from,
                 to : to
@@ -193,7 +193,7 @@
         var from2 = $('#from2').val();
         var to2 = $('#to2').val();
 
-        $.post("{{ URL::to('weather_reports/heat_usage/csv') }}",
+        $.post("{!! URL::to('weather_reports/heat_usage/csv') !!}",
         {
             from : from,
             to : to,

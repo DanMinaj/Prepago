@@ -18,13 +18,13 @@
 
         <h3 id="myModalLabel">Add user account</h3>
     </div>
-    <form action="{{ URL::to('settings/access_control/add_account_action') }}" method="POST">
+    <form action="{!! URL::to('settings/access_control/add_account_action') !!}" method="POST">
     <div class="modal-body">
 		@include('partials.user_setup')
 		
 		@if ($schemes)
-			{{ Form::label('schemes', 'Schemes:') }}
-			{{ Form::select('schemes[]', $schemes, null, ['id' => 'schemes_select', 'multiple' => 'multiple', 'style' => 'width: 80%']) }}
+			{!! Form::label('schemes', 'Schemes:') !!}
+			{!! Form::select('schemes[]', $schemes, null, ['id' => 'schemes_select', 'multiple' => 'multiple', 'style' => 'width: 80%']) !!}
 		@endif
 	</div>
     <div class="modal-footer">

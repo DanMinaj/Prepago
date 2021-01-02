@@ -10,7 +10,7 @@
 @if(Session::has('successMessage'))
 <div class="alert alert-success">
 		
-		{{Session::get('successMessage')}}
+		{!!Session::get('successMessage')!!}
 
 </div>
 @endif
@@ -18,14 +18,14 @@
 @if(Session::has('errorMessage'))
 <div class="alert alert-danger">
 		
-		{{Session::get('errorMessage')}}
+		{!!Session::get('errorMessage')!!}
 
 </div>
 @endif
 
 @if($enabled)
 	
-<form action="{{ URL::to('settings/system_programs/billing_engine/save_programs') }}" method="POST">
+<form action="{!! URL::to('settings/system_programs/billing_engine/save_programs') !!}" method="POST">
 <table width="100%">
 	<tr>
 		<td width="10%">
@@ -68,17 +68,17 @@
 				
 					<tr>
 						
-						<form action="{{URL::to('settings/system_programs/billing_engine/save')}}" method="POST">
+						<form action="{!!URL::to('settings/system_programs/billing_engine/save')!!}" method="POST">
 						<td>
-							<input type="text" name="settings_name" value="{{$setting->name}}">
+							<input type="text" name="settings_name" value="{!!$setting->name!!}">
 						</td>
 						
 						<td>
-							<input type="text" name="settings_value" value="{{$setting->value}}">
+							<input type="text" name="settings_value" value="{!!$setting->value!!}">
 						</td>
 						
 						<td>
-							<input type="hidden" name="setting_id" value="{{$setting->id}}" />
+							<input type="hidden" name="setting_id" value="{!!$setting->id!!}" />
 							<button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save</button>
 							</form>
 						</td>
@@ -86,8 +86,8 @@
 						<td>
 						
 						
-						<form action="{{URL::to('settings/system_programs/billing_engine/delete')}}" method="POST">
-							<input type="hidden" name="setting_id" value="{{$setting->id}}" />
+						<form action="{!!URL::to('settings/system_programs/billing_engine/delete')!!}" method="POST">
+							<input type="hidden" name="setting_id" value="{!!$setting->id!!}" />
 							<button type="submit" class="btn btn-danger"><i class="fa fa-times"></i> Delete</button>
 						</form>
 						
@@ -100,7 +100,7 @@
 				<tr>
 					
 					<td>
-					<form action="{{URL::to('settings/system_programs/billing_engine/add')}}" method="POST">
+					<form action="{!!URL::to('settings/system_programs/billing_engine/add')!!}" method="POST">
 						<input type="text" name="setting_name" class="form-control" placeholder="Name">
 					</td>
 					

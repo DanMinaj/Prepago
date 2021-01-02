@@ -14,24 +14,24 @@
 
     </form>
 	
-	<input type="hidden" name="start_date" id="start_date" value="{{ $data['start_date'] }}" />
-    <input type="hidden" name="end_date" id="end_date" value="{{ $data['end_date'] }}" />
+	<input type="hidden" name="start_date" id="start_date" value="{!! $data['start_date'] !!}" />
+    <input type="hidden" name="end_date" id="end_date" value="{!! $data['end_date'] !!}" />
 
 </div>
 
 
 <div class="admin2">
-    <a href="{{ URL::to('system_reports') }}">System Reports</a> > Payout Reports
+    <a href="{!! URL::to('system_reports') !!}">System Reports</a> > Payout Reports
     <div class="cl"></div>
 	
     @include('report.payout_content')
 
     @foreach($schemes as $schemeNumber => $schemeName)
         <div style="padding: 15px">
-            <a href="" class="generate-payout-report" id="generate-payout-report-{{$schemeNumber}}" onclick="return generatePayoutReport({{$schemeNumber}})">
-                Show payout report for scheme {{ $schemeName }} (Scheme Number {{ $schemeNumber }})
+            <a href="" class="generate-payout-report" id="generate-payout-report-{!!$schemeNumber!!}" onclick="return generatePayoutReport({!!$schemeNumber!!})">
+                Show payout report for scheme {!! $schemeName !!} (Scheme Number {!! $schemeNumber !!})
             </a>
-            <div id="payout_content_{{ $schemeNumber }}"></div>
+            <div id="payout_content_{!! $schemeNumber !!}"></div>
         </div>
     @endforeach
 </div>

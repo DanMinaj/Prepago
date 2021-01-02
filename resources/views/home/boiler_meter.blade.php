@@ -27,31 +27,31 @@
             @if ($meter)
                 <dl class="dl-horizontal">
                     <dt>Meter ID Number:</dt>
-                    <dd>{{{ $meter->meter_number }}}</dd>
+                    <dd>{{ $meter->meter_number }}</dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>Meter Reading:</dt>
-                    <dd>{{{ $meter->latest_reading . ' (' . $meter->latest_reading_time . ')' }}}</dd>
+                    <dd>{{ $meter->latest_reading . ' (' . $meter->latest_reading_time . ')' }}</dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt style='white-space: normal;'>Start of Month Reading:</dt>
-                    <dd>{{{ $meter->start_of_month_reading }}}</dd>
+                    <dd>{{ $meter->start_of_month_reading }}</dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>Shut Off Device Status:</dt>
-                    <dd>{{{ $meter->shut_off_device_status }}}</dd>
+                    <dd>{{ $meter->shut_off_device_status }}</dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>Last Shut off Time:</dt>
-                    <dd>{{{ $meter->last_shut_off_time }}}</dd>
+                    <dd>{{ $meter->last_shut_off_time }}</dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>Last Shut off Reading: </dt>
-                    <dd>{{{ $meter->shut_off_reading }}}</dd>
+                    <dd>{{ $meter->shut_off_reading }}</dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>Sim Mobile Number:</dt>
-                    <dd>{{{ $meter->meter_contact_number }}}</dd>
+                    <dd>{{ $meter->meter_contact_number }}</dd>
                 </dl>
             @else
                 <p>No Available Information</p>

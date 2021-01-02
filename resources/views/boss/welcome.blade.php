@@ -11,12 +11,12 @@
 		</td>
 		-->
 		<td>
-			<a href="{{ URL::to('settings/ping') }}">
+			<a href="{!! URL::to('settings/ping') !!}">
 				<button type="button" class="btn btn-info"><i class="fas fa-sim-card"></i>  Manage SIMs</button>
 			</a>
 		</td>
 		<td>
-			<a href="{{ URL::to('system_reports/sim_reports') }}">
+			<a href="{!! URL::to('system_reports/sim_reports') !!}">
 				<button type="button" class="btn btn-success"><i class="fas fa-chart-line"></i>  SIM Graphs</button>
 			</a>
 		</td>
@@ -46,49 +46,49 @@
  @if ($message = Session::get('successMessage'))
         <div class="alert alert-success alert-block">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ $message }}
+            {!! $message !!}
         </div>
  @endif
  @if ($e_message = Session::get('errorMessage'))
         <div class="alert alert-danger alert-block">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ $e_message }}
+            {!! $e_message !!}
         </div>
  @endif
 
     <table style="width: 100%">
         @foreach ($schemes as $scheme)
             <tr>
-                {{ Form::open(['url' => URL::to('schemes/set'), 'method' => 'PUT', 'id' => 'scheme_' . $scheme['scheme_number']]) }}
-                    {{ Form::hidden('scheme_number', $scheme['scheme_number']) }}
+                {!! Form::open(['url' => URL::to('schemes/set'), 'method' => 'PUT', 'id' => 'scheme_' . $scheme['scheme_number']]) !!}
+                    {!! Form::hidden('scheme_number', $scheme['scheme_number']) !!}
                     <td valign="top">
-                        <a href="javascript: ;" onclick="$('#scheme_' + {{ $scheme['scheme_number'] }}).submit()"><span style="font-size: 16px; font-weight: bold;">
-						{{{ $scheme['scheme_name'] }}}
+                        <a href="javascript: ;" onclick="$('#scheme_' + {!! $scheme['scheme_number'] !!}).submit()"><span style="font-size: 16px; font-weight: bold;">
+						{{ $scheme['scheme_name'] }}
 						</span></a>
 						@if($scheme['dl'] && $scheme['dl']->datalogger_active)
 						<br/>
 							@if($scheme['dl']->processing_meters_no > 0)
 								Reading -
-								<b>{{ number_format(($scheme['dl']->processing_progress/$scheme['dl']->processing_meters_no)*100, 2) }}%</b> complete.
+								<b>{!! number_format(($scheme['dl']->processing_progress/$scheme['dl']->processing_meters_no)*100, 2) !!}%</b> complete.
 							@endif
 						@else
 						<br />
-                        {{{ $scheme['scheme_desc'] }}}
+                        {{ $scheme['scheme_desc'] }}
 						@endif
 						<br/>
-						<span class="scheme scheme_{{ $scheme['scheme_number'] }}_test"></span>
+						<span class="scheme scheme_{!! $scheme['scheme_number'] !!}_test"></span>
                     </td>
 					@if (\Illuminate\Support\Facades\Auth::user()->isUserTest())
                         <td valign="top">
                          
-							<span style="{{ $scheme['statusCss'] }};cursor:pointer;" onclick="generateSchemeInfo({{ $scheme['id'] }})">
-								{{ ucfirst($scheme['status']) }}
-								<font size='1dp'>({{ \Carbon\Carbon::createFromTimeStamp(strtotime($scheme['status_checked']))->diffForHumans(); }})</font> 
+							<span style="{!! $scheme['statusCss'] !!};cursor:pointer;" onclick="generateSchemeInfo({!! $scheme['id'] !!})">
+								{!! ucfirst($scheme['status']) !!}
+								<font size='1dp'>({!! \Carbon\Carbon::createFromTimeStamp(strtotime($scheme['status_checked']))->diffForHumans(); !!})</font> 
 							</span>
 							
                         </td>
 						<td valign="top">
-                            <a href="{{ URL::to('system_reports/advice_notes/' . $scheme['scheme_number']) }}" style="font-weight: bold; font-size: 14px;">Payout Report</a>
+                            <a href="{!! URL::to('system_reports/advice_notes/' . $scheme['scheme_number']) !!}" style="font-weight: bold; font-size: 14px;">Payout Report</a>
                         </td>
                     @endif
                     <td valign="top" style="width: 5%">
@@ -98,37 +98,37 @@
 							
                                 <tr>
                                     <td rowspan="4" style="padding-right: 5px">
-                                        <a href="javascript: ;" onclick="$('#scheme_' + {{ $scheme['scheme_number'] }}).submit()">
+                                        <a href="javascript: ;" onclick="$('#scheme_' + {!! $scheme['scheme_number'] !!}).submit()">
                                             <img height="65" width="20" src="https://www.prepago-admin.biz/resources/img/traffic_light.png?123" class="img-rounded" >
                                         </a>
                                     </td>
-                                    <td>{{{ $scheme['white'] }}}</td>
+                                    <td>{{ $scheme['white'] }}</td>
                                 </tr>
-								<tr><td>{{{ $scheme['red'] }}}</td></tr>
-                                <tr><td>{{{ $scheme['yellow'] }}}</td></tr>
-                                <tr><td>{{{ $scheme['green'] }}}</td></tr>
+								<tr><td>{{ $scheme['red'] }}</td></tr>
+                                <tr><td>{{ $scheme['yellow'] }}</td></tr>
+                                <tr><td>{{ $scheme['green'] }}</td></tr>
                             </tbody>
 							-->
 							 <tbody>
                                 <tr>
                                     <td rowspan="3" style="padding-right: 5px">
-                                        <a href="javascript: ;" onclick="$('#scheme_' + {{ $scheme['scheme_number'] }}).submit()">
+                                        <a href="javascript: ;" onclick="$('#scheme_' + {!! $scheme['scheme_number'] !!}).submit()">
                                             <img src="http://www.prepago-admin.biz/resources/img/traffic_light.png" class="img-rounded" height="47" width="20">
                                         </a>
                                     </td>
-                                    <td>{{{ $scheme['red'] }}}</td>
+                                    <td>{{ $scheme['red'] }}</td>
                                 </tr>
-                                <tr><td>{{{ $scheme['yellow'] }}}</td></tr>
-                                <tr><td>{{{ $scheme['green'] }}}</td></tr>
+                                <tr><td>{{ $scheme['yellow'] }}</td></tr>
+                                <tr><td>{{ $scheme['green'] }}</td></tr>
                             </tbody>
                         </table>
                     </td>
-                {{ Form::close() }}
+                {!! Form::close() !!}
             </tr>
             <tr><td colspan="2">&nbsp;</td></tr>
         @endforeach
 		{{--<td colspan="1" align="left"><br /><a href="javascript: ;" onclick="datalogger_test()"class="btn btn-primary">Run DataLogger Test</a></td>--}}
-		<tr><td colspan="2" align="right"><br /><a href="{{ URL::to('scheme-setup') }}" class="btn btn-success">Set Up a New Scheme</a></td></tr>
+		<tr><td colspan="2" align="right"><br /><a href="{!! URL::to('scheme-setup') !!}" class="btn btn-success">Set Up a New Scheme</a></td></tr>
 		<tr><td colspan="2" align="right"><br /><a data-toggle="modal" data-target="#create_sim" class="btn btn-warning">Set Up a New Simcard</a></td></tr>
 		
     	</table>
@@ -202,7 +202,7 @@
 									body += "<b>Online % (24hrs): </b> ";
 								body += "</td>";
 								body += "<td>";
-									body += Math.floor(data.track.uptime_percentage) + "% <a href='{{  URL::to('system_reports/sim_reports') }}#s_" + data.scheme_number + "'>(View graph)</a>";
+									body += Math.floor(data.track.uptime_percentage) + "% <a href='{!!  URL::to('system_reports/sim_reports') !!}#s_" + data.scheme_number + "'>(View graph)</a>";
 								body += "</td>";
 							body += "</tr>";
 							body += "<tr>";
@@ -661,7 +661,7 @@
       </div>
       <div class="modal-body">
 		
-		<form action="{{ URL::to('scheme-setup/sim-setup') }}" method="POST">
+		<form action="{!! URL::to('scheme-setup/sim-setup') !!}" method="POST">
 		  <div class="form-group">
 			<label for="sim_name"><font color='red'>*</font> SIM Name</label>
 			<input type="text" class="form-control"name="sim_name" id="sim_name" placeholder="SIM Name">

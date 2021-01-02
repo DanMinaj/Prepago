@@ -1,20 +1,20 @@
 <br />
 <div class="cl"></div>
-<h1>Changeset #{{ $cs->id }}</h1>
+<h1>Changeset #{!! $cs->id !!}</h1>
 
 <div class="admin">
 
 @if(Session::has('successMessage'))
 <div class="alert alert-success alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('successMessage')}}
+{!!Session::get('successMessage')!!}
 </div>
 @endif
 
 @if(Session::has('errorMessage'))
 <div class="alert alert-danger alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('errorMessage')}}
+{!!Session::get('errorMessage')!!}
 </div>
 @endif
 <script>
@@ -55,7 +55,7 @@ $(document).ready(function() {
 </style>
 <div class="admin2">
 		
-		<a href="{{ URL::to('changelog') }}">
+		<a href="{!! URL::to('changelog') !!}">
 			<button style="margin-bottom:2%;" type="button" class="btn btn-primary">
 				<i class="fa fa-angle-double-left"></i> Go back
 			</button>
@@ -63,9 +63,9 @@ $(document).ready(function() {
 		
 		<div style="width:auto;margin-top:2%;margin-left:5%;" class="pull-right">
 			@if(strlen($cs->email && $cs->track_progress) > 0)
-			<a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ $cs->email }}&su=Changeset No.{{ $cs->id }} - Manual Email&body=Hi ," target="_blank">
+			<a href="https://mail.google.com/mail/?view=cm&fs=1&to={!! $cs->email !!}&su=Changeset No.{!! $cs->id !!} - Manual Email&body=Hi ," target="_blank">
 				<div style="padding:2px;cursor:pointer;" class="alert alert-info alert-block" id="">
-					<center><i class="fa fa-envelope"></i> {{ (strlen($cs->email && $cs->track_progress) > 0) ? $cs->email : "None" }}</center>
+					<center><i class="fa fa-envelope"></i> {!! (strlen($cs->email && $cs->track_progress) > 0) ? $cs->email : "None" !!}</center>
 				</div>
 			</a>	
 			@else
@@ -78,8 +78,8 @@ $(document).ready(function() {
 			
 		</div>
 		
-		 <div style="margin:0px;height:15px;" change_id="{{ $cs->id }}" class="percent_div progress {{ $cs->progressClass }} active">
-				<div id="" change_id="{{ $cs->id }}" class="scheme_progress bar" style="width: {{ $cs->progress }}%;">&nbsp;{{ $cs->progress }}%</div>
+		 <div style="margin:0px;height:15px;" change_id="{!! $cs->id !!}" class="percent_div progress {!! $cs->progressClass !!} active">
+				<div id="" change_id="{!! $cs->id !!}" class="scheme_progress bar" style="width: {!! $cs->progress !!}%;">&nbsp;{!! $cs->progress !!}%</div>
 		 </div>
 		 
 		 <br/>
@@ -90,19 +90,19 @@ $(document).ready(function() {
 		<div style="width:auto;margin-top:2%;margin-left:5%;" class="pull-right">
 			<button data-toggle="modal" data-target="#changelog-edit" type="button" class="btn btn-primary"><i class="fa fa-cogs"></i> </button>
 		</div>
-			<i> {{ $cs->created_at  }}  <i class="fa fa-clock"></i> ({{ Carbon\Carbon::parse($cs->created_at)->diffForHumans() }}) </i>
-			<h3> {{ $cs->title }} - <font change_id="{{ $cs->id }}" style="cursor:pointer;" class="finalize" color="green"><i class="fa fa-check-circle"></i> Mark complete</font></h3>
+			<i> {!! $cs->created_at  !!}  <i class="fa fa-clock"></i> ({!! Carbon\Carbon::parse($cs->created_at)->diffForHumans() !!}) </i>
+			<h3> {!! $cs->title !!} - <font change_id="{!! $cs->id !!}" style="cursor:pointer;" class="finalize" color="green"><i class="fa fa-check-circle"></i> Mark complete</font></h3>
 			
-			{{ nl2br($cs->details) }}
+			{!! nl2br($cs->details) !!}
 			
 			<hr/>
 			
 			<div class="pull-left">
-				<button change_id="{{ $cs->id }}" change_amount="+10" type="button" class="increment btn btn-success"><i class="fa fa-plus"></i> 10% Progress <i class="fa fa-tasks"></i></button>
+				<button change_id="{!! $cs->id !!}" change_amount="+10" type="button" class="increment btn btn-success"><i class="fa fa-plus"></i> 10% Progress <i class="fa fa-tasks"></i></button>
 			</div>
 			
 			<div class="pull-right">
-				<button change_id="{{ $cs->id }}" change_amount="-10" type="button" class="decrement btn btn-danger"><i class="fa fa-minus"></i> 10% Progress <i class="fa fa-tasks"></i></button>
+				<button change_id="{!! $cs->id !!}" change_amount="-10" type="button" class="decrement btn btn-danger"><i class="fa fa-minus"></i> 10% Progress <i class="fa fa-tasks"></i></button>
 			</div>
 			
 			<br/>
@@ -115,12 +115,12 @@ $(document).ready(function() {
 			<div class="well">
 			
 			<font size="2em">
-			<b>{{ User::find($comment->user_id)->username }}</b> at <i> {{ $comment->created_at  }}  <i class="fa fa-clock"></i> ({{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}) </i>
+			<b>{!! User::find($comment->user_id)->username !!}</b> at <i> {!! $comment->created_at  !!}  <i class="fa fa-clock"></i> ({!! Carbon\Carbon::parse($comment->created_at)->diffForHumans() !!}) </i>
 			</font>
 			
 			<hr>
 			
-			{{ nl2br($comment->comment) }}
+			{!! nl2br($comment->comment) !!}
 		
 			</div>
 		
@@ -143,7 +143,7 @@ $(document).ready(function() {
 		</div>
 	
 <!-- Changelog edit modal -->
-<form action="{{ URL::to('changelog/edit') }}" method="POST">
+<form action="{!! URL::to('changelog/edit') !!}" method="POST">
 <div id="changelog-edit" class="modal fade" role="dialog">
 
 	  
@@ -166,15 +166,15 @@ $(document).ready(function() {
 					<td><b> ID </b></td>
 				</tr>
 				<tr>
-					<input type="hidden" name="id" value="{{ $cs->id }}">
-					<td><input disabled type="text" value="{{ $cs->id }}"></td>
+					<input type="hidden" name="id" value="{!! $cs->id !!}">
+					<td><input disabled type="text" value="{!! $cs->id !!}"></td>
 				</tr>
 				
 				<tr>
 					<td><b> Title </b></td>
 				</tr>
 				<tr>
-					<td><input type="text" value="{{ $cs->title }}" name="title"></td>
+					<td><input type="text" value="{!! $cs->title !!}" name="title"></td>
 				</tr>
 				
 				<tr>
@@ -182,7 +182,7 @@ $(document).ready(function() {
 				</tr>
 				<tr>
 					<td>
-						<textarea style='width:90%;height:60px;' name="details">{{ $cs->details }}</textarea>
+						<textarea style='width:90%;height:60px;' name="details">{!! $cs->details !!}</textarea>
 					</td>
 				</tr>
 				
@@ -196,7 +196,7 @@ $(document).ready(function() {
 						</tr>
 						<tr>
 							<td width="5%" style="vertical-align:top"><input name="track_progress" @if($cs->track_progress) checked @endif  type="checkbox" data-toggle="toggle" data-onstyle="primary"></td>
-							<td width="95%" style="vertical-align:top"><input name="email" value="{{ $cs->email }}" type="email" placeholder="Email address"></td>
+							<td width="95%" style="vertical-align:top"><input name="email" value="{!! $cs->email !!}" type="email" placeholder="Email address"></td>
 						</tr>
 					</table>
 					</td>
@@ -223,10 +223,10 @@ $(document).ready(function() {
 </form>
 <!-- / End Changelog edit modal -->
 	
-{{ HTML::script('resources/js/util/changelog.js?222') }}
+{!! HTML::script('resources/js/util/changelog.js?222') !!}
 
 </div>
 @section('extra_scripts')
-{{ HTML::style('resources/js/bootstrap-toggle-master/css/bootstrap2-toggle.min.css') }}
-{{ HTML::script('resources/js/bootstrap-toggle-master/js/bootstrap2-toggle.min.js') }}
+{!! HTML::style('resources/js/bootstrap-toggle-master/css/bootstrap2-toggle.min.css') !!}
+{!! HTML::script('resources/js/bootstrap-toggle-master/js/bootstrap2-toggle.min.js') !!}
 @endsection

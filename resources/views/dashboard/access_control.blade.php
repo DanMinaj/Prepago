@@ -1,17 +1,17 @@
 @if ($message = Session::get('successMessage'))
     <div style="color: #468847;background-color: #dff0d8;border-color: #d6e9c6;padding: 14px;margin: 10px 0;">
-        {{ $message }}
+        {!! $message !!}
     </div>
 @endif
 
 @if ($message = Session::get('errorMessage'))
     <div style="color: #b94a48;background-color: #f2dede; border-color: #eed3d7;padding: 14px;margin: 10px 0;">
-        {{ $message }}
+        {!! $message !!}
     </div>
 @endif
 
-{{ HTML::script('resources/js/bootstrap-modal.js') }}
-{{ HTML::style('resources/css/bootstrap.min.css') }}
+{!! HTML::script('resources/js/bootstrap-modal.js') !!}
+{!! HTML::style('resources/css/bootstrap.min.css') !!}
 <style>
     body {
         font-size: 13px;
@@ -44,13 +44,13 @@
             <h3 id="myModalLabel">Add user account</h3>
         </div>
 
-        <form action="{{ URL::to('prepago_installer/access_control/add_account_action') }}" method="POST">
+        <form action="{!! URL::to('prepago_installer/access_control/add_account_action') !!}" method="POST">
             <div class="modal-body">
                 @include('partials.user_setup')
 
                 @if ($schemes)
-                    {{ Form::label('schemes', 'Schemes:') }}
-                    {{ Form::select('schemes[]', $schemes, null, ['id' => 'schemes_select', 'multiple' => 'multiple', 'style' => 'width: 80%']) }}
+                    {!! Form::label('schemes', 'Schemes:') !!}
+                    {!! Form::select('schemes[]', $schemes, null, ['id' => 'schemes_select', 'multiple' => 'multiple', 'style' => 'width: 80%']) !!}
                 @endif
             </div>
             <div class="modal-footer">

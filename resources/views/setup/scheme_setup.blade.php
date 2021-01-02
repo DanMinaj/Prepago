@@ -9,7 +9,7 @@
     @if ($message = Session::get('successMessage'))
         <div class="alert alert-success alert-block">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ $message }}
+            {!! $message !!}
         </div>
     @endif
 
@@ -17,7 +17,7 @@
 	@if ($message = Session::get('errorMessage'))
         <div class="alert alert-danger alert-block">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ $message }}
+            {!! $message !!}
         </div>
     @endif
 

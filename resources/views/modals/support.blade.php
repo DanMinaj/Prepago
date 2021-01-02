@@ -18,31 +18,31 @@
                @if($current_page == "customer_tabview")
                <table width="100%">
                   <tr>
-                     <td>{{$data['house_number_name']}} {{$data['street1']}}</td>
+                     <td>{!!$data['house_number_name']!!} {!!$data['street1']!!}</td>
                   </tr>
                   <tr>
-                     <td>{{$data['street2']}}</td>
+                     <td>{!!$data['street2']!!}</td>
                   </tr>
                   <tr>
-                     <td>{{$data['county']}}</td>
+                     <td>{!!$data['county']!!}</td>
                   </tr>
-                  <input type="hidden" name="customer_ID" value="{{$data['id']}}">
-                  <input type="hidden" name="customer" value="{{$data['username'] }}">
+                  <input type="hidden" name="customer_ID" value="{!!$data['id']!!}">
+                  <input type="hidden" name="customer" value="{!!$data['username'] !!}">
                </table>
                @else
                <table>
                   <tr>
                      <td><b>Scheme: </b></td>
                      <td>
-                        <input type='hidden' name='scheme_ID' value="{{ Auth::user()->scheme_number }}">
-                        {{ Scheme::find(Auth::user()->scheme_number)->company_name }}
+                        <input type='hidden' name='scheme_ID' value="{!! Auth::user()->scheme_number !!}">
+                        {!! Scheme::find(Auth::user()->scheme_number)->company_name !!}
                      </td>
                   </tr>
                   <tr>
                      <td><b>Page: </b></td>
                      <td>
-                        <input type='hidden' name='page' value="{{ $current_page }}">
-                        {{ $current_page }}
+                        <input type='hidden' name='page' value="{!! $current_page !!}">
+                        {!! $current_page !!}
                      </td>
                   </tr>
                </table>
@@ -54,15 +54,15 @@
                      <td><b>Operator</b></td>
                   </tr>
                   <tr>
-                     <td><input type="hidden" name="operator_ID" value="{{ Auth::user()->id }}">
-                        <input type="text" name="operator"  placeholder="Operator name" value="{{ Auth::user()->employee_name }}">
+                     <td><input type="hidden" name="operator_ID" value="{!! Auth::user()->id !!}">
+                        <input type="text" name="operator"  placeholder="Operator name" value="{!! Auth::user()->employee_name !!}">
                      </td>
                   </tr>
                   <tr>
                      <td><b>Operator email</b> (allow us to get back to you)</td>
                   </tr>
                   <tr>
-                     <td><input type="email" name="operator_email" placeholder="Operator email (your email)" value="{{Auth::user()->email_address}}"></td>
+                     <td><input type="email" name="operator_email" placeholder="Operator email (your email)" value="{!!Auth::user()->email_address!!}"></td>
                   </tr>
                   <tr>
                      <td colspan="2"><b>Subject</b></td>

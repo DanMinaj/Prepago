@@ -5,7 +5,7 @@
 <h1>Customer Name &amp; Notes</h1>
 
 <div class="admin2">
-    <a href="{{ URL::to('system_reports') }}">System Reports</a> > <a href="{{ URL::to('system_reports/customer_supply_status') }}">Customer Supply Status</a> > Customer Name &amp; Notes
+    <a href="{!! URL::to('system_reports') !!}">System Reports</a> > <a href="{!! URL::to('system_reports/customer_supply_status') !!}">Customer Supply Status</a> > Customer Name &amp; Notes
     <h3><a href="<?php echo "{$csv_url}"?>">Download CSV</a></h3>
     <div class="cl"></div>
 

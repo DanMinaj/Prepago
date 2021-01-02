@@ -28,9 +28,9 @@
 
 
 <div class="admin2">
-    <a href="{{ URL::to('system_reports') }}">System Reports</a> > Boiler Report
+    <a href="{!! URL::to('system_reports') !!}">System Reports</a> > Boiler Report
     <div class="cl"></div>
-    <h3><a href="{{{ $csv_url }}}">Download CSV</a></h3>
+    <h3><a href="{{ $csv_url }}">Download CSV</a></h3>
 
     @include('includes.notifications')
 
@@ -47,9 +47,9 @@
                 @if ($meter->latestReadings && $meter->latestReadings->count())
                     @foreach ($meter->latestReadings as $meterReading)
                     <tr>
-                        <td>{{{ $meter->meter_number }}}</td>
-                        <td>{{{ $meterReading->time_date }}}</td>
-                        <td>{{{ $meterReading->reading1 }}}</td>
+                        <td>{{ $meter->meter_number }}</td>
+                        <td>{{ $meterReading->time_date }}</td>
+                        <td>{{ $meterReading->reading1 }}</td>
                     </tr>
                     @endforeach
                 @endif

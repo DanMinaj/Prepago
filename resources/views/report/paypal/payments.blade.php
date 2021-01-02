@@ -18,11 +18,11 @@
 			<tr>
 				
 				<td width="20%">		
-					<input type="text" name="from" value="{{ $from }}">
+					<input type="text" name="from" value="{!! $from !!}">
 				</td>
 				
 				<td width="20%">		
-					<input type="text" name="to" value="{{ $to }}">
+					<input type="text" name="to" value="{!! $to !!}">
 				</td>
 				
 				<td width="60%">

@@ -25,9 +25,9 @@
 </script>
 
 <div class="admin2">
-	<a href="{{ URL::to('system_reports') }}">System Reports</a> > SMS Messages Sent
+	<a href="{!! URL::to('system_reports') !!}">System Reports</a> > SMS Messages Sent
     <h3>Total Messages: <?php echo $sms_count;?></h3>
-    <h3>Total Charge: {{ $currencySign }}<?php echo $total_amount;?></h3>
+    <h3>Total Charge: {!! $currencySign !!}<?php echo $total_amount;?></h3>
     <h3><a href="<?php echo $csv_url?>">Download CSV</a></h3>
 
     <table id="sortthistable" class="table table-bordered">
@@ -47,7 +47,7 @@
                     <td><?php echo $customer->mobile_number; ?></td>
                     <td><?php echo $customer->message; ?></td>
                     <td><?php echo $customer->date_time; ?></td>
-                    <td>{{ $currencySign }}<?php echo $customer->charge; ?></td>
+                    <td>{!! $currencySign !!}<?php echo $customer->charge; ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

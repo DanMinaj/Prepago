@@ -1,19 +1,19 @@
 <br />
 <div class="cl"></div>
-<h1>Viewing issue #{{$issue->id}}</h1>
+<h1>Viewing issue #{!!$issue->id!!}</h1>
 <div class="admin">
 		
 @if(Session::has('successMessage'))
 <div class="alert alert-success alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('successMessage')}}
+{!!Session::get('successMessage')!!}
 </div>
 @endif
 
 @if(Session::has('errorMessage'))
 <div class="alert alert-danger alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('errorMessage')}}
+{!!Session::get('errorMessage')!!}
 </div>
 @endif
 
@@ -42,7 +42,7 @@
 				
 				<tr>
 					<td>
-						<a href="{{ URL::to('support') }}">
+						<a href="{!! URL::to('support') !!}">
 							<button type='button' class='btn '>
 							&lt;&lt; Go back
 							</button>
@@ -53,15 +53,15 @@
 				<tr>
 					<td>
 						<h2>
-							{{$issue->issue_title}}
+							{!!$issue->issue_title!!}
 							@if(!$issue->resolved)
-							<a style="float:right;" href="{{ URL::to('support/mark_solved', ['id' => $issue->id]) }}">
+							<a style="float:right;" href="{!! URL::to('support/mark_solved', ['id' => $issue->id]) !!}">
 								<button type='button' class='btn btn-success'>
 									<i class='fa fa-check'></i> Mark solved
 								</button>
 							</a>
 							@else
-							<a style="float:right;" href="{{ URL::to('support/mark_reopened', ['id' => $issue->id]) }}">
+							<a style="float:right;" href="{!! URL::to('support/mark_reopened', ['id' => $issue->id]) !!}">
 								<button type='button' class='btn btn-warning'>
 									<i class='fa fa-lock-open'></i> Re-open
 								</button>
@@ -69,10 +69,10 @@
 							@endif
 						</h2> 
 						<hr/>
-						<h4>Customer: <a href="{{$issue->customerLink}}"> {{ $issue->customer }} </a> </h4>
-						<h4>Scheme: {{ $issue->scheme }} </h4>
-						@if(!empty($issue->page)) <h4>Page: {{ $issue->page }} </h4> @endif
-						<h4>Current status: <span {{ $issue->statusCss() }} >{{ $issue->status }}</span> </h4>
+						<h4>Customer: <a href="{!!$issue->customerLink!!}"> {!! $issue->customer !!} </a> </h4>
+						<h4>Scheme: {!! $issue->scheme !!} </h4>
+						@if(!empty($issue->page)) <h4>Page: {!! $issue->page !!} </h4> @endif
+						<h4>Current status: <span {!! $issue->statusCss() !!} >{!! $issue->status !!}</span> </h4>
 						<hr/>		
 					</td>
 				</tr>
@@ -93,9 +93,9 @@
 										<td>
 											<br/>
 											<center>
-											<b style='font-size:24px;'>{{$issue->operator}}</b><hr/>
-											<b>Ticket(s) created</b>: {{SupportIssue::where('operator_ID', $issue->operator_ID)->count()}}<br/>
-											<b>Last active</b>: {{Carbon\Carbon::parse(User::find($issue->operator_ID)->is_online_time)->diffForHumans()}}
+											<b style='font-size:24px;'>{!!$issue->operator!!}</b><hr/>
+											<b>Ticket(s) created</b>: {!!SupportIssue::where('operator_ID', $issue->operator_ID)->count()!!}<br/>
+											<b>Last active</b>: {!!Carbon\Carbon::parse(User::find($issue->operator_ID)->is_online_time)->diffForHumans()!!}
 											</center>
 											<br/>
 										</td>
@@ -105,12 +105,12 @@
 				
 				<td width='55%' class='reply' valign='top'>
 					<span style='margin-left:2%;'>
-						{{$issue->issue}}
+						{!!$issue->issue!!}
 					</span>
 				</td>
 				
 				<td width='25%' valign='bottom'>
-				{{$issue->created_at}} (<b>{{Carbon\Carbon::parse($issue->created_at)->diffForHumans()}}</b>)
+				{!!$issue->created_at!!} (<b>{!!Carbon\Carbon::parse($issue->created_at)->diffForHumans()!!}</b>)
 				<br/>
 				</td>
 				
@@ -137,9 +137,9 @@
 										<td>
 											<br/>
 											<center>
-											<b style='font-size:24px;'>{{$reply->operator}}</b> <hr/>
-											<b>Ticket(s) created</b>: {{SupportIssue::where('operator_ID', $reply->operator_ID)->count()}}<br/>
-											<b>Last active</b>: {{Carbon\Carbon::parse(Auth::user()->is_online_time)->diffForHumans()}}
+											<b style='font-size:24px;'>{!!$reply->operator!!}</b> <hr/>
+											<b>Ticket(s) created</b>: {!!SupportIssue::where('operator_ID', $reply->operator_ID)->count()!!}<br/>
+											<b>Last active</b>: {!!Carbon\Carbon::parse(Auth::user()->is_online_time)->diffForHumans()!!}
 											</center>
 											<br/>
 										</td>
@@ -150,12 +150,12 @@
 				<td width='55%' valign='top' class='reply'>
 					<br/>
 					<span>
-						{{$reply->reply}}
+						{!!$reply->reply!!}
 					</span>
 				</td>
 				
 				<td width='25%' valign='bottom'>
-					{{$reply->created_at}} (<b>{{Carbon\Carbon::parse($reply->created_at)->diffForHumans()}}</b>)
+					{!!$reply->created_at!!} (<b>{!!Carbon\Carbon::parse($reply->created_at)->diffForHumans()!!}</b>)
 					<br/><br/>
 				</td>
 				
@@ -173,7 +173,7 @@
 				<tr>
 					<td><h3>Reply</h3></td>
 				</tr>
-				<form action="{{ URL::to('support/reply', ['id' => $issue->id]) }}" method='POST'>
+				<form action="{!! URL::to('support/reply', ['id' => $issue->id]) !!}" method='POST'>
 				<tr>
 					<td>
 					

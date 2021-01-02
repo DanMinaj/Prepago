@@ -9,7 +9,7 @@
 
     <h3>Step 1 - Set Up a New User Account</h3>
 
-    <form action="{{ URL::to('scheme-setup/user-setup') }}" method="POST">
+    <form action="{!! URL::to('scheme-setup/user-setup') !!}" method="POST">
 
         @include('partials.user_setup')
 

@@ -12,9 +12,9 @@
 
     <form method="get" action="" class="form-inline" style="float:left">
         <label>From</label>
-        <input id="from" name="start_date" placeholder="Start Date" type="text" value="{{ date('d-m-Y', strtotime($start_date)) }}">
+        <input id="from" name="start_date" placeholder="Start Date" type="text" value="{!! date('d-m-Y', strtotime($start_date)) !!}">
         <label>To</label>
-        <input id="to" name="end_date" type="text" placeholder="End Date" value="{{ date('d-m-Y', strtotime($end_date)) }}">
+        <input id="to" name="end_date" type="text" placeholder="End Date" value="{!! date('d-m-Y', strtotime($end_date)) !!}">
         <input type="submit" name="search" value="search" class="btn-success"/>
  
 
@@ -32,7 +32,7 @@
 				<tr>
 					<td><b> Company </b></td>
 					<td>
-						<textarea name="company_name" class="company_name" placeholder="Company">{{ $company_name }}</textarea>
+						<textarea name="company_name" class="company_name" placeholder="Company">{!! $company_name !!}</textarea>
 					</td>
 				</tr>
 				@endif
@@ -43,7 +43,7 @@
 							
 							@foreach(Scheme::active() as $s)
 							@if($s->simulator == 0) 
-								<option @if($scheme_id == $s->scheme_number) selected @endif value="{{ $s->scheme_number }}">{{ $s->scheme_nickname }}</option>
+								<option @if($scheme_id == $s->scheme_number) selected @endif value="{!! $s->scheme_number !!}">{!! $s->scheme_nickname !!}</option>
 							@endif
 							@endforeach
 							<option @if($scheme_id == 'all') selected @endif value="all">- All Schemes -</option>
@@ -54,55 +54,55 @@
 				
 				<tr>
 					<td><b> VAT Number </b></td>
-					<td><input type="text" name="vat_number" value="{{ $vat_number }}" placeholder="VAT Number"> </td>
+					<td><input type="text" name="vat_number" value="{!! $vat_number !!}" placeholder="VAT Number"> </td>
 				</tr>
 				<tr>
 					<td><b> VAT </b></td>
-					<td><input type="text" name="vat" value="{{ $vat }}" placeholder="VAT"> %</td>
+					<td><input type="text" name="vat" value="{!! $vat !!}" placeholder="VAT"> %</td>
 				</tr>
 				<tr>
 					<td><b> Payments % Charge </b></td>
-					<td><input type="text" name="payments_charge" value="{{ $payments_charge }}" placeholder="Payments % Charge"> %</td>
+					<td><input type="text" name="payments_charge" value="{!! $payments_charge !!}" placeholder="Payments % Charge"> %</td>
 				</tr>
 				<tr style='color:#ff2323;'>
 					<td><b> App Charge </b></td>
-					<td>&euro; <input type="text" name="app_charge" value="{{ number_format($app_charge, 2) }}" placeholder="App Charge"></td>
+					<td>&euro; <input type="text" name="app_charge" value="{!! number_format($app_charge, 2) !!}" placeholder="App Charge"></td>
 				</tr>
 				<tr style='color:#00b050;'>
 					<td><b> SMS Charge </b></td>
-					<td>&euro; <input type="text" name="sms_cost" value="{{ number_format($sms_cost, 2) }}" placeholder="SMS Charge"></td>
+					<td>&euro; <input type="text" name="sms_cost" value="{!! number_format($sms_cost, 2) !!}" placeholder="SMS Charge"></td>
 				</tr>
 				<tr style='color:#00b050;'>
 					<td><b> Premium SMS Charge </b></td>
-					<td>&euro; <input type="text" name="premium_sms_cost" value="{{ number_format($premium_sms_cost, 2) }}" placeholder="Premium SMS Charge"></td>
+					<td>&euro; <input type="text" name="premium_sms_cost" value="{!! number_format($premium_sms_cost, 2) !!}" placeholder="Premium SMS Charge"></td>
 				</tr>
 				<tr style='color: #404040;'>
 					<td><b> Closed Accounts Charge </b></td>
-					<td>&euro; <input type="text" name="deleted_customers_charge" value="{{ number_format($deleted_customers_charge, 2) }}" placeholder="Closed Accounts Charge"></td>
+					<td>&euro; <input type="text" name="deleted_customers_charge" value="{!! number_format($deleted_customers_charge, 2) !!}" placeholder="Closed Accounts Charge"></td>
 				</tr>
 				<tr>
 					<td style='color:blue'><b> Blue Accounts Charge </b></td>
-					<td>&euro; <input type="text" name="blue_accounts_charge" value="{{ number_format($blue_accounts_charge, 2) }}" placeholder="Blue Accounts Charge"></td>
+					<td>&euro; <input type="text" name="blue_accounts_charge" value="{!! number_format($blue_accounts_charge, 2) !!}" placeholder="Blue Accounts Charge"></td>
 				</tr>
 				<tr>
 					<td><b> Meter Charge </b></td>
-					<td>&euro; <input type="text" name="meter_charge" value="{{ number_format($meter_charge, 2) }}" placeholder="Meter Charge"></td>
+					<td>&euro; <input type="text" name="meter_charge" value="{!! number_format($meter_charge, 2) !!}" placeholder="Meter Charge"></td>
 				</tr>			
 				<tr style='color:#538dd5;'>
 					<td><b> IOU Charge </b></td>
-					<td>&euro; <input type="text" name="iou_charge" value="{{ number_format($iou_charge, 2) }}" placeholder="IOU Charge"></td>
+					<td>&euro; <input type="text" name="iou_charge" value="{!! number_format($iou_charge, 2) !!}" placeholder="IOU Charge"></td>
 				</tr>
 				<tr style='color:#366092;'>
 					<td><b> Statements Charge </b></td>
-					<td>&euro; <input type="text" name="statements_charge" value="{{ number_format($statements_charge, 2) }}" placeholder="Statements Charge"></td>
+					<td>&euro; <input type="text" name="statements_charge" value="{!! number_format($statements_charge, 2) !!}" placeholder="Statements Charge"></td>
 				</tr>
 				<tr style='color:#ff2323;'>
 					<td><b> App Support </b></td>
-					<td>&euro; <input type="text" name="app_support" value="{{ $app_support }}" placeholder="App Support"></td>
+					<td>&euro; <input type="text" name="app_support" value="{!! $app_support !!}" placeholder="App Support"></td>
 				</tr>
 				<tr>
 					<td><b> Autotopup Charge </b></td>
-					<td>&euro; <input type="text" name="autotopup_charge" value="{{ $autotopup_charge }}" placeholder="Autotopup Charge"></td>
+					<td>&euro; <input type="text" name="autotopup_charge" value="{!! $autotopup_charge !!}" placeholder="Autotopup Charge"></td>
 				</tr>
 				<tr>
 					<td colspan="2">
@@ -120,17 +120,17 @@
 				
 				<tr>
 					<td><b> Days </b></td>
-					<td>{{ $days }}</td>
+					<td>{!! $days !!}</td>
 				</tr>
 				
 				<tr>
 					<td><b> Start date </b></td>
-					<td>{{ date('d-m-Y', strtotime($start_date)) }}</td>
+					<td>{!! date('d-m-Y', strtotime($start_date)) !!}</td>
 				</tr>
 				
 				<tr>
 					<td><b> End date </b></td>
-					<td>{{ date('d-m-Y', strtotime($end_date)) }}</td>
+					<td>{!! date('d-m-Y', strtotime($end_date)) !!}</td>
 				</tr>
 			</table>
 			
@@ -160,21 +160,21 @@
 				@if( $k == 0 || ($k % 2 == 0))
 					<tr>
 					<td>
-						<input type="checkbox" id='scheme_check_{{ $s->scheme_number }}' class='scheme_check' scheme_number="{{ $s->scheme_number }}"> {{ $s->scheme_nickname }}
+						<input type="checkbox" id='scheme_check_{!! $s->scheme_number !!}' class='scheme_check' scheme_number="{!! $s->scheme_number !!}"> {!! $s->scheme_nickname !!}
 					</td>
 				@else
 					<td>
-						<input type="checkbox" id='scheme_check_{{ $s->scheme_number }}' class='scheme_check' scheme_number="{{ $s->scheme_number }}"> {{ $s->scheme_nickname }}
+						<input type="checkbox" id='scheme_check_{!! $s->scheme_number !!}' class='scheme_check' scheme_number="{!! $s->scheme_number !!}"> {!! $s->scheme_nickname !!}
 					</td>
 					</tr>
 				@endif
 				
 			@endforeach	
 			</table>
-			<button class="btn btn-primary cover_note" multi='true' scheme_number="{{ $str }}">
+			<button class="btn btn-primary cover_note" multi='true' scheme_number="{!! $str !!}">
 				<i class='fa fa-file'></i> Cover Note
 			</button>
-			<button class="btn btn-primary total_report" multi='true' scheme_number="{{ $str }}">
+			<button class="btn btn-primary total_report" multi='true' scheme_number="{!! $str !!}">
 				<i class='fa fa-file'></i> Total Report
 			</button>
 			@endif
@@ -203,25 +203,25 @@
 	<div class="accordion" id="accordion2">
 
 	@foreach($scheme as $k => $s) 
-	  <div class="accordion-group {{ $s->scheme_number }}_accordion">
+	  <div class="accordion-group {!! $s->scheme_number !!}_accordion">
 		<div class="accordion-heading">
-		  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse{{ $s->scheme_number }}">
-		  {{ $s->scheme_nickname }}
+		  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse{!! $s->scheme_number !!}">
+		  {!! $s->scheme_nickname !!}
 		  </a>
 		</div>
-		<div id="collapse{{ $s->scheme_number }}" class="accordion-body collapse @if(count($scheme) == 1) in @endif">
+		<div id="collapse{!! $s->scheme_number !!}" class="accordion-body collapse @if(count($scheme) == 1) in @endif">
 			<br/>
 			
-			<button class="btn btn-primary getpdf" scheme_number='{{ $s->scheme_number }}'>
+			<button class="btn btn-primary getpdf" scheme_number='{!! $s->scheme_number !!}'>
 				<i class='fa fa-file'></i> Download PDF
 			</button>
 			
-			<button class="btn btn-primary fullscreen" scheme_number='{{ $s->scheme_number }}'>
+			<button class="btn btn-primary fullscreen" scheme_number='{!! $s->scheme_number !!}'>
 				<i class='fa fa-expand-arrows-alt'></i> View Fullscreen
 			</button>
 			
 		 	<br/>
-		  <div class="accordion-inner" style="font-family: Arial !important;" id="{{ $s->scheme_nickname }}">
+		  <div class="accordion-inner" style="font-family: Arial !important;" id="{!! $s->scheme_nickname !!}">
 				
 				<table style='height: 100%; display: flex; align-items: center; justify-content: center;' width="100%">
 						<tr>
@@ -254,7 +254,7 @@
 							</td>
 							<td width='60%'>
 								<div style='float:right;text-align:right;font-size:1rem;font-weight:bold;'>
-									{{ nl2br($s->company_address) }}<br/>
+									{!! nl2br($s->company_address) !!}<br/>
 								</div>
 							</td>
 						</tr>
@@ -265,220 +265,220 @@
 				
 					<table width="50%" class="advice_note">
 						<tr>
-							<td><b>Our Ref {{ $s->abbreviation }}</b></td>
-							<td><b>{{ $s->ref_pa }}</b></td>
+							<td><b>Our Ref {!! $s->abbreviation !!}</b></td>
+							<td><b>{!! $s->ref_pa !!}</b></td>
 						</tr>
 						<tr>
 							<td><b>Month</b></td>
-							<td><b>{{ $s->month }}</b></td>
+							<td><b>{!! $s->month !!}</b></td>
 						</tr>
 						<tr>
 							<td><b>Date</b></td>
-							<td><b>{{ $s->date }}</b></td>
+							<td><b>{!! $s->date !!}</b></td>
 						</tr>
 						<tr>
 							<td><b>Number Of Days</b></td>
-							<td><b>{{ $s->days }}</b></td>
+							<td><b>{!! $s->days !!}</b></td>
 						</tr>
 						<tr>
 							<td><b>Amount of payments</b></td>
-							<td><b>{{ $s->amount_of_payments }}</b></td>
+							<td><b>{!! $s->amount_of_payments !!}</b></td>
 						</tr>
 						<tr>
 							<td><b>Value of payments</b></td>
-							<td><b>&euro;{{ number_format($s->value_of_payments, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->value_of_payments, 2) !!}</b></td>
 						</tr>
 						<tr>
 							<td><b>Payments % Charge</b></td>
-							<td><b>{{ $s->payments_charge }}%</b></td>
+							<td><b>{!! $s->payments_charge !!}%</b></td>
 						</tr>
 						<tr>
 							<td><b>Cost Of Topups inc VAT</b></td>
-							<td><b>&euro;{{ number_format($s->cost_of_topups_inc_vat, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->cost_of_topups_inc_vat, 2) !!}</b></td>
 						</tr>
 						<tr>
 							<td><b>Cost Of Topups ex VAT</b></td>
-							<td><b>&euro;{{ number_format($s->cost_of_topups_ex_vat, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->cost_of_topups_ex_vat, 2) !!}</b></td>
 						</tr>
 						<tr style='color:#00b050;'>
 							<td><b>SMS Messages</b></td>
-							<td><b>{{ $s->sms_msgs}}</b></td>
+							<td><b>{!! $s->sms_msgs!!}</b></td>
 						</tr>
 						<tr style='color:#00b050;'>
 							<td><b>SMS Cost</b></td>
-							<td><b>&euro;{{ $s->sms_cost }}</b></td>
+							<td><b>&euro;{!! $s->sms_cost !!}</b></td>
 						</tr>
 						<tr style='color:#00b050;'>
 							<td><b>SMS Total inc VAT</b></td>
-							<td><b>&euro;{{ number_format($s->sms_total_inc_vat, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->sms_total_inc_vat, 2) !!}</b></td>
 						</tr>
 						<tr style='color:#00b050;'>
 							<td><b>SMS Total ex VAT</b></td>
-							<td><b>&euro;{{ number_format($s->sms_total_ex_vat, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->sms_total_ex_vat, 2) !!}</b></td>
 						</tr>
 						<tr style='color:#00b050;'>
 							<td><b>Premium SMS Messages</b></td>
-							<td><b>{{ $s->premium_sms_msgs }}</b></td>
+							<td><b>{!! $s->premium_sms_msgs !!}</b></td>
 						</tr>
 						<tr style='color:#00b050;'>
 							<td><b>Premium SMS Cost</b></td>
-							<td><b>&euro;{{ number_format($s->premium_sms_cost, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->premium_sms_cost, 2) !!}</b></td>
 						</tr>
 						<tr style='color:#00b050;'>
 							<td><b>Premium SMS Total ex VAT</b></td>
-							<td><b>&euro;{{ number_format($s->premium_sms_total_ex_vat, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->premium_sms_total_ex_vat, 2) !!}</b></td>
 						</tr>
 						<tr style='color:#00b050;'>
 							<td><b>Premium SMS Total inc VAT</b></td>
-							<td><b>&euro;{{ number_format($s->premium_sms_total_inc_vat, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->premium_sms_total_inc_vat, 2) !!}</b></td>
 						</tr>
 						<tr style='color:#ff0f0f;'>
 							<td><b>Apps Installed</b></td>
-							<td><b>{{ $s->apps_installed }}</b></td>
+							<td><b>{!! $s->apps_installed !!}</b></td>
 						</tr>
 						<tr style='color:#ff0f0f;'>
 							<td><b>Apps Charge</b></td>
-							<td><b>&euro;{{ number_format($s->app_charge, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->app_charge, 2) !!}</b></td>
 						</tr>
 						<tr style='color:#ff0f0f;'>
 							<td><b>Apps Total inc VAT</b></td>
-							<td><b>&euro;{{ number_format($s->app_total_inc_vat, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->app_total_inc_vat, 2) !!}</b></td>
 						</tr>
 						<tr style='color:#ff0f0f;'>
 							<td><b>Apps Total ex VAT</b></td>
-							<td><b>&euro;{{ number_format($s->app_total_ex_vat, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->app_total_ex_vat, 2) !!}</b></td>
 						</tr>
 						<tr style='color:#ff2323;'>
 							<td>App support</td>
-							<td>&euro;{{ number_format($app_support, 2) }}</td>
+							<td>&euro;{!! number_format($app_support, 2) !!}</td>
 						</tr>
 						<tr style='color:#ff2323;'>
 							<td>App support inc VAT</b></td>
-							<td>&euro;{{ number_format($s->app_support_inc_vat, 2) }}</td>
+							<td>&euro;{!! number_format($s->app_support_inc_vat, 2) !!}</td>
 						</tr>
 						<tr style='color:#ff2323;'>
 							<td>App support ex VAT</b></td>
-							<td>&euro;{{ number_format($s->app_support_ex_vat, 2) }}</td>
+							<td>&euro;{!! number_format($s->app_support_ex_vat, 2) !!}</td>
 						</tr>
 						<tr style='color:#538dd5;'>
 							<td><b>IOU Chargeable</b></td>
-							<td><b>{{ $s->iou_chargeable }}</b></td>
+							<td><b>{!! $s->iou_chargeable !!}</b></td>
 						</tr>
 						<tr style='color:#538dd5;'>
 							<td><b>IOUs</b></td>
-							<td><b>{{ $s->ious }}</b></td>
+							<td><b>{!! $s->ious !!}</b></td>
 						</tr>
 						<tr style='color:#538dd5;'>
 							<td><b>IOU Charge</b></td>
-							<td><b>{{ $s->iou_charge }}</b></td>
+							<td><b>{!! $s->iou_charge !!}</b></td>
 						</tr>
 						<tr style='color:#538dd5;'>
 							<td><b>IOUs Charge inc VAT</b></td>
-							<td><b>&euro;{{ number_format($s->iou_charge_inc_vat, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->iou_charge_inc_vat, 2) !!}</b></td>
 						</tr>
 						<tr style='color:#538dd5;'>
 							<td><b>IOUs Charge ex VAT</b></td>
-							<td><b>&euro;{{ number_format($s->iou_charge_ex_vat, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->iou_charge_ex_vat, 2) !!}</b></td>
 						</tr>
 						<tr style='color:#366092;'>
 							<td><b>Statements Issued</b></td>
-							<td><b>{{ $s->statements_issued }}</b></td>
+							<td><b>{!! $s->statements_issued !!}</b></td>
 						</tr>
 						<tr style='color:#366092;'>
 							<td><b>Statements Charge</b></td>
-							<td><b>&euro;{{ $s->statements_charge }}</b></td>
+							<td><b>&euro;{!! $s->statements_charge !!}</b></td>
 						</tr>
 						<tr style='color:#366092;'>
 							<td><b>Statements Total inc VAT</b></td>
-							<td><b>&euro;{{ number_format($s->statements_total_inc_vat, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->statements_total_inc_vat, 2) !!}</b></td>
 						</tr>
 						<tr style='color:#366092;'>
 							<td><b>Statements Total ex VAT</b></td>
-							<td><b>&euro;{{ number_format($s->statements_total_ex_vat, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->statements_total_ex_vat, 2) !!}</b></td>
 						</tr>
 						<tr>
 							<td>Number Of Meters</td>
-							<td>{{ $s->no_of_meters }}</td>
+							<td>{!! $s->no_of_meters !!}</td>
 						</tr>
 						<tr>
 							<td>Meter Charge</td>
-							<td>&euro;{{ $s->meter_charge }}</td>
+							<td>&euro;{!! $s->meter_charge !!}</td>
 						</tr>
 						<tr>
 							<td>Meter Total inc vat</td>
-							<td>&euro;{{ number_format($s->meter_total_inc_vat, 2) }}</td>
+							<td>&euro;{!! number_format($s->meter_total_inc_vat, 2) !!}</td>
 						</tr>
 						<tr>
 							<td>Meter Total ex vat</td>
-							<td>&euro;{{ number_format($s->meter_total_ex_vat, 2) }}</td>
+							<td>&euro;{!! number_format($s->meter_total_ex_vat, 2) !!}</td>
 						</tr>
 						<tr style="font-weight: bold; color: blue;">
 							<td>Blue Accounts</td>
-							<td>{{ $s->blue_accounts }}</td>
+							<td>{!! $s->blue_accounts !!}</td>
 						</tr>
 						<tr style="font-weight: bold; color: blue;">
 							<td>Blue Accounts Charge</td>
-							<td>&euro;{{ number_format($s->blue_accounts_charge, 2) }}</td>
+							<td>&euro;{!! number_format($s->blue_accounts_charge, 2) !!}</td>
 						</tr>
 						<tr style="font-weight: bold; color: blue;">
 							<td>Blue Accounts Cost ex vat</td>
-							<td>&euro;{{ number_format($s->blue_accounts_ex_vat, 2) }}</td>
+							<td>&euro;{!! number_format($s->blue_accounts_ex_vat, 2) !!}</td>
 						</tr>
 						<tr style="font-weight: bold; color: blue;">
 							<td>Blue Accounts Cost inc vat</td>
-							<td>&euro;{{ number_format($s->blue_accounts_inc_vat, 2) }}</td>
+							<td>&euro;{!! number_format($s->blue_accounts_inc_vat, 2) !!}</td>
 						</tr>
 						<tr style="font-weight: bold; color: #404040;">
 							<td>Closed Accounts</td>
-							<td>{{ $s->closed_accounts }}</td>
+							<td>{!! $s->closed_accounts !!}</td>
 						</tr>
 						<tr style="font-weight: bold; color: #404040;">
 							<td>Closed Accounts Charge</td>
-							<td>&euro;{{ number_format($s->closed_accounts_charge, 2) }}</td>
+							<td>&euro;{!! number_format($s->closed_accounts_charge, 2) !!}</td>
 						</tr>
 						<tr style="font-weight: bold; color: #404040;">
 							<td>Closed Accounts Cost ex vat</td>
-							<td>&euro;{{ number_format($s->closed_accounts_charge_ex_vat, 2) }}</td>
+							<td>&euro;{!! number_format($s->closed_accounts_charge_ex_vat, 2) !!}</td>
 						</tr>
 						<tr style="font-weight: bold; color: #404040;">
 							<td>Closed Accounts Cost inc vat</td>
-							<td>&euro;{{ number_format($s->closed_accounts_charge_inc_vat, 2) }}</td>
+							<td>&euro;{!! number_format($s->closed_accounts_charge_inc_vat, 2) !!}</td>
 						</tr>
 						<tr>
 							<td>VAT Rate</td>
-							<td>{{ $vat }}%</td>
+							<td>{!! $vat !!}%</td>
 						</tr>
 						<tr style='color:#ff2323;'>
 							<td>..</td>
-							<td>&euro;{{ number_format($s->invoiced_amount, 2) }}</td>
+							<td>&euro;{!! number_format($s->invoiced_amount, 2) !!}</td>
 						</tr>
 						<tr style='color:#ff2323;'>
 							<td>VAT Payment</b></td>
-							<td>&euro;{{ number_format($s->vat_payment, 2) }}</td>
+							<td>&euro;{!! number_format($s->vat_payment, 2) !!}</td>
 						</tr>
 						<tr style='color:#ff2323;'>
 							<td>Scheme Payment</b></td>
-							<td>&euro;{{ number_format($s->scheme_payment, 2) }}</td>
+							<td>&euro;{!! number_format($s->scheme_payment, 2) !!}</td>
 						</tr>
 						<tr>
 							<td><br/><br/></td>
 						</tr>
 						<tr style='color:#a65755;'>
 							<td><b>Avg Daily kWh</b></td>
-							<td><b>{{ number_format($s->avg_daily_kwh, 2) }}</b></td>
+							<td><b>{!! number_format($s->avg_daily_kwh, 2) !!}</b></td>
 						</tr>
 						<tr style='color:#a65755;'>
 							<td><b>Avg Daily Cost</b></td>
-							<td><b>&euro;{{ number_format($s->avg_daily_cost, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->avg_daily_cost, 2) !!}</b></td>
 						</tr>
 						<!--
 						<tr style='color:#7a6790;'>
 							<td><b>Annual Avg kWh - day</b></td>
-							<td><b>{{ number_format($s->annual_avg_kwh_day, 2) }}</b></td>
+							<td><b>{!! number_format($s->annual_avg_kwh_day, 2) !!}</b></td>
 						</tr>
 						<tr style='color:#7a6790;'>
 							<td><b>Annual Avg Cost - day</b></td>
-							<td><b>&euro;{{ number_format($s->annual_avg_cost_day, 2) }}</b></td>
+							<td><b>&euro;{!! number_format($s->annual_avg_cost_day, 2) !!}</b></td>
 						</tr>-->
 					</table>
 					
@@ -519,7 +519,7 @@
 							</td>
 							<td width='60%'>
 								<div style='float:right;text-align:right;font-size:1rem;font-weight:bold;'>
-									{{ nl2br($s->company_address) }}<br/>
+									{!! nl2br($s->company_address) !!}<br/>
 								</div>
 							</td>
 						</tr>
@@ -530,10 +530,10 @@
 				<table width="50%" class="advice_note">
 					<tr>
 						<td>
-							Our Ref {{ $s->abbreviation }}
+							Our Ref {!! $s->abbreviation !!}
 						</td>
 						<td>
-							{{ $s->ref_pa }}
+							{!! $s->ref_pa !!}
 						</td>
 					</tr>
 					<tr>
@@ -541,7 +541,7 @@
 							Month
 						</td>
 						<td>
-							{{ $s->month }}
+							{!! $s->month !!}
 						</td>
 					</tr>
 					<tr>
@@ -549,7 +549,7 @@
 							Date
 						</td>
 						<td>
-							{{ $s->date }}
+							{!! $s->date !!}
 						</td>
 					</tr>
 					<tr>
@@ -557,7 +557,7 @@
 							Prepago Payment
 						</td>
 						<td>
-							&euro;{{ number_format($s->invoiced_amount, 2) }}
+							&euro;{!! number_format($s->invoiced_amount, 2) !!}
 						</td>
 					</tr>
 					<tr>
@@ -565,7 +565,7 @@
 							VAT Payment
 						</td>
 						<td>
-							&euro;{{ number_format($s->vat_payment, 2) }}
+							&euro;{!! number_format($s->vat_payment, 2) !!}
 						</td>
 					</tr>
 					<tr>
@@ -573,7 +573,7 @@
 							VAT Rate
 						</td>
 						<td>
-							{{ $vat/100 }}
+							{!! $vat/100 !!}
 						</td>
 					</tr>
 					<tr>
@@ -581,7 +581,7 @@
 							Total
 						</td>
 						<td>
-							&euro;{{ number_format($s->total_payment, 2) }}
+							&euro;{!! number_format($s->total_payment, 2) !!}
 						</td>
 					</tr>
 					<tr>
@@ -589,7 +589,7 @@
 							<b>VAT Number</b>
 						</td>
 						<td>
-							<b>{{ $vat_number }}</b>
+							<b>{!! $vat_number !!}</b>
 						</td>
 					</tr>
 				</table>
@@ -789,7 +789,7 @@
 					//alert('test');
 					window.location.href = window.location.href + ((window.location.href.indexOf('?') !== -1) ? '&' : '?') + "scheme=" + id;
 				} else {
-					window.location.href = "/system_reports/advice_notes?start_date={{ Input::get('start_date') }}&end_date={{ Input::get('end_date') }}&scheme=" + id;
+					window.location.href = "/system_reports/advice_notes?start_date={!! Input::get('start_date') !!}&end_date={!! Input::get('end_date') !!}&scheme=" + id;
 				}
 			}
 		}

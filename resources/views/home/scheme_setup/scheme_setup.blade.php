@@ -10,31 +10,31 @@
     @if ($message = Session::get('successMessage'))
         <div class="alert alert-success alert-block">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ $message }}
+            {!! $message !!}
         </div>
     @endif
 
     @if ($message = Session::get('errorMessage'))
         <div class="alert alert-danger alert-block">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ $message }}
+            {!! $message !!}
         </div>
     @endif
 
-    {{ Form::model($scheme, ['URL' => URL::to('scheme-setup/scheme-setup'), 'method' => 'POST']) }}
+    {!! Form::model($scheme, ['URL' => URL::to('scheme-setup/scheme-setup'), 'method' => 'POST']) !!}
 
-        {{ Form::hidden ('user_id', $user_id) }}
+        {!! Form::hidden ('user_id', $user_id) !!}
 
         @include('partials.scheme_setup', ['action' => 'create'])
 
         <div class="clearfix">&nbsp;</div>
-        <div style="margin-top: 20px; width: 35%; float: right">{{ Form::submit('Add Scheme', array('class' => 'btn btn-success')) }}</div>
+        <div style="margin-top: 20px; width: 35%; float: right">{!! Form::submit('Add Scheme', array('class' => 'btn btn-success')) !!}</div>
         <div class="clearfix">&nbsp;</div>
 
-    {{ Form::close() }}
+    {!! Form::close() !!}
 
     <script type="text/javascript">
-        var fieldsVersions = {{json_encode($fieldsVersions)}};
+        var fieldsVersions = {!!json_encode($fieldsVersions)!!};
         $(function()
         {
             $("#country").change(function()

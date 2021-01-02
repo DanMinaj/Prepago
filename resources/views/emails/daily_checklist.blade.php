@@ -26,16 +26,16 @@
             </tr>
             @foreach ($shutOffCustomers as $shutOffCustomer)
                 <tr align="center">
-                    <td><a href="https://prepagoplatform.com/customer/{{{ $shutOffCustomer->customer_username }}}">{{{ $shutOffCustomer->customer_username }}}</a></td>
-                    <td>{{{ $shutOffCustomer->permanent_meter_ID }}}</td>
-                    <td>{{{ $shutOffCustomer->district_meter_ID }}}</td>
-                    <td>{{{ $shutOffCustomer->permanent_meter_number }}}</td>
-                    <td>{{{ $shutOffCustomer->scheme_name }}}</td>
-                    <td>{{{ $shutOffCustomer->shut_off_reading }}}</td>
-					<td>{{{ abs($shutOffCustomer->shut_off_reading - $shutOffCustomer->sudo_reading) }}}</td>
+                    <td><a href="https://prepagoplatform.com/customer/{{ $shutOffCustomer->customer_username }}">{{ $shutOffCustomer->customer_username }}</a></td>
+                    <td>{{ $shutOffCustomer->permanent_meter_ID }}</td>
+                    <td>{{ $shutOffCustomer->district_meter_ID }}</td>
+                    <td>{{ $shutOffCustomer->permanent_meter_number }}</td>
+                    <td>{{ $shutOffCustomer->scheme_name }}</td>
+                    <td>{{ $shutOffCustomer->shut_off_reading }}</td>
+					<td>{{ abs($shutOffCustomer->shut_off_reading - $shutOffCustomer->sudo_reading) }}</td>
                     <td>
 						@if(strlen($shutOffCustomer->last_shut_off_time) > 3) 
-							{{{ $shutOffCustomer->last_shut_off_time }}} ({{{ Carbon\Carbon::parse($shutOffCustomer->last_shut_off_time)->diffForHumans() }}})
+							{{ $shutOffCustomer->last_shut_off_time }} ({{ Carbon\Carbon::parse($shutOffCustomer->last_shut_off_time)->diffForHumans() }})
 						@else
 							N/A
 						@endif
@@ -63,17 +63,17 @@
             </tr>
             @foreach ($readingShutOffMeters as $readingShutOffMeter)
                 <tr align="center">
-					<td align="center"><a href="https://prepagoplatform.com/customer/{{ $readingShutOffMeter->customer_username }}">{{{ $readingShutOffMeter->customer_username }}}</a></td>
-                    <td>{{{ $readingShutOffMeter->permanent_meter_ID }}}</td>
-                    <td>{{{ $readingShutOffMeter->district_meter_ID }}}</td>
-                    <td>{{{ $readingShutOffMeter->permanent_meter_number }}}</td>
-                    <td>{{{ $readingShutOffMeter->scheme_name }}}</td>
-                    <td>{{{ $readingShutOffMeter->shut_off_reading }}}</td>
-                    <td>{{{ $readingShutOffMeter->end_day_reading }}}</td>
-                    <td>{{{ $readingShutOffMeter->usage }}}</td>
+					<td align="center"><a href="https://prepagoplatform.com/customer/{!! $readingShutOffMeter->customer_username !!}">{{ $readingShutOffMeter->customer_username }}</a></td>
+                    <td>{{ $readingShutOffMeter->permanent_meter_ID }}</td>
+                    <td>{{ $readingShutOffMeter->district_meter_ID }}</td>
+                    <td>{{ $readingShutOffMeter->permanent_meter_number }}</td>
+                    <td>{{ $readingShutOffMeter->scheme_name }}</td>
+                    <td>{{ $readingShutOffMeter->shut_off_reading }}</td>
+                    <td>{{ $readingShutOffMeter->end_day_reading }}</td>
+                    <td>{{ $readingShutOffMeter->usage }}</td>
 					<td>
 						@if(strlen($readingShutOffMeter->last_shut_off_time) > 3) 
-							{{{ $readingShutOffMeter->last_shut_off_time }}} ({{{ Carbon\Carbon::parse($readingShutOffMeter->last_shut_off_time)->diffForHumans() }}})
+							{{ $readingShutOffMeter->last_shut_off_time }} ({{ Carbon\Carbon::parse($readingShutOffMeter->last_shut_off_time)->diffForHumans() }})
 						@else
 							N/A
 						@endif
@@ -99,22 +99,22 @@
 			</tr>
 			@foreach ($nonReadingMeters as $nonReadingMeter)
 				<tr align="left">
-					<td><a href="https://prepagoplatform.com/customer/{{ $nonReadingMeter->customer_username }}">{{ $nonReadingMeter->customer_username }}</a></td>
-					<td>{{{ $nonReadingMeter->permanent_meter_id }}}</td>
-					<td>{{{ $nonReadingMeter->dhm_id }}}</td>
-					<td>{{{ $nonReadingMeter->scheme_name }}}</td>
-					<td>{{{ $nonReadingMeter->meter_number }}}</td>
+					<td><a href="https://prepagoplatform.com/customer/{!! $nonReadingMeter->customer_username !!}">{!! $nonReadingMeter->customer_username !!}</a></td>
+					<td>{{ $nonReadingMeter->permanent_meter_id }}</td>
+					<td>{{ $nonReadingMeter->dhm_id }}</td>
+					<td>{{ $nonReadingMeter->scheme_name }}</td>
+					<td>{{ $nonReadingMeter->meter_number }}</td>
 					<td>
 						@if($nonReadingMeter->lastReadingTime != 'Never')
-							{{ $nonReadingMeter->lastReading }} kWh
+							{!! $nonReadingMeter->lastReading !!} kWh
 						@else
 							N/A
 						@endif
 					</td>
 					<td>
-					{{ $nonReadingMeter->lastReadingTime }} 
+					{!! $nonReadingMeter->lastReadingTime !!} 
 					@if(strlen($nonReadingMeter->lastReadingTime) > 3 && $nonReadingMeter->lastReadingTime != 'Never') 
-						({{ Carbon\Carbon::parse($nonReadingMeter->lastReadingTime)->diffForHumans() }})
+						({!! Carbon\Carbon::parse($nonReadingMeter->lastReadingTime)->diffForHumans() !!})
 					@else
 						
 					@endif
@@ -137,10 +137,10 @@
 			</tr>
 			@foreach ($remoteControlErrors as $remoteControlError)
 				<tr align="center">
-					<td>{{{ $remoteControlError->permanent_meter_id }}}</td>
-					<td>{{{ $remoteControlError->date_time }}}</td>
-					<td>{{{ $remoteControlError->action }}}</td>
-					<td>{{{ $remoteControlError->error }}}</td>
+					<td>{{ $remoteControlError->permanent_meter_id }}</td>
+					<td>{{ $remoteControlError->date_time }}</td>
+					<td>{{ $remoteControlError->action }}</td>
+					<td>{{ $remoteControlError->error }}</td>
 				</tr>
 			@endforeach
 		</table>

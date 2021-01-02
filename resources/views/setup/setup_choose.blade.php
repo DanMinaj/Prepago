@@ -9,7 +9,7 @@
     @if ($message = Session::get('successMessage'))
         <div class="alert alert-success alert-block">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ $message }}
+            {!! $message !!}
         </div>
     @endif
 
@@ -17,7 +17,7 @@
 	@if ($message = Session::get('errorMessage'))
         <div class="alert alert-danger alert-block">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ $message }}
+            {!! $message !!}
         </div>
     @endif
 	
@@ -45,8 +45,8 @@
 		<table width="100%">
 			<tr>
 				<td width="100%" class="setup-option">
-					<button type="submit" value='edit_{{ Auth::user()->scheme->scheme_number }}' name="option" style="min-width:38%;" class="btn btn-primary opt-btn">
-						<i class="fa fa-edit"></I> Edit {{ Auth::user()->scheme->scheme_nickname }}
+					<button type="submit" value='edit_{!! Auth::user()->scheme->scheme_number !!}' name="option" style="min-width:38%;" class="btn btn-primary opt-btn">
+						<i class="fa fa-edit"></I> Edit {!! Auth::user()->scheme->scheme_nickname !!}
 					</button>
 				</td>
 			</tr>

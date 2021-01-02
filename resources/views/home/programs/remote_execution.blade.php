@@ -10,7 +10,7 @@
 @if(Session::has('successMessage'))
 <div class="alert alert-success">
 		
-		{{Session::get('successMessage')}}
+		{!!Session::get('successMessage')!!}
 
 </div>
 @endif
@@ -18,7 +18,7 @@
 @if(Session::has('errorMessage'))
 <div class="alert alert-danger">
 		
-		{{Session::get('errorMessage')}}
+		{!!Session::get('errorMessage')!!}
 
 </div>
 @endif
@@ -54,15 +54,15 @@
 				
 				@foreach($calendar_remote_executions as $execution)
 					
-					<tr><form action="{{ URL::to('system_programs/remote_execution/stop') }}" method="POST">
-						<td valign="middle">{{$execution->program}}</td>
-						<td valign="middle">{{$execution->run_type}}</td>
-						<td valign="middle">{{$execution->run_after}}</td>
-						<td valign="middle">{{$execution->running_for}}</td>
-						<td valign="middle">{{$execution->processed}}</td>
+					<tr><form action="{!! URL::to('system_programs/remote_execution/stop') !!}" method="POST">
+						<td valign="middle">{!!$execution->program!!}</td>
+						<td valign="middle">{!!$execution->run_type!!}</td>
+						<td valign="middle">{!!$execution->run_after!!}</td>
+						<td valign="middle">{!!$execution->running_for!!}</td>
+						<td valign="middle">{!!$execution->processed!!}</td>
 						<td>
 						
-							<input type='hidden'  value='{{$execution->id}}' name='remote_id'>
+							<input type='hidden'  value='{!!$execution->id!!}' name='remote_id'>
 							<center><button type="submit" class="btn btn-danger"> Stop</button></center>
 						
 						</td>
@@ -87,7 +87,7 @@
 						<td><h3>Select program to run</h3></td>
 					</tr>
 					<tr>
-					<form action="{{ URL::to('system_programs/remote_execution') }}" method="POST">
+					<form action="{!! URL::to('system_programs/remote_execution') !!}" method="POST">
 						<td class="program_choice">
 							<input type="radio" name="program_to_run" checked="true" value="Billing Engine" id="p1"/><label for="p1">Billing Engine</label>
 						</td>
@@ -161,8 +161,8 @@
 							-- Select a Scheme --
 						</option>
 							@foreach($schemes as $scheme)
-								<option value="{{$scheme->id}}">
-									{{ $scheme->company_name }}
+								<option value="{!!$scheme->id!!}">
+									{!! $scheme->company_name !!}
 								</option>
 							@endforeach
 						</select>

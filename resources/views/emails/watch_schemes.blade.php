@@ -18,7 +18,7 @@
 			}
 		?>
 		<p> 
-			This email is to inform you that <b>{{ ucfirst($scheme->scheme_nickname) }}</b> {{ $status }}</b>
+			This email is to inform you that <b>{!! ucfirst($scheme->scheme_nickname) !!}</b> {!! $status !!}</b>
 		</p>
 		
 		<br/>

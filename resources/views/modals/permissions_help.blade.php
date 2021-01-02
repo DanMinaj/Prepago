@@ -23,7 +23,7 @@
 					$permissions = $group->permissions;
 				?>
 				
-				<h4> {{ $group->name }} permissions: </h4>
+				<h4> {!! $group->name !!} permissions: </h4>
 				<table width="100%">
 					
 					@if(count($permissions) == 0)
@@ -34,7 +34,7 @@
 					
 					@foreach($permissions as $p)
 						<tr>
-							<td>{{ $p }}</td>
+							<td>{!! $p !!}</td>
 						</tr>
 					@endforeach					
 				

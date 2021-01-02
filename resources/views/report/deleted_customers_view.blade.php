@@ -1,15 +1,15 @@
 </div>
 
 <div><br/></div>
-<h1>@if ($role === 'normal') Deleted Customers ({{ $from }} - {{ $to }}) @else Inactive Landlords @endif</h1>
+<h1>@if ($role === 'normal') Deleted Customers ({!! $from !!} - {!! $to !!}) @else Inactive Landlords @endif</h1>
 
 <div style="float: right">
 
     <form method="get" action="" class="form-inline" style="float:left">
         <label>From</label>
-        <input id="from" value='@if(isset($from)){{$from}}@endif' name="from" type="text">
+        <input id="from" value='@if(isset($from)){!!$from!!}@endif' name="from" type="text">
         <label>To</label>
-        <input id="to" value='@if(isset($to)){{$to}}@endif' name="to" type="text">
+        <input id="to" value='@if(isset($to)){!!$to!!}@endif' name="to" type="text">
         <input type="submit" value="search" class="btn-success"/>
 
     </form>
@@ -17,8 +17,8 @@
 </div>
 
 <div class="admin2">
-    <a href="{{ URL::to('system_reports') }}">System Reports</a> > @if ($role === 'normal') Deleted Customers Report @else Inactive Landlords Report @endif
-    <h3><a href="{{ $csv_url }}?from={{ $from }}&to={{ $to }}">Download CSV</a></h3>
+    <a href="{!! URL::to('system_reports') !!}">System Reports</a> > @if ($role === 'normal') Deleted Customers Report @else Inactive Landlords Report @endif
+    <h3><a href="{!! $csv_url !!}?from={!! $from !!}&to={!! $to !!}">Download CSV</a></h3>
     <table id="sortthistable" class="table table-bordered">
         <thead>
             <tr>
@@ -37,27 +37,27 @@
             @foreach ($customers as $customer)
                 <tr>
                     <td>
-					{{{ $customer->deleted_at }}}
+					{{ $customer->deleted_at }}
 					<br/>
-					<b>({{ Carbon\Carbon::parse($customer->deleted_at)->diffForHumans() }})</b>
+					<b>({!! Carbon\Carbon::parse($customer->deleted_at)->diffForHumans() !!})</b>
 					</td>
-                    <td>{{{ $customer->username }}}</td>
-                    <td>{{{ $customer->email_address }}}</td>
+                    <td>{{ $customer->username }}</td>
+                    <td>{{ $customer->email_address }}</td>
                     <td>
-                        {{{ isset($customer->house_number_name) ? $customer->house_number_name . ', ' : '' }}}
-                        {{{ isset($customer->street1) ? $customer->street1 . ', ' : '' }}}
-                        {{{ isset($customer->street2) ? $customer->street2 . ', ' : '' }}}
-                        {{{ isset($customer->town) ? $customer->town . ', ' : ''  }}}
-                        {{{ isset($customer->county) ? $customer->county . ($customer->country ? ', ' : '') : '' }}}
-                        {{{ isset($customer->country) ? $customer->country : '' }}}
+                        {{ isset($customer->house_number_name) ? $customer->house_number_name . ', ' : '' }}
+                        {{ isset($customer->street1) ? $customer->street1 . ', ' : '' }}
+                        {{ isset($customer->street2) ? $customer->street2 . ', ' : '' }}
+                        {{ isset($customer->town) ? $customer->town . ', ' : '' }}
+                        {{ isset($customer->county) ? $customer->county . ($customer->country ? ', ' : '') : '' }}
+                        {{ isset($customer->country) ? $customer->country : '' }}
                     </td>
-                    <td>{{{ $customer->mobile_number }}}</td>
-                    <td>{{{ $customer->first_name }}}</td>
-                    <td>{{{ $customer->surname }}}</td>
-                    <td>{{ $currencySign }}{{{ $customer->balance }}}</td>
+                    <td>{{ $customer->mobile_number }}</td>
+                    <td>{{ $customer->first_name }}</td>
+                    <td>{{ $customer->surname }}</td>
+                    <td>{!! $currencySign !!}{{ $customer->balance }}</td>
                     <td>
 						@if($customer->districtMeter)
-						{{ $customer->districtMeter->sudo_reading }} kWh
+						{!! $customer->districtMeter->sudo_reading !!} kWh
 						@endif
 					</td>
                 </tr>

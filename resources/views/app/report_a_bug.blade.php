@@ -33,23 +33,23 @@
                 @foreach($bugs as $b)
 
                 <tr @if($b->resolved) style="background:#a8e2a8;" @endif>
-                    <td>{{ $b->created_at }} &horbar; {{ \Carbon\Carbon::parse($b->created_at)->diffForHumans() }}</td>
+                    <td>{!! $b->created_at !!} &horbar; {!! \Carbon\Carbon::parse($b->created_at)->diffForHumans() !!}</td>
 
                     @if($b->customer)
-                    <td><a href="/customer/{{ $b->customer->username }}">{{ $b->customer->username }}</a></td>
+                    <td><a href="/customer/{!! $b->customer->username !!}">{!! $b->customer->username !!}</a></td>
                     @else
-                    <td><a href="/customer/{{ $b->apt_number }}{{ $b->apt_building }}" target="_blank">
-			{{ $b->apt_number }}{{ $b->apt_building }}
+                    <td><a href="/customer/{!! $b->apt_number !!}{{ $b->apt_building }}" target="_blank">
+			{!! $b->apt_number !!}{{ $b->apt_building }}
 			(g)
 		</a></td>
                     @endif
 
-                      <td>{{ substr($b->description, 0, 50) }}</td>
+                      <td>{!! substr($b->description, 0, 50) !!}</td>
                     <td>
-                        <a href="{{ URL::to('bug/reports/view', ['id' => $b->id]) }}">
+                        <a href="{!! URL::to('bug/reports/view', ['id' => $b->id]) !!}">
                             <button class="btn btn-primary"><i class="fa fa-eye"></i> View</button>
                         </a>
-                        <a href="{{ URL::to('bug/reports/view', ['id' => $b->id, 'solved' => 1]) }}">
+                        <a href="{!! URL::to('bug/reports/view', ['id' => $b->id, 'solved' => 1]) !!}">
                             <button class="btn btn-success"><i class="fa fa-check"></i> Complete</button>
                         </a>
                         
@@ -76,20 +76,20 @@
                 @foreach($solved_bugs as $b)
 
                 <tr @if($b->resolved) @if(strlen($b->follow_up_at) > 3 && !$b->follow_up_res) style="background:#e2a8a8;" @else style="background:#a8e2a8;"  @endif @endif>
-                    <td>{{ $b->created_at }} &horbar; {{ \Carbon\Carbon::parse($b->created_at)->diffForHumans() }}</td>
+                    <td>{!! $b->created_at !!} &horbar; {!! \Carbon\Carbon::parse($b->created_at)->diffForHumans() !!}</td>
 
                     @if($b->customer)
-                    <td><a href="/customer/{{ $b->customer->username }}">{{ $b->customer->username }}</a></td>
+                    <td><a href="/customer/{!! $b->customer->username !!}">{!! $b->customer->username !!}</a></td>
                     @else
-                    <td><a href="/customer/{{ $b->apt_number }}{{ $b->apt_building }}" target="_blank">
-							{{ $b->apt_number }}{{ $b->apt_building }}
+                    <td><a href="/customer/{!! $b->apt_number !!}{{ $b->apt_building }}" target="_blank">
+							{!! $b->apt_number !!}{{ $b->apt_building }}
 							(g)
 						</a></td>
                     @endif
 
-                    <td>{{ substr($b->description, 0, 50) }}</td>
+                    <td>{!! substr($b->description, 0, 50) !!}</td>
                     <td>
-                        <a href="{{ URL::to('bug/reports/view', ['id' => $b->id]) }}">
+                        <a href="{!! URL::to('bug/reports/view', ['id' => $b->id]) !!}">
                             <button class="btn btn-primary"><i class="fa fa-eye"></i> View</button>
                         </a>
                       @if(strlen($b->follow_up_at) > 3)
@@ -122,23 +122,23 @@
                 @foreach($bugs_prepaygo as $b)
 
                 <tr @if($b->resolved) style="background:#a8e2a8;" @endif>
-                    <td>{{ $b->created_at }} &horbar; {{ \Carbon\Carbon::parse($b->created_at)->diffForHumans() }}</td>
+                    <td>{!! $b->created_at !!} &horbar; {!! \Carbon\Carbon::parse($b->created_at)->diffForHumans() !!}</td>
 
                     @if($b->customer)
-                    <td><a href="/customer/{{ $b->customer->username }}">{{ $b->customer->username }}</a></td>
+                    <td><a href="/customer/{!! $b->customer->username !!}">{!! $b->customer->username !!}</a></td>
                     @else
-                    <td><a href="/customer/{{ $b->apt_number }}{{ $b->apt_building }}" target="_blank">
-			{{ $b->apt_number }}{{ $b->apt_building }}
+                    <td><a href="/customer/{!! $b->apt_number !!}{{ $b->apt_building }}" target="_blank">
+			{!! $b->apt_number !!}{{ $b->apt_building }}
 			(g)
 		</a></td>
                     @endif
 
-                    <td>{{ $b->preview }}</td>
+                    <td>{!! $b->preview !!}</td>
                     <td>
-                        <a href="{{ URL::to('bug/reports/view', ['id' => $b->id, 'platform' => 'prepaygo']) }}">
+                        <a href="{!! URL::to('bug/reports/view', ['id' => $b->id, 'platform' => 'prepaygo']) !!}">
                             <button class="btn btn-primary"><i class="fa fa-eye"></i> View</button>
                         </a>
-                        <a href="{{ URL::to('bug/reports/view', ['id' => $b->id, 'solved' => 1, 'platform' => 'prepaygo']) }}">
+                        <a href="{!! URL::to('bug/reports/view', ['id' => $b->id, 'solved' => 1, 'platform' => 'prepaygo']) !!}">
                             <button class="btn btn-success"><i class="fa fa-check"></i> Complete</button>
                         </a>
                         
@@ -165,20 +165,20 @@
                 @foreach($solved_bugs_prepaygo as $b)
 
                 <tr @if($b->resolved) style="background:#a8e2a8;" @endif>
-                    <td>{{ $b->created_at }} &horbar; {{ \Carbon\Carbon::parse($b->created_at)->diffForHumans() }}</td>
+                    <td>{!! $b->created_at !!} &horbar; {!! \Carbon\Carbon::parse($b->created_at)->diffForHumans() !!}</td>
 
                     @if($b->customer)
-                    <td><a href="/customer/{{ $b->customer->username }}">{{ $b->customer->username }}</a></td>
+                    <td><a href="/customer/{!! $b->customer->username !!}">{!! $b->customer->username !!}</a></td>
                     @else
-                    <td><a href="/customer/{{ $b->apt_number }}{{ $b->apt_building }}" target="_blank">
-							{{ $b->apt_number }}{{ $b->apt_building }}
+                    <td><a href="/customer/{!! $b->apt_number !!}{{ $b->apt_building }}" target="_blank">
+							{!! $b->apt_number !!}{{ $b->apt_building }}
 							(g)
 						</a></td>
                     @endif
 
-                    <td>{{ $b->preview }}</td>
+                    <td>{!! $b->preview !!}</td>
                     <td>
-                        <a href="{{ URL::to('bug/reports/view', ['id' => $b->id, 'platform' => 'prepaygo']) }}">
+                        <a href="{!! URL::to('bug/reports/view', ['id' => $b->id, 'platform' => 'prepaygo']) !!}">
                             <button class="btn btn-primary"><i class="fa fa-eye"></i> View</button>
                         </a>
 						@if(strlen($b->follow_up_at) > 3)

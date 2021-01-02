@@ -1,7 +1,7 @@
 </div>
 
 <div><br/></div>
-<h1>{{ $scheme->scheme_nickname }} SMS LOGS</h1>
+<h1>{!! $scheme->scheme_nickname !!} SMS LOGS</h1>
 
 </div>
 <div class="cl"></div>
@@ -17,17 +17,17 @@
 	
 	@if(Session::has('successMessage'))
 	<div class="alert alert-success" style="padding:2%;font-size:1.2em;">
-		{{ Session::get('successMessage') }}
+		{!! Session::get('successMessage') !!}
 	</div>
 	@endif
 	
 	@if(Session::has('errorMessage'))
 	<div class="alert alert-danger" style="padding:2%;font-size:1.2em;">
-		{{ Session::get('errorMessage') }}
+		{!! Session::get('errorMessage') !!}
 	</div>
 	@endif
 	
-	<a href='{{ URL::to("settings/" . $iccid . "/sms/toggle/block") }}'>
+	<a href='{!! URL::to("settings/" . $iccid . "/sms/toggle/block") !!}'>
 	@if($scheme->block_reboots == 1)
 		<button class="btn btn-warning">
 			<i class="fa fa-unlock"></i> Unblock automatic reboot
@@ -56,11 +56,11 @@
 		@foreach($sms as $k => $s)
 		
 		<tr>
-			<td> {{ $k }} </td>
-			<td> {{ $s->timestamp }} &horbar; ({{ Carbon\Carbon::parse($s->timestamp)->diffForHumans() }})</td>
-			<td> {{ $s->text }} </td>
-			<td> {{ $s->status }} </td>
-			<td> {{ ($s->direction == 'MT SMS') ? '<b>outgoing</b>' : 'reply/incoming' }} </td>
+			<td> {!! $k !!} </td>
+			<td> {!! $s->timestamp !!} &horbar; ({!! Carbon\Carbon::parse($s->timestamp)->diffForHumans() !!})</td>
+			<td> {!! $s->text !!} </td>
+			<td> {!! $s->status !!} </td>
+			<td> {!! ($s->direction == 'MT SMS') ? '<b>outgoing</b>' : 'reply/incoming' !!} </td>
 		</tr>
 	
 		@endforeach

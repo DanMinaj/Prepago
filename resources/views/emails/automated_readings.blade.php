@@ -6,7 +6,7 @@
 <body>
 
 <div>
-    Hello {{ $user_name }}, <br /><br />
+    Hello {!! $user_name !!}, <br /><br />
     Here are the details from the automated meters readings: <br  /><br />
 
     @if ($readings && $readings->count())
@@ -21,12 +21,12 @@
             </tr>
             @foreach ($readings as $reading)
                 <tr>
-                    <td>{{{ $reading['meter_number'] }}}</td>
-                    <td style="text-align: center">{{{ $reading['scheme'] }}}</td>
-                    <td style="text-align: center">{{{ $reading['customer_name'] }}}</td>
-                    <td style="text-align: center">{{{ $reading['customer_email'] }}}</td>
-                    <td style="text-align: center">{{{ $reading['reading'] }}}</td>
-                    <td style="text-align: center">{{{ $reading['reading_status'] }}}</td>
+                    <td>{{ $reading['meter_number'] }}</td>
+                    <td style="text-align: center">{{ $reading['scheme'] }}</td>
+                    <td style="text-align: center">{{ $reading['customer_name'] }}</td>
+                    <td style="text-align: center">{{ $reading['customer_email'] }}</td>
+                    <td style="text-align: center">{{ $reading['reading'] }}</td>
+                    <td style="text-align: center">{{ $reading['reading_status'] }}</td>
                 </tr>
             @endforeach
         </table>

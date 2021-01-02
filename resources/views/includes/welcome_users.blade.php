@@ -33,43 +33,43 @@
                 <tr class="customer_row">
                     
 					@if ($fromSystemReports)
-						<td>{{ $user->commencement_date }}</td>
+						<td>{!! $user->commencement_date !!}</td>
 					@endif
 					@if (!$fromSystemReports)
 						<td @if($user->subscription && Auth::user()->isUserTest()) class='green' @endif ><?php echo $user->barcode ?></td>
 					@endif
 					@if($user->simulator > 0)
-						<td>{{ Customer::find($user->id)->username }}</td>
+						<td>{!! Customer::find($user->id)->username !!}</td>
 					@else
 						@if(Auth::user() && Auth::user()->scheme_number == 20)
-							 <td>{{ $user->username }}</td>
+							 <td>{!! $user->username !!}</td>
 						@else
 							<td>
 								@if( substr($user->username, 0, 1 ) == 'h')
-									{{ str_replace('h', '', str_replace('fair', 'Fair', $user->username)) }}
+									{!! str_replace('h', '', str_replace('fair', 'Fair', $user->username)) !!}
 									<br/><center><font style='font-size:0.6rem;text-align:center;'>(Fairways Hall)</font></center>
 								@else
-									<?php echo (int)$user->username  ?>{{ ucfirst(preg_replace('/[0-9]+/', '', $user->username)) }}
+									<?php echo (int)$user->username  ?>{!! ucfirst(preg_replace('/[0-9]+/', '', $user->username)) !!}
 								@endif
 							</td>
 						@endif
 					@endif
 					
-                    <td @if($user->permanentMeter) @if($user->permanentMeter->awayMode) style='background-color:#d5f6ff;' @endif @endif>@if($user->districtMeter) {{ $user->districtMeter->last_flow_temp }}&deg;C @else N/A @endif</td>
+                    <td @if($user->permanentMeter) @if($user->permanentMeter->awayMode) style='background-color:#d5f6ff;' @endif @endif>@if($user->districtMeter) {!! $user->districtMeter->last_flow_temp !!}&deg;C @else N/A @endif</td>
                     @if ($fromSystemReports)
                         <td>
-                            {{{ $user->house_number_name ? $user->house_number_name . ', ' : '' }}}
-                            {{{ $user->street1 ? $user->street1 . ', ' : '' }}}
-                            {{{ $user->street2 ? $user->street2 . ', ' : '' }}}
-                            {{{ $user->town ? $user->town . ', ' : ''  }}}
-                            {{{ $user->county ? $user->county . ($user->country ? ', ' : '') : '' }}}
-                            {{{ $user->country ? $user->country : '' }}}
+                            {{ $user->house_number_name ? $user->house_number_name . ', ' : '' }}
+                            {{ $user->street1 ? $user->street1 . ', ' : '' }}
+                            {{ $user->street2 ? $user->street2 . ', ' : '' }}
+                            {{ $user->town ? $user->town . ', ' : '' }}
+                            {{ $user->county ? $user->county . ($user->country ? ', ' : '') : '' }}
+                            {{ $user->country ? $user->country : '' }}
                         </td>
                     @endif
-                    <td>@if($user->districtMeter) {{ $user->districtMeter->sudo_reading_time }} @else N/A @endif</td>
+                    <td>@if($user->districtMeter) {!! $user->districtMeter->sudo_reading_time !!} @else N/A @endif</td>
                     <td><?php echo $user->first_name ?></td>
                     <td><?php echo $user->surname ?></td>
-                    <td class="{{ $type }}">{{ $currencySign }}<?php echo $user->balance ?></td>
+                    <td class="{!! $type !!}">{!! $currencySign !!}<?php echo $user->balance ?></td>
                     <td><a  class="btn btn-info" type="button" href="<?php echo URL::to('customer_tabview_controller/show/'.$user->id) ?>">View</a></td>
 
                 </tr>

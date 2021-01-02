@@ -10,7 +10,7 @@
 	<b>Note:</b> Please note that you are inserting this into the scheme 
 	<?php $scheme = Scheme::find(Auth::user()->scheme_number); ?>
 	@if($scheme)	
-	<b>'{{ $scheme->company_name }}'</b>
+	<b>'{!! $scheme->company_name !!}'</b>
 	@else
 	'<b>Scheme not found</b>'
 	@endif
@@ -20,21 +20,21 @@
 @if ($message = Session::get('successMessage'))
 <div class="alert alert-success alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
 @if ($message = Session::get('warningMessage'))
 <div class="alert alert-warning alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
 @if ($message = Session::get('errorMessage'))
 <div class="alert alert-danger alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
@@ -52,7 +52,7 @@
 			<b> Meter last 8</b>
 		</td>
 		<td>
-		{{ $meterLookup->last_eight }}
+		{!! $meterLookup->last_eight !!}
 		</td>
 	</tr>
 	
@@ -62,7 +62,7 @@
 			<b> Meter last 8</b>
 		</td>
 		<td>
-		{{ $meterLookup->scu_last_eight }}
+		{!! $meterLookup->scu_last_eight !!}
 		</td>
 	</tr>
 	
@@ -76,7 +76,7 @@
 	
 	<tr>
 		<td colspan="2">	
-			<h4> Results ({{ count(Session::get('total')) }}) </h4>
+			<h4> Results ({!! count(Session::get('total')) !!}) </h4>
 		</td>
 	</tr>
 	<tr>
@@ -84,7 +84,7 @@
 			<b> Newly inserted </b>
 		</td>
 		<td>
-		{{ count(Session::get('inserted')) }}
+		{!! count(Session::get('inserted')) !!}
 		</td>	
 	</tr>
 	<tr>
@@ -92,7 +92,7 @@
 			<b> Already existed </b>
 		</td>
 		<td>
-		{{ count(Session::get('existing')) }}
+		{!! count(Session::get('existing')) !!}
 		</td>	
 	</tr>
 	<tr>
@@ -100,7 +100,7 @@
 			<b> Discrepancies Fixed</b>
 		</td>
 		<td>
-		{{ count(Session::get('errors')) }}
+		{!! count(Session::get('errors')) !!}
 		</td>	
 	</tr>
 
@@ -116,10 +116,10 @@
 
 	@foreach(Session::get('existing') as $m)
 	<tr>
-		<td> {{ $m['8digit'] }} </td>
-		<td> {{ $m['16digit'] }} </td>
+		<td> {!! $m['8digit'] !!} </td>
+		<td> {!! $m['16digit'] !!} </td>
 		@if($m->permanentMeter)
-		<td>{{ $m->permanentMeter->house_name_number }} {{ $m->permanentMeter->street1 }}</td>
+		<td>{!! $m->permanentMeter->house_name_number !!} {!! $m->permanentMeter->street1 !!}</td>
 		@else
 		<td> Customer needs to be found </td>
 		@endif
@@ -131,7 +131,7 @@
 @endif
 
 <form action="" method="POST">
-	<textarea style="width:100%;height:200px;" name="scan" placeholder="Scan results">@if(Session::has('input')){{ Session::get('input') }}@endif</textarea>
+	<textarea style="width:100%;height:200px;" name="scan" placeholder="Scan results">@if(Session::has('input')){!! Session::get('input') !!}@endif</textarea>
 	<input style="width:101.5%" type="submit" class="btn btn-primary" value="Insert">
 </form>
 			

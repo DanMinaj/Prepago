@@ -12,7 +12,7 @@
 </div>
 @endif
 
-{{ Form::open(['url' => 'open_account/action', 'id' => 'customer_set_up']) }}
+{!! Form::open(['url' => 'open_account/action', 'id' => 'customer_set_up']) !!}
 
 	<div class="custome_left" style="position:float-right;">
 
@@ -20,15 +20,15 @@
     	<!-- <label id="warning" style="text-transform:none;color: black">Please fill up all '*' marked fields </label>
     	<form id="form1" name="form1" method="post" action='<?php echo URL::to('open_account/action') ?>' onsubmit="return validateForm()"> -->
 
-    	{{ Form::hidden('selected_unit', $customerToSwap ? $customerToSwap->meter_ID : '', ['id' => 'selected_unit']) }}
-		{{ Form::hidden('selected_role', 'normal', ['id' => 'selected_role']) }}
+    	{!! Form::hidden('selected_unit', $customerToSwap ? $customerToSwap->meter_ID : '', ['id' => 'selected_unit']) !!}
+		{!! Form::hidden('selected_role', 'normal', ['id' => 'selected_role']) !!}
 		@if ($customerToSwap)
-			{{ Form::hidden('swap_from_id', $customerToSwap->id) }}
-			{{ Form::hidden('balanceToSwap', $customerToSwap->balance, ['id' => 'balanceToSwap']) }}
+			{!! Form::hidden('swap_from_id', $customerToSwap->id) !!}
+			{!! Form::hidden('balanceToSwap', $customerToSwap->balance, ['id' => 'balanceToSwap']) !!}
 		@endif
 
 		@if (!$customerToSwap)
-			<div class="control-group{{ $errors->has('selected_unit') ? ' error' : '' }}">
+			<div class="control-group{!! $errors->has('selected_unit') ? ' error' : '' !!}">
 				<label>Available Units*<br/>
 				<span style='font-size: 12px; cursor: pointer; color: #95d10b; padding-top: 4px; padding-bottom: 4px; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5;'  data-toggle="modal" data-target="#missing-apartment">Missing apartment?</span></label>
 				<select id="prepop" name="select_units">
@@ -46,42 +46,42 @@
 			</div>
 		@else
 			<div class="control-group">
-				<label>{{ Form::checkbox('swap_credit', 1, true, ['id' => 'swap_credit', 'onclick' => 'javascript: swapCredit()']) }} Would you like to swap the credit?</label>
+				<label>{!! Form::checkbox('swap_credit', 1, true, ['id' => 'swap_credit', 'onclick' => 'javascript: swapCredit()']) !!} Would you like to swap the credit?</label>
 			</div>
 		@endif
         
-        <div class="control-group{{ $errors->has('username') ? ' error' : '' }}">
-	        {{ Form::label('username', 'Username or Account Number*') }}
-	        {{ Form::text('username', $customerToSwap ? $customerToSwap->username : null, ['id' => 'username', 'class' => 'cus-in', 'readonly' => true]) }}
+        <div class="control-group{!! $errors->has('username') ? ' error' : '' !!}">
+	        {!! Form::label('username', 'Username or Account Number*') !!}
+	        {!! Form::text('username', $customerToSwap ? $customerToSwap->username : null, ['id' => 'username', 'class' => 'cus-in', 'readonly' => true]) !!}
 	    </div>   
         
-        <div class="control-group{{ $errors->has('balance') ? ' error' : '' }}">
-        	{{ Form::label('balance', 'Starting Balance') }}
-        	{{ Form::text('balance', Input::old('balance'), ['class' => 'cus-in', 'id' => 'balance']) }}
+        <div class="control-group{!! $errors->has('balance') ? ' error' : '' !!}">
+        	{!! Form::label('balance', 'Starting Balance') !!}
+        	{!! Form::text('balance', Input::old('balance'), ['class' => 'cus-in', 'id' => 'balance']) !!}
         </div>
         
-        <div class="control-group{{ $errors->has('first_name') ? ' error' : '' }}">
-	        {{ Form::label('first_name', 'First Name*') }}
-    	    {{ Form::text('first_name', Input::old('first_name'), ['id' => 'firstname', 'class' => 'cus-in']) }}
+        <div class="control-group{!! $errors->has('first_name') ? ' error' : '' !!}">
+	        {!! Form::label('first_name', 'First Name*') !!}
+    	    {!! Form::text('first_name', Input::old('first_name'), ['id' => 'firstname', 'class' => 'cus-in']) !!}
     	</div>
        	
-       	<div class="control-group{{ $errors->has('surname') ? ' error' : '' }}">
-       		{{ Form::label('surname', 'Last Name*') }}
-        	{{ Form::text('surname', Input::old('surname'), ['id' => 'surname', 'class' => 'cus-in']) }}
+       	<div class="control-group{!! $errors->has('surname') ? ' error' : '' !!}">
+       		{!! Form::label('surname', 'Last Name*') !!}
+        	{!! Form::text('surname', Input::old('surname'), ['id' => 'surname', 'class' => 'cus-in']) !!}
         </div>   
         
 		
 		@if(Auth::user()->scheme->isBlueScheme)
 			
 		@else
-        <div class="control-group{{ $errors->has('arrears') ? ' error' : '' }}">
-       		{{ Form::label('arrears', 'Arrears') }}
-        	{{ Form::text('arrears', Input::old('arrears'), ['id' => 'arrears', 'class' => 'cus-in']) }}
+        <div class="control-group{!! $errors->has('arrears') ? ' error' : '' !!}">
+       		{!! Form::label('arrears', 'Arrears') !!}
+        	{!! Form::text('arrears', Input::old('arrears'), ['id' => 'arrears', 'class' => 'cus-in']) !!}
         </div>   
         
-        <div class="control-group{{ $errors->has('arrears_daily_repayment') ? ' error' : '' }}">
-       		{{ Form::label('arrears_daily_repayment', 'Arrears Daily Repayment') }}
-        	{{ Form::text('arrears_daily_repayment', Input::old('arrears_daily_repayment'), ['id' => 'arrears_daily_repayment', 'class' => 'cus-in']) }}
+        <div class="control-group{!! $errors->has('arrears_daily_repayment') ? ' error' : '' !!}">
+       		{!! Form::label('arrears_daily_repayment', 'Arrears Daily Repayment') !!}
+        	{!! Form::text('arrears_daily_repayment', Input::old('arrears_daily_repayment'), ['id' => 'arrears_daily_repayment', 'class' => 'cus-in']) !!}
         </div>       	
        	@endif
 		
@@ -90,30 +90,30 @@
 	<div class="custome_left"><br /></div>
 
 	<div class="custome_left">
-		<div class="control-group{{ $errors->has('email_address') ? ' error' : '' }}">
-			{{ Form::label('email_address', 'Email Address*') }}
-        	{{ Form::text('email_address', Input::old('email_address'), ['id' => 'email_address', 'class' => 'cus-in']) }}
+		<div class="control-group{!! $errors->has('email_address') ? ' error' : '' !!}">
+			{!! Form::label('email_address', 'Email Address*') !!}
+        	{!! Form::text('email_address', Input::old('email_address'), ['id' => 'email_address', 'class' => 'cus-in']) !!}
         </div>
         
-        <div class="control-group{{ $errors->has('mobile_number') ? ' error' : '' }}">
-        	{{ Form::label('mobile_number', 'Mobile Number*') }}
-        	{{ Form::text('mobile_number', Input::old('mobile_number'), ['id' => 'mobile_number', 'class' => 'cus-in', 'placeholder' => '+3538x xxx xxxx']) }}
+        <div class="control-group{!! $errors->has('mobile_number') ? ' error' : '' !!}">
+        	{!! Form::label('mobile_number', 'Mobile Number*') !!}
+        	{!! Form::text('mobile_number', Input::old('mobile_number'), ['id' => 'mobile_number', 'class' => 'cus-in', 'placeholder' => '+3538x xxx xxxx']) !!}
         </div>
         
-        <div class="control-group{{ $errors->has('nominated_telephone') ? ' error' : '' }}">
-        	{{ Form::label('nominated_telephone', 'Nominated Mobile Number') }}
-        	{{ Form::text('nominated_telephone', Input::old('nominated_telephone'), ['id' => 'nominated_telephone', 'class' => 'cus-in']) }}
+        <div class="control-group{!! $errors->has('nominated_telephone') ? ' error' : '' !!}">
+        	{!! Form::label('nominated_telephone', 'Nominated Mobile Number') !!}
+        	{!! Form::text('nominated_telephone', Input::old('nominated_telephone'), ['id' => 'nominated_telephone', 'class' => 'cus-in']) !!}
        	</div>
         
-         <div class="control-group{{ $errors->has('commencement_date') ? ' error' : '' }}">
-        	{{ Form::label('commencement_date', 'Commencement Date*') }}
-        	{{ Form::text('commencement_date', Input::old('commencement_date'), ['id' => 'datepicker', 'class' => 'cus-in']) }}
+         <div class="control-group{!! $errors->has('commencement_date') ? ' error' : '' !!}">
+        	{!! Form::label('commencement_date', 'Commencement Date*') !!}
+        	{!! Form::text('commencement_date', Input::old('commencement_date'), ['id' => 'datepicker', 'class' => 'cus-in']) !!}
         </div>
 
 		@if(Auth::user()->scheme->isBlueScheme)
 			<input type="hidden" name="role" value="normal">
 		@else
-		<div class="control-group{{ $errors->has('role') ? ' error' : '' }}">
+		<div class="control-group{!! $errors->has('role') ? ' error' : '' !!}">
 			<label>Customer Type*</label>
 			<select id="role" name="role">
 				<option value="normal">Normal Customer</option>

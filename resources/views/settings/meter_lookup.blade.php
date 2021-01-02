@@ -10,14 +10,14 @@
 @if(Session::has('successMessage'))
 <div class="alert alert-success alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('successMessage')}}
+{!!Session::get('successMessage')!!}
 </div>
 @endif
 
 @if(Session::has('errorMessage'))
 <div class="alert alert-danger alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('errorMessage')}}
+{!!Session::get('errorMessage')!!}
 </div>
 @endif
 
@@ -35,10 +35,10 @@
 				<th width="10%"><b>Manage</b></th>
 			</tr>
 			<tr>
-				<td><input type="text"  value="{{ 	$ml->meter_make }} {{ $ml->meter_model }}" disabled="true" placeholder="Meter name"></td>
-				<td><input type="text" name="{{ $ml->id }}|last_eight" value="{{ $ml->last_eight }}" placeholder="Meter Last-8"></td>
-				<td><input type="text" name="{{ $ml->id }}|scu_last_eight" value="{{ $ml->scu_last_eight }}" placeholder="SCU Last-8"></td>
-				<td><a class="btn btn-success" href="{{ URL::to('settings/meter_lookup', ['id' => $ml->id]) }}">Edit</td>
+				<td><input type="text"  value="{!! 	$ml->meter_make !!} {!! $ml->meter_model !!}" disabled="true" placeholder="Meter name"></td>
+				<td><input type="text" name="{!! $ml->id !!}|last_eight" value="{!! $ml->last_eight !!}" placeholder="Meter Last-8"></td>
+				<td><input type="text" name="{!! $ml->id !!}|scu_last_eight" value="{!! $ml->scu_last_eight !!}" placeholder="SCU Last-8"></td>
+				<td><a class="btn btn-success" href="{!! URL::to('settings/meter_lookup', ['id' => $ml->id]) !!}">Edit</td>
 			</tr>
 		</table>
 		

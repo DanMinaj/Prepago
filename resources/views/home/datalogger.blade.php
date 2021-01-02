@@ -1,8 +1,8 @@
 	
 @section('extra_scripts')
 
-	{{ HTML::script('resources/js/datatable/datatables.min.js') }}
-	{{ HTML::style('resources/js/datatable/datatables.min.css') }}
+	{!! HTML::script('resources/js/datatable/datatables.min.js') !!}
+	{!! HTML::style('resources/js/datatable/datatables.min.css') !!}
 	
 @stop
 
@@ -30,7 +30,7 @@
    @foreach(Scheme::active(false) as $k => $s) 
 		@if(($k+1) % 5 == 0)
 		<td>
-			<input class='scheme_selection' type='checkbox' @if(in_array($s->scheme_number, $scheme_ids)) checked @endif scheme_id='{{ $s->scheme_number}}'> {{ $s->scheme_nickname }}
+			<input class='scheme_selection' type='checkbox' @if(in_array($s->scheme_number, $scheme_ids)) checked @endif scheme_id='{!! $s->scheme_number!!}'> {!! $s->scheme_nickname !!}
 		</td>
 		</tr>
 		
@@ -38,14 +38,14 @@
 		@else
 		@if($k == 0) <tr> @endif
 		<td>
-			<input class='scheme_selection' type='checkbox' @if(in_array($s->scheme_number, $scheme_ids)) checked @endif scheme_id='{{ $s->scheme_number}}'> {{ $s->scheme_nickname }}
+			<input class='scheme_selection' type='checkbox' @if(in_array($s->scheme_number, $scheme_ids)) checked @endif scheme_id='{!! $s->scheme_number!!}'> {!! $s->scheme_nickname !!}
 		</td>
 		@endif
    @endforeach
    </table>
    @else
-	<input type='hidden' class='dl_type' value='{{ $type }}'>
-	<h4> Running {{ $type }} datalogger ..</h4>
+	<input type='hidden' class='dl_type' value='{!! $type !!}'>
+	<h4> Running {!! $type !!} datalogger ..</h4>
    @endif
    
    <table width="100%">
@@ -62,9 +62,9 @@
       @foreach($dataloggers as $key => $dl)
 	  
 		@if($key == 0)
-		<li style='font-size:11px;' class="active"><a href="#{{ $key }}" data-toggle="tab">{{ $dl->name }} (<span id="scheme_{{ $dl->scheme_number }}_progress_num">0</span>%) </a></li>
+		<li style='font-size:11px;' class="active"><a href="#{!! $key !!}" data-toggle="tab">{!! $dl->name !!} (<span id="scheme_{!! $dl->scheme_number !!}_progress_num">0</span>%) </a></li>
 		@else
-		<li style='font-size:11px;'><a href="#{{ $key }}" data-toggle="tab">{{ $dl->name }} (<span id="scheme_{{ $dl->scheme_number }}_progress_num">0</span>%) </a></li>
+		<li style='font-size:11px;'><a href="#{!! $key !!}" data-toggle="tab">{!! $dl->name !!} (<span id="scheme_{!! $dl->scheme_number !!}_progress_num">0</span>%) </a></li>
 		@endif
 	  
 	  @endforeach
@@ -79,16 +79,16 @@
 	@foreach($dataloggers as $key => $dl)
 	
 		@if($key == 0)
-		<div class="tab-pane active" class="scheme_tab" id="{{ $key }}" style="text-align: left">
+		<div class="tab-pane active" class="scheme_tab" id="{!! $key !!}" style="text-align: left">
 		@else
-		<div class="tab-pane" class="scheme_tab" id="{{ $key }}" style="text-align: left">
+		<div class="tab-pane" class="scheme_tab" id="{!! $key !!}" style="text-align: left">
 		@endif
 		
 		<div class="progress progress-striped active">
-		  <div id="scheme_{{ $dl->scheme_number }}_progress" class="scheme_progress bar" style="width: 0%;"></div>
+		  <div id="scheme_{!! $dl->scheme_number !!}_progress" class="scheme_progress bar" style="width: 0%;"></div>
 		</div>
 					
-		<table width="100%" class="table table-bordered scheme_table"  id="scheme_{{ $dl->scheme_number }}_table" >
+		<table width="100%" class="table table-bordered scheme_table"  id="scheme_{!! $dl->scheme_number !!}_table" >
 					
 			<thead>
 				<tr>
@@ -135,7 +135,7 @@
 				</tr>
 			</thead>
 			
-			<tbody id="s_{{ $dl->scheme_number }}">
+			<tbody id="s_{!! $dl->scheme_number !!}">
 			
 			</tbody>
 			
@@ -151,8 +151,8 @@
    
  </div>
  
- <input type="hidden" id="baseInstallerURL" value="{{ URL::to('prepago_installer') }}">
-{{ HTML::script('resources/js/util/remote_data_logger.js?' . time()) }}
+ <input type="hidden" id="baseInstallerURL" value="{!! URL::to('prepago_installer') !!}">
+{!! HTML::script('resources/js/util/remote_data_logger.js?' . time()) !!}
  <script>
 	$(document).ready(function(){
 		var get_dataloggers_url = "/datalogger/get_dataloggers"; 
@@ -182,7 +182,7 @@
 		$('#stop').on('click', function(){
 			window.location.href = '/datalogger';
 		});
-		loadMeters({{ $dataloggers }});
+		loadMeters({!! $dataloggers !!});
 		
 	});
  </script>

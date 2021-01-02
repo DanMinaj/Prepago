@@ -7,7 +7,7 @@
 <div class="cl"></div>
 <div class="admin2">
     <div class="boss-hierarchy">
-        {{ displayBossHierarchy() }}
+        {!! displayBossHierarchy() !!}
     </div>
 </div>
 

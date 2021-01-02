@@ -101,7 +101,7 @@
             <td><a data-toggle="modal" href="#myModal1" class="btn btn-info">Edit</a></td>
         </tr>
         <div id="myModal1" class="modal hide fade" ><div class="modal-header"><h3 id="myModalLabel">Edit SMS Message</h3></div><div class="modal-body">
-        <form id="form1" action="{{ URL::to('settings/sms_settings/save_sms_message') }}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
+        <form id="form1" action="{!! URL::to('settings/sms_settings/save_sms_message') !!}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
         <input type="hidden" name="formid" value="1">
         <textarea class="field span5" rows="5" name="smsmessage" id="smsmessage"><?php echo $messages['balance_message']?></textarea></div></div></form><div id="alert"  class= "alert alert-error" style="visibility: hidden;">Error Occured</div></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
         <a href="#"  class="btn btn-danger"   onclick="issue(1)">Change</a></div></div>        
@@ -113,7 +113,7 @@
             <td><a data-toggle="modal" href="#myModal2" class="btn btn-info">Edit</a></td>
         </tr>
         <div id="myModal2" class="modal hide fade" ><div class="modal-header"><h3 id="myModalLabel">Edit SMS Message</h3></div><div class="modal-body">
-        <form id="form2" action="{{ URL::to('settings/sms_settings/save_sms_message') }}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
+        <form id="form2" action="{!! URL::to('settings/sms_settings/save_sms_message') !!}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
         <input type="hidden" name="formid" value="2">
         <textarea class="field span5" rows="5" name="smsmessage" id="smsmessage"><?php echo $messages['IOU_message']?></textarea></div></div></form><div id="alert"  class= "alert alert-error" style="visibility: hidden;">Error Occured</div></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
         <a href="#"  class="btn btn-danger"   onclick="issue(2)">Change</a></div></div>
@@ -125,7 +125,7 @@
             <td><a data-toggle="modal" href="#myModal3" class="btn btn-info">Edit</a></td>
         </tr>
         <div id="myModal3" class="modal hide fade" ><div class="modal-header"><h3 id="myModalLabel">Edit SMS Message</h3></div><div class="modal-body">
-        <form id="form3" action="{{ URL::to('settings/sms_settings/save_sms_message') }}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
+        <form id="form3" action="{!! URL::to('settings/sms_settings/save_sms_message') !!}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
         <input type="hidden" name="formid" value="3">
         <textarea class="field span5" rows="5" name="smsmessage" id="smsmessage"><?php echo $messages['IOU_extra_message']?></textarea></div></div></form><div id="alert"  class= "alert alert-error" style="visibility: hidden;">Error Occured</div></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
         <a href="#"  class="btn btn-danger"   onclick="issue(3)">Change</a></div></div>
@@ -137,7 +137,7 @@
             <td><a data-toggle="modal" href="#myModal4" class="btn btn-info">Edit</a></td>
         </tr>
         <div id="myModal4" class="modal hide fade" ><div class="modal-header"><h3 id="myModalLabel">Edit SMS Message</h3></div><div class="modal-body">
-        <form id="form4" action="{{ URL::to('settings/sms_settings/save_sms_message') }}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
+        <form id="form4" action="{!! URL::to('settings/sms_settings/save_sms_message') !!}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
         <input type="hidden" name="formid" value="4">
         <textarea class="field span5" rows="5" name="smsmessage" id="smsmessage"><?php echo $messages['IOU_denied_message']?></textarea></div></div></form><div id="alert"  class= "alert alert-error" style="visibility: hidden;">Error Occured</div></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
         <a href="#"  class="btn btn-danger"   onclick="issue(4)">Change</a></div></div>
@@ -149,7 +149,7 @@
             <td><a data-toggle="modal" href="#myModal5" class="btn btn-info">Edit</a></td>
         </tr>
         <div id="myModal5" class="modal hide fade" ><div class="modal-header"><h3 id="myModalLabel">Edit SMS Message</h3></div><div class="modal-body">
-        <form id="form5" action="{{ URL::to('settings/sms_settings/save_sms_message') }}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
+        <form id="form5" action="{!! URL::to('settings/sms_settings/save_sms_message') !!}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
         <input type="hidden" name="formid" value="5">
         <textarea class="field span5" rows="5" name="smsmessage" id="smsmessage"><?php echo $messages['rates_message']?></textarea></div></div></form><div id="alert"  class= "alert alert-error" style="visibility: hidden;">Error Occured</div></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
         <a href="#"  class="btn btn-danger"   onclick="issue(5)">Change</a></div></div>
@@ -161,7 +161,7 @@
             <td><a data-toggle="modal" href="#myModal6" class="btn btn-info">Edit</a></td>
         </tr>
         <div id="myModal6" class="modal hide fade" ><div class="modal-header"><h3 id="myModalLabel">Edit SMS Message</h3></div><div class="modal-body">
-        <form id="form6" action="{{ URL::to('settings/sms_settings/save_sms_message') }}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
+        <form id="form6" action="{!! URL::to('settings/sms_settings/save_sms_message') !!}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
         <input type="hidden" name="formid" value="6">
         <textarea class="field span5" rows="5" name="smsmessage" id="smsmessage"><?php echo $messages['shut_off_message']?></textarea></div></div></form><div id="alert"  class= "alert alert-error" style="visibility: hidden;">Error Occured</div></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
         <a href="#"  class="btn btn-danger"   onclick="issue(6)">Change</a></div></div>
@@ -173,7 +173,7 @@
             <td><a data-toggle="modal" href="#myModal7" class="btn btn-info">Edit</a></td>
         </tr>
         <div id="myModal7" class="modal hide fade" ><div class="modal-header"><h3 id="myModalLabel">Edit SMS Message</h3></div><div class="modal-body">
-        <form id="form7" action="{{ URL::to('settings/sms_settings/save_sms_message') }}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
+        <form id="form7" action="{!! URL::to('settings/sms_settings/save_sms_message') !!}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
         <input type="hidden" name="formid" value="7">
         <textarea class="field span5" rows="5" name="smsmessage" id="smsmessage"><?php echo $messages['shut_off_warning_message']?></textarea></div></div></form><div id="alert"  class= "alert alert-error" style="visibility: hidden;">Error Occured</div></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
         <a href="#"  class="btn btn-danger"   onclick="issue(7)">Change</a></div></div>
@@ -185,7 +185,7 @@
             <td><a data-toggle="modal" href="#myModal8" class="btn btn-info">Edit</a></td>
         </tr>
         <div id="myModal8" class="modal hide fade" ><div class="modal-header"><h3 id="myModalLabel">Edit SMS Message</h3></div><div class="modal-body">
-        <form id="form8" action="{{ URL::to('settings/sms_settings/save_sms_message') }}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
+        <form id="form8" action="{!! URL::to('settings/sms_settings/save_sms_message') !!}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
         <input type="hidden" name="formid" value="8">
         <textarea class="field span5" rows="5" name="smsmessage" id="smsmessage"><?php echo $messages['credit_warning_message']?></textarea></div></div></form><div id="alert"  class= "alert alert-error" style="visibility: hidden;">Error Occured</div></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
         <a href="#"  class="btn btn-danger"   onclick="issue(8)">Change</a></div></div>
@@ -197,7 +197,7 @@
             <td><a data-toggle="modal" href="#myModal9" class="btn btn-info">Edit</a></td>
         </tr>
         <div id="myModal9" class="modal hide fade" ><div class="modal-header"><h3 id="myModalLabel">Edit SMS Message</h3></div><div class="modal-body">
-        <form id="form9" action="{{ URL::to('settings/sms_settings/save_sms_message') }}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
+        <form id="form9" action="{!! URL::to('settings/sms_settings/save_sms_message') !!}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
         <input type="hidden" name="formid" value="9">
         <textarea class="field span5" rows="5" name="smsmessage" id="smsmessage"><?php echo $messages['barcode_message']?></textarea></div></div></form><div id="alert"  class= "alert alert-error" style="visibility: hidden;">Error Occured</div></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
         <a href="#"  class="btn btn-danger"   onclick="issue(9)">Change</a></div></div>
@@ -209,7 +209,7 @@
             <td><a data-toggle="modal" href="#myModal10" class="btn btn-info">Edit</a></td>
         </tr>
         <div id="myModal10" class="modal hide fade" ><div class="modal-header"><h3 id="myModalLabel">Edit SMS Message</h3></div><div class="modal-body">
-        <form id="form10" action="{{ URL::to('settings/sms_settings/save_sms_message') }}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
+        <form id="form10" action="{!! URL::to('settings/sms_settings/save_sms_message') !!}" method="POST" class="form-horizontal"><div class="form-group" role="form"><label for="smsmessage" class="control-label">SMS Message: </label><div>
         <input type="hidden" name="formid" value="10">
         <textarea class="field span5" rows="5" name="smsmessage" id="smsmessage"><?php echo $messages['topup_message']?></textarea></div></div></form><div id="alert"  class= "alert alert-error" style="visibility: hidden;">Error Occured</div></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
         <a href="#"  class="btn btn-danger"   onclick="issue(10)">Change</a></div></div>

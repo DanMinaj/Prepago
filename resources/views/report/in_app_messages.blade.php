@@ -26,7 +26,7 @@
 </script>
 
 <div class="admin2">
-<a href="{{ URL::to('system_reports') }}">System Reports</a> > <a href="{{ URL::to('system_reports/messaging_reports') }}">Messaging Reports</a> > In-App Messages Sent
+<a href="{!! URL::to('system_reports') !!}">System Reports</a> > <a href="{!! URL::to('system_reports/messaging_reports') !!}">Messaging Reports</a> > In-App Messages Sent
 <h3>Total Messages:<?php echo $sms_count;?></h3>
 <h3>Total Charge:<?php echo $total_amount;?></h3>
 <h3><a href="<?php echo $csv_url?>">Download CSV</a></h3>

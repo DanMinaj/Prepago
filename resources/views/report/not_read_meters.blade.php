@@ -6,7 +6,7 @@
 
 <div class="admin2">
 
-    <a href="{{ URL::to('system_reports') }}">System Reports</a> > Not Read Meters Reports
+    <a href="{!! URL::to('system_reports') !!}">System Reports</a> > Not Read Meters Reports
     <h3><a href="<?php echo $csv_url?>">Download CSV</a></h3>
 
     <table class="table table-bordered">
@@ -21,10 +21,10 @@
         <tbody>
             @foreach ($meters as $meter)
                 <tr>
-                    <td>{{ $meter->meter_number }}</td>
-                    <td>{{ $meter->latest_reading }}</td>
-                    <td>{{ $meter->latest_reading_time }}</td>
-                    <td>{{ $meter->scheme_number }}</td>
+                    <td>{!! $meter->meter_number !!}</td>
+                    <td>{!! $meter->latest_reading !!}</td>
+                    <td>{!! $meter->latest_reading_time !!}</td>
+                    <td>{!! $meter->scheme_number !!}</td>
                 </tr>
             @endforeach
         </tbody>

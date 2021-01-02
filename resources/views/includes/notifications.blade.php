@@ -2,7 +2,7 @@
 <div class="alert alert-danger alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 	@foreach ($errors->all() as $error)
-        <div>{{ $error }}</div>
+        <div>{!! $error !!}</div>
     @endforeach
 </div>
 @endif
@@ -10,28 +10,28 @@
 @if ($message = Session::get('successMessage'))
 <div class="alert alert-success alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
 @if ($message = Session::get('errorMessage'))
 <div class="alert alert-danger alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
 @if ($message = Session::get('warning'))
 <div class="alert alert-warning alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
 @if ($message = Session::get('info'))
 <div class="alert alert-info alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
@@ -61,11 +61,11 @@
 		<div class="alert alert-danger alert-block">
 		
 			
-		  <b>Attention: </b> This customer ({{ $data['username']}}) SCU ({{ $data['scu_number'] }}) is being used by <b>{{ count($dupe_customers) }}</b> other customer(s)! Please fix this to prevent issues!:
+		  <b>Attention: </b> This customer ({!! $data['username']!!}) SCU ({!! $data['scu_number'] !!}) is being used by <b>{!! count($dupe_customers) !!}</b> other customer(s)! Please fix this to prevent issues!:
 		  <hr/>
 		  
 		  @foreach($dupe_customers as $k => $v) 
-			<a href="/customer/{{ $v->username }}">{{ $v->username }} #{{ $v->id }}</a><br/>
+			<a href="/customer/{!! $v->username !!}">{!! $v->username !!} #{!! $v->id !!}</a><br/>
 		  @endforeach
 		  
 		</div>

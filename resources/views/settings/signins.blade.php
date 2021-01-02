@@ -14,10 +14,10 @@
    @foreach($signins as $s) 
   
 		<tr>
-			<td>{{ $s->IP }}</td>
-			<td>{{ $s->created_at }} ({{ Carbon\Carbon::parse($s->created_at)->diffForHumans() }})</td>
-			<td>{{ $s->updated_at }} ({{ Carbon\Carbon::parse($s->updated_at)->diffForHumans() }})</td>
-			<td>{{ $s->info }}</td>
+			<td>{!! $s->IP !!}</td>
+			<td>{!! $s->created_at !!} ({!! Carbon\Carbon::parse($s->created_at)->diffForHumans() !!})</td>
+			<td>{!! $s->updated_at !!} ({!! Carbon\Carbon::parse($s->updated_at)->diffForHumans() !!})</td>
+			<td>{!! $s->info !!}</td>
 		</tr>
   
    @endforeach

@@ -8,19 +8,19 @@
 	<tr>
 		<td>
 		<br/>
-		<b>Running tests:</b> {{ count($running_tasks) }}
+		<b>Running tests:</b> {!! count($running_tasks) !!}
 		</td>
 	</tr>
    </table>
    
    <ul class="nav nav-tabs" style="margin: 30px 0">
-      <li class="active"><a href="#1" data-toggle="tab">Running Tests ({{ count($running_tasks) }})</a></li>
+      <li class="active"><a href="#1" data-toggle="tab">Running Tests ({!! count($running_tasks) !!})</a></li>
    </ul>
    <div class="tab-content">
      
 	 <div class="tab-pane active" id="1" style="">
 		 @foreach($running_tasks as $k => $tasks)
-		 <h3> {{ Scheme::find($tasks[0]->scheme_number)->scheme_nickname }} Test </h3>
+		 <h3> {!! Scheme::find($tasks[0]->scheme_number)->scheme_nickname !!} Test </h3>
 			<table width="100%" class="table table-bordered">
 				<thead>
 					<tr>
@@ -35,18 +35,18 @@
 					<tr>
 					
 						<td>
-						{{ $t->username }}
+						{!! $t->username !!}
 						</td>
 						<td>
-						{{ $t->step }}
+						{!! $t->step !!}
 						</td>
 						<td>
-						{{ $t->expected_to }}
+						{!! $t->expected_to !!}
 						</td>
 						<td>
 						@if(!empty($t->getLog()))
 						@foreach($t->getLog() as $k => $log) 
-						{{ $log }} <br/>
+						{!! $log !!} <br/>
 						@endforeach
 						@else
 							-
@@ -63,5 +63,5 @@
    
    </div>
 </div>
-<input type="hidden" id="baseInstallerURL" value="{{ URL::to('prepago_installer') }}">
-{{ HTML::script('resources/js/util/remote_control_panel.js?jsjsjs') }}
+<input type="hidden" id="baseInstallerURL" value="{!! URL::to('prepago_installer') !!}">
+{!! HTML::script('resources/js/util/remote_control_panel.js?jsjsjs') !!}

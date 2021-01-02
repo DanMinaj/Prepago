@@ -56,10 +56,10 @@
 
 	<div class="iniSetupTitle">Complete Installation</div>
 
-	{{ Form::open(array('url' => 'prepago_installer/complete-install')) }}
-	{{ Form::hidden('unitID', $unitID) }}
-	{{ Form::submit('Mark as complete', array('class' => 'btn_setup')) }}
-	{{ Form::close() }}
+	{!! Form::open(array('url' => 'prepago_installer/complete-install')) !!}
+	{!! Form::hidden('unitID', $unitID) !!}
+	{!! Form::submit('Mark as complete', array('class' => 'btn_setup')) !!}
+	{!! Form::close() !!}
 
 	<div class="clear"></div>
 
@@ -69,51 +69,51 @@
 
 <div id="mbusmbus" class="max-container" style="margin-top: 1em;">
 {{-- Form::open(array('url' => 'save-unit')) --}}
-{{ Form::open(array('url' => ['prepago_installer/save-unit', $unitID] )) }}
+{!! Form::open(array('url' => ['prepago_installer/save-unit', $unitID] )) !!}
 
-	{{ Form::hidden('ID', $unitID) }}
+	{!! Form::hidden('ID', $unitID) !!}
 	
 	<div class="iniSetup-container">
 
 		<div class="iniSetupTitle">Address</div>
 
-		{{ Form::label('house_apartment_number', 'House/Apartment Number') }}
-		{{ Form::text('house_apartment_number', $unit['house_name_number']) }}
-		{{ $errors->first('house_apartment_number', '<span class="formerror">:message</span>') }}
+		{!! Form::label('house_apartment_number', 'House/Apartment Number') !!}
+		{!! Form::text('house_apartment_number', $unit['house_name_number']) !!}
+		{!! $errors->first('house_apartment_number', '<span class="formerror">:message</span>') !!}
 
-		{{ Form::label('building_street_name', 'Building/Street Name') }}
-		{{ Form::text('building_street_name', $unit['street1']) }}
-		{{ $errors->first('building_street_name', '<span class="formerror">:message</span>') }}
+		{!! Form::label('building_street_name', 'Building/Street Name') !!}
+		{!! Form::text('building_street_name', $unit['street1']) !!}
+		{!! $errors->first('building_street_name', '<span class="formerror">:message</span>') !!}
 		
-		{{ Form::label('street2', 'Street2') }}
-		{{ Form::text('street2', $unit['street2'] ? $unit['street2'] : $schemeStreet2) }}
-		{{ $errors->first('street2', '<span class="formerror">:message</span>') }}
+		{!! Form::label('street2', 'Street2') !!}
+		{!! Form::text('street2', $unit['street2'] ? $unit['street2'] : $schemeStreet2) !!}
+		{!! $errors->first('street2', '<span class="formerror">:message</span>') !!}
 
 	</div>
 	<div id="mbussim" class="iniSetup-container">
 
 		<div class="iniSetupTitle">SCU</div>
 
-		{{ Form::label('scu_number', 'SCU Number') }}
-		{{ Form::text('scu_number', $unit['scu_number']) }}
-		{{ $errors->first('scu_number', '<span class="formerror">:message</span>') }}
+		{!! Form::label('scu_number', 'SCU Number') !!}
+		{!! Form::text('scu_number', $unit['scu_number']) !!}
+		{!! $errors->first('scu_number', '<span class="formerror">:message</span>') !!}
 
-		{{ Form::label('iccid', 'ICCID (long sim number)') }}
-		{{ Form::text('iccid', $simcard['ICCID']) }}
-		{{ $errors->first('iccid', '<span class="formerror">:message</span>') }}
+		{!! Form::label('iccid', 'ICCID (long sim number)') !!}
+		{!! Form::text('iccid', $simcard['ICCID']) !!}
+		{!! $errors->first('iccid', '<span class="formerror">:message</span>') !!}
 
 	</div>
 	<div id="mbussim" class="iniSetup-container">
 
 		<div class="iniSetupTitle">Ports</div>
 
-		{{ Form::label('service_control_port', 'Service Control Port') }}
-		{{ Form::select('service_control_port', array( '' => '', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7' ), $unit['scu_port']) }}
-		{{ $errors->first('service_control_port', '<span class="formerror">:message</span>') }}
+		{!! Form::label('service_control_port', 'Service Control Port') !!}
+		{!! Form::select('service_control_port', array( '' => '', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7' ), $unit['scu_port']) !!}
+		{!! $errors->first('service_control_port', '<span class="formerror">:message</span>') !!}
 
-		{{ Form::label('heat_control_port', 'Heat Control Port ') }}
-		{{ Form::select('heat_control_port', array( '' => '', '-1' => 'None', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6' ), $unit['heat_port']) }}
-		{{ $errors->first('heat_control_port', '<span class="formerror">:message</span>') }}
+		{!! Form::label('heat_control_port', 'Heat Control Port ') !!}
+		{!! Form::select('heat_control_port', array( '' => '', '-1' => 'None', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6' ), $unit['heat_port']) !!}
+		{!! $errors->first('heat_control_port', '<span class="formerror">:message</span>') !!}
 
 	</div>
 	<div class="clear"></div>
@@ -121,82 +121,82 @@
 
 		<div class="iniSetupTitle">Meter Details</div>
 	
-		{{ Form::label('meter_number', 'Meter Number') }}
-		{{ Form::text('meter_number', $unit['meter_number']) }}
-		{{ $errors->first('meter_number', '<span class="formerror">:message</span>') }}
+		{!! Form::label('meter_number', 'Meter Number') !!}
+		{!! Form::text('meter_number', $unit['meter_number']) !!}
+		{!! $errors->first('meter_number', '<span class="formerror">:message</span>') !!}
 	
-		{{ Form::label('baud_rate', 'Meter Baud Rate') }}
-		{{ Form::text('baud_rate', $unit['meter_baud_rate']) }}
-		{{ $errors->first('baud_rate', '<span class="formerror">:message</span>') }}
+		{!! Form::label('baud_rate', 'Meter Baud Rate') !!}
+		{!! Form::text('baud_rate', $unit['meter_baud_rate']) !!}
+		{!! $errors->first('baud_rate', '<span class="formerror">:message</span>') !!}
 
-		{{ Form::label('readings_per_day', 'Readings per day') }}
-		{{ Form::select('readings_per_day', array( '' => '', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '6' => '6', '8' => '8', '12' => '12', '16' => '16', '24' => '24', '48' => '48' ), $unit['readings_per_day']) }}
-		{{ $errors->first('readings_per_day', '<span class="formerror">:message</span>') }}
+		{!! Form::label('readings_per_day', 'Readings per day') !!}
+		{!! Form::select('readings_per_day', array( '' => '', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '6' => '6', '8' => '8', '12' => '12', '16' => '16', '24' => '24', '48' => '48' ), $unit['readings_per_day']) !!}
+		{!! $errors->first('readings_per_day', '<span class="formerror">:message</span>') !!}
 
-		{{ Form::label('md_make', 'Make') }}
-		{{ Form::text('md_make', $unit['meter_make']) }}
-		{{ $errors->first('md_make', '<span class="formerror">:message</span>') }}
+		{!! Form::label('md_make', 'Make') !!}
+		{!! Form::text('md_make', $unit['meter_make']) !!}
+		{!! $errors->first('md_make', '<span class="formerror">:message</span>') !!}
 
-		{{ Form::label('md_model', 'Model') }}
-		{{ Form::text('md_model', $unit['meter_model']) }}
-		{{ $errors->first('md_model', '<span class="formerror">:message</span>') }}
+		{!! Form::label('md_model', 'Model') !!}
+		{!! Form::text('md_model', $unit['meter_model']) !!}
+		{!! $errors->first('md_model', '<span class="formerror">:message</span>') !!}
 
-		{{ Form::label('md_manufacturer', 'Manufacturer') }}
-		{{ Form::text('md_manufacturer', $unit['meter_manufacturer']) }}
-		{{ $errors->first('md_manufacturer', '<span class="formerror">:message</span>') }}
+		{!! Form::label('md_manufacturer', 'Manufacturer') !!}
+		{!! Form::text('md_manufacturer', $unit['meter_manufacturer']) !!}
+		{!! $errors->first('md_manufacturer', '<span class="formerror">:message</span>') !!}
 		
-		{{ Form::customcheckbox('is_boiler_meter', 'default', 'Is Boiler Room Meter ', ($unit['is_boiler_room_meter']==0)?false:true) }}
-		{{ $errors->first('is_boiler_meter', '<span class="formerror">:message</span>') }}
+		{!! Form::customcheckbox('is_boiler_meter', 'default', 'Is Boiler Room Meter ', ($unit['is_boiler_room_meter']==0)?false:true) !!}
+		{!! $errors->first('is_boiler_meter', '<span class="formerror">:message</span>') !!}
 
 	</div>
 	<div id="mbussim" class="iniSetup-container">
 
 		<div class="iniSetupTitle">HIU Details</div>
 
-		{{ Form::label('hd_make', 'Make') }}
-		{{ Form::text('hd_make', $unit['HIU_make']) }}
-		{{ $errors->first('hd_make', '<span class="formerror">:message</span>') }}
+		{!! Form::label('hd_make', 'Make') !!}
+		{!! Form::text('hd_make', $unit['HIU_make']) !!}
+		{!! $errors->first('hd_make', '<span class="formerror">:message</span>') !!}
 
-		{{ Form::label('hd_model', 'Model') }}
-		{{ Form::text('hd_model', $unit['HIU_model']) }}
-		{{ $errors->first('hd_model', '<span class="formerror">:message</span>') }}
+		{!! Form::label('hd_model', 'Model') !!}
+		{!! Form::text('hd_model', $unit['HIU_model']) !!}
+		{!! $errors->first('hd_model', '<span class="formerror">:message</span>') !!}
 
-		{{ Form::label('hd_manufacturer', 'Manufacturer') }}
-		{{ Form::text('hd_manufacturer', $unit['HIU_manufacturer']) }}
-		{{ $errors->first('hd_manufacturer', '<span class="formerror">:message</span>') }}
+		{!! Form::label('hd_manufacturer', 'Manufacturer') !!}
+		{!! Form::text('hd_manufacturer', $unit['HIU_manufacturer']) !!}
+		{!! $errors->first('hd_manufacturer', '<span class="formerror">:message</span>') !!}
 
 	</div>
 	<div id="mbussim" class="iniSetup-container">
 
 		<div class="iniSetupTitle">Valve Details</div>
 
-		{{ Form::label('vd_make', 'Make') }}
-		{{ Form::text('vd_make', $unit['valve_make']) }}
-		{{ $errors->first('vd_make', '<span class="formerror">:message</span>') }}
+		{!! Form::label('vd_make', 'Make') !!}
+		{!! Form::text('vd_make', $unit['valve_make']) !!}
+		{!! $errors->first('vd_make', '<span class="formerror">:message</span>') !!}
 
-		{{ Form::label('vd_model', 'Model') }}
-		{{ Form::text('vd_model', $unit['valve_model']) }}
-		{{ $errors->first('vd_model', '<span class="formerror">:message</span>') }}
+		{!! Form::label('vd_model', 'Model') !!}
+		{!! Form::text('vd_model', $unit['valve_model']) !!}
+		{!! $errors->first('vd_model', '<span class="formerror">:message</span>') !!}
 
-		{{ Form::label('vd_manufacturer', 'Manufacturer') }}
-		{{ Form::text('vd_manufacturer', $unit['valve_manufacturer']) }}
-		{{ $errors->first('vd_manufacturer', '<span class="formerror">:message</span>') }}
+		{!! Form::label('vd_manufacturer', 'Manufacturer') !!}
+		{!! Form::text('vd_manufacturer', $unit['valve_manufacturer']) !!}
+		{!! $errors->first('vd_manufacturer', '<span class="formerror">:message</span>') !!}
 
 		<div class="clear"></div>
 
 	</div>
 	@if($message = Session::get('unitSaveError'))
-        <span class="formerror">{{ $message }}</span>
+        <span class="formerror">{!! $message !!}</span>
     @endif
 
 	<div class="clear"></div>
 
-	{{ Form::submit('Save Unit', array('class' => 'btn_iniSetup')) }}
-	{{ Form::close() }}
+	{!! Form::submit('Save Unit', array('class' => 'btn_iniSetup')) !!}
+	{!! Form::close() !!}
 </div>
 
-<input type="hidden" id="base" value="{{ URL::to('prepago_installer') }}">
-<input type="hidden" id="unitID" value="{{ $unit['ID'] }}">
+<input type="hidden" id="base" value="{!! URL::to('prepago_installer') !!}">
+<input type="hidden" id="unitID" value="{!! $unit['ID'] !!}">
 <input type="hidden" id="meter_read_test_success" value="0">
 <input type="hidden" id="service_control_teston_success" value="0">
 <input type="hidden" id="service_control_testoff_success" value="0">

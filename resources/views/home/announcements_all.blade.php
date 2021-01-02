@@ -9,18 +9,18 @@
 	
 	@if(Session::has('successMessage'))
 	<div class="alert alert-success">
-	{{ Session::get('successMessage') }}
+	{!! Session::get('successMessage') !!}
 	</div>
 	@endif
 	
 	@if(Session::has('errorMessage'))
 	<div class="alert alert-danger">
-	{{ Session::get('errorMessage') }}
+	{!! Session::get('errorMessage') !!}
 	</div>
 	@endif
 	
 	<div>
-		<a href="{{ URL::to('announcements') }}"><button class="btn btn-success"><i class="fa fa-plus"></i> Create announcement</button></a>
+		<a href="{!! URL::to('announcements') !!}"><button class="btn btn-success"><i class="fa fa-plus"></i> Create announcement</button></a>
 	</div>
 	
 	<hr/>
@@ -41,19 +41,19 @@
 			
 			<tr @if(Announcement::latest() && Announcement::latest()->id == $a->id) style='background:#abeaab;font-weight:bold;' @endif>
 				<td>
-					{{ $a->title }}
+					{!! $a->title !!}
 				</td>
 				<td>
-					{{ $a->show_at }} &horbar; {{ $a->stop_show_at }}
+					{!! $a->show_at !!} &horbar; {!! $a->stop_show_at !!}
 				</td>
 				<td>
-					<center><i class="fa fa-eye"></i> {{ $a->total_views }}</center>
+					<center><i class="fa fa-eye"></i> {!! $a->total_views !!}</center>
 				</td>
 				<td>
-					<center><i class="fa fa-comments"></i> {{ $a->comments->count() }}</center>
+					<center><i class="fa fa-comments"></i> {!! $a->comments->count() !!}</center>
 				</td>
 				<td>
-					<a href="{{ URL::to('announcements/view', ['id' => $a->id]) }}">
+					<a href="{!! URL::to('announcements/view', ['id' => $a->id]) !!}">
 						<button class="btn btn-success" type="button"><i class="fa fa-eye"></i> View</button>
 					</a>
 				</td>

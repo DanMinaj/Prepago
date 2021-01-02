@@ -2,7 +2,7 @@
 </div>
 
 <div><br/></div>
-<h1>IOUs ({{ count($ious) }})</h1>
+<h1>IOUs ({!! count($ious) !!})</h1>
 
 
 <div class="admin2">
@@ -39,15 +39,15 @@
 			@else
 			<tr style='background:#ccc;'>
 			@endif
-				<td><a href="{{ URL::to('customer_tabview_controller/show/' . $iou->id) }}" target="_blank">({{ $iou->id }}) {{ $iou->username }}</a></td>
+				<td><a href="{!! URL::to('customer_tabview_controller/show/' . $iou->id) !!}" target="_blank">({!! $iou->id !!}) {!! $iou->username !!}</a></td>
 				<td>
 					@if(isset($iou->info) && count($iou->info) > 0)
-						{{ $iou->info[0]->time_date }}
+						{!! $iou->info[0]->time_date !!}
 					@else
 						
 					@endif
 				</td>
-				<td>&euro;{{ $iou->balance }} </td>
+				<td>&euro;{!! $iou->balance !!} </td>
 				<td>
 					@if($iou->scheme()->first())
 						@if($iou->balance < -$iou->scheme()->first()->IOU_amount)
@@ -55,9 +55,9 @@
 						@else
 							
 							@if($iou->balance > 0.00)
-								&euro;{{ number_format($iou->scheme()->first()->IOU_amount, 2) }}
+								&euro;{!! number_format($iou->scheme()->first()->IOU_amount, 2) !!}
 							@else
-								&euro;{{ $iou->balance + $iou->scheme()->first()->IOU_amount }}
+								&euro;{!! $iou->balance + $iou->scheme()->first()->IOU_amount !!}
 							@endif
 						
 						@endif
@@ -65,7 +65,7 @@
 						Cannot find scheme.
 					@endif
 				</td>
-				<td>@if($iou->districtMeter) {{ $iou->districtMeter->last_flow_temp }}&deg;C @else No meter @endif</td>
+				<td>@if($iou->districtMeter) {!! $iou->districtMeter->last_flow_temp !!}&deg;C @else No meter @endif</td>
 				
 			</tr>
 		

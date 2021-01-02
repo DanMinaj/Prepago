@@ -9,17 +9,17 @@
 
 	@if($message = Session::get('successMessage'))
 	<div class="alert alert-success">
-	{{ $message }}
+	{!! $message !!}
 	</div>
 	@endif
 	
 	@if($message = Session::get('errorMessage'))
 	<div class="alert alert-danger">
-	{{ $message }}
+	{!! $message !!}
 	</div>
 	@endif
 	
-	<a href="{{ URL::to('notifications/all') }}">
+	<a href="{!! URL::to('notifications/all') !!}">
 	<button class="btn btn-primary"> <i class="fa fa-bell"></i> All Notifications </button>
 	</a>
 	

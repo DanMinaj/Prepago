@@ -7,7 +7,7 @@
 </div>
 
 <div><br/></div>
-<h1>Customer report Type 1: {{ $customer->username }} - #{{ $customer->id }}</h1>
+<h1>Customer report Type 1: {!! $customer->username !!} - #{!! $customer->id !!}</h1>
 
 
 
@@ -31,7 +31,7 @@
 				<b>Username</b>
 			</td>
 			<td width="50%">
-				{{ $customer->username }}
+				{!! $customer->username !!}
 			</td>
 		</tr>
 	
@@ -40,7 +40,7 @@
 				<b>ID</b>
 			</td>
 			<td width="50%">
-				<a href="/customer/{{ $customer->id }}">{{ $customer->id }}</a>
+				<a href="/customer/{!! $customer->id !!}">{!! $customer->id !!}</a>
 			</td>
 		</tr>
 		
@@ -51,7 +51,7 @@
 				<b>Meter number</b>
 			</td>
 			<td width="50%">
-				{{ $customer->districtMeter->meter_number }}
+				{!! $customer->districtMeter->meter_number !!}
 			</td>
 		</tr>
 		
@@ -60,7 +60,7 @@
 				<b>Current reading</b>
 			</td>
 			<td width="50%">
-				{{ $customer->districtMeter->latest_reading }} kWh
+				{!! $customer->districtMeter->latest_reading !!} kWh
 			</td>
 		</tr>
 		
@@ -70,7 +70,7 @@
 				<b>Abnormal days</b>
 			</td>
 			<td style='background:red;' width="50%">
-				{{ $abnormal_days }}
+				{!! $abnormal_days !!}
 			</td>
 		</tr>
 			
@@ -79,7 +79,7 @@
 			<b>Unexpected start readings</b>
 		</td>
 		<td style='background:red;' width="50%">
-			{{ $unexpected_start_readings }}
+			{!! $unexpected_start_readings !!}
 		</td>
 		</tr>
 			
@@ -108,16 +108,16 @@
 		
 		@foreach($usage365 as $u)
 		<tr>
-			<td>{{ $u->date }}</td>
-			<td>{{ $u->start_day_reading }}</td>
-			<td>{{ $u->end_day_reading }}</td>
-			<td>{{ $u->cost_of_day }}</td>
+			<td>{!! $u->date !!}</td>
+			<td>{!! $u->start_day_reading !!}</td>
+			<td>{!! $u->end_day_reading !!}</td>
+			<td>{!! $u->cost_of_day !!}</td>
 			@if(isset($_GET['extra']))
 				<td @if(!$u->normal) style='background:red;' @endif>
-				{{ $u->expected_cod }}
+				{!! $u->expected_cod !!}
 				</td>
 				<td @if(!$u->normal) style='background:red;' @endif>
-				{{ $u->e_start }}
+				{!! $u->e_start !!}
 				</td>
 			@endif
 		</tr>
@@ -129,7 +129,7 @@
 
 	<tr>
 		<td width="50%"><b>b. Total usage (kWh)</b></td>
-		<td width="50%">{{ $total_usage }}
+		<td width="50%">{!! $total_usage !!}
 	</tr>
 	
 	</table>
@@ -138,7 +138,7 @@
 
 	<tr>
 		<td width="50%"><b>c. Total cost (&euro;)</b></td>
-		<td width="50%">&euro;{{ number_format($total_cost,5) }}
+		<td width="50%">&euro;{!! number_format($total_cost,5) !!}
 	</tr>
 	
 	</table>
@@ -147,7 +147,7 @@
 
 	<tr>
 		<td width="50%"><b>d. Avg daily usage (kWh)</b></td>
-		<td width="50%">&euro;{{ number_format($avg_daily_usage, 5) }}
+		<td width="50%">&euro;{!! number_format($avg_daily_usage, 5) !!}
 	</tr>
 	
 	</table>
@@ -156,7 +156,7 @@
 
 	<tr>
 		<td width="50%"><b>e. Avg daily cost (&euro;)</b></td>
-		<td width="50%">&euro;{{ number_format($avg_daily_cost,5) }}
+		<td width="50%">&euro;{!! number_format($avg_daily_cost,5) !!}
 	</tr>
 	
 	</table>
@@ -173,9 +173,9 @@
 		<th><b>Cost (&euro;)</b></td>
 	</tr>
 	<tr>
-		<td>{{ $peak_day->date }}</td>
-		<td>{{ $peak_day->total_usage }}</td>
-		<td>&euro;{{ $peak_day->cost_of_day }}</td>
+		<td>{!! $peak_day->date !!}</td>
+		<td>{!! $peak_day->total_usage !!}</td>
+		<td>&euro;{!! $peak_day->cost_of_day !!}</td>
 	</tr>
 	@else
 		<tr>
@@ -199,9 +199,9 @@
 	</tr>
 	@foreach($month_totals as $key => $m)
 	<tr>
-		<td>{{ $m['month'] }}</td>
-		<td>{{ number_format($m['usage']/$m['days'],0) }}</td>
-		<td>&euro;{{ number_format($m['cost']/$m['days'], 5) }}</td>
+		<td>{!! $m['month'] !!}</td>
+		<td>{!! number_format($m['usage']/$m['days'],0) !!}</td>
+		<td>&euro;{!! number_format($m['cost']/$m['days'], 5) !!}</td>
 	</tr>
 	@endforeach
 	@else
@@ -222,30 +222,30 @@
 	</tr>
 	@foreach($payments as $p)
 	<tr>
-		<td width="50%">{{ $p->ref_number }}</td>
-		<td width="30%">{{ $p->time_date  }}</td>
-		<td width="20%">&euro;{{ $p->amount }}</td>
+		<td width="50%">{!! $p->ref_number !!}</td>
+		<td width="30%">{!! $p->time_date  !!}</td>
+		<td width="20%">&euro;{!! $p->amount !!}</td>
 	</tr>
 	@endforeach
 	<tr>
-		<td width="50%" colspan='2'><b>Total (&euro;)</b></td><td>&euro;{{ $payments->sum('amount') }}</td>
+		<td width="50%" colspan='2'><b>Total (&euro;)</b></td><td>&euro;{!! $payments->sum('amount') !!}</td>
 	</tr>
 </table>
 @else
-<h1> {{ $customer->username }} </h1>
+<h1> {!! $customer->username !!} </h1>
 <table class='table table-bordered' width="100%">
-	<tr><td width="50%"><h3><b>b. Total usage (kWh)</b></h3></td><td width="50%"><h3>{{ $total_usage }}</h3></td></tr>
-	<tr><td width="50%"><h3><b>c. Total cost (&euro;)</b></h3></td><td width="50%"><h3>&euro;{{ $total_cost }}</h3></td></tr>
-	<tr><td width="50%"><h3><b>d. Avg daily usage (kWh)</b></h3></td><td width="50%"><h3>{{ number_format($avg_daily_usage, 5) }}</h3></td></tr>
-	<tr><td width="50%"><h3><b>e. Avg daily cost (&euro;)</b></h3></td><td width="50%"><h3>&euro;{{ number_format($avg_daily_cost,5) }}</h3></td></tr>
+	<tr><td width="50%"><h3><b>b. Total usage (kWh)</b></h3></td><td width="50%"><h3>{!! $total_usage !!}</h3></td></tr>
+	<tr><td width="50%"><h3><b>c. Total cost (&euro;)</b></h3></td><td width="50%"><h3>&euro;{!! $total_cost !!}</h3></td></tr>
+	<tr><td width="50%"><h3><b>d. Avg daily usage (kWh)</b></h3></td><td width="50%"><h3>{!! number_format($avg_daily_usage, 5) !!}</h3></td></tr>
+	<tr><td width="50%"><h3><b>e. Avg daily cost (&euro;)</b></h3></td><td width="50%"><h3>&euro;{!! number_format($avg_daily_cost,5) !!}</h3></td></tr>
 	<tr><td width="50%"><h3><b>f. Peak day</b></h3></td><td width="50%"></td></tr>
 	<tr>
 		<td colspan='2' width="100%">
 		@if($peak_day != null)
 		<table class='table table-bordered' width="100%">
-			<tr><td><b><h4>{{ $peak_day->date }}</h4></b></td></tr>
-			<tr><td><b><h4>{{ $peak_day->total_usage }} kWh</h4></b></td></tr>
-			<tr><td><b><h4>&euro;{{ $peak_day->cost_of_day }}</h4></b></td></tr>
+			<tr><td><b><h4>{!! $peak_day->date !!}</h4></b></td></tr>
+			<tr><td><b><h4>{!! $peak_day->total_usage !!} kWh</h4></b></td></tr>
+			<tr><td><b><h4>&euro;{!! $peak_day->cost_of_day !!}</h4></b></td></tr>
 		</table>
 		@else
 			Peak day not available
@@ -260,9 +260,9 @@
 		<table class='table table-bordered' width="100%">
 			@foreach($month_totals as $key => $m)
 			<tr>
-				<td>{{ $m['month'] }}</td>
-				<td>{{ number_format($m['usage']/$m['days'],0) }} kWh</td>
-				<td>&euro;{{ number_format($m['cost']/$m['days'], 5) }}</td>
+				<td>{!! $m['month'] !!}</td>
+				<td>{!! number_format($m['usage']/$m['days'],0) !!} kWh</td>
+				<td>&euro;{!! number_format($m['cost']/$m['days'], 5) !!}</td>
 			</tr>
 			@endforeach
 		</table>

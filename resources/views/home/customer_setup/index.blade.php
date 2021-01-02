@@ -8,21 +8,21 @@
 @if ($message1 = Session::get('successMessage'))
 <div class="alert alert-success alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message1 }}
+	{!! $message1 !!}
 </div>
 @endif
 
 @if ($message2 = Session::get('warningMessage'))
 <div class="alert alert-warning alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message2 }}
+	{!! $message2 !!}
 </div>
 @endif
 
 @if ($message3 = Session::get('errorMessage'))
 <div class="alert alert-danger alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message3 }}
+	{!! $message3 !!}
 </div>
 @endif
 

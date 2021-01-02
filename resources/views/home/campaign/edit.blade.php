@@ -2,20 +2,20 @@
 </div>
 
 <div><br/></div>
-<h1>Campaign Edit {{ $campaign->id }}: {{ $campaign->title }}</h1>
+<h1>Campaign Edit {!! $campaign->id !!}: {!! $campaign->title !!}</h1>
 
 
 <div class="admin2">
 
 	@if(Session::has('successMessage'))
 	<div class="alert alert-success">
-	{{ Session::get('successMessage') }}
+	{!! Session::get('successMessage') !!}
 	</div>
 	@endif
 	
 	@if(Session::has('errorMessage'))
 	<div class="alert alert-danger">
-	{{ Session::get('errorMessage') }}
+	{!! Session::get('errorMessage') !!}
 	</div>
 	@endif
 	
@@ -23,13 +23,13 @@
 	<div class="row-fluid">
 		
 		<div class="span6">
-		<a href="{{ URL::to('campaigns') }}">
+		<a href="{!! URL::to('campaigns') !!}">
 		<button class="btn btn-primary"> <i class="fa fa-long-arrow-alt-left"></i> View all campaigns </button>
 		</a>
 		</div>
 		
 		<div class="span6 float-right" style="text-align: right">
-		<a href="{{ URL::to('campaigns/view', ['id' => $campaign->id]) }}">
+		<a href="{!! URL::to('campaigns/view', ['id' => $campaign->id]) !!}">
 						<button class="btn btn-success" type="button"><i class="fa fa-eye"></i> Preview</button>
 					</a>
 		</div>
@@ -41,8 +41,8 @@
 	<form action="" method="POST" class="form form-control">
 			<div class="row-fluid">
 			<div class="span12 pull-right">
-				<input type="text" name="show_at" class="form-control" value="{{ $campaign->show_from }}" placeholder="Show at">
-				<input type="text" name="stop_show_at" class="form-control" value="{{ $campaign->show_to }}" placeholder="Stop show at">
+				<input type="text" name="show_at" class="form-control" value="{!! $campaign->show_from !!}" placeholder="Show at">
+				<input type="text" name="stop_show_at" class="form-control" value="{!! $campaign->show_to !!}" placeholder="Stop show at">
 			</div>
 		</div>
 		<div class="row-fluid">
@@ -50,7 +50,7 @@
 				<h5>Image:</h5>
 			</div>
 			<div class="span6">
-				<input type="text" name="img" value="{{ $campaign->icon_img }}" class="form-control" placeholder="Image">
+				<input type="text" name="img" value="{!! $campaign->icon_img !!}" class="form-control" placeholder="Image">
 			</div>
 		</div>
 		<div class="row-fluid">
@@ -58,10 +58,10 @@
 				<h5>* Title:</h5>
 			</div>
 			<div class="span6">
-				<input type="text" name="title" class="form-control" value="{{ $campaign->title }}" placeholder="">
+				<input type="text" name="title" class="form-control" value="{!! $campaign->title !!}" placeholder="">
 			</div>
 			<div class="span6">
-				<input type="text" name="teaser" class="form-control" value="{{ $campaign->teaser }}" placeholder="Teaser">
+				<input type="text" name="teaser" class="form-control" value="{!! $campaign->teaser !!}" placeholder="Teaser">
 			</div>
 		</div>
 		<div class="row-fluid">
@@ -69,14 +69,14 @@
 				<h5>* Body:</h5>
 			</div>
 			<div class="span9">
-				<textarea placeholder=""  id="body" name="body" style="width:110%;height:200px;">{{ $campaign->body }}</textarea>
+				<textarea placeholder=""  id="body" name="body" style="width:110%;height:200px;">{!! $campaign->body !!}</textarea>
 			</div>
 		</div>
 		<hr/>
 		
 		<div class="row-fluid">
 			<div class="pull-right"> 
-				<input type="hidden" name="campaign_id" value="{{ $campaign->id }}"/>
+				<input type="hidden" name="campaign_id" value="{!! $campaign->id !!}"/>
 				<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save campaign</button> 
 			</div>
 		</div>

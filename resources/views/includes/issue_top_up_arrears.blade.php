@@ -1,4 +1,4 @@
-<form class="well form-horizontal" id="issue_credit_form" method="POST" action="{{ URL::to('/issue_topup_arrears/add_amount') }}">
+<form class="well form-horizontal" id="issue_credit_form" method="POST" action="{!! URL::to('/issue_topup_arrears/add_amount') !!}">
 		<fieldset>
 			<div class="control-group">
 				<label class="control-label" for="input01">Amount</label>

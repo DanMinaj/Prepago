@@ -39,11 +39,11 @@
 		</tr>
 		<tr>
 			<td width="100%">
-				<input type='hidden' name='sim_scheme_number' value='{{ Scheme::active(false)[0]->scheme_number  }}'>
+				<input type='hidden' name='sim_scheme_number' value='{!! Scheme::active(false)[0]->scheme_number  !!}'>
 				<input type='hidden' name='sim_iccid' value=''>
 				<select name='schemes' >
 					@foreach(Scheme::active(false) as $k => $s)
-						<option value='{{ $s->scheme_number }}'>{{ ucfirst($s->scheme_nickname) }}</option>
+						<option value='{!! $s->scheme_number !!}'>{!! ucfirst($s->scheme_nickname) !!}</option>
 					@endforeach
 				</select>
 			</td>

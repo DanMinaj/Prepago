@@ -18,7 +18,7 @@
 			<div class="span4">
 				<select id="schemes" name="schemes">
 					@foreach($schemes as $s) 
-						<option value="{{ $s->id }}"> {{ $s->company_name }} ({{ $s->id }}) </option>
+						<option value="{!! $s->id !!}"> {!! $s->company_name !!} ({!! $s->id !!}) </option>
 					@endforeach
 				<select>
 			</div>
@@ -26,7 +26,7 @@
 				<b> Date </b>
 			</div>
 			<div class="span4">
-				<input id="date" type="text" name="date" value="{{ date('Y-m-d') }}">			
+				<input id="date" type="text" name="date" value="{!! date('Y-m-d') !!}">			
 			</div>
 		</div>
 		

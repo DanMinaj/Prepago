@@ -9,7 +9,7 @@
     @if ($message = Session::get('successMessage'))
         <div class="alert alert-success alert-block">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ $message }}
+            {!! $message !!}
         </div>
     @endif
 
@@ -58,7 +58,7 @@
 						
 					
 						<label for="scheme_number">Number</label>
-						<input class="step1" type="text" id="scheme_number" value="{{ $newSchemeId }}" disabled name="scheme_number">
+						<input class="step1" type="text" id="scheme_number" value="{!! $newSchemeId !!}" disabled name="scheme_number">
 					
 						<label for="scheme_type">Type</label>
 						<input class="step1"  type="text" id="scheme_type" value="heating" disabled name="scheme_type">
@@ -361,7 +361,7 @@
 					
 					$.ajax({
 						
-						url: "{{ URL::to('scheme-setup/step1') }}",
+						url: "{!! URL::to('scheme-setup/step1') !!}",
 						data: {
 							step_1_vars: step_1_array
 						},
@@ -429,7 +429,7 @@
 					
 					$.ajax({
 						
-						url: "{{ URL::to('scheme-setup/step2') }}",
+						url: "{!! URL::to('scheme-setup/step2') !!}",
 						data: {
 							step_2_vars: step_2_array
 						},
@@ -485,7 +485,7 @@
 					
 					$.ajax({
 						
-						url: "{{ URL::to('scheme-setup/step3') }}",
+						url: "{!! URL::to('scheme-setup/step3') !!}",
 						data: {
 							step_3_vars: step_3_array
 						},
@@ -510,7 +510,7 @@
 
 							$.ajax({
 						
-								url: "{{ URL::to('scheme-setup/complete') }}",
+								url: "{!! URL::to('scheme-setup/complete') !!}",
 								type: "POST",
 								
 							}).done(function(data){

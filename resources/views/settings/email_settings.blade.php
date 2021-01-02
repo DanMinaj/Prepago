@@ -7,14 +7,14 @@
 @if(Session::has('successMessage'))
 <div class="alert alert-success alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('successMessage')}}
+{!!Session::get('successMessage')!!}
 </div>
 @endif
 
 @if(Session::has('errorMessage'))
 <div class="alert alert-danger alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('errorMessage')}}
+{!!Session::get('errorMessage')!!}
 </div>
 @endif
 
@@ -31,17 +31,17 @@
 		@foreach($settings as $s)
 			<tr>
 			
-			<form action="{{URL::to('settings/email_settings/save', $s->id)}}" method="POST">
+			<form action="{!!URL::to('settings/email_settings/save', $s->id)!!}" method="POST">
 				<td>
-					<textarea name="name" style="width:70%">{{$s->name}}</textarea>
-					<br/>{{$s->desc}}
+					<textarea name="name" style="width:70%">{!!$s->name!!}</textarea>
+					<br/>{!!$s->desc!!}
 				</td>
 				<td>
-					<textarea name="value" style="width:70%">{{$s->value}}</textarea>
+					<textarea name="value" style="width:70%">{!!$s->value!!}</textarea>
 				</td>
 				<td>
 					
-					<a href="{{URL::to('settings/email_settings/remove', $s->id)}}">
+					<a href="{!!URL::to('settings/email_settings/remove', $s->id)!!}">
 						<button type="button" class="btn btn-danger">Delete</button>
 					</a>
 					
@@ -56,7 +56,7 @@
 		
 		<tr>
 			
-			<form action="{{ URL::to('settings/email_settings/add') }}" method="POST">
+			<form action="{!! URL::to('settings/email_settings/add') !!}" method="POST">
 				
 				<td>
 					<textarea name="name" style="width:70%"></textarea>

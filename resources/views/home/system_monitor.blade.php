@@ -51,7 +51,7 @@
          </td>
          <td width="80%">
             <span class="big">
-            {{ $date }}
+            {!! $date !!}
             </span>
          </td>
       </tr>
@@ -73,8 +73,8 @@
                      <span class='success'><b>All good</b> <i class="fa fa-check-circle success"></i></span>
                      @else
                      <span class='error'>
-						<b>{{count($uninserted_s)}} customers affected</b> <i class="fa fa-frown error"></i>
-						<a target="_blank" href="{{ URL::to('system_reports/missing_standing?option=All+Schemes') }}"><i class="fa fa-external-link-alt"></i> Fix</a>
+						<b>{!!count($uninserted_s)!!} customers affected</b> <i class="fa fa-frown error"></i>
+						<a target="_blank" href="{!! URL::to('system_reports/missing_standing?option=All+Schemes') !!}"><i class="fa fa-external-link-alt"></i> Fix</a>
 					</span>
                      @endif
                      </span>
@@ -92,7 +92,7 @@
                      @if($other_charges <= 0)
                      <span class='success'><b>All good</b> <i class="fa fa-check-circle success"></i></span>
                      @else
-                     <span class='error'><b>&euro;{{$other_charges}}</b> <i class="fa fa-frown error"></i></span>
+                     <span class='error'><b>&euro;{!!$other_charges!!}</b> <i class="fa fa-frown error"></i></span>
                      @endif
                      </span>
                   </td>
@@ -111,8 +111,8 @@
                      <span class='success'><b>All good</b> <i class="fa fa-check-circle success"></i></span>
                      @else
                      <span class='error'>
-						<b>{{$inconsistent_usage}} customers affected</b> <i class="fa fa-frown error"></i> 
-						<a target="_blank" href="{{ URL::to('system_reports/inconsistent_usage') }}"><i class="fa fa-external-link-alt"></i> Fix</a>
+						<b>{!!$inconsistent_usage!!} customers affected</b> <i class="fa fa-frown error"></i> 
+						<a target="_blank" href="{!! URL::to('system_reports/inconsistent_usage') !!}"><i class="fa fa-external-link-alt"></i> Fix</a>
 					</span>
                      @endif
                      </span>
@@ -131,8 +131,8 @@
                      <span class='success'><b>All good</b> <i class="fa fa-check-circle success"></i></span>
                      @else
                      <span class='error'>
-						<b>{{$duplicate_dhu}} customers affected</b> <i class="fa fa-frown error"></i>
-						<a target="_blank" href="{{ URL::to('system_reports/duplicate_dhu') }}"><i class="fa fa-external-link-alt"></i> Fix</a>
+						<b>{!!$duplicate_dhu!!} customers affected</b> <i class="fa fa-frown error"></i>
+						<a target="_blank" href="{!! URL::to('system_reports/duplicate_dhu') !!}"><i class="fa fa-external-link-alt"></i> Fix</a>
 					 </span>
                      @endif
                      </span>
@@ -152,12 +152,12 @@
                      @if($non_readings <= 0)
                      <span class='success'><b>All good</b> <i class="fa fa-check-circle success"></i></span>
                      @else
-                     <span class='error'><b>{{count($non_readings_schemes)}} non-reading schemes<br/>
+                     <span class='error'><b>{!!count($non_readings_schemes)!!} non-reading schemes<br/>
 					 @foreach($non_readings_schemes as $key => $s) 
 						@if(count($non_readings_schemes) == ($key + 1))
-							{{ $s->scheme_nickname }}
+							{!! $s->scheme_nickname !!}
 						@else
-							{{ $s->scheme_nickname }},
+							{!! $s->scheme_nickname !!},
 						@endif
 					 @endforeach
 					<br/></b> <i class="fa fa-frown error"></i></span>
@@ -176,7 +176,7 @@
          <td style="vertical-align:top;"  width="50%">
 			
 			<div style="@if($problems_found > 0)background:#ee5f5ba8;@endif" class="green-circle">
-				<div class="circle_number">{{ $problems_found }}</div>
+				<div class="circle_number">{!! $problems_found !!}</div>
 				<div class="circle_txt">Major problems found</div>
 			</div>
 			

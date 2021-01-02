@@ -25,7 +25,7 @@
 
 	
     <div style="clear:both; margin: 20px 0; float:right;">
-        <a href="{{ URL::to('customer_tabview_controller/show/'. $data['customer_id'] . '/step2') }}" onclick="javascript: return continueToNextStep()" class="btn btn-info">Next</a>
+        <a href="{!! URL::to('customer_tabview_controller/show/'. $data['customer_id'] . '/step2') !!}" onclick="javascript: return continueToNextStep()" class="btn btn-info">Next</a>
     </div>
 </div>
 
@@ -42,12 +42,12 @@
             //call to insert the last meter reading in the corresponding tables
             $.ajax({
                 type: 'POST',
-                url: '{{ URL::to('close_account/' . $data['customer_id'] . '/step1') }}',
-                data: { 'unit_id' : {{ $data['meter_id'] }} },
+                url: '{!! URL::to('close_account/' . $data['customer_id'] . '/step1') !!}',
+                data: { 'unit_id' : {!! $data['meter_id'] !!} },
                 success: function (resp, textStatus) {
                     if (resp.success)
                     {
-                        window.location = "{{ URL::to('close_account/' . $data['customer_id'] . '/step2') }}";
+                        window.location = "{!! URL::to('close_account/' . $data['customer_id'] . '/step2') !!}";
                     }
                     else if (resp.error)
                     {
@@ -65,4 +65,4 @@
         return false;
     }
 </script>
-{{ HTML::script('resources/js/installer.js?98877') }}
+{!! HTML::script('resources/js/installer.js?98877') !!}

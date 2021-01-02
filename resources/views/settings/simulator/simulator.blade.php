@@ -7,14 +7,14 @@
 @if(Session::has('successMessage'))
 <div class="alert alert-success alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('successMessage')}}
+{!!Session::get('successMessage')!!}
 </div>
 @endif
 
 @if(Session::has('errorMessage'))
 <div class="alert alert-danger alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('errorMessage')}}
+{!!Session::get('errorMessage')!!}
 </div>
 @endif
 
@@ -29,8 +29,8 @@
 						<td>
 						<b>Last updated: </b>
 						@if($simulatedScheme->simulator_updated_at != null)
-							{{ $simulatedScheme->simulator_updated_at }} 
-							({{ Carbon\Carbon::parse($simulatedScheme->simulator_updated_at)->diffForHumans() }})
+							{!! $simulatedScheme->simulator_updated_at !!} 
+							({!! Carbon\Carbon::parse($simulatedScheme->simulator_updated_at)->diffForHumans() !!})
 						@else
 							n/a
 						@endif
@@ -43,12 +43,12 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="text" name="scheme_name" readonly="" @if($simulatedScheme) value="{{ $simulatedScheme->scheme_nickname }}" @else @endif>
+							<input type="text" name="scheme_name" readonly="" @if($simulatedScheme) value="{!! $simulatedScheme->scheme_nickname !!}" @else @endif>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="text" name="currency_sign" @if($simulatedScheme) value="{{ $simulatedScheme->currency_sign }}" @else @endif>
+							<input type="text" name="currency_sign" @if($simulatedScheme) value="{!! $simulatedScheme->currency_sign !!}" @else @endif>
 						</td>
 					</tr>
 					<tr>
@@ -58,11 +58,11 @@
 						<td>
 							<select name="scheme_to_simulate">
 								@if($simulatedScheme)
-									<option value="{{ $simulatedScheme->scheme_number }}">{{ $simulatedScheme->scheme_nickname }}</option>
+									<option value="{!! $simulatedScheme->scheme_number !!}">{!! $simulatedScheme->scheme_nickname !!}</option>
 								@endif
 								@foreach(Scheme::active() as $k => $s)
 									@if($simulatedScheme && $simulatedScheme->scheme_number == $s->scheme_number || $s->simulator > 0) @else 
-										<option value="{{ $s->scheme_number }}">{{ $s->scheme_nickname }}</option>
+										<option value="{!! $s->scheme_number !!}">{!! $s->scheme_nickname !!}</option>
 									@endif
 								@endforeach
 							</select>

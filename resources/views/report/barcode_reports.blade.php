@@ -4,7 +4,7 @@
 <h1>Barcode Reports</h1>
 
 <div class="admin2">
-<a href="{{ URL::to('system_reports') }}">System Reports</a> > Barcode Reports
+<a href="{!! URL::to('system_reports') !!}">System Reports</a> > Barcode Reports
 <h3><a href="<?php echo $csv_url?>">Download CSV</a></h3>
     <table id="sortthistable" class="table table-bordered">
     <thead>

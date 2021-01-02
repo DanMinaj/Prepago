@@ -24,10 +24,10 @@
 				<div class="span12">
 					@foreach($all_schemes as $s) 
 						<label class="check">
-							<div style='border:1px solid #ccc;border-radius:3px;margin-bottom:10px;padding:5px;' value="{{ $s->scheme_number }}">
+							<div style='border:1px solid #ccc;border-radius:3px;margin-bottom:10px;padding:5px;' value="{!! $s->scheme_number !!}">
 								<div class="row-fluid">
 									<div class="span4">
-										&nbsp;{{ ucfirst($s->scheme_nickname) }}
+										&nbsp;{!! ucfirst($s->scheme_nickname) !!}
 									</div>
 									<div class="span4">
 										@if(strpos($s->status, "Online") !== false)
@@ -42,9 +42,9 @@
 									</div>
 									<div class="span4">
 										@if($s->watch)
-											<button class="watch" scheme="{{ $s->scheme_number }}"><i class="fa fa-eye-slash"></i> Stop Watch</button>
+											<button class="watch" scheme="{!! $s->scheme_number !!}"><i class="fa fa-eye-slash"></i> Stop Watch</button>
 										@else
-											<button class="btn btn-primary watch" scheme="{{ $s->scheme_number }}"><i class="fa fa-eye"></i> Watch</button>
+											<button class="btn btn-primary watch" scheme="{!! $s->scheme_number !!}"><i class="fa fa-eye"></i> Watch</button>
 										@endif
 									</div>
 								</div>
@@ -59,13 +59,13 @@
 			<div class="row-fluid"><div class="span12"><font style="font-size:1.2rem;font-weight:bold;">Email Subject:</font></div></div>
 			<div class="row-fluid">
 				<div class="span12"> 
-					<input name="var_scheme_watch_subject" value="{{ SystemSetting::get('var_scheme_watch_subject') }}" type="text" style="width:95%;border-radius: 5px;padding: 2%;margin-top: 2%;margin-bottom: 2%;">
+					<input name="var_scheme_watch_subject" value="{!! SystemSetting::get('var_scheme_watch_subject') !!}" type="text" style="width:95%;border-radius: 5px;padding: 2%;margin-top: 2%;margin-bottom: 2%;">
 				</div>
 			</div>
 			<div class="row-fluid"><div class="span12"><font style="font-size:1.2rem;font-weight:bold;">Email To:</font></div></div>
 			<div class="row-fluid">
 				<div class="span12"> 
-					<textarea name="var_scheme_watch_emails" style="width:95%;border-radius: 5px;padding: 2%;margin-top: 2%;margin-bottom: 2%;">{{ SystemSetting::get('var_scheme_watch_emails') }}</textarea>
+					<textarea name="var_scheme_watch_emails" style="width:95%;border-radius: 5px;padding: 2%;margin-top: 2%;margin-bottom: 2%;">{!! SystemSetting::get('var_scheme_watch_emails') !!}</textarea>
 				</div>
 			</div>
 			<div class="row-fluid">

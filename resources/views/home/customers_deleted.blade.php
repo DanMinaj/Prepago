@@ -16,24 +16,24 @@
 	</tr>
 	@foreach($deletedCustomers as $c)
 		<tr>
-			<td><a href="/customer/{{ $c->id }}">{{ $c->id }}</a></td>
-			<td>{{ $c->username }}</td>
-			<td>{{ $c->deleted_at }} &horbar; {{ Carbon\Carbon::parse($c->deleted_at)->diffForHumans() }}</td>
+			<td><a href="/customer/{!! $c->id !!}">{!! $c->id !!}</a></td>
+			<td>{!! $c->username !!}</td>
+			<td>{!! $c->deleted_at !!} &horbar; {!! Carbon\Carbon::parse($c->deleted_at)->diffForHumans() !!}</td>
 			<td>
 				@if($c->replaced)
-					<a href="/customer/{{ $c->replacement->id }}">Customer {{ $c->replacement->id }} &horbar; 
-					{{ Carbon\Carbon::parse($c->replacement->commencement_date)->diffForHumans() }}</a>
+					<a href="/customer/{!! $c->replacement->id !!}">Customer {!! $c->replacement->id !!} &horbar; 
+					{!! Carbon\Carbon::parse($c->replacement->commencement_date)->diffForHumans() !!}</a>
 				@else
 					<center> none </center>
 				@endif
 			</td>
 			<td>
 				@if(!$c->replaced)
-					<a href="{{ URL::to('reinstate_account/confirm', ['id' => $c->id]) }}">
+					<a href="{!! URL::to('reinstate_account/confirm', ['id' => $c->id]) !!}">
 						<button class="btn btn-success"><i class="fa fa-unlock"></i> Reinstate</button>
 					</a>
 				@else
-					<a href="{{ URL::to('reinstate_account/confirm', ['id' => $c->id]) }}">
+					<a href="{!! URL::to('reinstate_account/confirm', ['id' => $c->id]) !!}">
 						<button class="btn btn-success"><i class="fa fa-unlock"></i> Reinstate</button>
 					</a>
 				@endif

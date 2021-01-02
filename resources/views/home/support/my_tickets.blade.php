@@ -7,14 +7,14 @@
 @if(Session::has('successMessage'))
 <div class="alert alert-success alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('successMessage')}}
+{!!Session::get('successMessage')!!}
 </div>
 @endif
 
 @if(Session::has('errorMessage'))
 <div class="alert alert-danger alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('errorMessage')}}
+{!!Session::get('errorMessage')!!}
 </div>
 @endif
 
@@ -35,14 +35,14 @@
 					<?php
 						 $d = new DateTime($u->created_at); 
 					?>
-						<td>{{ $d->format('F j H:i:s') }}</td>
-						<td>{{$u->issue_title}}</td>
-						<td>{{$u->customer}}</td>
-						<td {{ $u->statusCss(true) }} ><center>None</center></td>
+						<td>{!! $d->format('F j H:i:s') !!}</td>
+						<td>{!!$u->issue_title!!}</td>
+						<td>{!!$u->customer!!}</td>
+						<td {!! $u->statusCss(true) !!} ><center>None</center></td>
 						<td>
 						<center>
-							<a href="{{ URL::to('support/view', ['id' => $u->id]) }}"><button type='button' class='btn btn-primary'><i class='fa fa-check'></i> View</button></a>
-							<a href="{{ URL::to('support/mark_solved', ['id' => $u->id]) }}"><button type='button' class='btn btn-success'><i class='fa fa-check'></i> Mark as resolved</button></a>
+							<a href="{!! URL::to('support/view', ['id' => $u->id]) !!}"><button type='button' class='btn btn-primary'><i class='fa fa-check'></i> View</button></a>
+							<a href="{!! URL::to('support/mark_solved', ['id' => $u->id]) !!}"><button type='button' class='btn btn-success'><i class='fa fa-check'></i> Mark as resolved</button></a>
 						</center>
 						</td>
 					</tr>
@@ -66,14 +66,14 @@
 					<?php
 						 $d = new DateTime($u->created_at); 
 					?>
-						<td>{{ $d->format('F j H:i:s') }}</td>
-						<td>{{$u->issue_title}}</td>
-						<td>{{$u->customer}}</td>
-						<td {{ $u->statusCss(true) }} ><center>Started</center></td>
+						<td>{!! $d->format('F j H:i:s') !!}</td>
+						<td>{!!$u->issue_title!!}</td>
+						<td>{!!$u->customer!!}</td>
+						<td {!! $u->statusCss(true) !!} ><center>Started</center></td>
 						<td>
 						<center>
-							<a href="{{ URL::to('support/view', ['id' => $u->id]) }}"><button type='button' class='btn btn-primary'><i class='fa fa-check'></i> View</button></a>
-							<a href="{{ URL::to('support/mark_solved', ['id' => $u->id]) }}"><button type='button' class='btn btn-success'><i class='fa fa-check'></i> Mark as resolved</button></a>
+							<a href="{!! URL::to('support/view', ['id' => $u->id]) !!}"><button type='button' class='btn btn-primary'><i class='fa fa-check'></i> View</button></a>
+							<a href="{!! URL::to('support/mark_solved', ['id' => $u->id]) !!}"><button type='button' class='btn btn-success'><i class='fa fa-check'></i> Mark as resolved</button></a>
 						</center>
 						</td>
 					</tr>
@@ -97,13 +97,13 @@
 					<?php
 						 $d = new DateTime($u->created_at); 
 					?>
-						<td>{{ $d->format('F j H:i:s') }}</td>
-						<td>{{$u->issue_title}}</td>
-						<td>{{$u->customer}}</td>
-						<td {{ $u->statusCss(true) }}><center>Resolved</center></td>
+						<td>{!! $d->format('F j H:i:s') !!}</td>
+						<td>{!!$u->issue_title!!}</td>
+						<td>{!!$u->customer!!}</td>
+						<td {!! $u->statusCss(true) !!}><center>Resolved</center></td>
 						<td>
 						<center>
-							<a href="{{ URL::to('support/view', ['id' => $u->id]) }}"><button type='button' class='btn btn-primary'><i class='fa fa-check'></i> View</button></a>
+							<a href="{!! URL::to('support/view', ['id' => $u->id]) !!}"><button type='button' class='btn btn-primary'><i class='fa fa-check'></i> View</button></a>
 						</center>
 						</td>
 					</tr>

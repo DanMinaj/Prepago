@@ -13,14 +13,14 @@
 	<table width="100%" class="">
 		<tr>
 			<td>
-				<h3>{{$results->count()}} Results found</h3>
-				@if($searched_by) <h5>Searched by: {{ $searched_by }}</h3> @endif
+				<h3>{!!$results->count()!!} Results found</h3>
+				@if($searched_by) <h5>Searched by: {!! $searched_by !!}</h3> @endif
 			</td>
 		</tr>
 		@foreach($results as $r) 
 		<tr>
 			<td>
-				<h4><a href="{{ URL::to('customer_tabview_controller/show', ['customer_id' => $r->id]) }}"> Customer {{ $r->id }} - {{ $r->username }} </a></h4>
+				<h4><a href="{!! URL::to('customer_tabview_controller/show', ['customer_id' => $r->id]) !!}"> Customer {!! $r->id !!} - {!! $r->username !!} </a></h4>
 			</td>
 		</tr>
 		@endforeach
@@ -82,7 +82,7 @@
 		</tr>
 		<tr>
 			<td>
-				<input style='width:98%' type="text" name="mobile_number" value="{{ Input::old('mobile_number') }}" placeholder="Mobile number e.g 0867267392">
+				<input style='width:98%' type="text" name="mobile_number" value="{!! Input::old('mobile_number') !!}" placeholder="Mobile number e.g 0867267392">
 			</td>
 		</tr>
 		
@@ -94,7 +94,7 @@
 		</tr>
 		<tr>
 			<td>
-				<input style='width:98%' type="text" name="email" value="{{ Input::old('email') }}" placeholder="Email address">
+				<input style='width:98%' type="text" name="email" value="{!! Input::old('email') !!}" placeholder="Email address">
 			</td>
 		</tr>
 		
@@ -109,7 +109,7 @@
 		</tr>
 		<tr>
 			<td>
-				<input style='width:98%' type="text" name="first_name" value="{{ Input::old('first_name') }}" placeholder="Firstname e.g John">
+				<input style='width:98%' type="text" name="first_name" value="{!! Input::old('first_name') !!}" placeholder="Firstname e.g John">
 			</td>
 		</tr>
 		
@@ -120,7 +120,7 @@
 		</tr>
 		<tr>
 			<td>
-				<input style='width:98%' type="text" name="surname" value="{{ Input::old('surname') }}" placeholder="Surname e.g Doe">
+				<input style='width:98%' type="text" name="surname" value="{!! Input::old('surname') !!}" placeholder="Surname e.g Doe">
 			</td>
 		</tr>
 		
@@ -131,7 +131,7 @@
 		</tr>
 		<tr>
 			<td>
-				<input style='width:98%' type="text" name="custom" value="{{ Input::old('custom') }}" placeholder="e.g 'email_address = test@gmail.com'">
+				<input style='width:98%' type="text" name="custom" value="{!! Input::old('custom') !!}" placeholder="e.g 'email_address = test@gmail.com'">
 			</td>
 		</tr>
 		

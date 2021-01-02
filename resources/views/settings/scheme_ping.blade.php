@@ -9,13 +9,13 @@
 
 	@if(Session::has('successMessage'))
 	<div class="alert alert-success" style="padding:2%;font-size:1.2em;">
-		{{ Session::get('successMessage') }}
+		{!! Session::get('successMessage') !!}
 	</div>
 	@endif
 	
 	@if(Session::has('errorMessage'))
 	<div class="alert alert-danger" style="padding:2%;font-size:1.2em;">
-		{{ Session::get('errorMessage') }}
+		{!! Session::get('errorMessage') !!}
 	</div>
 	@endif
 	
@@ -42,18 +42,18 @@
 	@foreach($schemes as $s) 
 	
 		<tr>
-			<td width="10%"> {{ $s->scheme_number }} </td>
-			<td width="10%"> {{ $s->scheme_nickname }} </td>
-			<td class="ping_old_status_{{ $s->scheme_number }}"  width="20%"> 
-				<span class="ping_response_{{ $s->scheme_number }}" style='{{ $s->statusCss }}'>{{ $s->status }}</span> &#8211; <font class="ping_time_{{ $s->scheme_number }}" style='font-size:10px;color: grey;'>{{ \Carbon\Carbon::parse($s->status_checked)->diffForHumans() }}</font>
+			<td width="10%"> {!! $s->scheme_number !!} </td>
+			<td width="10%"> {!! $s->scheme_nickname !!} </td>
+			<td class="ping_old_status_{!! $s->scheme_number !!}"  width="20%"> 
+				<span class="ping_response_{!! $s->scheme_number !!}" style='{!! $s->statusCss !!}'>{!! $s->status !!}</span> &#8211; <font class="ping_time_{!! $s->scheme_number !!}" style='font-size:10px;color: grey;'>{!! \Carbon\Carbon::parse($s->status_checked)->diffForHumans() !!}</font>
 			</td>
 			<td width="39%">
 				<center>
-					<button class="btn btn-primary reboot" scheme_number="{{ $s->scheme_number }}"> 
+					<button class="btn btn-primary reboot" scheme_number="{!! $s->scheme_number !!}"> 
 					<i class="fa fa-power-off"></i> Reboot</button>
-					<button data-toggle="modal" data-target="#create_ticket" class="btn btn-info" scheme_number="{{ $s->scheme_number }}"> 
+					<button data-toggle="modal" data-target="#create_ticket" class="btn btn-info" scheme_number="{!! $s->scheme_number !!}"> 
 					<i class="fa fa-envelope-open-text"></i> Ticket</button>
-					<a href="{{ URL::to('settings/' . $s->SIM->ICCID . '/sms') }} ">
+					<a href="{!! URL::to('settings/' . $s->SIM->ICCID . '/sms') !!} ">
 					<button class="btn btn-success"> 
 					<i class="fa fa-mobile-alt"></i> SMS
 					</button>
@@ -61,10 +61,10 @@
 				</center>
 			</td>
 			<td width="15%">
-				<center> <b> <span style="font-size:11px;" class="reboot_response_{{ $s->scheme_number }}">&#8211;</span> </b> </center>
+				<center> <b> <span style="font-size:11px;" class="reboot_response_{!! $s->scheme_number !!}">&#8211;</span> </b> </center>
 			</td>
 			<td width="10%">
-				<button class="btn btn-warning ping" scheme_number="{{ $s->scheme_number }}"> 
+				<button class="btn btn-warning ping" scheme_number="{!! $s->scheme_number !!}"> 
 					<i class="fa fa-sync"></i></button>
 			</td>
 		</tr>

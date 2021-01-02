@@ -16,7 +16,7 @@
                 <td><?php echo $type['employee_name'] ?></td>
                 <td><?php echo $type['username'] ?></td>
 
-                <td>{{ $type->group->name }}</td>
+                <td>{!! $type->group->name !!}</td>
 
                 <td><?php echo $type['isInstaller'] === 1 ? 'yes' : 'no' ?></td>
 
@@ -24,7 +24,7 @@
 					<td>
 						<a href="#editModal<?php echo $type['id']?>" role="button" class="btn btn-info" data-toggle="modal">Edit</a>
 						<a href="#myModal<?php echo $type['id']?>" role="button" class="btn btn-danger" data-toggle="modal">Delete</a>
-						<a href="{{ $baseURL . '/' . $type['id'] . '/schemes' }}" class="btn btn-success">Schemes</a>
+						<a href="{!! $baseURL . '/' . $type['id'] . '/schemes' !!}" class="btn btn-success">Schemes</a>
 					</td>
 				@endif	
 
@@ -38,7 +38,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                        <a href="{{ $baseURL . '/close_account_action/' . $type['id'] }}" class="btn btn-danger">Yes</a>
+                        <a href="{!! $baseURL . '/close_account_action/' . $type['id'] !!}" class="btn btn-danger">Yes</a>
                     </div>
                 </div>
 				
@@ -47,22 +47,22 @@
                         <h3 id="editModalLabel">Edit user account</h3>
                     </div>
 
-                    {{ Form::open(['url' => URL::to($baseURL . '/' . $type['id']), 'method' => 'PUT']) }}
+                    {!! Form::open(['url' => URL::to($baseURL . '/' . $type['id']), 'method' => 'PUT']) !!}
                         <div class="modal-body">
-                            {{ Form::label('employee_name', 'Employee Name:') }}
-                            {{ Form::text('employee_name', $type['employee_name']) }}
+                            {!! Form::label('employee_name', 'Employee Name:') !!}
+                            {!! Form::text('employee_name', $type['employee_name']) !!}
 
-                            {{ Form::label('username', 'Username:') }}
-                            {{ Form::text('username', $type['username']) }}
+                            {!! Form::label('username', 'Username:') !!}
+                            {!! Form::text('username', $type['username']) !!}
 
-                            {{ Form::label('group', 'Group:') }}
-                            {{ Form::select('group', groups(), $type->group->id) }}
+                            {!! Form::label('group', 'Group:') !!}
+                            {!! Form::select('group', groups(), $type->group->id) !!}
                         </div>
                         <div class="modal-footer">
                             <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                             <input type="submit" class="btn btn-info" value="Edit Account">
                         </div>
-                    {{ Form::close() }}
+                    {!! Form::close() !!}
                 </div>
             </tr>
         @endforeach

@@ -2,7 +2,7 @@
 </div>
 
 <div><br/></div>
-<h1>Away modes currently active ({{ count($away_modes) }})</h1>
+<h1>Away modes currently active ({!! count($away_modes) !!})</h1>
 
 
 <div class="admin2">
@@ -22,14 +22,14 @@
 		
 		@foreach($away_modes as $a)
 		<tr>
-			<td> {{ $a->pmd->ID }} </td>
-			<td> @if($a->customer) <a href="{{ URL::to('customer_tabview_controller/show', ['customer_id' => $a->customer->id]) }}">{{ $a->customer->username }}</a> @else no customer. @endif </td>
-			<td> @if($a->last_start) {{ $a->last_start->date_time }} @else undefined @endif </td>
-			<td> {{ $a->away_mode_permanent }} </td>
+			<td> {!! $a->pmd->ID !!} </td>
+			<td> @if($a->customer) <a href="{!! URL::to('customer_tabview_controller/show', ['customer_id' => $a->customer->id]) !!}">{!! $a->customer->username !!}</a> @else no customer. @endif </td>
+			<td> @if($a->last_start) {!! $a->last_start->date_time !!} @else undefined @endif </td>
+			<td> {!! $a->away_mode_permanent !!} </td>
 			<td> 
 				@if($a->customer) 
 					@if($a->customer->districtMeter)
-						{{ $a->customer->districtMeter->last_flow_temp }}&deg;C
+						{!! $a->customer->districtMeter->last_flow_temp !!}&deg;C
 					@else
 						no meter.
 					@endif
@@ -40,7 +40,7 @@
 			<td> 
 				
 				@if($a->customer)
-					<a href="{{ URL::to('customer_tabview_controller/clear_away_mode', ['customer_id' => $a->customer->id]) }}"><button type="button" class="btn btn-danger"><i class="fa fa-power-off"></i> End</button></a> 
+					<a href="{!! URL::to('customer_tabview_controller/clear_away_mode', ['customer_id' => $a->customer->id]) !!}"><button type="button" class="btn btn-danger"><i class="fa fa-power-off"></i> End</button></a> 
 				@else
 					None
 				@endif

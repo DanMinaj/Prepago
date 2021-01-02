@@ -4,7 +4,7 @@
 <h1>Carlinn Report</h1>
 
 <div class="admin2">
-    <a href="{{ URL::to('system_reports') }}">System Reports</a> > Carlinn Report
+    <a href="{!! URL::to('system_reports') !!}">System Reports</a> > Carlinn Report
     <div class="cl"></div>
     <!--<h3><a href="<?php echo $csv_url ?>">Download CSV</a></h3>-->
     <br /><br />
@@ -33,21 +33,21 @@
             <tbody>
             @foreach ($customers as $customer)
                 <tr>
-                    <td>{{{ $customer->first_name . ' ' . $customer->surname }}}</td>
-                    <td>{{{ $customer->username }}}</td>
-                    <td>{{{ $customer->email_address }}}</td>
+                    <td>{{ $customer->first_name . ' ' . $customer->surname }}</td>
+                    <td>{{ $customer->username }}</td>
+                    <td>{{ $customer->email_address }}</td>
                     <td>
-                        {{{ $customer->house_number_name ? $customer->house_number_name . ', ' : '' }}}
-                        {{{ $customer->street1 ? $customer->street1 . ', ' : '' }}}
-                        {{{ $customer->street2 ? $customer->street2 . ', ' : '' }}}
-                        {{{ $customer->town ? $customer->town . ', ' : ''  }}}
-                        {{{ $customer->county ? $customer->county . ($customer->country ? ', ' : '') : '' }}}
-                        {{{ $customer->country ? $customer->country : '' }}}
+                        {{ $customer->house_number_name ? $customer->house_number_name . ', ' : '' }}
+                        {{ $customer->street1 ? $customer->street1 . ', ' : '' }}
+                        {{ $customer->street2 ? $customer->street2 . ', ' : '' }}
+                        {{ $customer->town ? $customer->town . ', ' : '' }}
+                        {{ $customer->county ? $customer->county . ($customer->country ? ', ' : '') : '' }}
+                        {{ $customer->country ? $customer->country : '' }}
                     </td>
-                    <td>{{{ $customer->barcode }}}</td>
+                    <td>{{ $customer->barcode }}</td>
                 </tr>
                 @if (count($customer->readings))
-                    <tr id="customer_readings_{{ $customer->id }}" class="customer_readings" style="background-color: #fff; display:none;">
+                    <tr id="customer_readings_{!! $customer->id !!}" class="customer_readings" style="background-color: #fff; display:none;">
                         <td class="customer_readings_content">
                             <table width="90%" style="margin: 0 auto;" class="table-bordered readings_table" style="border: 1px solid #ddd">
                                 <tr><th colspan="8">Readings</th></tr>
@@ -63,14 +63,14 @@
                                 </tr>
                                 @foreach ($customer->readings as $customerReading)
                                     <tr>
-                                        <td>{{ $customerReading->date }}</td>
-                                        <td>{{ $customerReading->cost_of_day }}</td>
-                                        <td>{{ $customerReading->start_day_reading }}</td>
-                                        <td>{{ $customerReading->end_day_reading }}</td>
-                                        <td>{{ $customerReading->total_usage }}</td>
-                                        <td>{{ $customerReading->standing_charge }}</td>
-                                        <td>{{ $customerReading->unit_charge }}</td>
-                                        <td>{{ $customerReading->arrears_repayment }}</td>
+                                        <td>{!! $customerReading->date !!}</td>
+                                        <td>{!! $customerReading->cost_of_day !!}</td>
+                                        <td>{!! $customerReading->start_day_reading !!}</td>
+                                        <td>{!! $customerReading->end_day_reading !!}</td>
+                                        <td>{!! $customerReading->total_usage !!}</td>
+                                        <td>{!! $customerReading->standing_charge !!}</td>
+                                        <td>{!! $customerReading->unit_charge !!}</td>
+                                        <td>{!! $customerReading->arrears_repayment !!}</td>
                                     </tr>
                                 @endforeach
                             </table>

@@ -39,7 +39,7 @@ if(strpos($current_page, 'customer_tabview') !== false)
 }
 </style>
 
-<form action="{{ URL::to('changelog/add') }}" method="POST">
+<form action="{!! URL::to('changelog/add') !!}" method="POST">
 <div id="changelog" class="modal fade" role="dialog">
 
 	  
@@ -84,7 +84,7 @@ if(strpos($current_page, 'customer_tabview') !== false)
 								</tr>
 								<tr>
 									<td width="5%" style="vertical-align:top"><input name="track_progress" type="checkbox" data-toggle="toggle" data-onstyle="primary"></td>
-									<td width="95%" style="vertical-align:top"><input name="email" value="{{ Auth::user()->email_address }}" type="email" placeholder="Email address"></td>
+									<td width="95%" style="vertical-align:top"><input name="email" value="{!! Auth::user()->email_address !!}" type="email" placeholder="Email address"></td>
 								</tr>
 							</table>
 							
@@ -114,5 +114,5 @@ if(strpos($current_page, 'customer_tabview') !== false)
 
 </form>
 
-{{ HTML::style('resources/js/bootstrap-toggle-master/css/bootstrap2-toggle.min.css') }}
-{{ HTML::script('resources/js/bootstrap-toggle-master/js/bootstrap2-toggle.min.js') }}
+{!! HTML::style('resources/js/bootstrap-toggle-master/css/bootstrap2-toggle.min.css') !!}
+{!! HTML::script('resources/js/bootstrap-toggle-master/js/bootstrap2-toggle.min.js') !!}

@@ -7,11 +7,11 @@
 
     @if (Auth::user()->schemes && Auth::user()->schemes->count() > 1)
         <ul class="nav nav-pills">
-            <li class="{{ $all ? '' : 'active' }}">
-                <a href="{{ URL::to('customer_messaging/scheme/') }}">Scheme {{ $currentScheme }}</a>
+            <li class="{!! $all ? '' : 'active' !!}">
+                <a href="{!! URL::to('customer_messaging/scheme/') !!}">Scheme {!! $currentScheme !!}</a>
             </li>
-            <li class="{{ $all ? 'active' : '' }}">
-                <a href="{{ URL::to('customer_messaging/scheme/all') }}">All Schemes</a>
+            <li class="{!! $all ? 'active' : '' !!}">
+                <a href="{!! URL::to('customer_messaging/scheme/all') !!}">All Schemes</a>
             </li>
         </ul>
     @endif
@@ -55,8 +55,8 @@
         </div>
     </div>
 
-    {{ HTML::script('resources/js/spin_options.js') }}
-    {{ HTML::script('resources/js/spin.min.js') }}
+    {!! HTML::script('resources/js/spin_options.js') !!}
+    {!! HTML::script('resources/js/spin.min.js') !!}
 
     <script type="text/javascript">
         function issue() {
@@ -64,7 +64,7 @@
             var base_url = $('#base').val();
             var req_url = base_url + "/customer_messaging/check_sms_login/" + password;
            
-		   var url=base_url+"/customer_messaging/send_scheme_sms{{ $all ? '/all' : ''}}";
+		   var url=base_url+"/customer_messaging/send_scheme_sms{!! $all ? '/all' : ''!!}";
                          sendSchemeSMS(url);
 
 

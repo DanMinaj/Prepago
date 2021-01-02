@@ -10,7 +10,7 @@
 
     @include('includes.notifications')
 
-    {{ Form::open(['url' => URL::to('close_account/'. $data['customer_id'] . '/step3'), 'method' => 'POST']) }}
+    {!! Form::open(['url' => URL::to('close_account/'. $data['customer_id'] . '/step3'), 'method' => 'POST']) !!}
 
         <div>
             <strong>Select a tariff:</strong>
@@ -26,7 +26,7 @@
                         <?php $tariffName = "tariff_" . $i . "_name"; ?>
                         <?php $tariffIndex = "tariff_" . $i; ?>
                         @if ($data['tariffs']->{$tariffName})
-                            <option value="tariff_{{{ $i }}}">{{{ $data['tariffs']->{$tariffName} }}}</option>
+                            <option value="tariff_{{ $i }}">{{ $data['tariffs']->{$tariffName} }}</option>
                         @endif
                     @endfor
                 </select>
@@ -37,7 +37,7 @@
             <button type="submit" onclick="javascript: return continueToNextStep()" class="btn btn-info">Next</button>
         </div>
 
-    {{ Form::close() }}
+    {!! Form::close() !!}
 </div>
 
 <script type="text/javascript">

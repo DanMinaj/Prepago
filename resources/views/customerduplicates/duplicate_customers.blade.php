@@ -35,12 +35,12 @@
                     <td><?php echo $user->email_address ?></td>
                     @if ($fromSystemReports)
                         <td>
-                            {{{ $user->house_number_name ? $user->house_number_name . ', ' : '' }}}
-                            {{{ $user->street1 ? $user->street1 . ', ' : '' }}}
-                            {{{ $user->street2 ? $user->street2 . ', ' : '' }}}
-                            {{{ $user->town ? $user->town . ', ' : ''  }}}
-                            {{{ $user->county ? $user->county . ($user->country ? ', ' : '') : '' }}}
-                            {{{ $user->country ? $user->country : '' }}}
+                            {{ $user->house_number_name ? $user->house_number_name . ', ' : '' }}
+                            {{ $user->street1 ? $user->street1 . ', ' : '' }}
+                            {{ $user->street2 ? $user->street2 . ', ' : '' }}
+                            {{ $user->town ? $user->town . ', ' : '' }}
+                            {{ $user->county ? $user->county . ($user->country ? ', ' : '') : '' }}
+                            {{ $user->country ? $user->country : '' }}
                         </td>
                     @endif
                     <td><?php echo $user->mobile_number ?></td>
@@ -75,18 +75,18 @@
                     <td><?php echo $user->email_address ?></td>
                     @if ($fromSystemReports)
                         <td>
-                            {{{ $user->house_number_name ? $user->house_number_name . ', ' : '' }}}
-                            {{{ $user->street1 ? $user->street1 . ', ' : '' }}}
-                            {{{ $user->street2 ? $user->street2 . ', ' : '' }}}
-                            {{{ $user->town ? $user->town . ', ' : ''  }}}
-                            {{{ $user->county ? $user->county . ($user->country ? ', ' : '') : '' }}}
-                            {{{ $user->country ? $user->country : '' }}}
+                            {{ $user->house_number_name ? $user->house_number_name . ', ' : '' }}
+                            {{ $user->street1 ? $user->street1 . ', ' : '' }}
+                            {{ $user->street2 ? $user->street2 . ', ' : '' }}
+                            {{ $user->town ? $user->town . ', ' : '' }}
+                            {{ $user->county ? $user->county . ($user->country ? ', ' : '') : '' }}
+                            {{ $user->country ? $user->country : '' }}
                         </td>
                     @endif
                     <td><?php echo $user->mobile_number ?></td>
                     <td><?php echo $user->first_name ?></td>
                     <td><?php echo $user->surname ?></td>
-                    <td class="blue">{{ $currencySign }}<?php echo $user->balance ?></td>
+                    <td class="blue">{!! $currencySign !!}<?php echo $user->balance ?></td>
                     <td><a  class="btn btn-info" type="button" href="<?php echo URL::to('customer_tabview_controller/show/'.$user->id) ?>">View</a></td>
 
                 </td></tr></table>

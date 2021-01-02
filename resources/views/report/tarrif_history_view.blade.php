@@ -26,7 +26,7 @@
 </script>
 
 <div class="admin2">
-<a href="{{ URL::to('system_reports') }}">System Reports</a> > <a href="{{ URL::to('system_reports/topup_repots') }}">Top-Up Reports</a> > Tariff History
+<a href="{!! URL::to('system_reports') !!}">System Reports</a> > <a href="{!! URL::to('system_reports/topup_repots') !!}">Top-Up Reports</a> > Tariff History
  <?php foreach ($tarrifs as $tarrif): ?>
         <tr><td>
             <table class="table table-bordered">
@@ -38,32 +38,32 @@
                 </tr>
                 <tr>
                     <td><?php echo $tarrif->tariff_1_name;?></td>
-                    <td>{{ $currencySign }}<?php echo $tarrif->tariff_1;?></td>
-                    <td>{{ $currencySign }}<?php echo $total_amount;?></td>
+                    <td>{!! $currencySign !!}<?php echo $tarrif->tariff_1;?></td>
+                    <td>{!! $currencySign !!}<?php echo $total_amount;?></td>
                     
                 </tr>
                 <tr>
                     <td><?php echo $tarrif->tariff_2_name;?></td>
-                    <td>{{ $currencySign }}<?php echo $tarrif->tariff_2;?></td>
+                    <td>{!! $currencySign !!}<?php echo $tarrif->tariff_2;?></td>
                     <td><?php echo $tarrif->total_number_of_customers;?></td>
                     
                 </tr>
                 <tr>
                     <td><?php echo $tarrif->tariff_3_name;?></td>
-                    <td>{{ $currencySign }}<?php echo $tarrif->tariff_3;?></td>
-                    <td>{{ $currencySign }}<?php echo 0;?></td>
+                    <td>{!! $currencySign !!}<?php echo $tarrif->tariff_3;?></td>
+                    <td>{!! $currencySign !!}<?php echo 0;?></td>
                     
                 </tr>
                 <tr>
                     <td><?php echo $tarrif->tariff_4_name;?></td>
-                    <td>{{ $currencySign }}<?php echo $tarrif->tariff_4;?></td>
-                    <td>{{ $currencySign }}<?php echo 0;?></td>
+                    <td>{!! $currencySign !!}<?php echo $tarrif->tariff_4;?></td>
+                    <td>{!! $currencySign !!}<?php echo 0;?></td>
                     
                 </tr>
                 <tr>
                     <td><?php echo $tarrif->tariff_5_name;?></td>
-                    <td>{{ $currencySign }}<?php echo $tarrif->tariff_5;?></td>
-                    <td>{{ $currencySign }}<?php echo 0;?></td>
+                    <td>{!! $currencySign !!}<?php echo $tarrif->tariff_5;?></td>
+                    <td>{!! $currencySign !!}<?php echo 0;?></td>
                     
                 </tr>
             </table>

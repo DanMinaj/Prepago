@@ -47,7 +47,7 @@
 			<br/>
 			<center>
 				This process is currently 
-				<b>{{ number_format(($dataLogger->processing_progress/$dataLogger->processing_meters_no)*100, 2) }}%</b> complete.
+				<b>{!! number_format(($dataLogger->processing_progress/$dataLogger->processing_meters_no)*100, 2) !!}%</b> complete.
 			</center>
 		@endif
 	</div>
@@ -55,7 +55,7 @@
 	
 		@if(Auth::user()->scheme->statusCode == "11" || Auth::user()->scheme->statusCode == "21" || Auth::user()->scheme->statusCode == "2")
 			<div style="padding: 3px !important; width: 34%;" class="alert alert-warning alert-block" id="support-error">
-				<center>The diagnostic tools may be <b>temporarily un-available</b> due to technical issues with this scheme's SIM. <a target="_blank" href="{{ URL::to('schemes/status', ['status_id' => Auth::user()->scheme->statusCode]) }}">Status code {{ Auth::user()->scheme->statusCode }}.</a></center>
+				<center>The diagnostic tools may be <b>temporarily un-available</b> due to technical issues with this scheme's SIM. <a target="_blank" href="{!! URL::to('schemes/status', ['status_id' => Auth::user()->scheme->statusCode]) !!}">Status code {!! Auth::user()->scheme->statusCode !!}.</a></center>
 			</div>
 		@endif
 	
@@ -266,7 +266,7 @@
 							@if(Auth::user()->username == "test")
 								<button class="btn_setup_other" onclick="check_sim_status()">Ping</button>	
 							@endif
-							<button @if($data->scheme && Carbon\Carbon::parse($data->scheme->status_last_reboot)->diffInSeconds() < 1800) disabled='true' onclick="alert('You must wait 30 minutes before you can do this action again')" style="opacity:0.5;background: none repeat scroll 0 0 #333 !important;" @else id="reboot_sim" scheme_id="{{ $data['scheme_number'] }}" @endif class="btn_setup_other" >Reboot SIM</button>
+							<button @if($data->scheme && Carbon\Carbon::parse($data->scheme->status_last_reboot)->diffInSeconds() < 1800) disabled='true' onclick="alert('You must wait 30 minutes before you can do this action again')" style="opacity:0.5;background: none repeat scroll 0 0 #333 !important;" @else id="reboot_sim" scheme_id="{!! $data['scheme_number'] !!}" @endif class="btn_setup_other" >Reboot SIM</button>
 		
 						</div>
 
@@ -303,7 +303,7 @@
 											
 										<table width="100%" class=''>
 											<tr>
-												<td><a href="/view_watchdog/{{ $lastWatchDog->id }}">
+												<td><a href="/view_watchdog/{!! $lastWatchDog->id !!}">
 												<button class="btn_setup_other" ><i class="fa fa-eye"></i> View last watchdog</button>
 												</a></td>
 											</tr>
@@ -317,11 +317,11 @@
 										<br/>
 										
 										<b>Current Watchdog information</b><br/>
-										{{ nl2br(WatchDog::runningInScheme()->getInfo()) }}
+										{!! nl2br(WatchDog::runningInScheme()->getInfo()) !!}
 										
 										<br/><br/>
 										
-										<a href="/view_watchdog/{{ WatchDog::runningInScheme()->id }}">
+										<a href="/view_watchdog/{!! WatchDog::runningInScheme()->id !!}">
 										<button class="btn_setup_other" ><i class="fa fa-eye"></i> View</button>
 										</a>
 										
@@ -372,10 +372,10 @@
 
 
 								@include('modals.watchdog')
-<input type="hidden" id="baseInstallerURL" value="{{ URL::to('prepago_installer') }}">
-<input type="hidden" id="unitID" value="{{ $meter_id }}">
+<input type="hidden" id="baseInstallerURL" value="{!! URL::to('prepago_installer') !!}">
+<input type="hidden" id="unitID" value="{!! $meter_id !!}">
 <input type="hidden" id="meter_read_test_success" value="0">
 <input type="hidden" id="service_control_teston_success" value="0">
 <input type="hidden" id="service_control_testoff_success" value="0">
 
-{{ HTML::script('resources/js/installer.js?4874') }}
+{!! HTML::script('resources/js/installer.js?4874') !!}

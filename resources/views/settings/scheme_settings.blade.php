@@ -2,7 +2,7 @@
 </div>
 
 <div><br/></div>
-<h1>{{ Scheme::find(Auth::user()->scheme_number)->scheme_nickname }} - Scheme Settings</h1>
+<h1>{!! Scheme::find(Auth::user()->scheme_number)->scheme_nickname !!} - Scheme Settings</h1>
 
 
 <div class="admin2">
@@ -10,21 +10,21 @@
 @if ($message1 = Session::get('successMessage'))
 <div class="alert alert-success alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message1 }}
+	{!! $message1 !!}
 </div>
 @endif
 
 @if ($message2 = Session::get('warningMessage'))
 <div class="alert alert-warning alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message2 }}
+	{!! $message2 !!}
 </div>
 @endif
 
 @if ($message3 = Session::get('errorMessage'))
 <div class="alert alert-danger alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message3 }}
+	{!! $message3 !!}
 </div>
 @endif
 
@@ -56,7 +56,7 @@
 	<form action="" method="POST">
 		<table width="100%">
 			<tr>
-				<input type="hidden" name="dl_id" value="{{ $dl->id }}"/>
+				<input type="hidden" name="dl_id" value="{!! $dl->id !!}"/>
 				<input type="hidden" name="toggle_cme3100" value="1"/>
 				<td width="15%">
 					<b>CMe3100 In Use</b>
@@ -71,15 +71,15 @@
 				<td width="30%">
 					
 					<div class=""></div>
-					<a href="{{ URL::to('/datalogger?s=' . $dl->scheme_number . '&type=meter') }}">
+					<a href="{!! URL::to('/datalogger?s=' . $dl->scheme_number . '&type=meter') !!}">
 						<button type="button" class="btn btn-primary">Read Meters</button>
 					</a>
 					&nbsp;
-					<a href="{{ URL::to('/datalogger?s=' . $dl->scheme_number . '&type=scu') }}">
+					<a href="{!! URL::to('/datalogger?s=' . $dl->scheme_number . '&type=scu') !!}">
 						<button type="button" class="btn btn-warning">Read SCUs</button>
 					</a>
 					&nbsp;
-					<a href="{{ URL::to('/settings/ping') }}">
+					<a href="{!! URL::to('/settings/ping') !!}">
 						<button type="button" class="btn btn-success">Ping SIMs</button>
 					</a>
 								
@@ -111,7 +111,7 @@
 								</tr>
 								<tr>
 									<td>
-										<input type="text" placeholder="e.g 0.0.0.0" value="{{ $dl->cme3100_ip }}" name="cme3100_ip">
+										<input type="text" placeholder="e.g 0.0.0.0" value="{!! $dl->cme3100_ip !!}" name="cme3100_ip">
 									</td>
 								</tr>
 								<tr>
@@ -121,7 +121,7 @@
 								</tr>
 								<tr>
 									<td>
-										<input type="text" placeholder="e.g 80" value="{{ $dl->cme3100_port }}" name="cme3100_port">
+										<input type="text" placeholder="e.g 80" value="{!! $dl->cme3100_port !!}" name="cme3100_port">
 									</td>
 								</tr>
 							</table>
@@ -133,14 +133,14 @@
 								
 								<tr>
 									<td>
-										<a target="_blank" href="http://{{ $dl->cme3100_ip }}:{{ $dl->cme3100_port }}/secured/admin/webserversettings.jsp"><button type="button" class="btn btn-primary">CMe3100 Webservice</button></a>
+										<a target="_blank" href="http://{!! $dl->cme3100_ip !!}:{!! $dl->cme3100_port !!}/secured/admin/webserversettings.jsp"><button type="button" class="btn btn-primary">CMe3100 Webservice</button></a>
 										<br/><br/>
 									</td>
 								</tr>
 								
 								<tr>
 									<td>
-										<a target="_blank" href="http://{{ $dl->cme3100_ip }}:{{ $dl->cme3100_port }}/servicemanager?view=fullpage&page=servicesettings"><button type="button" class="btn btn-warning">CMe3100 Services</button></a>
+										<a target="_blank" href="http://{!! $dl->cme3100_ip !!}:{!! $dl->cme3100_port !!}/servicemanager?view=fullpage&page=servicesettings"><button type="button" class="btn btn-warning">CMe3100 Services</button></a>
 										<br/><br/>
 									</td>
 								</tr>
@@ -148,7 +148,7 @@
 								
 								<tr>
 									<td>
-										<a target="_blank" href="{{ URL::to('request') }}"><button type="button" class="btn btn-info">Test requests</button></a>
+										<a target="_blank" href="{!! URL::to('request') !!}"><button type="button" class="btn btn-info">Test requests</button></a>
 										<br/><br/>
 									</td>
 								</tr>
@@ -175,38 +175,38 @@
 							<td><b>ID</b></td>
 						</tr>
 						<tr>
-							<input type="hidden" name="datalogger_id" value="{{ $dl->id }}">
-							<td><input type="text" placeholder="Datalogger ID" disabled name="d_datalogger_id" value="{{ $dl->id }}"></td>
+							<input type="hidden" name="datalogger_id" value="{!! $dl->id !!}">
+							<td><input type="text" placeholder="Datalogger ID" disabled name="d_datalogger_id" value="{!! $dl->id !!}"></td>
 						</tr>
 						
 						<tr>
 							<td><b>Name</b></td>
 						</tr>
 						<tr>
-							<input type="hidden" name="datalogger_name" value="{{ $dl->name }}">
-							<td><input type="text" placeholder="Datalogger Name" disabled name="d_datalogger_name" value="{{ $dl->name }}"></td>
+							<input type="hidden" name="datalogger_name" value="{!! $dl->name !!}">
+							<td><input type="text" placeholder="Datalogger Name" disabled name="d_datalogger_name" value="{!! $dl->name !!}"></td>
 						</tr>
 						
 						<tr>
 							<td><b>Sim ID</b></td>
 						</tr>
 						<tr>
-							<input type="hidden" name="old_sim_id" value="{{ $dl->sim_id }}">
-							<td><input type="text" placeholder="Datalogger SIM ID" name="new_sim_id" value="{{ $dl->sim_id }}"></td>
+							<input type="hidden" name="old_sim_id" value="{!! $dl->sim_id !!}">
+							<td><input type="text" placeholder="Datalogger SIM ID" name="new_sim_id" value="{!! $dl->sim_id !!}"></td>
 						</tr>
 						
 						<tr>
 							<td><b>Port 1</b></td>
 						</tr>
 						<tr>
-							<td><input type="text" placeholder="Datalogger SIM Port 1" name="dl_sim_port1" value="{{ $dl->port1 }}"></td>
+							<td><input type="text" placeholder="Datalogger SIM Port 1" name="dl_sim_port1" value="{!! $dl->port1 !!}"></td>
 						</tr>
 						
 						<tr>
 							<td><b>Port 2</b></td>
 						</tr>
 						<tr>
-							<td><input type="text" placeholder="Datalogger SIM Port 2" name="dl_sim_port2" value="{{ $dl->port2 }}"></td>
+							<td><input type="text" placeholder="Datalogger SIM Port 2" name="dl_sim_port2" value="{!! $dl->port2 !!}"></td>
 						</tr>
 						
 					</table>			
@@ -222,36 +222,36 @@
 							<td><b>SIM ID</b></td>
 						</tr>
 						<tr>
-							<input type="hidden" name="datalogger_sim_id" value="{{ $dl_sim->id }}">
-							<td><input type="text" placeholder="Datalogger SIM ID" disabled name="dl_sim_ID" value="{{ $dl_sim->ID }}"></td>
+							<input type="hidden" name="datalogger_sim_id" value="{!! $dl_sim->id !!}">
+							<td><input type="text" placeholder="Datalogger SIM ID" disabled name="dl_sim_ID" value="{!! $dl_sim->ID !!}"></td>
 						</tr>
 						
 						<tr>
 							<td><b>SIM Name</b></td>
 						</tr>
 						<tr>
-							<td><input type="text" placeholder="Datalogger SIM Name" name="dl_sim_Name" value="{{ $dl_sim->Name }}"></td>
+							<td><input type="text" placeholder="Datalogger SIM Name" name="dl_sim_Name" value="{!! $dl_sim->Name !!}"></td>
 						</tr>
 						
 						<tr>
 							<td><b>SIM IP Address</b></td>
 						</tr>
 						<tr>
-							<td><input type="text" placeholder="Datalogger SIM IP Address" name="dl_sim_IP_Address" value="{{ $dl_sim->IP_Address }}"></td>
+							<td><input type="text" placeholder="Datalogger SIM IP Address" name="dl_sim_IP_Address" value="{!! $dl_sim->IP_Address !!}"></td>
 						</tr>
 						
 						<tr>
 							<td><b>SIM ICCID</b></td>
 						</tr>
 						<tr>
-							<td><input type="text" placeholder="Datalogger SIM ICCID" name="dl_sim_ICCID" value="{{ $dl_sim->ICCID }}"></td>
+							<td><input type="text" placeholder="Datalogger SIM ICCID" name="dl_sim_ICCID" value="{!! $dl_sim->ICCID !!}"></td>
 						</tr>
 						
 						<tr>
 							<td><b>SIM MSISDN/PHONE #</b></td>
 						</tr>
 						<tr>
-							<td><input type="text" placeholder="Datalogger SIM MSISDN / Phone #" name="dl_sim_MSISDN" value="{{ $dl_sim->MSISDN }}"></td>
+							<td><input type="text" placeholder="Datalogger SIM MSISDN / Phone #" name="dl_sim_MSISDN" value="{!! $dl_sim->MSISDN !!}"></td>
 						</tr>
 						
 						
@@ -296,7 +296,7 @@
 								
 								<tr>
 									<td>
-										<a href="{{ URL::to('settings/meter_lookup', ['id' => $meter->id]) }}">
+										<a href="{!! URL::to('settings/meter_lookup', ['id' => $meter->id]) !!}">
 											<button type="button" class="btn btn-primary">Edit</button>
 										</a>
 									</td>
@@ -315,19 +315,19 @@
 												<td><b>Last 8 digits</b></td>
 											</tr>
 											<tr>
-												<td><input disabled value="{{ $meter->last_eight }}" name="last_eight" type="text"></td>
+												<td><input disabled value="{!! $meter->last_eight !!}" name="last_eight" type="text"></td>
 											</tr>
 											<tr>
 												<td><b>Meter make</b></td>
 											</tr>
 											<tr>
-												<td><input disabled value="{{ $meter->meter_make }}" name="meter_make" type="text"></td>
+												<td><input disabled value="{!! $meter->meter_make !!}" name="meter_make" type="text"></td>
 											</tr>
 											<tr>
 												<td><b>Meter model</b></td>
 											</tr>
 											<tr>
-												<td><input disabled value="{{ $meter->meter_model }}" name="meter_model" type="text"></td>
+												<td><input disabled value="{!! $meter->meter_model !!}" name="meter_model" type="text"></td>
 											</tr>
 										</table>
 									</td>
@@ -342,19 +342,19 @@
 												<td><b>Last 8 digits</b></td>
 											</tr>
 											<tr>
-												<td><input disabled value="{{ $meter->scu_last_eight }}" name="scu_last_eight" type="text"></td>
+												<td><input disabled value="{!! $meter->scu_last_eight !!}" name="scu_last_eight" type="text"></td>
 											</tr>
 											<tr>
 												<td><b>SCU make</b></td>
 											</tr>
 											<tr>
-												<td><input disabled value="{{ $meter->scu_make }}" name="scu_make" type="text"></td>
+												<td><input disabled value="{!! $meter->scu_make !!}" name="scu_make" type="text"></td>
 											</tr>
 											<tr>
 												<td><b>SCU model</b></td>
 											</tr>
 											<tr>
-												<td><input disabled value="{{ $meter->scu_model }}" name="scu_model" type="text"></td>
+												<td><input disabled value="{!! $meter->scu_model !!}" name="scu_model" type="text"></td>
 											</tr>
 										</table>
 									</td>
@@ -368,10 +368,10 @@
 											@foreach($meter_lookup as $ml)
 												<tr>
 													<td>
-														<input name="ml[{{ $ml->id }}]" value="{{ $ml->applied(Auth::user()->scheme_number) }}" type="checkbox" @if ($ml->applied(Auth::user()->scheme_number)) checked @else @endif >
+														<input name="ml[{!! $ml->id !!}]" value="{!! $ml->applied(Auth::user()->scheme_number) !!}" type="checkbox" @if ($ml->applied(Auth::user()->scheme_number)) checked @else @endif >
 													</td>
 													<td>
-														{{ $ml->meter_make }} {{ $ml->meter_model }}  [{{ $ml->last_eight }}]
+														{!! $ml->meter_make !!} {!! $ml->meter_model !!}  [{!! $ml->last_eight !!}]
 													</td>
 												</tr>
 											@endforeach
@@ -428,7 +428,7 @@
 											<select name="meter_selected">
 												<option value="0">-</option>
 												@foreach($existing_meters as $m)
-													<option value="{{ $m->id }}"> {{ $m->meter_model }} - {{ $m->meter_make }} - ********{{ $m->last_eight }} </option>
+													<option value="{!! $m->id !!}"> {!! $m->meter_model !!} - {!! $m->meter_make !!} - ********{!! $m->last_eight !!} </option>
 												@endforeach
 											</select>
 											
@@ -455,7 +455,7 @@
 	
 	<div class="tab-pane" id="3" style="text-align: left">		
 	
-	<form action="{{ URL::to('settings/scheme_settings/add_operator') }}" method="POST">
+	<form action="{!! URL::to('settings/scheme_settings/add_operator') !!}" method="POST">
 		<div class="row-fluid">
 			<div class="span3">
 				<input type="text" name="username" placeholder="Operator's username">
@@ -495,19 +495,19 @@
 				<tr @if($operator->locked) style='background: #d9d9d9' @endif>
 					
 					<td style='vertical-align:middle;'>
-						{{ $operator->id }}
+						{!! $operator->id !!}
 					</td>
 					
 					<td style='vertical-align:middle;'>
-						{{ $operator->username }}
+						{!! $operator->username !!}
 					</td>
 					
 					<td style='vertical-align:middle;'>
-						{{ $operator->employee_name }}
+						{!! $operator->employee_name !!}
 					</td>
 					
 					<td style='vertical-align:middle;'>
-						{{ (($operator->isInstaller) ? 'installer' : 'normal') }}
+						{!! (($operator->isInstaller) ? 'installer' : 'normal') !!}
 					</td>
 					
 					
@@ -515,21 +515,21 @@
 						@if(strlen($operator->is_online_time) <= 4 || $operator->is_online_time == "0000-00-00 00:00:00" || $operator->is_online_time == null)
 							N/A
 						@else
-						{{ $operator->is_online_time }} - {{ Carbon\Carbon::parse($operator->is_online_time)->diffForHumans() }}
+						{!! $operator->is_online_time !!} - {!! Carbon\Carbon::parse($operator->is_online_time)->diffForHumans() !!}
 						@endif
 					</td>
 					
 					<td style='vertical-align:middle;'>
 						@if(Auth::user()->isUserTest())
-						<a href="{{ URL::to('settings/scheme_settings/manage_operator/' . $operator->id) }}"><button type="button" class="btn btn-success"><i class="fa fa-user-edit"></i>&nbsp;Edit</button></a>
+						<a href="{!! URL::to('settings/scheme_settings/manage_operator/' . $operator->id) !!}"><button type="button" class="btn btn-success"><i class="fa fa-user-edit"></i>&nbsp;Edit</button></a>
 						@if($operator->locked)
-							<a href="{{URL::to('settings/scheme_settings/manage_operator/lock/' . $operator->id)}}"><button type="button" class="btn btn-danger"><i class="fa fa-lock-open"></i>&nbsp;Unlock</button></a>
+							<a href="{!!URL::to('settings/scheme_settings/manage_operator/lock/' . $operator->id)!!}"><button type="button" class="btn btn-danger"><i class="fa fa-lock-open"></i>&nbsp;Unlock</button></a>
 						@else
-							<a href="{{URL::to('settings/scheme_settings/manage_operator/lock/' . $operator->id)}}"><button type="button" class="btn btn-warning"><i class="fa fa-lock"></i>&nbsp;Lock</button></a>
+							<a href="{!!URL::to('settings/scheme_settings/manage_operator/lock/' . $operator->id)!!}"><button type="button" class="btn btn-warning"><i class="fa fa-lock"></i>&nbsp;Lock</button></a>
 						@endif
 						@endif
-						<form style="display:inline-block" action="{{ URL::to('settings/scheme_settings/remove_operator') }}" method="POST">
-							<input type="hidden" name="operator_id" value="{{ $operator->id }}">
+						<form style="display:inline-block" action="{!! URL::to('settings/scheme_settings/remove_operator') !!}" method="POST">
+							<input type="hidden" name="operator_id" value="{!! $operator->id !!}">
 							<button type="submit" class="btn btn-danger"><i class="fa fa-user-minus"></i> Remove from Scheme</button>
 						</form>
 					</td>
@@ -543,17 +543,17 @@
 	<div class="tab-pane @if(!Auth::user()->isUserTest()) active @endif" id="4" style="text-align: left">	
 		
 		<table class="table" width="100%">
-			<form method="POST" action="{{ URL::to('settings/scheme_settings/manage_extra') }}">
-			<input type="hidden" name="scheme_number" value="{{ Auth::user()->scheme_number }}"/>
+			<form method="POST" action="{!! URL::to('settings/scheme_settings/manage_extra') !!}">
+			<input type="hidden" name="scheme_number" value="{!! Auth::user()->scheme_number !!}"/>
 			<tr>
 				<td style="vertical-align:middle;" width="10%"><b> Scheme Daily readings </b></td>
-				<td width="20%"><input type="text" value="{{ $scheme_daily_readings }}" name="scheme_daily_readings"/></td>
+				<td width="20%"><input type="text" value="{!! $scheme_daily_readings !!}" name="scheme_daily_readings"/></td>
 				<td width="70%"><input type="submit" class="btn btn-primary" value="Save"></td>
 			</tr>
 			</form>
 		</table>
 
-		<h2>CMe3100 Unit(s) ({{ count($cme3100_meters) }})</h2>
+		<h2>CMe3100 Unit(s) ({!! count($cme3100_meters) !!})</h2>
 		@foreach($cme3100_meters as $meter) 
 			<table class="table table-bordered" width="100%">
 				
@@ -589,37 +589,37 @@
 				<tr style="@if($meter->installation_confirmed == 0) background:#ff9d9d; @else @endif">				
 					<td style='vertical-align:middle;'>
 						@if($meter->assigned) 
-							<a href="{{URL::to('customer_tabview_controller/show/' . $meter->assigned->id)}}" target="_blank"><b><u>{{ $meter->username }}</u></b></a>
+							<a href="{!!URL::to('customer_tabview_controller/show/' . $meter->assigned->id)!!}" target="_blank"><b><u>{!! $meter->username !!}</u></b></a>
 						@else
-							{{ $meter->username }} 
+							{!! $meter->username !!} 
 						@endif
 					</td>				
 					
 					<td style='vertical-align:middle;'>
-						{{ $meter->meter_number }}
+						{!! $meter->meter_number !!}
 					</td> 
 					
 					<td style='vertical-align:middle;'>
-						{{ $meter->scu_number }}
+						{!! $meter->scu_number !!}
 					</td> 
 					
 					<td style='vertical-align:middle;'>
-						{{ $meter->house_name_number }}
+						{!! $meter->house_name_number !!}
 					</td>
 					
 					<td style='vertical-align:middle;'>
 						@if($meter->districtMeter)
-							<span id="m{{$meter->ID}}">{{ $meter->districtMeter->latest_reading }} kWh</span>
+							<span id="m{!!$meter->ID!!}">{!! $meter->districtMeter->latest_reading !!} kWh</span>
 						@else
-							<span id="m{{$meter->ID}}">{{ $meter->last_reading }} kWh</span>
+							<span id="m{!!$meter->ID!!}">{!! $meter->last_reading !!} kWh</span>
 						@endif
 					</td>
 					
 					<td style='vertical-align:middle;'>
 						@if($meter->districtMeter)
-							<span id="m{{$meter->ID}}">{{ $meter->last_temp }} &deg;C</span>
+							<span id="m{!!$meter->ID!!}">{!! $meter->last_temp !!} &deg;C</span>
 						@else
-							<span>{{ $meter->last_temp }}&deg;C</span>
+							<span>{!! $meter->last_temp !!}&deg;C</span>
 						@endif
 					</td>
 					
@@ -627,26 +627,26 @@
 					<td style='vertical-align:middle;'>
 						@if($meter->last_valve != null)
 							
-							<span id="m{{$meter->ID}}S">
-							<span style="font-weight:bold;color: {{ ($meter->last_valve == 'open') ? 'green' : 'red' }}">{{ $meter->last_valve }}</span>
-							<br/>({{ (Carbon\Carbon::parse($meter->last_valve_time)->diffForHumans()) }})</span>
+							<span id="m{!!$meter->ID!!}S">
+							<span style="font-weight:bold;color: {!! ($meter->last_valve == 'open') ? 'green' : 'red' !!}">{!! $meter->last_valve !!}</span>
+							<br/>({!! (Carbon\Carbon::parse($meter->last_valve_time)->diffForHumans()) !!})</span>
 						@else
-							<span id="m{{$meter->ID}}S">unchecked</span>
+							<span id="m{!!$meter->ID!!}S">unchecked</span>
 						@endif
 					</td>
 					
 					<td style='vertical-align:middle;'>
 						
 						@if($meter->customer)
-						<a href="{{ URL::to('customer_tabview_controller/show/' . $meter->customer->id) }}" target="_blank"><button type="button" class="btn btn-info">View</button></a>
+						<a href="{!! URL::to('customer_tabview_controller/show/' . $meter->customer->id) !!}" target="_blank"><button type="button" class="btn btn-info">View</button></a>
 						@endif
-						<input type="hidden" id="baseInstallerURL" value="{{ URL::to('prepago_installer') }}">
-						<a href="{{ URL::to('settings/scheme_settings/manage_meter/' . $meter->ID) }}"><button type="button" class="btn btn-info">Edit</button></a>
+						<input type="hidden" id="baseInstallerURL" value="{!! URL::to('prepago_installer') !!}">
+						<a href="{!! URL::to('settings/scheme_settings/manage_meter/' . $meter->ID) !!}"><button type="button" class="btn btn-info">Edit</button></a>
 						@if($meter->districtMeter || 1==1) 
-							<button type="button" onclick="meter_read_test_selective(m{{$meter->ID}}, {{$meter->ID}})" class="btn btn-primary btn_setup">Read</button>
+							<button type="button" onclick="meter_read_test_selective(m{!!$meter->ID!!}, {!!$meter->ID!!})" class="btn btn-primary btn_setup">Read</button>
 						@endif
-						<button type="button" onclick="service_control_test_on({{$meter->ID}})" class="btn btn-success btn_setup">Open</button>
-						<button type="button" onclick="service_control_test_off({{$meter->ID}})" class="btn btn-danger btn_setup">Close</button>
+						<button type="button" onclick="service_control_test_on({!!$meter->ID!!})" class="btn btn-success btn_setup">Open</button>
+						<button type="button" onclick="service_control_test_off({!!$meter->ID!!})" class="btn btn-danger btn_setup">Close</button>
 					</td>
 					
 					<td style='vertical-align:middle;'>
@@ -666,7 +666,7 @@
 		@endforeach
 		<div style='height:1px;width:100%;background:black;'>
 		</div>
-		<h2>Units ({{ count($meters) }})</h2>
+		<h2>Units ({!! count($meters) !!})</h2>
 		<table class="table table-bordered tablesorter sortthistable" width="100%">				
 		<thead>
 		<th width="8%" style='vertical-align:middle;'>
@@ -703,37 +703,37 @@
 				<tr style="@if($meter->installation_confirmed == 0) background:#ff9d9d; @else  @if($meter->assigned) background: #a4daa7; @endif @endif">				
 					<td style='vertical-align:middle;'>
 						@if($meter->assigned) 
-							<a href="{{URL::to('customer_tabview_controller/show/' . $meter->assigned->id)}}" target="_blank"><b><u>{{ $meter->username }}</u></b></a>
+							<a href="{!!URL::to('customer_tabview_controller/show/' . $meter->assigned->id)!!}" target="_blank"><b><u>{!! $meter->username !!}</u></b></a>
 						@else
-							{{ $meter->username }} 
+							{!! $meter->username !!} 
 						@endif
 					</td>				
 					
 					<td style='vertical-align:middle;'>
-						{{ $meter->meter_number }}
+						{!! $meter->meter_number !!}
 					</td> 
 					
 					<td style='vertical-align:middle;'>
-						{{ $meter->scu_number }}
+						{!! $meter->scu_number !!}
 					</td> 
 					
 					<td style='vertical-align:middle;'>
-						{{ $meter->house_name_number }}
+						{!! $meter->house_name_number !!}
 					</td>
 					
 					<td style='vertical-align:middle;'>
 						@if($meter->districtMeter)
-							<span id="m{{$meter->ID}}">{{ $meter->districtMeter->latest_reading }} kWh</span>
+							<span id="m{!!$meter->ID!!}">{!! $meter->districtMeter->latest_reading !!} kWh</span>
 						@else
-							<span id="m{{$meter->ID}}">{{ $meter->last_reading }} kWh</span>
+							<span id="m{!!$meter->ID!!}">{!! $meter->last_reading !!} kWh</span>
 						@endif
 					</td>
 					
 					<td style='vertical-align:middle;'>
 						@if($meter->districtMeter)
-							<span id="m{{$meter->ID}}_temp">{{ $meter->last_temp }}&deg;C</span>
+							<span id="m{!!$meter->ID!!}_temp">{!! $meter->last_temp !!}&deg;C</span>
 						@else
-							<span>{{ $meter->last_temp }}&deg;C</span>
+							<span>{!! $meter->last_temp !!}&deg;C</span>
 						@endif
 					</td>
 					
@@ -741,23 +741,23 @@
 					<td style='vertical-align:middle;'>
 						@if($meter->last_valve != null)
 							
-							<span id="m{{$meter->ID}}S">
-							<span style="font-weight:bold;color: {{ ($meter->last_valve == 'open') ? 'green' : 'red' }}">{{ $meter->last_valve }}</span>
-							<br/>({{ (Carbon\Carbon::parse($meter->last_valve_time)->diffForHumans()) }})</span>
+							<span id="m{!!$meter->ID!!}S">
+							<span style="font-weight:bold;color: {!! ($meter->last_valve == 'open') ? 'green' : 'red' !!}">{!! $meter->last_valve !!}</span>
+							<br/>({!! (Carbon\Carbon::parse($meter->last_valve_time)->diffForHumans()) !!})</span>
 						@else
-							<span id="m{{$meter->ID}}S">unchecked</span>
+							<span id="m{!!$meter->ID!!}S">unchecked</span>
 						@endif
 					</td>
 					
 					<td style='vertical-align:middle;'>
 
-						<input type="hidden" id="baseInstallerURL" value="{{ URL::to('prepago_installer') }}">
-						<a href="{{ URL::to('settings/scheme_settings/manage_meter/' . $meter->ID) }}"><button type="button" class="btn btn-info">Edit</button></a>
+						<input type="hidden" id="baseInstallerURL" value="{!! URL::to('prepago_installer') !!}">
+						<a href="{!! URL::to('settings/scheme_settings/manage_meter/' . $meter->ID) !!}"><button type="button" class="btn btn-info">Edit</button></a>
 						@if($meter->districtMeter || 1==1) 
-							<button type="button" onclick="meter_read_test_selective(m{{$meter->ID}}, {{$meter->ID}})" class="btn btn-primary btn_setup">Read</button>
+							<button type="button" onclick="meter_read_test_selective(m{!!$meter->ID!!}, {!!$meter->ID!!})" class="btn btn-primary btn_setup">Read</button>
 						@endif
-						<button type="button" onclick="service_control_test_on({{$meter->ID}})" class="btn btn-success btn_setup">Open</button>
-						<button type="button" onclick="service_control_test_off({{$meter->ID}})" class="btn btn-danger btn_setup">Close</button>
+						<button type="button" onclick="service_control_test_on({!!$meter->ID!!})" class="btn btn-success btn_setup">Open</button>
+						<button type="button" onclick="service_control_test_off({!!$meter->ID!!})" class="btn btn-danger btn_setup">Close</button>
 					</td>
 					
 					<td style='vertical-align:middle;'>
@@ -856,7 +856,7 @@
 	
 	<div class="tab-pane" id="5" style="text-align: left">		
 	
-		<form action="{{ URL::to('settings/scheme_settings/shut_off', ['scheme_number' => Auth::user()->scheme_number]) }}" method="POST">
+		<form action="{!! URL::to('settings/scheme_settings/shut_off', ['scheme_number' => Auth::user()->scheme_number]) !!}" method="POST">
 		<table width="100%" class="table table-bordered">
 		<tr>
 			<td colspan="4">
@@ -872,11 +872,11 @@
 		@if($shut_off_periods && $shut_off_periods->Days)
 			@foreach($shut_off_periods->Days as $key => $s) 
 				<tr>
-					<td><input type="hidden" name="{{ $key }}|Day" value="{{ $s->Day }}">{{ $s->Day }}</td>
-					<td><input type="text" name="{{ $key }}|Shut_Off_Start" placeholder="Shut_Off_Start" value="{{ $s->Shut_Off_Start }}"></td>
-					<td><input type="text" name="{{ $key }}|Shut_Off_End" placeholder="Shut_Off_End" value="{{ $s->Shut_Off_End }}"></td>
+					<td><input type="hidden" name="{!! $key !!}|Day" value="{!! $s->Day !!}">{!! $s->Day !!}</td>
+					<td><input type="text" name="{!! $key !!}|Shut_Off_Start" placeholder="Shut_Off_Start" value="{!! $s->Shut_Off_Start !!}"></td>
+					<td><input type="text" name="{!! $key !!}|Shut_Off_End" placeholder="Shut_Off_End" value="{!! $s->Shut_Off_End !!}"></td>
 					<td>
-						<input type="checkbox" name="{{ $key }}|Active" value="{{ $s->Active }}" @if($s->Active) checked @endif>
+						<input type="checkbox" name="{!! $key !!}|Active" value="{!! $s->Active !!}" @if($s->Active) checked @endif>
 					</td>
 				</tr>
 			@endforeach
@@ -888,7 +888,7 @@
 	
 	</div>
 	
-	{{ HTML::script('resources/js/installer.js?2828') }}
+	{!! HTML::script('resources/js/installer.js?2828') !!}
    <!-- End tab content -->
    </div>
 
@@ -951,14 +951,14 @@
 		
 		$('.command').on('click', function(){
 			var command = $(this).text();
-			var scheme = {{ Auth::user()->scheme_number }};
+			var scheme = {!! Auth::user()->scheme_number !!};
 			sendCommand(command, scheme);
 		});
 		
 		$('#custom_cmd').on('keyup', function(e){
 			if(e.which == 13) {
 				var command = $(this).val();
-				var scheme = {{ Auth::user()->scheme_number }};
+				var scheme = {!! Auth::user()->scheme_number !!};
 				sendCommand(command, scheme);
 				$(this).val('');
 			}
@@ -966,7 +966,7 @@
 		
 		$('.custom_cmd_send').on('click', function(e){
 			var command = $('#custom_cmd').val();
-			var scheme = {{ Auth::user()->scheme_number }};
+			var scheme = {!! Auth::user()->scheme_number !!};
 			sendCommand(command, scheme);
 			$('#custom_cmd').val('');
 		});

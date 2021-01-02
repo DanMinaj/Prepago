@@ -8,7 +8,7 @@
 <div class="admin2">
 
 
-    <a href="{{ URL::to('system_reports') }}">System Reports</a> > Paypoint Reports
+    <a href="{!! URL::to('system_reports') !!}">System Reports</a> > Paypoint Reports
     
 
 	<center>
@@ -20,13 +20,13 @@
 	<table class="table table-bordered">
         
 		<tr>
-			<td><b>Range</b></td><td>2018-07-18 - {{date('Y-m-d')}}</td>
+			<td><b>Range</b></td><td>2018-07-18 - {!!date('Y-m-d')!!}</td>
 		</tr>
 		<tr>
-			<td><b>Total No. Paypoint</b></td> <td>{{$total_paypoint_no}}</td>
+			<td><b>Total No. Paypoint</b></td> <td>{!!$total_paypoint_no!!}</td>
 		</tr>
 		<tr>
-			<td><b>Total &euro; Paypoint</b></td> <td>&euro;{{$total_paypoint_amt}}</td>
+			<td><b>Total &euro; Paypoint</b></td> <td>&euro;{!!$total_paypoint_amt!!}</td>
 		</tr>
 		
 	</table>
@@ -50,28 +50,28 @@
 		<tr>
 			<td width="10%">
 			
-			<a href="http://prepago-admin.biz/customer_tabview_controller/show/{{$recent_paypoint_customer['customer']->id}}" target="_blank">{{$recent_paypoint_customer['customer']->first_name}} {{$recent_paypoint_customer['customer']->surname}} ({{$recent_paypoint_customer['customer']->id}})</a></td>
+			<a href="http://prepago-admin.biz/customer_tabview_controller/show/{!!$recent_paypoint_customer['customer']->id!!}" target="_blank">{!!$recent_paypoint_customer['customer']->first_name!!} {!!$recent_paypoint_customer['customer']->surname!!} ({!!$recent_paypoint_customer['customer']->id!!})</a></td>
 			
 			<td width="10%">
 			@if(!empty($recent_paypoint_customer['customer']->scheme()))
-				{{ $recent_paypoint_customer['customer']->scheme()->first()->company_name }}
+				{!! $recent_paypoint_customer['customer']->scheme()->first()->company_name !!}
 			@endif
 			</td>
 			
 			<td width="10%">
-				{{ $recent_paypoint_customer['customer']->countPayments('paypoint', '2018-07-18') }}
+				{!! $recent_paypoint_customer['customer']->countPayments('paypoint', '2018-07-18') !!}
 			</td>
 			
 			<td width="10%">
-				&euro;{{ $recent_paypoint_customer['customer']->sumPayments('paypoint', '2018-07-18') }}
+				&euro;{!! $recent_paypoint_customer['customer']->sumPayments('paypoint', '2018-07-18') !!}
 			</td>
 			
 			<td width="10%">
-				<button style='text-overflow: ellipsis; max-width: 130px; white-space: nowrap; overflow: hidden;' type="button" data-toggle="modal" data-target="#sms_customer" data-customer="{{$recent_paypoint_customer['customer']->id}}"  data-customer="{{$recent_paypoint_customer['customer']->scheme_number}}" class="sms-customer btn btn-primary"><i class="fa fa-comment"></i> SMS</button>
+				<button style='text-overflow: ellipsis; max-width: 130px; white-space: nowrap; overflow: hidden;' type="button" data-toggle="modal" data-target="#sms_customer" data-customer="{!!$recent_paypoint_customer['customer']->id!!}"  data-customer="{!!$recent_paypoint_customer['customer']->scheme_number!!}" class="sms-customer btn btn-primary"><i class="fa fa-comment"></i> SMS</button>
 			</td>
 			
 			<td width="10%">
-				<span class="customer-{{$recent_paypoint_customer['customer']->id}}">n/a</span>
+				<span class="customer-{!!$recent_paypoint_customer['customer']->id!!}">n/a</span>
 			</td>
 		</tr>
 		
@@ -146,7 +146,7 @@
 		<div class="modal-body">
 			
 			<center>
-				<b>*</b> {{count($most_recent_paypoint)}} customers will receive this SMS. <b>*</b>
+				<b>*</b> {!!count($most_recent_paypoint)!!} customers will receive this SMS. <b>*</b>
 			</center>
 			
 			<form action="">
@@ -234,19 +234,19 @@
 			
 				$.ajax({
 				
-					url: "http://prepago-admin.biz/prepago_admin/sms/user_specific_message/{{$customer['customer']->id}}/{{$customer['customer']->scheme_number}}/J92NSOPS9Sb9S/"+sms_content+"",
+					url: "http://prepago-admin.biz/prepago_admin/sms/user_specific_message/{!!$customer['customer']->id!!}/{!!$customer['customer']->scheme_number!!}/J92NSOPS9Sb9S/"+sms_content+"",
 					type: "GET",
 				
 				}).done(function(data){
 					
-					$('.customer-{{$customer['customer']->id}}').html('<center><i class="fa fa-comment"></i> SMS delivered</center>');
-					console.log("Sent SMS to customer {{$customer['customer']->id}}");
+					$('.customer-{!!$customer['customer']->id!!}').html('<center><i class="fa fa-comment"></i> SMS delivered</center>');
+					console.log("Sent SMS to customer {!!$customer['customer']->id!!}");
 				});
 			
 				
 			@endforeach
 			
-			$.notify("The following SMS was sent to {{count($most_recent_paypoint)}} customers: " + '"' + sms_content + '"', "success");
+			$.notify("The following SMS was sent to {!!count($most_recent_paypoint)!!} customers: " + '"' + sms_content + '"', "success");
 			
 			
 		});

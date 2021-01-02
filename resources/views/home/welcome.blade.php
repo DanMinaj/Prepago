@@ -4,11 +4,11 @@
 <div><br/></div>
 
 @if(isset($_GET['debug']))
-	Scheme ID: {{$scheme_info->id}}
+	Scheme ID: {!!$scheme_info->id!!}
 	<br/>
-	Scheme Name/Nickname: {{$scheme_info->company_name}}/{{$scheme_info->scheme_nickname}}
+	Scheme Name/Nickname: {!!$scheme_info->company_name!!}/{!!$scheme_info->scheme_nickname!!}
 	<br/>
-	Scheme Prefix: {{$scheme_info->prefix}}
+	Scheme Prefix: {!!$scheme_info->prefix!!}
 @endif
 
 <table width="100%">
@@ -27,14 +27,14 @@
 </table>
 
 @if ($fromSystemReports)
-    <h3><a href="{{ URL::to('create_csv/list_all_customers'); }}">Download CSV</a></h3>
+    <h3><a href="{!! URL::to('create_csv/list_all_customers'); !!}">Download CSV</a></h3>
 @endif
 
 
 <div class="row-fluid">
 	<div class="span8">
 			@if($last_topup) 
-				<b>Last Topup: </b> &euro;{{$last_topup->amount}} at <u>{{$last_topup->time_date}}</u> by <a href="http://prepago-admin.biz/customer_tabview_controller/show/{{$last_topup->customer->id}}">({{$last_topup->customer->id}}) {{$last_topup->customer->first_name}} {{$last_topup->customer->surname}}</a> via {{$last_topup->topup_type}}
+				<b>Last Topup: </b> &euro;{!!$last_topup->amount!!} at <u>{!!$last_topup->time_date!!}</u> by <a href="http://prepago-admin.biz/customer_tabview_controller/show/{!!$last_topup->customer->id!!}">({!!$last_topup->customer->id!!}) {!!$last_topup->customer->first_name!!} {!!$last_topup->customer->surname!!}</a> via {!!$last_topup->topup_type!!}
 				@else
 				<b>Last Topup:</b> None			
 			@endif
@@ -52,28 +52,28 @@
 @if ($message = Session::get('successMessage'))
 <div class="alert alert-success alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
 @if ($message = Session::get('errorMessage'))
 <div class="alert alert-danger alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
 @if ($message = Session::get('warning'))
 <div class="alert alert-warning alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
 @if ($message = Session::get('info'))
 <div class="alert alert-info alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
@@ -82,8 +82,8 @@
 		<tr>
 			<td>
 				<div class="alert alert-warning alert-block">
-					There are <b>{{ BillingEngineFlag::pending()->count() }}</b> billing engine flags that require your approval.
-					<a href="{{ URL::to('billing/flags') }}">
+					There are <b>{!! BillingEngineFlag::pending()->count() !!}</b> billing engine flags that require your approval.
+					<a href="{!! URL::to('billing/flags') !!}">
 						<button class="btn btn-success" style="float: right; display: inline-block; margin: 0px; padding: 0px 5px 0px 5px;" type="">
 							Manage
 						</button>
@@ -100,7 +100,7 @@
 		<td>
 			<div class="alert alert-warning alert-block">
 				This schemes' tariff is not set, would you like to set it?
-				<a href="{{ URL::to('settings/tariff_setup/' . $scheme_info->scheme_number) }}">
+				<a href="{!! URL::to('settings/tariff_setup/' . $scheme_info->scheme_number) !!}">
 					<button class="btn btn-success" style="float: right; display: inline-block; margin: 0px; padding: 0px 5px 0px 5px;" type="">
 						Setup Tariff
 					</button>
@@ -118,7 +118,7 @@
    <ul class="nav nav-pills">
 	@foreach($categories as $k => $c)
 		<li role="presentation" @if(!$set) class="active" @endif>
-			<a href="#cat_{{ preg_replace('/\s+/', '', $k) }}_customers" data-toggle="tab">{{ ucfirst($k) }}</a>
+			<a href="#cat_{!! preg_replace('/\s+/', '', $k) !!}_customers" data-toggle="tab">{!! ucfirst($k) !!}</a>
 		</li>
 		<?php
 			$set = true;
@@ -128,7 +128,7 @@
 	
 	 <div class="tab-content">
 		@foreach($categories as $k => $c)
-		<div class="tab-pane @if(!$set2) active @endif" id="cat_{{ preg_replace('/\s+/', '', $k) }}_customers" style="">
+		<div class="tab-pane @if(!$set2) active @endif" id="cat_{!! preg_replace('/\s+/', '', $k) !!}_customers" style="">
 			@include('includes.welcome_users', array('info'=> $c['red'], 'type' => 'red' ))
 			@include('includes.welcome_users', array('info'=> $c['yellow'], 'type' => 'yellow' ))
 			@include('includes.welcome_users', array('info'=> $c['green'], 'type' => 'green' ))
@@ -152,9 +152,9 @@
         </tr>
         @foreach ($boiler_meters as $boiler_meter)
             <tr style="background: #268FAF; color: #FFF">
-                <td>{{{ $boiler_meter->meter_number }}}</td>
-                <td>{{{ $boiler_meter->meter_type }}}</td>
-                <td>{{{ $boiler_meter->install_date }}}</td>
+                <td>{{ $boiler_meter->meter_number }}</td>
+                <td>{{ $boiler_meter->meter_type }}</td>
+                <td>{{ $boiler_meter->install_date }}</td>
                 <td><a class="btn btn-info pull-right" type="button" href="<?php echo URL::to('customer_tabview_controller/show/meter/' . $boiler_meter->ID) ?>">View</a></td>
             </tr>
         @endforeach

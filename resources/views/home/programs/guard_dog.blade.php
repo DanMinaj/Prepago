@@ -7,7 +7,7 @@
 	
 @include('modals.guarddog') 
   <ul class="nav nav-tabs" style="">
-	  <li class="active"><a href="#1" data-toggle="tab">Active ({{ count(GuardDog::active()) }})</a></li>
+	  <li class="active"><a href="#1" data-toggle="tab">Active ({!! count(GuardDog::active()) !!})</a></li>
 	  <li><a href="#2" data-toggle="tab">Create new</a></li>  
   </ul>
 
@@ -24,14 +24,14 @@
 			<th><b>View</b></th>
 		</tr>
 		@foreach($guarddogs as $k => $gd) 
-		<tr id="gd_tr_{{ $gd->id }}">
-			<td style="vertical-align: middle">{{ $gd->id }}</td>
-			<td style="vertical-align: middle">{{ $gd->username }}</td>
-			<td style="vertical-align: middle">{{ Carbon\Carbon::parse($gd->created_at)->diffForHumans() }}</td>
-			<td style="vertical-align: middle">{{ ($gd->competed) ? 'complete' : 'running' }}</td>
+		<tr id="gd_tr_{!! $gd->id !!}">
+			<td style="vertical-align: middle">{!! $gd->id !!}</td>
+			<td style="vertical-align: middle">{!! $gd->username !!}</td>
+			<td style="vertical-align: middle">{!! Carbon\Carbon::parse($gd->created_at)->diffForHumans() !!}</td>
+			<td style="vertical-align: middle">{!! ($gd->competed) ? 'complete' : 'running' !!}</td>
 			<td style="vertical-align: middle">
 				<center>
-				<button class='btn btn-primary view_gd' id="gd_{{ $gd->id }}">View</button>
+				<button class='btn btn-primary view_gd' id="gd_{!! $gd->id !!}">View</button>
 				</center>
 			</td>
 		</tr>

@@ -2,22 +2,22 @@
 
 @if ($message = Session::get('successMessage'))
 	<div style="color: #468847;background-color: #dff0d8;border-color: #d6e9c6;padding: 14px;margin: 10px 0;">
-		{{ $message }}
+		{!! $message !!}
 	</div>
 @endif
 
 @if ($message = Session::get('errorMessage'))
 	<div style="color: #b94a48;background-color: #f2dede; border-color: #eed3d7;padding: 14px;margin: 10px 0;">
-		{{ $message }}
+		{!! $message !!}
 	</div>
 @endif
 
 @if( Auth::user() )
 <div class="search">
-	{{ Form::open(array('url' => 'prepago_installer/search')) }}
-	{{ Form::text('search') }}
-	{{ Form::submit('', array('class' => 'btn_search')) }}
-	{{ Form::close() }}
+	{!! Form::open(array('url' => 'prepago_installer/search')) !!}
+	{!! Form::text('search') !!}
+	{!! Form::submit('', array('class' => 'btn_search')) !!}
+	{!! Form::close() !!}
 </div>
 @endif
 
@@ -27,7 +27,7 @@
 @else
 	<h1>Dashboard: Installed Units</h1>
 @endif
-<h2>{{ count($installed_units) }}</h2></div>
+<h2>{!! count($installed_units) !!}</h2></div>
 <button 
 type="button" id="manage-box" onclick="read_all_meters()" class="btn btn-primary"><i class="fa fa-burn"></i> Read all meters</button>
 <!--<button 
@@ -113,21 +113,21 @@ type="button" id="manage-box" class="btn btn-warning"><i class="fa fa-edit"></i>
 	<tbody>
 	@if(count($installed_units) > 0)
 		@foreach($installed_units as $unit)
-			<tr unit-id="{{ $unit->ID }}" unit-username="{{ $unit->username }}" class="unit unit_row{{ $unit->installation_confirmed == 0 ? ' warn-red' : ''}}">
+			<tr unit-id="{!! $unit->ID !!}" unit-username="{!! $unit->username !!}" class="unit unit_row{!! $unit->installation_confirmed == 0 ? ' warn-red' : ''!!}">
 				<td class="unit_cell unit_number" >
-					<a href="{{ URL::to('prepago_installer/edit-unit/'.$unit->ID) }}" title="Edit">
-						{{ $unit->meter_number }}
+					<a href="{!! URL::to('prepago_installer/edit-unit/'.$unit->ID) !!}" title="Edit">
+						{!! $unit->meter_number !!}
 					</a>
 				</td>
 				<td class="unit_cell unit_type">
 					@if ($unit->ev_rs_address)
-						{{ $unit->ev_rs_address }}
+						{!! $unit->ev_rs_address !!}
 					@else
-						{{ $unit->house_name_number }}, {{ $unit->street1 }}, {{ $unit->town }}, {{ $unit->county }}
+						{!! $unit->house_name_number !!}, {!! $unit->street1 !!}, {!! $unit->town !!}, {!! $unit->county !!}
 					@endif
 				</td>
 				<td>
-				{{ $unit->lastReading }} kWh 	
+				{!! $unit->lastReading !!} kWh 	
 				@if ($unit->scu_type == 'm')
 						@if(!$unit->SCUReady) <span style="background-color: yellow;padding: 0 3px;margin-left:1px;">S</span>  @endif 
 						@if(!$unit->MeterReady) <span style="background-color: yellow;padding: 0 3px;margin-left:1px;">M</span> @endif
@@ -135,7 +135,7 @@ type="button" id="manage-box" class="btn btn-warning"><i class="fa fa-edit"></i>
 				</td>
 				<td>
 					@if(strpos($unit->lastTemp, "n/a") === false)
-						<i style="color:#62c462;" class="fa fa-check"></i>&nbsp;{{ $unit->lastTemp }}&deg;C
+						<i style="color:#62c462;" class="fa fa-check"></i>&nbsp;{!! $unit->lastTemp !!}&deg;C
 					@else
 						<i style="color:#ee5f5b;" class="fa fa-times"></i>&nbsp;n/a
 					@endif
@@ -155,9 +155,9 @@ type="button" id="manage-box" class="btn btn-warning"><i class="fa fa-edit"></i>
 					@endif
 				</td>
 				<td>
-					{{ Carbon\Carbon::parse($unit->install_date)->format('d/m/Y') }}
+					{!! Carbon\Carbon::parse($unit->install_date)->format('d/m/Y') !!}
 				</td>
-				<!--<td class="unit_cell unit_installed" style="width:15%">{{ $unit->install_date }}</td>-->
+				<!--<td class="unit_cell unit_installed" style="width:15%">{!! $unit->install_date !!}</td>-->
 			</tr>
 		@endforeach
 	@else
@@ -173,7 +173,7 @@ type="button" id="manage-box" class="btn btn-warning"><i class="fa fa-edit"></i>
 </table>
 
 
-<script type="text/javascript" src="{{asset('resources/js/installer.js')}}?<?php echo time(); ?>"></script>
+<script type="text/javascript" src="{!!asset('resources/js/installer.js')!!}?<?php echo time(); ?>"></script>
 <script>
 	$(document).ready(function() {
 		$(function() {

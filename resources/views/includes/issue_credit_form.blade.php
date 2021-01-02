@@ -1,8 +1,8 @@
 @if(isset($data))
-	<form action="{{ URL::to('issue_credit') }}" method="POST" class="well form-horizontal" id="issue_credit_form"
+	<form action="{!! URL::to('issue_credit') !!}" method="POST" class="well form-horizontal" id="issue_credit_form"
 	onSubmit="if(!confirm('You are about to issue ' + document.getElementById('amount').value + ' to the customer\'s balance. Are you sure you would like to continue?')) {  return false; } "
 	>
-	   <input type="hidden" name="customer_id" value="{{ $data['id'] }}">
+	   <input type="hidden" name="customer_id" value="{!! $data['id'] !!}">
 	   <fieldset>
 			<div class="row-fluid">
 			
@@ -49,10 +49,10 @@
 				<div class='row-fluid'>
 				<div>
 					<h4> Choose preset amount </h4>
-					<label><input type="radio" name="amount_preset"> {{ $currency }}<span>10.00</span> </label>
-					<label><input type="radio" name="amount_preset"> {{ $currency }}<span>25.00</span> </label>
-					<label><input type="radio" name="amount_preset"> {{ $currency }}<span>50.00</span> </label>
-					<label><input type="radio" name="amount_preset">	{{ $currency }}<span>100.00</span> </label>
+					<label><input type="radio" name="amount_preset"> {!! $currency !!}<span>10.00</span> </label>
+					<label><input type="radio" name="amount_preset"> {!! $currency !!}<span>25.00</span> </label>
+					<label><input type="radio" name="amount_preset"> {!! $currency !!}<span>50.00</span> </label>
+					<label><input type="radio" name="amount_preset">	{!! $currency !!}<span>100.00</span> </label>
 				</div>
 				</div>
 				</div>

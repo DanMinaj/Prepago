@@ -26,8 +26,8 @@
 </script>
 
 <div class="admin2">
-    <a href="{{ URL::to('system_reports') }}">System Reports</a> > <a href="{{ URL::to('system_reports/topup_reports') }}">Top-Up Reports</a> > Customer Pending Top-ups
-    <h3>Total Top-Up Amount: {{ $currencySign }}<?php echo $total_amount ?></h3>
+    <a href="{!! URL::to('system_reports') !!}">System Reports</a> > <a href="{!! URL::to('system_reports/topup_reports') !!}">Top-Up Reports</a> > Customer Pending Top-ups
+    <h3>Total Top-Up Amount: {!! $currencySign !!}<?php echo $total_amount ?></h3>
     <div class="cl"></div>
     <h3><a href="<?php echo $csv_url ?>">Download CSV</a></h3>
     <div id="all_customers">
@@ -45,7 +45,7 @@
                     <tr>
                         <td><?php echo $customer->first_name . " " . $customer->surname; ?></td>
                         <td><?php echo $customer->time_date ?></td>
-                        <td>{{ $currencySign }}<?php echo $customer->amount; ?></td>
+                        <td>{!! $currencySign !!}<?php echo $customer->amount; ?></td>
                         
                     </tr>
                 <?php endforeach; ?>

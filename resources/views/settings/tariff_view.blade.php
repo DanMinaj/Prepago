@@ -5,11 +5,11 @@
 
     @if (Auth::user()->schemes && Auth::user()->schemes->count() > 1)
         <ul class="nav nav-pills">
-            <li class="{{ $all ? '' : 'active' }}">
-                <a href="{{ URL::to('settings/tariff') }}">Scheme {{ $currentScheme->scheme_nickname ? : $currentScheme->company_name }}</a>
+            <li class="{!! $all ? '' : 'active' !!}">
+                <a href="{!! URL::to('settings/tariff') !!}">Scheme {!! $currentScheme->scheme_nickname ? : $currentScheme->company_name !!}</a>
             </li>
-            <li class="{{ $all ? 'active' : '' }}">
-                <a href="{{ URL::to('settings/tariff/all') }}">All Schemes</a>
+            <li class="{!! $all ? 'active' : '' !!}">
+                <a href="{!! URL::to('settings/tariff/all') !!}">All Schemes</a>
             </li>
         </ul>
     @endif
@@ -32,10 +32,10 @@
                     <?php $tariffIndex = "tariff_" . $i; ?>
                     @if ($tarrif->{$tariffName})
                         <tr>
-                            <td>{{{ $tarrif->{$tariffName} }}}</td>
-                            <td>{{{ $tarrif->{$tariffIndex} }}}</td>
+                            <td>{{ $tarrif->{$tariffName} }}</td>
+                            <td>{{ $tarrif->{$tariffIndex} }}</td>
                             @if ($all)
-                                <td>{{{ $tarrif->scheme->scheme_nickname ? : $tarrif->scheme->company_name }}}</td>
+                                <td>{{ $tarrif->scheme->scheme_nickname ? : $tarrif->scheme->company_name }}</td>
                             @endif
                         </tr>
                     @endif
@@ -44,10 +44,10 @@
         @endif
     </table>
 
-    <form action="{{ URL::to('settings/tarrif/add') }}" method="POST" id="tarrifadd">
+    <form action="{!! URL::to('settings/tarrif/add') !!}" method="POST" id="tarrifadd">
 
-        <input type="hidden" name="tariff-added" id="tariff-added" value="{{ \Session::get('tarrif-added') }}" />
-        <input type="hidden" name="tariff-all" id="tariff-all" value="{{ $all }}" />
+        <input type="hidden" name="tariff-added" id="tariff-added" value="{!! \Session::get('tarrif-added') !!}" />
+        <input type="hidden" name="tariff-all" id="tariff-all" value="{!! $all !!}" />
 
         <p style="font-size: 1.5em;">Add a future tariff change</p>
 
@@ -60,7 +60,7 @@
                             @for ($i = 1; $i < 6; $i++)
                                 <?php $tariffName = "tariff_" . $i . "_name"; ?>
                                 @if ($tarrif->{$tariffName})
-                                    <option value="scheme_{{{ $tarrif->scheme_number }}}_tariff_{{{ $i }}}">{{{ $tarrif->{$tariffName} . ($all ? " (" . ($tarrif->scheme->scheme_nickname ? : $tarrif->scheme->company_name) . ")" : '') }}}</option>
+                                    <option value="scheme_{{ $tarrif->scheme_number }}_tariff_{{ $i }}">{{ $tarrif->{$tariffName} . ($all ? " (" . ($tarrif->scheme->scheme_nickname ? : $tarrif->scheme->company_name) . ")" : '') }}</option>
                                 @endif
                             @endfor
                         @endforeach
@@ -118,16 +118,16 @@
                         @if($tarrif->tarrif->{$tariffToChange})
 
                             <tr>
-                                <td>{{{ $tarrif->tarrif->{$tariffToChange} }}}</td>
-                                <td>{{{ $tarrif->change_date }}}</td>
-                                <td>{{{ $tarrif->new_value }}}</td>
+                                <td>{{ $tarrif->tarrif->{$tariffToChange} }}</td>
+                                <td>{{ $tarrif->change_date }}</td>
+                                <td>{{ $tarrif->new_value }}</td>
                                 @if ($all)
-                                    <td>{{{ $tarrif->scheme->scheme_nickname  ? : $tarrif->scheme->company_name }}}</td>
+                                    <td>{{ $tarrif->scheme->scheme_nickname  ? : $tarrif->scheme->company_name }}</td>
                                 @endif
-                                <td><a href="#cancelModal{{{ $tarrif->id }}}" role="button" class="btn btn-danger" data-toggle="modal">Cancel</a></td>
+                                <td><a href="#cancelModal{{ $tarrif->id }}" role="button" class="btn btn-danger" data-toggle="modal">Cancel</a></td>
                             </tr>
 
-                            <div id="cancelModal{{{ $tarrif->id }}}" class="modal hide fade" >
+                            <div id="cancelModal{{ $tarrif->id }}" class="modal hide fade" >
                                 <div class="modal-header">
 
                                     <h3 id="cancelModalLabel">Cancel tarrif change</h3>
@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                                    <a href="{{ URL::to('settings/tarrif/cancel/' . $tarrif->id . ($all ? '/all' : '')) }}" class="btn btn-danger">Yes</a>
+                                    <a href="{!! URL::to('settings/tarrif/cancel/' . $tarrif->id . ($all ? '/all' : '')) !!}" class="btn btn-danger">Yes</a>
                                 </div>
                             </div>
 
@@ -164,11 +164,11 @@
                         <?php $tariffToChange = $tarrif->tariff_to_change . '_name'; ?>
                         @if($tarrif->tarrif->{$tariffToChange})
                             <tr>
-                                <td>{{{ $tarrif->tarrif->{$tariffToChange} }}}</td>
-                                <td>{{{ $tarrif->change_date }}}</td>
-                                <td>{{{ $tarrif->new_value }}}</td>
+                                <td>{{ $tarrif->tarrif->{$tariffToChange} }}</td>
+                                <td>{{ $tarrif->change_date }}</td>
+                                <td>{{ $tarrif->new_value }}</td>
                                 @if ($all)
-                                    <td>{{{ $tarrif->scheme->scheme_nickname  ? : $tarrif->scheme->company_name }}}</td>
+                                    <td>{{ $tarrif->scheme->scheme_nickname  ? : $tarrif->scheme->company_name }}</td>
                                 @endif
                             </tr>
                         @endif
@@ -191,7 +191,7 @@
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
-        <a href="/customer_messaging/scheme{{ $all ? '/all' : '' }}" class="btn btn-primary">Yes</a>
+        <a href="/customer_messaging/scheme{!! $all ? '/all' : '' !!}" class="btn btn-primary">Yes</a>
     </div>
 </div>
 

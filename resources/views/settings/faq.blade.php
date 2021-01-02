@@ -109,7 +109,7 @@
 					 @foreach($schemes as $k => $s)
 						<tr>
 							<td width="100%">
-								<input style="width: 25px; height: 25px; margin-bottom: 3%;" type="checkbox" class='scheme_check' name="checked_schemes[]" value="{{ $s->scheme_number }}"> {{ $s->scheme_nickname }}
+								<input style="width: 25px; height: 25px; margin-bottom: 3%;" type="checkbox" class='scheme_check' name="checked_schemes[]" value="{!! $s->scheme_number !!}"> {!! $s->scheme_nickname !!}
 							</td>
 						</tr>
 					@endforeach
@@ -164,7 +164,7 @@
 
    <ul class="nav nav-tabs" style="margin: 30px 0">
       @foreach($schemes as $k => $s)
-		  <li @if($k == 0) class="active" @endif><a href="#{{ preg_replace("/[^A-Za-z0-9]/", "", $s->scheme_nickname) }}" data-toggle="tab">{{ $s->scheme_nickname }}</a></li>
+		  <li @if($k == 0) class="active" @endif><a href="#{!! preg_replace("/[^A-Za-z0-9]/", "", $s->scheme_nickname) !!}" data-toggle="tab">{!! $s->scheme_nickname !!}</a></li>
 	  @endforeach
    </ul>
    
@@ -173,20 +173,20 @@
     
 	@if(Session::has('successMessage'))
 	<div class="alert alert-success" style="padding:2%;font-size:1.2em;">
-		{{ Session::get('successMessage') }}
+		{!! Session::get('successMessage') !!}
 	</div>
 	@endif
 	
 	@if(Session::has('errorMessage'))
 	<div class="alert alert-danger" style="padding:2%;font-size:1.2em;">
-		{{ Session::get('errorMessage') }}
+		{!! Session::get('errorMessage') !!}
 	</div>
 	@endif
 	
    @foreach($schemes as $k => $s)
-		 <div class="tab-pane @if($k == 0) active @endif" id="{{ preg_replace("/[^A-Za-z0-9]/", "", $s->scheme_nickname) }}" style="">
-			 <form @if($scheme_id == null) action="{{ URL::to('settings/faq/save_faq') }}" @else action="{{ URL::to('settings/faq/save_faq/' . $scheme_id) }}" @endif method="POST">
-			<h4> {{ $s->scheme_nickname }} FAQ's</h4>	
+		 <div class="tab-pane @if($k == 0) active @endif" id="{!! preg_replace("/[^A-Za-z0-9]/", "", $s->scheme_nickname) !!}" style="">
+			 <form @if($scheme_id == null) action="{!! URL::to('settings/faq/save_faq') !!}" @else action="{!! URL::to('settings/faq/save_faq/' . $scheme_id) !!}" @endif method="POST">
+			<h4> {!! $s->scheme_nickname !!} FAQ's</h4>	
 			
 			
 				<input type="submit" name="save" id="save" class="btn btn-success" style="float:right;margin-bottom:2em;" value="Save Changes">
@@ -215,7 +215,7 @@
 					</tr>-->
 					<?php } ?>
 				</table>
-				<input type="hidden" name="scheme_number" id="scheme_number" value="{{ $s->scheme_number }}">
+				<input type="hidden" name="scheme_number" id="scheme_number" value="{!! $s->scheme_number !!}">
 				<input type="hidden" name="faqcounter" id="faqcounter" value="<?php echo $counter; ?>">
 
 				<input type="submit" name="save" id="save" class="btn btn-success" style="float:right;margin-bottom:2em;" value="Save Changes">

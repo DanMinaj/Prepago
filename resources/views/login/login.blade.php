@@ -26,19 +26,19 @@
 
 
         @if($message = Session::get('signinerror'))
-        <label style="text-transform:none;color: red">{{ $message }}</label>
+        <label style="text-transform:none;color: red">{!! $message !!}</label>
         @endif
 
-        {{ Form::label('username', 'Username') }}
-        {{ Form::text('username') }}
-        {{ $errors->first('username', '<label style="text-transform:none;color: red">:message</label>') }}
+        {!! Form::label('username', 'Username') !!}
+        {!! Form::text('username') !!}
+        {!! $errors->first('username', '<label style="text-transform:none;color: red">:message</label>') !!}
 
-        {{ Form::label('password', 'Password') }}
-        {{ Form::password('password') }}
-        {{ $errors->first('password', '<label style="text-transform:none;color: red">:message</label>') }}
+        {!! Form::label('password', 'Password') !!}
+        {!! Form::password('password') !!}
+        {!! $errors->first('password', '<label style="text-transform:none;color: red">:message</label>') !!}
 
-        {{ Form::submit('') }}
-        {{ Form::close() }}
+        {!! Form::submit('') !!}
+        {!! Form::close() !!}
 
       </form>
 

@@ -10,21 +10,21 @@
 	@if ($message1 = Session::get('successMessage'))
 	<div class="alert alert-success alert-block">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		{{ $message1 }}
+		{!! $message1 !!}
 	</div>
 	@endif
 
 	@if ($message2 = Session::get('warningMessage'))
 	<div class="alert alert-warning alert-block">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		{{ $message2 }}
+		{!! $message2 !!}
 	</div>
 	@endif
 
 	@if ($message3 = Session::get('errorMessage'))
 	<div class="alert alert-danger alert-block">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		{{ $message3 }}
+		{!! $message3 !!}
 	</div>
 	@endif
 
@@ -59,16 +59,16 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan='2' width="100%"><b>Backups: </b> {{ count($databaseBackups) }}</td>
+				<td colspan='2' width="100%"><b>Backups: </b> {!! count($databaseBackups) !!}</td>
 			</tr>
 			<tr>
-				<td colspan='2' width="100%"><b>Last backup: </b> {{ (count($databaseBackups) > 0) ? Carbon\Carbon::createFromTimestamp($databaseBackups[0]->time)->format('d M Y @ H:i:s') : "" }}</td>
+				<td colspan='2' width="100%"><b>Last backup: </b> {!! (count($databaseBackups) > 0) ? Carbon\Carbon::createFromTimestamp($databaseBackups[0]->time)->format('d M Y @ H:i:s') : "" !!}</td>
 			</tr>
 			<tr>
-				<td colspan='2' width="100%"><b>Size: </b> {{ $databaseSize }}MB</td>
+				<td colspan='2' width="100%"><b>Size: </b> {!! $databaseSize !!}MB</td>
 			</tr>
 			<tr>
-				<td colspan='2' width="100%"><b>Approx backup time: </b> {{ ceil($estimatedTime) }}s</td>
+				<td colspan='2' width="100%"><b>Approx backup time: </b> {!! ceil($estimatedTime) !!}s</td>
 			</tr>
 			
 		</table>
@@ -79,9 +79,9 @@
 			@foreach($databaseBackups as $db) 
 				
 				<tr>
-					<td>{{ $db->name }}</td>
-					<td>{{ Carbon\Carbon::createFromTimestamp($db->time)->format('d M Y H:i:s') }}</td>
-					<td>{{ $db->size_mb }}MB</td>
+					<td>{!! $db->name !!}</td>
+					<td>{!! Carbon\Carbon::createFromTimestamp($db->time)->format('d M Y H:i:s') !!}</td>
+					<td>{!! $db->size_mb !!}MB</td>
 				</tr> 
 			
 			@endforeach
@@ -106,27 +106,27 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan='2' width="100%"><b>Tables: </b> {{ count($tables) }}</td>
+				<td colspan='2' width="100%"><b>Tables: </b> {!! count($tables) !!}</td>
 			</tr>
 		</table>
 		@foreach($tables as $t)
 		<table class="table-bordered table" width="100%">
 			
 			<tr>
-				<td width="70%" style="vertical-align:middle;" colspan='2'><b>({{ count($t->backups) }}) {{ $t->size }}MB - {{ $t->Tables_in_prepago }}</b></td>
+				<td width="70%" style="vertical-align:middle;" colspan='2'><b>({!! count($t->backups) !!}) {!! $t->size !!}MB - {!! $t->Tables_in_prepago !!}</b></td>
 				<td width="30%" colspan='2'>
 					<center>
-						<button onclick="backupTable('{{ $t->Tables_in_prepago }}')" class="btn btn-primary" type="button" style="">Backup</button>
+						<button onclick="backupTable('{!! $t->Tables_in_prepago !!}')" class="btn btn-primary" type="button" style="">Backup</button>
 					</center>
 				</td>
 			</tr>
 			@foreach($t->backups as $backups)
 			<tr>
-				<td width="20%"><i style='color:green;cursor:pointer;' onclick="restoreTable('{{ $backups->full_name }}')" class="fa fa-play-circle"></i> {{ $backups->name }}</td>
-				<td width="20%">{{ Carbon\Carbon::createFromTimestamp($backups->time)->format('d M Y H:i:s') }}</td>
-				<td width="10%">{{ $backups->size_mb }}MB</td>
+				<td width="20%"><i style='color:green;cursor:pointer;' onclick="restoreTable('{!! $backups->full_name !!}')" class="fa fa-play-circle"></i> {!! $backups->name !!}</td>
+				<td width="20%">{!! Carbon\Carbon::createFromTimestamp($backups->time)->format('d M Y H:i:s') !!}</td>
+				<td width="10%">{!! $backups->size_mb !!}MB</td>
 				<td width="5%">
-					<i style='color:red;cursor:pointer;' onclick="removeFile('{{ $backups->full_name }}')" class="fa fa-trash"></i>
+					<i style='color:red;cursor:pointer;' onclick="removeFile('{!! $backups->full_name !!}')" class="fa fa-trash"></i>
 				</td>
 			</tr>
 			@endforeach
@@ -147,7 +147,7 @@
 
 <script>
 
-	var secs = Math.ceil({{$estimatedTime}});
+	var secs = Math.ceil({!!$estimatedTime!!});
 	var completed = false;
 	var cur = parseInt($('#progress').css('width'));
 	var progress;
@@ -218,7 +218,7 @@
 		
 		$.ajax({
 			method: 'POST',
-			url: "{{ URL::to('backup/database/submit') }}",
+			url: "{!! URL::to('backup/database/submit') !!}",
 			data: {},
 			success: function(data){
 				stopLoadProgress();
@@ -234,7 +234,7 @@
 		
 		$.ajax({
 			method: 'POST',
-			url: "{{ URL::to('backup/database/submitTable') }}",
+			url: "{!! URL::to('backup/database/submitTable') !!}",
 			data: {table: table},
 			success: function(data){
 				stopLoadProgress();
@@ -247,7 +247,7 @@
 	{
 		$.ajax({
 			method: 'POST',
-			url: "{{ URL::to('backup/database/remove') }}",
+			url: "{!! URL::to('backup/database/remove') !!}",
 			data: {file: file},
 			success: function(data){
 				
@@ -264,7 +264,7 @@
 		
 		$.ajax({
 			method: 'POST',
-			url: "{{ URL::to('backup/database/restore') }}",
+			url: "{!! URL::to('backup/database/restore') !!}",
 			data: {file: file},
 			success: function(data){
 				
@@ -285,7 +285,7 @@
 			
 			$.ajax({
 				method: 'POST',
-				url: "{{ URL::to('backup/database/restoreTable') }}",
+				url: "{!! URL::to('backup/database/restoreTable') !!}",
 				data: {file: file, database: database, file_info: file_info},
 				success: function(data){
 					stopLoadProgress();

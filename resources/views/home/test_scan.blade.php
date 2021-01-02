@@ -38,11 +38,11 @@
 							<tbody>
 							@foreach($scans as $s) 
 								<tr>
-									<td>{{ $s->id }}</td>
-									<td>{{ $s->username }}</td>
-									<td>{{ $s->progress }}%</td>
-									<td><i class='fa fa-exchange-alt'></i> {{ $s->scu_end_status }}/{{ $s->expected_temp_change }}&deg;C</td>
-									<td>{{ abs($s->meter_start_temp-$s->meter_end_temp) }}&deg;C  ({{ $s->meter_start_temp }} -> {{ $s->meter_end_temp }})</td>
+									<td>{!! $s->id !!}</td>
+									<td>{!! $s->username !!}</td>
+									<td>{!! $s->progress !!}%</td>
+									<td><i class='fa fa-exchange-alt'></i> {!! $s->scu_end_status !!}/{!! $s->expected_temp_change !!}&deg;C</td>
+									<td>{!! abs($s->meter_start_temp-$s->meter_end_temp) !!}&deg;C  ({!! $s->meter_start_temp !!} -> {!! $s->meter_end_temp !!})</td>
 								</tr>
 							@endforeach
 							</tbody>
@@ -64,7 +64,7 @@
 			<b>Scheme:</b>
 				<select style="text-align: center; padding: 2%; width: 95%;" id="scheme" name="scheme">
 					@foreach($schemes as $s)
-						<option value="{{ $s->scheme_number }}">{{ $s->scheme_nickname }}</option>
+						<option value="{!! $s->scheme_number !!}">{!! $s->scheme_nickname !!}</option>
 					@endforeach
 				</select>
 			</div>

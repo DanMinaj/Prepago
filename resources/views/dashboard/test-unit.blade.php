@@ -1,10 +1,10 @@
 
 @if ($message = Session::get('errorMessage'))
-	<div style="color: #A94442; margin-top: 15px; padding: 10px; background-color: #F2DEDE; font-weight: bold">{{ $message }}</div>
+	<div style="color: #A94442; margin-top: 15px; padding: 10px; background-color: #F2DEDE; font-weight: bold">{!! $message !!}</div>
 @endif
 
 @if ($message = Session::get('successMessage'))
-	<div style="color: #69763D; margin-top: 15px; padding: 10px; background-color: #DFF0D8; font-weight: bold">{{ $message }}</div>
+	<div style="color: #69763D; margin-top: 15px; padding: 10px; background-color: #DFF0D8; font-weight: bold">{!! $message !!}</div>
 @endif
 
 <div class="title"><div class="ico_tools_title"></div><h1>Unit Test</h1></div>
@@ -62,22 +62,22 @@
 
 	<div class="iniSetupTitle">Complete Installation</div>
 
-	{{ Form::open(array('url' => 'prepago_installer/complete-install')) }}
-	{{ Form::hidden('unitID', $unitID) }}
-	{{ Form::submit('Mark as complete', array('class' => 'btn_setup')) }}
-	{{ Form::close() }}
+	{!! Form::open(array('url' => 'prepago_installer/complete-install')) !!}
+	{!! Form::hidden('unitID', $unitID) !!}
+	{!! Form::submit('Mark as complete', array('class' => 'btn_setup')) !!}
+	{!! Form::close() !!}
 
 	<div class="clear"></div>
 
 </div>
 
-<input type="hidden" id="base" value="{{ URL::to('prepago_installer') }}">
-<input type="hidden" id="unitID" value="{{ $unitID }}">
+<input type="hidden" id="base" value="{!! URL::to('prepago_installer') !!}">
+<input type="hidden" id="unitID" value="{!! $unitID !!}">
 <input type="hidden" id="meter_read_test_success" value="0">
 <input type="hidden" id="service_control_teston_success" value="0">
 <input type="hidden" id="service_control_testoff_success" value="0">
 
-{{ HTML::script('resources/js/installer.js') }}
+{!! HTML::script('resources/js/installer.js') !!}
 <script>
 	jQuery(document).ready(function(){
 		// jQuery('.btn_setup').hide();

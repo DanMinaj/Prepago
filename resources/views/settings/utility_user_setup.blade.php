@@ -7,14 +7,14 @@
 @if(Session::has('successMessage'))
 <div class="alert alert-success alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('successMessage')}}
+{!!Session::get('successMessage')!!}
 </div>
 @endif
 
 @if(Session::has('errorMessage'))
 <div class="alert alert-danger alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('errorMessage')}}
+{!!Session::get('errorMessage')!!}
 </div>
 @endif
 <script>
@@ -67,8 +67,8 @@ $(document).ready(function() {
 								<select name="scheme">
 									@foreach(Scheme::orderBy('id', 'DESC')->get() as $s)
 										
-										<option value="{{$s->id}}">
-											{{ $s->scheme_nickname }}
+										<option value="{!!$s->id!!}">
+											{!! $s->scheme_nickname !!}
 										</option>
 									
 									@endforeach
@@ -79,28 +79,28 @@ $(document).ready(function() {
 							<td><b>Username</b></td>
 						</tr>
 						<tr>
-							<td><input type="text" value="{{ Input::old('username') }}" placeholder="Username" name="username"></td>
+							<td><input type="text" value="{!! Input::old('username') !!}" placeholder="Username" name="username"></td>
 						</tr>
 					
 						<tr>
 							<td><b>Password</b></td>
 						</tr>
 						<tr>
-							<td><input type="text" value="{{ Input::old('password') }}" placeholder="Password" name="password"></td>
+							<td><input type="text" value="{!! Input::old('password') !!}" placeholder="Password" name="password"></td>
 						</tr>
 						
 						<tr>
 							<td><b>Employee name</b></td>
 						</tr>
 						<tr>
-							<td><input type="text" value="{{ Input::old('employee_name') }}" placeholder="e.g John Doe" name="employee_name"></td>
+							<td><input type="text" value="{!! Input::old('employee_name') !!}" placeholder="e.g John Doe" name="employee_name"></td>
 						</tr>
 						
 						<tr>
 							<td><b>Employee email</b></td>
 						</tr>
 						<tr>
-							<td><input type="email" value="{{ Input::old('email_address') }}" placeholder="e.g test@prepago.ie" name="email_address"></td>
+							<td><input type="email" value="{!! Input::old('email_address') !!}" placeholder="e.g test@prepago.ie" name="email_address"></td>
 						</tr>
 						
 					</table>

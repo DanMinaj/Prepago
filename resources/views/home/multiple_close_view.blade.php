@@ -11,10 +11,10 @@
 <div class="admin2">
 
 	@if (Session::has('successMsg') && Session::get('successMsg'))
-		<div class="alert alert-success">{{ Session::get('successMsg') }}</div>
+		<div class="alert alert-success">{!! Session::get('successMsg') !!}</div>
 	@endif
 	
-    <form method="post" action="{{ URL::to('settings/multiple_close/close_account_action') }}">
+    <form method="post" action="{!! URL::to('settings/multiple_close/close_account_action') !!}">
         <table class="table table-bordered">
             <th>Barcode</th>
             <th>Username</th>

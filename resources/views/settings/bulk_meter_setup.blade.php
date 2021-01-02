@@ -10,21 +10,21 @@
 @if ($message = Session::get('successMessage'))
 <div class="alert alert-success alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
 @if ($message = Session::get('warningMessage'))
 <div class="alert alert-warning alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
 @if ($message = Session::get('errorMessage'))
 <div class="alert alert-danger alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
@@ -43,7 +43,7 @@
 		<b>Note:</b> Please note that you are inserting this into the scheme 
 		<?php $scheme = Scheme::find(Auth::user()->scheme_number); ?>
 		@if($scheme)	
-		<b>'{{ $scheme->scheme_nickname }}'</b>
+		<b>'{!! $scheme->scheme_nickname !!}'</b>
 		@else
 		'<b>Scheme not found</b>'
 		@endif
@@ -57,7 +57,7 @@
 		@if(isset($r['error']))
 			error
 		@else
-		{{$r}}
+		{!!$r!!}
 		---------------------------------------------------------------------------------------------------------------
 		@endif
 		@endforeach
@@ -79,13 +79,13 @@
 			
 					
 					<td> 
-					<font style='font-size:13px' >{{ $lookup->meter_make }} {{ $lookup->meter_model }}</font> 
+					<font style='font-size:13px' >{!! $lookup->meter_make !!} {!! $lookup->meter_model !!}</font> 
 					<br/></br>
 					</td>
 					
 					
 					<td> 
-					<font style='font-size:13px' >{{ $lookup->scu_make }} {{ $lookup->scu_model }}</font> 
+					<font style='font-size:13px' >{!! $lookup->scu_make !!} {!! $lookup->scu_model !!}</font> 
 					<br/></br>
 					</td>
 					
@@ -102,17 +102,17 @@
 				<tr>
 					
 					<td>
-						<input type="text" name="last_8" value="{{ $lookup->last_eight }}" placeholder="Meter last 8 digits">
+						<input type="text" name="last_8" value="{!! $lookup->last_eight !!}" placeholder="Meter last 8 digits">
 					</td>
 					
 					
 					<td>
-						<input type="text" name="scu_last_8" value="{{ $lookup->scu_last_eight }}" placeholder="SCU last 8 digits">
+						<input type="text" name="scu_last_8" value="{!! $lookup->scu_last_eight !!}" placeholder="SCU last 8 digits">
 					</td>
 				
 					@if($scheme)
 					<td>
-						<input type="text" name="street1" value="{{$scheme->scheme_nickname}}" placeholder="Street"><br/>
+						<input type="text" name="street1" value="{!!$scheme->scheme_nickname!!}" placeholder="Street"><br/>
 					</td>
 					@else
 					<td>
@@ -173,7 +173,7 @@
 			<b>Note:</b> Please note that you are inserting this into the scheme 
 			<?php $scheme = Scheme::find(Auth::user()->scheme_number); ?>
 			@if($scheme)	
-			<b>'<span class='scheme'>{{ $scheme->scheme_nickname }}</span>'</b>
+			<b>'<span class='scheme'>{!! $scheme->scheme_nickname !!}</span>'</b>
 			@else
 			'<b>Scheme not found</b>'
 			@endif
@@ -184,13 +184,13 @@
 			<table width="100%" class="table table-bordered">
 			<tr>
 				<td>
-					<b>  Failed to insert {{ count($failed) }} records. </b>
+					<b>  Failed to insert {!! count($failed) !!} records. </b>
 				</td>
 			</tr>
 			@foreach($failed as $k => $v)
 				<tr>
 					<td>
-					{{ $v['value'] }}: {{ $v['reason'] }}
+					{!! $v['value'] !!}: {!! $v['reason'] !!}
 					</td>
 				</tr>
 			@endforeach
@@ -202,13 +202,13 @@
 			<table width="100%" class="table table-bordered">
 			<tr>
 				<td>
-					<b> Successfullly inserted records {{ count($success) }}. </b>
+					<b> Successfullly inserted records {!! count($success) !!}. </b>
 				</td>
 			</tr>
 			@foreach($success as $k => $v)
 				<tr>
 					<td>
-					{{ $v['value'] }}: PMD#{{ $v['id'] }}
+					{!! $v['value'] !!}: PMD#{!! $v['id'] !!}
 					</td>
 				</tr>
 			@endforeach
@@ -216,7 +216,7 @@
 		@endif
 	
 	
-		<form action="{{ URL::to('settings/meter_setup2') }}" method="POST">
+		<form action="{!! URL::to('settings/meter_setup2') !!}" method="POST">
 			
 		<div class="row-fluid">
 			<div class="span6">
@@ -240,12 +240,12 @@
 			<div class="span6">
 				<select id="sel_scheme" class="form-control" name="scheme">
 					<option>
-						{{ Auth::user()->scheme->scheme_nickname }}
+						{!! Auth::user()->scheme->scheme_nickname !!}
 					</option>	
 					@foreach(Scheme::active() as $k => $v)
 						@if($v->scheme_nickname != Auth::user()->scheme->scheme_nickname)
 						<option>
-							{{ $v->scheme_nickname }}
+							{!! $v->scheme_nickname !!}
 						</option>
 						@endif
 					@endforeach

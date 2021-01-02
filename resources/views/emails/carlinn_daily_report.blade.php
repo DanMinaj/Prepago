@@ -16,7 +16,7 @@
             </tr>
             @foreach ($warningResults as $warning)
                 <tr>
-                    <td>{{{ $warning->customers->username }}}</td>
+                    <td>{{ $warning->customers->username }}</td>
                 </tr>
             @endforeach
         </table>
@@ -32,7 +32,7 @@
             </tr>
             @foreach ($errorResults as $error)
                 <tr>
-                    <td>{{{ $error->customers->username }}}</td>
+                    <td>{{ $error->customers->username }}</td>
                 </tr>
             @endforeach
         </table>
@@ -48,7 +48,7 @@
             </tr>
             @foreach ($criticalResults as $critical)
                 <tr>
-                    <td>{{{ $critical->customers->username }}}</td>
+                    <td>{{ $critical->customers->username }}</td>
                 </tr>
             @endforeach
         </table>

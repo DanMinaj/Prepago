@@ -14,8 +14,8 @@
         </tr>
         @foreach ($schemes as $scheme)
             <tr>
-                <td>{{ $scheme->company_name }} ({{ $scheme->scheme_nickname }})</td>
-                <td><a href="{{ url('schemes-readings/export/' . $scheme->scheme_number) }}">Export Readings</a></td>
+                <td>{!! $scheme->company_name !!} ({!! $scheme->scheme_nickname !!})</td>
+                <td><a href="{!! url('schemes-readings/export/' . $scheme->scheme_number) !!}">Export Readings</a></td>
             </tr>
         @endforeach
     </table>

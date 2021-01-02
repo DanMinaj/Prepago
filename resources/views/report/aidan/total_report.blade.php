@@ -3,7 +3,7 @@
 	*{ font-family: Arial !important; }
 </style>
 <title>
-Total Report - {{ $company_name }}
+Total Report - {!! $company_name !!}
 </title>
 <table style='' border='1' style='border-collapse: collapse' width="100%">
 	<tr>
@@ -72,64 +72,64 @@ Total Report - {{ $company_name }}
 		@foreach($schemes as $k => $s)
 		<td style='vertical-align:top'>
 			<table border='1' style='border-collapse: collapse' width="100%">
-				<tr><td>{{ $s->scheme_nickname }}</td></tr>
+				<tr><td>{!! $s->scheme_nickname !!}</td></tr>
 				<tr><td><hr/></tr>
-				<tr><td>{{ $s->ref_pa }}</td></tr>
-				<tr><td>{{ $s->month }}</td></tr>
-				<tr><td>{{ $s->date }}</td></tr>
-				<tr><td>{{ $s->days }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->value_of_payments, 2) }}</td></tr>
-				<tr><td>{{ $s->amount_of_payments }}</td></tr>
-				<tr><td>{{ number_format($s->payments_charge*100, 2) }}%</td></tr>
-				<tr><td>&euro;{{ number_format($s->cost_of_topups_inc_vat, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->cost_of_topups_ex_vat, 2) }}</td></tr>
-				<tr><td>{{ $s->sms_msgs }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->sms_cost, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->sms_total_inc_vat, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->sms_total_ex_vat, 2) }}</td></tr>
-				<tr><td>{{ $s->premium_sms_msgs }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->premium_sms_cost, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->premium_sms_total_ex_vat, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->premium_sms_total_inc_vat, 2) }}</td></tr>
-				<tr><td>{{ $s->apps_installed }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->app_charge, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->app_total_inc_vat, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->app_total_ex_vat, 2) }}</td></tr>
-				<tr><td>{{ $s->app_support }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->app_support_inc_vat, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->app_support_ex_vat, 2) }}</td></tr>
-				<tr><td>{{ $s->iou_chargeable }}</td></tr>
-				<tr><td>{{ $s->ious }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->iou_charge, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->iou_charge_inc_vat, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->iou_charge_ex_vat, 2) }}</td></tr>
-				<tr><td>{{ $s->statements_issued }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->statements_charge, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->statements_total_inc_vat, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->statements_total_ex_vat, 2) }}</td></tr>
-				<tr><td>{{ $s->no_of_meters }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->meter_charge, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->meter_total_inc_vat, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->meter_total_ex_vat, 2) }}</td></tr>
-				<tr><td>{{ $s->blue_accounts }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->blue_accounts_charge, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->blue_accounts_ex_vat, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->blue_accounts_inc_vat, 2) }}</td></tr>
-				<tr><td>{{ $s->closed_accounts }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->closed_accounts_charge, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->closed_accounts_charge_ex_vat, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->closed_accounts_charge_inc_vat, 2) }}</td></tr>
-				<tr><td>{{ $s->vat }}%</td></tr>
-				<tr><td>&euro;{{ number_format($s->invoiced_amount, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->vat_payment, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->scheme_payment, 2) }}</td></tr>
-				<tr><td>{{ number_format($s->avg_daily_kwh, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->avg_daily_cost, 2) }}</td></tr>
-				<tr><td>{{ number_format($s->annual_avg_kwh_day, 2) }}</td></tr>
-				<tr><td>&euro;{{ number_format($s->annual_avg_cost_day, 2) }}</td></tr>
-				<tr><td>&euro;{{ ($s->tariff) ? ($s->tariff->tariff_1) : (0.00) }}</td></tr>
-				<tr><td>&euro;{{ ($s->tariff) ? ($s->tariff->tariff_2) : (0.00) }}</td></tr>
-				<tr><td>&euro;{{ ($s->tariff) ? ($s->tariff->tariff_3) : (0.00) }}</td></tr>
+				<tr><td>{!! $s->ref_pa !!}</td></tr>
+				<tr><td>{!! $s->month !!}</td></tr>
+				<tr><td>{!! $s->date !!}</td></tr>
+				<tr><td>{!! $s->days !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->value_of_payments, 2) !!}</td></tr>
+				<tr><td>{!! $s->amount_of_payments !!}</td></tr>
+				<tr><td>{!! number_format($s->payments_charge*100, 2) !!}%</td></tr>
+				<tr><td>&euro;{!! number_format($s->cost_of_topups_inc_vat, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->cost_of_topups_ex_vat, 2) !!}</td></tr>
+				<tr><td>{!! $s->sms_msgs !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->sms_cost, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->sms_total_inc_vat, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->sms_total_ex_vat, 2) !!}</td></tr>
+				<tr><td>{!! $s->premium_sms_msgs !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->premium_sms_cost, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->premium_sms_total_ex_vat, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->premium_sms_total_inc_vat, 2) !!}</td></tr>
+				<tr><td>{!! $s->apps_installed !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->app_charge, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->app_total_inc_vat, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->app_total_ex_vat, 2) !!}</td></tr>
+				<tr><td>{!! $s->app_support !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->app_support_inc_vat, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->app_support_ex_vat, 2) !!}</td></tr>
+				<tr><td>{!! $s->iou_chargeable !!}</td></tr>
+				<tr><td>{!! $s->ious !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->iou_charge, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->iou_charge_inc_vat, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->iou_charge_ex_vat, 2) !!}</td></tr>
+				<tr><td>{!! $s->statements_issued !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->statements_charge, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->statements_total_inc_vat, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->statements_total_ex_vat, 2) !!}</td></tr>
+				<tr><td>{!! $s->no_of_meters !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->meter_charge, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->meter_total_inc_vat, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->meter_total_ex_vat, 2) !!}</td></tr>
+				<tr><td>{!! $s->blue_accounts !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->blue_accounts_charge, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->blue_accounts_ex_vat, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->blue_accounts_inc_vat, 2) !!}</td></tr>
+				<tr><td>{!! $s->closed_accounts !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->closed_accounts_charge, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->closed_accounts_charge_ex_vat, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->closed_accounts_charge_inc_vat, 2) !!}</td></tr>
+				<tr><td>{!! $s->vat !!}%</td></tr>
+				<tr><td>&euro;{!! number_format($s->invoiced_amount, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->vat_payment, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->scheme_payment, 2) !!}</td></tr>
+				<tr><td>{!! number_format($s->avg_daily_kwh, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->avg_daily_cost, 2) !!}</td></tr>
+				<tr><td>{!! number_format($s->annual_avg_kwh_day, 2) !!}</td></tr>
+				<tr><td>&euro;{!! number_format($s->annual_avg_cost_day, 2) !!}</td></tr>
+				<tr><td>&euro;{!! ($s->tariff) ? ($s->tariff->tariff_1) : (0.00) !!}</td></tr>
+				<tr><td>&euro;{!! ($s->tariff) ? ($s->tariff->tariff_2) : (0.00) !!}</td></tr>
+				<tr><td>&euro;{!! ($s->tariff) ? ($s->tariff->tariff_3) : (0.00) !!}</td></tr>
 			</table>
 		</td>
 		@endforeach

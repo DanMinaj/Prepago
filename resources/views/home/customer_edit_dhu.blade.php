@@ -2,7 +2,7 @@
 </div>
 
 <div><br/></div>
-<h1>Edit DHU: @if($customer) {{ $customer->id }} - {{ $customer->username }} - @endif DHU #{{ $dhu->id }} | {{ $date }}</h1>
+<h1>Edit DHU: @if($customer) {!! $customer->id !!} - {!! $customer->username !!} - @endif DHU #{!! $dhu->id !!} | {!! $date !!}</h1>
 
 
 <div class="admin2">
@@ -15,16 +15,16 @@
 		<tr>
 			<td width="10%"><b>ID</b></td>
 			<td width="90%">
-				<a href="{{ URL::to('customer_tabview_controller/show', ['customer_id' => $customer->id]) }}">
-					{{ $customer->id }}
+				<a href="{!! URL::to('customer_tabview_controller/show', ['customer_id' => $customer->id]) !!}">
+					{!! $customer->id !!}
 				</a>
 			</td>
 		</tr>
 		<tr>
 			<td width="10%"><b>Customer</b></td>
 			<td width="90%">
-				<a href="{{ URL::to('customer_tabview_controller/show', ['customer_id' => $customer->id]) }}">
-					{{ $customer->username }}
+				<a href="{!! URL::to('customer_tabview_controller/show', ['customer_id' => $customer->id]) !!}">
+					{!! $customer->username !!}
 				</a>
 			</td>
 		</tr>
@@ -40,7 +40,7 @@
 			
 			<td>
 				
-				<form action="{{ URL::to('edit_dhu/spread/' . $dhu->id) }}" method="POST">
+				<form action="{!! URL::to('edit_dhu/spread/' . $dhu->id) !!}" method="POST">
 				<table class="table table-bordered" width="100%">
 					<tr>
 						<td colspan='2'>
@@ -68,7 +68,7 @@
 			</tr>	
 			@foreach(Session::get('affected_dhu') as $a)
 				<tr>
-					<td><b>DHU <a target="_blank" href="{{ URL::to('edit_dhu/' . $a) }}">#{{ $a }}</a> </b></td>
+					<td><b>DHU <a target="_blank" href="{!! URL::to('edit_dhu/' . $a) !!}">#{!! $a !!}</a> </b></td>
 				</tr>
 			@endforeach	
 		@endif
@@ -87,9 +87,9 @@
 		|| $key == 'arrears_repayment' || $key == 'manual' || $key == 'o_cod')
 		<tr>
 			
-			<td width="10%"><b>{{ $key }}</b></td>
+			<td width="10%"><b>{!! $key !!}</b></td>
 			<td width="90%">
-				<input type="text" value="{{ $value }}" name="{{ $key }}">
+				<input type="text" value="{!! $value !!}" name="{!! $key !!}">
 			</td>
 		</tr>
 		@endif

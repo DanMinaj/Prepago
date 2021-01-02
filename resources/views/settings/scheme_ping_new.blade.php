@@ -9,13 +9,13 @@
 
 	@if(Session::has('successMessage'))
 	<div class="alert alert-success" style="padding:2%;font-size:1.2em;">
-		{{ Session::get('successMessage') }}
+		{!! Session::get('successMessage') !!}
 	</div>
 	@endif
 	
 	@if(Session::has('errorMessage'))
 	<div class="alert alert-danger" style="padding:2%;font-size:1.2em;">
-		{{ Session::get('errorMessage') }}
+		{!! Session::get('errorMessage') !!}
 	</div>
 	@endif
 	
@@ -53,20 +53,20 @@
 	</tr>
 	@foreach($schemes as $s) 
 	<tr>
-		<td width="10%"> {{ $s->IP }} </td>
-		<td width="30%"> {{ $s->scheme_nickname }} </td>
-		<td class="ping_old_status_{{ $s->scheme_number }} last_status" scheme_number="{{ $s->scheme_number }}" ip="{{ $s->IP }}"width="20%"> 
-			<span class="ping_response_{{ $s->scheme_number }}"  style='{{ $s->statusCss }}'>{{ $s->status }}</span> &#8211;
-			<font class="ping_time_{{ $s->scheme_number }}" style='font-size:10px;color: grey;'>{{ \Carbon\Carbon::parse($s->status_checked)->diffForHumans() }}</font>
+		<td width="10%"> {!! $s->IP !!} </td>
+		<td width="30%"> {!! $s->scheme_nickname !!} </td>
+		<td class="ping_old_status_{!! $s->scheme_number !!} last_status" scheme_number="{!! $s->scheme_number !!}" ip="{!! $s->IP !!}"width="20%"> 
+			<span class="ping_response_{!! $s->scheme_number !!}"  style='{!! $s->statusCss !!}'>{!! $s->status !!}</span> &#8211;
+			<font class="ping_time_{!! $s->scheme_number !!}" style='font-size:10px;color: grey;'>{!! \Carbon\Carbon::parse($s->status_checked)->diffForHumans() !!}</font>
 		</td>
 		<td width="44%">
 			<center>
-				<button class="btn btn-success ping" ip="{{ $s->IP }}" scheme_number="{{ $s->scheme_number }}"> <i class="fa fa-circle-notch"></i>&nbsp;Ping</button>
+				<button class="btn btn-success ping" ip="{!! $s->IP !!}" scheme_number="{!! $s->scheme_number !!}"> <i class="fa fa-circle-notch"></i>&nbsp;Ping</button>
 				
-				<button data-toggle="modal" disabled data-target="#sim_settings" class="btn btn sim_settings" ip="{{ $s->IP }}" scheme_name="{{ $s->scheme_nickname }}" scheme_number="{{ $s->scheme_number }}"> 
+				<button data-toggle="modal" disabled data-target="#sim_settings" class="btn btn sim_settings" ip="{!! $s->IP !!}" scheme_name="{!! $s->scheme_nickname !!}" scheme_number="{!! $s->scheme_number !!}"> 
 				<i class="fa fa-network-wired"></i> Settings</button>
 				
-				<button class="btn btn-danger reboot" dl_type="{{ $s->datalogger->dl_company }}" ip="{{ $s->IP }}"> 
+				<button class="btn btn-danger reboot" dl_type="{!! $s->datalogger->dl_company !!}" ip="{!! $s->IP !!}"> 
 				<i class="fa fa-sync"></i>&nbsp;Reboot</button>
 			</center>
 		</td>

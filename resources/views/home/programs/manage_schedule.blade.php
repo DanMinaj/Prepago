@@ -11,7 +11,7 @@
 @if(Session::has('successMessage'))
 <div class="alert alert-success">
 		
-		{{Session::get('successMessage')}}
+		{!!Session::get('successMessage')!!}
 
 </div>
 @endif
@@ -19,7 +19,7 @@
 @if(Session::has('errorMessage'))
 <div class="alert alert-danger">
 		
-		{{Session::get('errorMessage')}}
+		{!!Session::get('errorMessage')!!}
 
 </div>
 @endif
@@ -29,7 +29,7 @@
 
 <form action='' method='POST'>
 
-<a href="{{ URL::to('admin/specialist') }}"><button type="button" class="btn btn-primary">&lt;&lt; Go back</button></a>
+<a href="{!! URL::to('admin/specialist') !!}"><button type="button" class="btn btn-primary">&lt;&lt; Go back</button></a>
 <br/><br/>
 <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Save changes</button>
 <br/>
@@ -51,20 +51,20 @@
 				
 				
 				@foreach($daily_schedules as $schedule)
-					<tr {{ $schedule->rowColour }} >
+					<tr {!! $schedule->rowColour !!} >
 							<!--
-							<td><i s_id="{{$schedule->id}}" class="fa fa-arrow-up switch-up"></i> &nbsp;&nbsp; <i onclick="switchDown(this)" class="fa fa-arrow-down switch-down"></i></td>
+							<td><i s_id="{!!$schedule->id!!}" class="fa fa-arrow-up switch-up"></i> &nbsp;&nbsp; <i onclick="switchDown(this)" class="fa fa-arrow-down switch-down"></i></td>
 							-->
-							<td> <input name="input1_{{$schedule->time}}" type="text" value='{{$schedule->time}}' /></td>
+							<td> <input name="input1_{!!$schedule->time!!}" type="text" value='{!!$schedule->time!!}' /></td>
 							<td>
-								<select name="input2_{{$schedule->time}}">
-									<option value="{{$schedule->program}}">{{$schedule->program}}</option>
+								<select name="input2_{!!$schedule->time!!}">
+									<option value="{!!$schedule->program!!}">{!!$schedule->program!!}</option>
 								</select>
 							</td>
 							
-							<td> <input name="input3_{{$schedule->time}}" type='text' value='{{$schedule->run_type}}' /> </td>	
+							<td> <input name="input3_{!!$schedule->time!!}" type='text' value='{!!$schedule->run_type!!}' /> </td>	
 							
-							<td> <input name="input4_{{$schedule->time}}" type='text' value='{{$schedule->run_on_weekend_and_holiday}}' /> </td>
+							<td> <input name="input4_{!!$schedule->time!!}" type='text' value='{!!$schedule->run_on_weekend_and_holiday!!}' /> </td>
 							
 							<td>
 								<i style='color:red;cursor:pointer;' class="fa fa-minus-circle"></i>

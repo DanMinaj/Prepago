@@ -9,18 +9,18 @@
 
 	@if(Session::has('successMessage'))
 	<div class="alert alert-success">
-	{{ Session::get('successMessage') }}
+	{!! Session::get('successMessage') !!}
 	</div>
 	@endif
 	
 	@if(Session::has('errorMessage'))
 	<div class="alert alert-danger">
-	{{ Session::get('errorMessage') }}
+	{!! Session::get('errorMessage') !!}
 	</div>
 	@endif
 	
 	
-	<a href="{{ URL::to('announcements/all') }}">
+	<a href="{!! URL::to('announcements/all') !!}">
 	<button class="btn btn-primary"> <i class="fa fa-long-arrow-alt-left"></i> View all announcements </button>
 	</a>
 	

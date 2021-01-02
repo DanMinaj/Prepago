@@ -10,29 +10,29 @@
 @if ($message1 = Session::get('successMessage'))
 <div class="alert alert-success alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message1 }}
+	{!! $message1 !!}
 </div>
 @endif
 
 @if ($message2 = Session::get('warningMessage'))
 <div class="alert alert-warning alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message2 }}
+	{!! $message2 !!}
 </div>
 @endif
 
 @if ($message3 = Session::get('errorMessage'))
 <div class="alert alert-danger alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message3 }}
+	{!! $message3 !!}
 </div>
 @endif
 
 	
 	 
    <ul class="nav nav-tabs" style="margin: 30px 0">
-       <li class="active"><a href="#old_app_users" data-toggle="tab">Old App Users ({{ count($old_app_customers) }})</a></li>
-       <li><a href="#paypal_users" data-toggle="tab">Paypal Customers ({{ (count($paypal_customers)) }})</a></li>
+       <li class="active"><a href="#old_app_users" data-toggle="tab">Old App Users ({!! count($old_app_customers) !!})</a></li>
+       <li><a href="#paypal_users" data-toggle="tab">Paypal Customers ({!! (count($paypal_customers)) !!})</a></li>
    </ul>
    
    <div class="tab-content">
@@ -40,7 +40,7 @@
 		<div class="tab-pane active" id="old_app_users" style="text-align: left">	
 		
 		
-			<form action="" method="POST" onsubmit="return confirm('You are about to send the SMS: \n\n\'' + ($('#old_app_customers_msg').val()) + '\'\n\n to {{ count($old_app_customers) }} customers. Are you sure?');">
+			<form action="" method="POST" onsubmit="return confirm('You are about to send the SMS: \n\n\'' + ($('#old_app_customers_msg').val()) + '\'\n\n to {!! count($old_app_customers) !!} customers. Are you sure?');">
 			
 			<table width="100%">
 				<tr>
@@ -65,12 +65,12 @@
 				</tr>
 				@foreach($old_app_customers as $k => $c)
 					<tr>
-						<td> {{ $c->id }} </td>
+						<td> {!! $c->id !!} </td>
 						<td>
-							<a href="/customer/{{ $c->id }}">{{ $c->username }}</a>
+							<a href="/customer/{!! $c->id !!}">{!! $c->username !!}</a>
 						</td>
 						<td>
-							{{ $c->last_login }}
+							{!! $c->last_login !!}
 						</td>
 						@if($sent_to = Session::get('sent_to'))
 						<td> 
@@ -95,7 +95,7 @@
 		
 		
 		
-			<form action="" method="POST" onsubmit="return confirm('You are about to send the SMS: \n\n\'' + ($('#paypal_customers_msg').val()) + '\'\n\n to {{ count($paypal_customers) }} customers. Are you sure?');">
+			<form action="" method="POST" onsubmit="return confirm('You are about to send the SMS: \n\n\'' + ($('#paypal_customers_msg').val()) + '\'\n\n to {!! count($paypal_customers) !!} customers. Are you sure?');">
 			
 			<table width="100%">
 				<tr>
@@ -120,12 +120,12 @@
 				</tr>
 				@foreach($paypal_customers as $k => $c)
 					<tr>
-						<td> {{ $c->id }} </td>
+						<td> {!! $c->id !!} </td>
 						<td>
-							<a href="/customer/{{ $c->id }}">{{ $c->username }}</a>
+							<a href="/customer/{!! $c->id !!}">{!! $c->username !!}</a>
 						</td>
 						<td>
-							{{ $c->last_topup }}
+							{!! $c->last_topup !!}
 						</td>
 						@if($sent_to = Session::get('sent_to'))
 						<td> 

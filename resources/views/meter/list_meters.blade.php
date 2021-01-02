@@ -40,7 +40,7 @@
 		</table>
 	</div>
 	<div class="tab-pane" id="meter_readings">
-		<div class="pull-left"><h3><a href="{{{ $csv_url }}}">Download CSV</a></h3></div>
+		<div class="pull-left"><h3><a href="{{ $csv_url }}">Download CSV</a></h3></div>
 		<div class="pull-right">
 			<form method="post" action="<?php echo URL::to('installed_meters') ?>"class="form-inline">
 				<label>From</label>
@@ -62,9 +62,9 @@
 			@else
 				@foreach ($meterReadings as $meterReading)
 				<tr>
-					<td>{{{ $meterReading->permanentMeter ? $meterReading->permanentMeter->meter_number : '' }}}</td>
-					<td>{{{ $meterReading->time_date }}}</td>
-					<td>{{{ $meterReading->reading1 }}}</td>
+					<td>{{ $meterReading->permanentMeter ? $meterReading->permanentMeter->meter_number : '' }}</td>
+					<td>{{ $meterReading->time_date }}</td>
+					<td>{{ $meterReading->reading1 }}</td>
 				</tr>
 				@endforeach
 			@endif
@@ -72,7 +72,7 @@
 		</table>
 		
 		@if ($meterReadings)
-			<div class="pull-right" id="meter-reading-pagination">{{ $meterReadings->appends(Request::except('page'))->links(); }}</div>
+			<div class="pull-right" id="meter-reading-pagination">{!! $meterReadings->appends(Request::except('page'))->links(); !!}</div>
 		@endif
 	</div>
 </div>

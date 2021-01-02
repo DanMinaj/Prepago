@@ -9,8 +9,8 @@
         <tbody>
         @foreach ($topups as $key => $topup)
             <tr>
-                <td>{{{ $topup->time_date }}}</td>
-                <td>{{ $currencySign }} {{{ $topup->amount }}}</td>
+                <td>{{ $topup->time_date }}</td>
+                <td>{!! $currencySign !!} {{ $topup->amount }}</td>
             </tr>
         @endforeach
         </tbody>

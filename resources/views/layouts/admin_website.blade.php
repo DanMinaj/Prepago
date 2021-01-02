@@ -139,12 +139,12 @@ if(strpos($current_page, 'customer_tabview') !== false)
 	@yield('extra_scripts')
 
 	@if(strpos(Request::url(), "tracking") !== false)
-	{{ HTML::script('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js') }}
+	{!! HTML::script('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js') !!}
 	@endif
 
 </head>
 <body>
-<input type="hidden" name="user_ID" value="{{ Auth::user()->id }}">
+<input type="hidden" name="user_ID" value="{!! Auth::user()->id !!}">
 
     <div class="wrapper" >
 
@@ -180,7 +180,7 @@ if(strpos($current_page, 'customer_tabview') !== false)
 			color: white;
 			text-shadow: 0px 1px #999;
 			/* border: 1px solid rgba(0,0,0,0.2); */
-			{{ Auth::user()->scheme->statusAltCSS }}
+			{!! Auth::user()->scheme->statusAltCSS !!}
 		}
 	</style>
 	
@@ -188,44 +188,44 @@ if(strpos($current_page, 'customer_tabview') !== false)
                     <ul>
 						@if (hasAccess('open.close.account'))
 							<li class="">
-								<img src="{{ asset('resources/images/nav_icon3.png') }}" />
+								<img src="{!! asset('resources/images/nav_icon3.png') !!}" />
 								<a href="#">open/close account</a>
 								<ul>
 									@if (hasAccess('customer.setup'))
                                         <li class="">
-                                            <a href="{{ URL::to('open_account') }}">Customer Set Up</a>
+                                            <a href="{!! URL::to('open_account') !!}">Customer Set Up</a>
                                         </li>
                                     @endif
 									
 									@if (hasAccess('close.account'))
                                         <li class="">
-                                            <a href="{{ URL::to('close_account_alt') }}">Close Account</a>
+                                            <a href="{!! URL::to('close_account_alt') !!}">Close Account</a>
                                         </li>
                                     @endif
 									
 									@if (hasAccess('close.account'))
                                         <li class="">
-                                            <a href="{{ URL::to('close_account') }}">Alternative Close Account</a>
+                                            <a href="{!! URL::to('close_account') !!}">Alternative Close Account</a>
                                         </li>
                                     @endif
 									
 										
 									@if (hasAccess('close.account'))
                                         <li class="">
-                                            <a href="{{ URL::to('reinstate_account') }}">Reinstate/reopen closed Account</a>
+                                            <a href="{!! URL::to('reinstate_account') !!}">Reinstate/reopen closed Account</a>
                                         </li>
                                     @endif 
 									
 									@if (hasAccess('close.account') && Auth::user()->isUserTest())
                                         <li class="">
-                                            <a href="{{ URL::to('open_account/queue') }}"><i class="fa fa-cogs"></i>&nbsp;Manage account queue</a>
+                                            <a href="{!! URL::to('open_account/queue') !!}"><i class="fa fa-cogs"></i>&nbsp;Manage account queue</a>
                                         </li>
                                     @endif 
 									
 									<!-- Disabled 18/11/19 -->
 									@if (1!=1 && hasAccess('installed.meters'))
                                         <li class="">
-                                            <a href="{{ URL::to('installed_meters') }}">Installed Meters</a>
+                                            <a href="{!! URL::to('installed_meters') !!}">Installed Meters</a>
                                         </li>
                                     @endif
 								</ul>
@@ -235,7 +235,7 @@ if(strpos($current_page, 'customer_tabview') !== false)
 						
 						@if (hasAccess('crm.functions'))
 							<li class="">
-								<img src="{{ asset('resources/images/nav_icon4.png') }}" />
+								<img src="{!! asset('resources/images/nav_icon4.png') !!}" />
 								<a href="#">CRM Function </a>
 								<ul>
 								
@@ -251,47 +251,47 @@ if(strpos($current_page, 'customer_tabview') !== false)
 									}
 								</style>
 									
-									<li class="" data-toggle="modal" data-target="#fix-an-issue" ><a href="{{ URL::to('support') }}">Fix An Issue</a></li>
+									<li class="" data-toggle="modal" data-target="#fix-an-issue" ><a href="{!! URL::to('support') !!}">Fix An Issue</a></li>
 								
 									@if (\Auth::user()->isUserTest())
-										<li class=""><a href="{{ URL::to('specialist') }}">Admin Specialist</a></li>
+										<li class=""><a href="{!! URL::to('specialist') !!}">Admin Specialist</a></li>
 									@endif
 									
 									@if (\Auth::user()->isUserTest())
-										<li class=""><a href="{{ URL::to('support') }}">Support Issues <span class="issue-count">{{SupportIssue::where('resolved', false)->where('started', false)->count()}}</span></a></li>
+										<li class=""><a href="{!! URL::to('support') !!}">Support Issues <span class="issue-count">{!!SupportIssue::where('resolved', false)->where('started', false)->count()!!}</span></a></li>
 									@endif
 								
 									@if (hasAccess('customer.search'))
-										<li class=""><a href="{{ URL::to('advanced_search') }}">Customer Search</a></li>
+										<li class=""><a href="{!! URL::to('advanced_search') !!}">Customer Search</a></li>
 									@endif
 
 									<!-- Disabled 18/11/19 -->
 									@if (1!=1 && hasAccess('crm.barcode.reports'))
-										<li class=""><a href="{{ URL::to('system_reports/barcode_reports') }}">Barcode Reports</a></li>
+										<li class=""><a href="{!! URL::to('system_reports/barcode_reports') !!}">Barcode Reports</a></li>
 									@endif
 									
 									@if (hasAccess('message.all.customers'))
 										<li class="">
-											<a href="{{ URL::to('customer_messaging/scheme') }}">Message All Customers</a>
+											<a href="{!! URL::to('customer_messaging/scheme') !!}">Message All Customers</a>
 										</li>
 									@endif
 									
 									@if(Auth::user()->isUserTest())
 										<li class="">
-											<a href="{{ URL::to('campaigns') }}">Campaigns</a>
+											<a href="{!! URL::to('campaigns') !!}">Campaigns</a>
 										</li>
 									@endif
 									
 									@if(Auth::user()->isUserTest())
 										<li class="">
-											<a href="{{ URL::to('announcements') }}">Announcements</a>
+											<a href="{!! URL::to('announcements') !!}">Announcements</a>
 										</li>
 									@endif
 									
 									
 									@if(Auth::user()->isUserTest())
 										<li class="">
-											<a href="{{ URL::to('notifications') }}">In-App Notifications</a>
+											<a href="{!! URL::to('notifications') !!}">In-App Notifications</a>
 										</li>
 									@endif
 									
@@ -301,24 +301,24 @@ if(strpos($current_page, 'customer_tabview') !== false)
 						@endif	
 						@if (hasAccess('system.reports'))
 							<li class="">
-								<img src="{{ asset('resources/images/nav_icon1.png') }}" />
-								<a href="{{ URL::to('system_reports') }}">System reports </a>
+								<img src="{!! asset('resources/images/nav_icon1.png') !!}" />
+								<a href="{!! URL::to('system_reports') !!}">System reports </a>
 
 								<ul>
 								
 
 									@if(1==1)
 										<li class="">
-											<a href="{{ URL::to('installed_meters') }}">Installed Meters</a>
+											<a href="{!! URL::to('installed_meters') !!}">Installed Meters</a>
 										</li>
 									@endif
 									
 									@if (hasAccess('supply.report.units'))
 										<li class="">
-										   <a href="{{ URL::to('system_reports/supply_report_units') }}">Supply Report-Units</a>
+										   <a href="{!! URL::to('system_reports/supply_report_units') !!}">Supply Report-Units</a>
                                             @if (hasAccess('boiler.report'))
                                                 <ul class="" style="left:-171%">
-                                                    <li><a href="{{URL::to('system_reports/boiler_report')}}">Boiler Report</a></li>
+                                                    <li><a href="{!!URL::to('system_reports/boiler_report')!!}">Boiler Report</a></li>
                                                 </ul>
                                             @endif
                                         </li>
@@ -326,47 +326,47 @@ if(strpos($current_page, 'customer_tabview') !== false)
 
 									@if (hasAccess('topup.reports'))
 										<li class="">
-											<a href="{{ URL::to('system_reports/topup_reports/customer_topup_history') }}">Scheme Top-Up Report</a>
+											<a href="{!! URL::to('system_reports/topup_reports/customer_topup_history') !!}">Scheme Top-Up Report</a>
 										</li>
 									@endif
 									
 									@if (hasAccess('barcode.reports'))
-                                        <li class=""><a href="{{ URL::to('system_reports/barcode_reports') }}">Barcode Reports</a></li>
+                                        <li class=""><a href="{!! URL::to('system_reports/barcode_reports') !!}">Barcode Reports</a></li>
                                     @endif
 									
 									@if (hasAccess('sms.messages.sent'))
-                                        <li class=""><a href="{{ URL::to('system_reports/sms_messages') }}">SMS Messages Sent</a></li>
+                                        <li class=""><a href="{!! URL::to('system_reports/sms_messages') !!}">SMS Messages Sent</a></li>
                                     @endif
 									
 									@if (hasAccess('list.all.customers'))
-                                        <li class=""><a href="{{ URL::to('system_reports/list_all_customers') }}">List Of All Customers</a></li>
+                                        <li class=""><a href="{!! URL::to('system_reports/list_all_customers') !!}">List Of All Customers</a></li>
                                     @endif
 									
 									@if (hasAccess('deleted.customer.report'))
-                                        <li class=""><a href="{{ URL::to('system_reports/deleted_customers') }}">Deleted Customers Report</a></li>
+                                        <li class=""><a href="{!! URL::to('system_reports/deleted_customers') !!}">Deleted Customers Report</a></li>
                                     @endif
 									
 									@if (hasAccess('inactive.landlords.report'))
-                                        <li class=""><a href="{{ URL::to('system_reports/inactive_landlords') }}">Inactive Landlords Report</a></li>
+                                        <li class=""><a href="{!! URL::to('system_reports/inactive_landlords') !!}">Inactive Landlords Report</a></li>
                                     @endif
 									
 									@if (hasAccess('deposit.report'))
-                                        <li class=""><a href="{{ URL::to('customer_supply_status/deposit_reports') }}">Deposit Reports</a></li>
+                                        <li class=""><a href="{!! URL::to('customer_supply_status/deposit_reports') !!}">Deposit Reports</a></li>
                                     @endif
 									
 									@if (hasAccess('credit.issue.report'))
-										<li class=""><a href="{{ URL::to('system_reports/credit_issue_reports') }}">Credit Issue Reports</a>
+										<li class=""><a href="{!! URL::to('system_reports/credit_issue_reports') !!}">Credit Issue Reports</a>
 											<ul class="" style="left:-171%">
 												@if (hasAccess('iou.usage.display'))
-                                                    <li class="" ><a href="{{ URL::to('system_reports/iou_usage_display') }}">IOU Usage Display</a></li>
+                                                    <li class="" ><a href="{!! URL::to('system_reports/iou_usage_display') !!}">IOU Usage Display</a></li>
                                                 @endif
 												
 												@if (hasAccess('iou.extra.usage.display'))
-                                                    <li class="" ><a href="{{ URL::to('system_reports/iou_extra_usage_display') }}">IOU Extra Usage Display</a></li>
+                                                    <li class="" ><a href="{!! URL::to('system_reports/iou_extra_usage_display') !!}">IOU Extra Usage Display</a></li>
                                                 @endif
 												
 												@if (hasAccess('admin.issued.credit'))
-                                                    <li class="" ><a href="{{ URL::to('system_reports/admin_issued_credit') }}">Admin Issued Credit</a></li>
+                                                    <li class="" ><a href="{!! URL::to('system_reports/admin_issued_credit') !!}">Admin Issued Credit</a></li>
                                                 @endif
 											</ul>
 										</li>
@@ -374,34 +374,34 @@ if(strpos($current_page, 'customer_tabview') !== false)
 										
 									<!-- Disabled 18/11/19 -->
 									@if (1!=1 && hasAccess('weather.report'))	
-										<li class=""><a href="{{ URL::to('system_reports/weather_reports') }}">Weather Reports</a>
+										<li class=""><a href="{!! URL::to('system_reports/weather_reports') !!}">Weather Reports</a>
 											<ul class="" style="left:-171%">
 												@if (hasAccess('weather.vs.topups'))
-                                                    <li class="" ><a href="{{ URL::to('weather_reports/topups') }}">Weather vs Top Ups</a></li>
+                                                    <li class="" ><a href="{!! URL::to('weather_reports/topups') !!}">Weather vs Top Ups</a></li>
                                                 @endif
 												
 												@if (hasAccess('weather.vs.heat.usage'))
-                                                    <li class="" ><a href="{{ URL::to('weather_reports/heat_usage') }}">Weather vs Heat Usage</a></li>
+                                                    <li class="" ><a href="{!! URL::to('weather_reports/heat_usage') !!}">Weather vs Heat Usage</a></li>
                                                 @endif
 											</ul>
 										</li>
 									@endif
 									
 									@if (hasAccess('bill.reports'))
-                                        <li class=""><a href="{{ URL::to('system_reports/bill_reports') }}">Bill Reports</a></li>
+                                        <li class=""><a href="{!! URL::to('system_reports/bill_reports') !!}">Bill Reports</a></li>
                                     @endif
 
                                     @if (hasAccess('payout.reports'))
-                                        <li class=""><a href="{{ URL::to('system_reports/payout_reports') }}">Payout Reports</a></li>
+                                        <li class=""><a href="{!! URL::to('system_reports/payout_reports') !!}">Payout Reports</a></li>
                                     @endif
 									
 									 @if (hasAccess('payout.reports'))
-                                        <li class=""><a href="{{ URL::to('system_reports/advice_notes') }}">Advice Note Reports</a></li>
+                                        <li class=""><a href="{!! URL::to('system_reports/advice_notes') !!}">Advice Note Reports</a></li>
                                     @endif
 
 									<!-- Disabled 18/11/19 -->
                                     @if (1!=1 && hasAccess('not.read.meters.reports'))
-                                        <li class=""><a href="{{ URL::to('system_reports/not_read_meters') }}">Not Read Meters Reports</a></li>
+                                        <li class=""><a href="{!! URL::to('system_reports/not_read_meters') !!}">Not Read Meters Reports</a></li>
                                     @endif								
 									
 								</ul>
@@ -409,7 +409,7 @@ if(strpos($current_page, 'customer_tabview') !== false)
 						@endif
 						
                         <li class="">
-                            <img src="{{ asset('resources/images/nav_icon2.png') }}" />
+                            <img src="{!! asset('resources/images/nav_icon2.png') !!}" />
                             <a href="#">Settings</a>
                             <ul>          
 								@if (hasAccess('admin.settings'))
@@ -418,46 +418,46 @@ if(strpos($current_page, 'customer_tabview') !== false)
 										<ul class="" style="left:-171%">
 
 											@if (hasAccess('sms.settings'))
-                                                <li class="" ><a href="{{ URL::to('settings/sms_settings') }}">SMS Settings</a></li>
+                                                <li class="" ><a href="{!! URL::to('settings/sms_settings') !!}">SMS Settings</a></li>
                                             @endif
 											
 											@if (hasAccess('faq.settings'))
-                                                <li class="" ><a href="{{ URL::to('settings/faq') }}">FAQ Settings</a></li>
+                                                <li class="" ><a href="{!! URL::to('settings/faq') !!}">FAQ Settings</a></li>
                                             @endif
 											
 											@if (hasAccess('tariff.settings'))
-                                                <li class=""><a href="{{ URL::to('settings/tariff') }}">Tariff Settings</a></li>
+                                                <li class=""><a href="{!! URL::to('settings/tariff') !!}">Tariff Settings</a></li>
                                             @endif
 											
 											@if (hasAccess('credit.setting'))
-                                                <li class=""><a href="{{ URL::to('settings/credit_setting') }}">Credit Setting</a></li>
+                                                <li class=""><a href="{!! URL::to('settings/credit_setting') !!}">Credit Setting</a></li>
                                             @endif
 											
 											@if (hasAccess('access.control'))
-                                               <!-- <li class=""><a href="{{ URL::to('settings/access_control') }}">Access Control</a></li>-->
+                                               <!-- <li class=""><a href="{!! URL::to('settings/access_control') !!}">Access Control</a></li>-->
                                             @endif 
 											
 											
 											@if (hasAccess('unassigned.users'))
-                                               <!-- <li class=""><a href="{{ URL::to('settings/unassigned_users') }}">Unassigned Users</a></li>-->
+                                               <!-- <li class=""><a href="{!! URL::to('settings/unassigned_users') !!}">Unassigned Users</a></li>-->
                                             @endif
 											
 											@if (hasAccess('groups.permissions'))
-                                                <li class=""><a href="{{ URL::to('groups') }}">Groups & Permissions</a></li>
+                                                <li class=""><a href="{!! URL::to('groups') !!}">Groups & Permissions</a></li>
                                             @endif
 
                                             @if (hasAccess('schemes.list'))
-                                                <li class=""><a href="{{ URL::to('schemes') }}">Schemes List</a></li>
+                                                <li class=""><a href="{!! URL::to('schemes') !!}">Schemes List</a></li>
                                             @endif
 											
 											 @if (Auth::user()->isUserTest())
-                                               <!-- <li class=""><a href="{{ URL::to('settings/payments') }}">Stripe Settings</a></li>-->
+                                               <!-- <li class=""><a href="{!! URL::to('settings/payments') !!}">Stripe Settings</a></li>-->
                                             @endif
 											
 
                                             <!--
                                             @if (hasAccess('multiple.account.close'))
-                                                <li class=""><a href="{{ URL::to('settings/multiple_close') }}">Multiple Account Close</a></li>
+                                                <li class=""><a href="{!! URL::to('settings/multiple_close') !!}">Multiple Account Close</a></li>
                                             @endif
                                             -->
 										</ul>
@@ -467,33 +467,33 @@ if(strpos($current_page, 'customer_tabview') !== false)
                                 <li class="">
                                     <a href="#">User Settings</a>
                                     <ul class="" style="left:-171%">
-                                        <li class="" ><a href="{{ URL::to('user_settings/signins') }}">Recent Log-In's</a></li>
-                                        <li class="" ><a href="{{ URL::to('user_settings/change_username') }}">Change Username</a></li>
-                                        <li class="" ><a href="{{ URL::to('user_settings/change_password') }}">Change Password</a></li>
+                                        <li class="" ><a href="{!! URL::to('user_settings/signins') !!}">Recent Log-In's</a></li>
+                                        <li class="" ><a href="{!! URL::to('user_settings/change_username') !!}">Change Username</a></li>
+                                        <li class="" ><a href="{!! URL::to('user_settings/change_password') !!}">Change Password</a></li>
                                     </ul>
                                 </li>
 								<!--
 								@if (hasAccess('boss'))
                                     <li class="">
-                                        <a href="{{ URL::to('boss') }}">BOSS</a>
+                                        <a href="{!! URL::to('boss') !!}">BOSS</a>
                                         <ul class="" style="left:-171%">
                                             @if ($bossLevel === 0 || $bossLevel == 1)
-                                                <li class="" ><a href="{{ URL::to('settings/boss_restrictions') }}">Restrictions</a></li>
+                                                <li class="" ><a href="{!! URL::to('settings/boss_restrictions') !!}">Restrictions</a></li>
                                             @endif
 
                                             @if (hasAccess('boss.hierarchy'))
-                                                <li class="" ><a href="{{ URL::to('boss-hierarchy') }}">Hierarchy</a></li>
+                                                <li class="" ><a href="{!! URL::to('boss-hierarchy') !!}">Hierarchy</a></li>
                                             @endif
                                         </ul>
                                     </li>
                                 @elseif ($bossLevel === 0 || $bossLevel == 1)
-                                    <li class=""><a href="{{ URL::to('settings/boss_restrictions') }}">BOSS Restrictions</a></li>
+                                    <li class=""><a href="{!! URL::to('settings/boss_restrictions') !!}">BOSS Restrictions</a></li>
                                 @endif
 								-->	
 								
 								
-                                <li class=""><a href="{{ URL::to('settings/scheme_settings') }}"><i class="fas fa-wrench"></i> Manage Scheme</a></li>
-                                <li class=""><a href="{{ URL::to('logout') }}">Log Out</a></li>
+                                <li class=""><a href="{!! URL::to('settings/scheme_settings') !!}"><i class="fas fa-wrench"></i> Manage Scheme</a></li>
+                                <li class=""><a href="{!! URL::to('logout') !!}">Log Out</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -526,12 +526,12 @@ if(strpos($current_page, 'customer_tabview') !== false)
 				</style>
 				
 				@if(Auth::user()->isUserTest())
-				<a href="{{ URL::to('bug/reports') }}">
+				<a href="{!! URL::to('bug/reports') !!}">
 					<div class="btn btn-primary changelog">
 						Bug Reports
 					</div>
 				</a>
-				<a href="{{ URL::to('guarddog') }}">
+				<a href="{!! URL::to('guarddog') !!}">
 					<div class="btn btn-warning guarddog">
 						Guard Dog
 					</div>
@@ -544,8 +544,8 @@ if(strpos($current_page, 'customer_tabview') !== false)
                 <table align="right" id="scheme_status" class="trafficlight">
                      <tr>
                         <td rowspan="3">
-                            <a href="{{ URL::to('/') }}">
-                                <img src="{{ asset('resources/img/traffic_light.png') }}" class="img-rounded" height="47" width="20">
+                            <a href="{!! URL::to('/') !!}">
+                                <img src="{!! asset('resources/img/traffic_light.png') !!}" class="img-rounded" height="47" width="20">
                             </a>
                         </td>
                         <td><?php echo $red ?></td>
@@ -556,12 +556,12 @@ if(strpos($current_page, 'customer_tabview') !== false)
 
 				@if (Auth::user()->schemes && Auth::user()->schemes()->count() > 1)
                     <div style="position: absolute; right: 0; margin-top: 65px;">
-                        <a href="{{ URL::to('welcome-schemes') }}">List Schemes</a>
+                        <a href="{!! URL::to('welcome-schemes') !!}">List Schemes</a>
                     </div>
                 @endif
 				
 				
-                {{ $page }}
+                {!! $page !!}
 
             </div>
         </div>

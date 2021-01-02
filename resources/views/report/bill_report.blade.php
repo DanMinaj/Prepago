@@ -9,9 +9,9 @@
         
 		
 		<label>From</label>
-        <input id="from" name="from" @if((Input::get('from')))value="{{Input::get('from')}}"@endif type="text">
+        <input id="from" name="from" @if((Input::get('from')))value="{!!Input::get('from')!!}"@endif type="text">
         <label>To</label>
-        <input id="to" name="to" @if((Input::get('to')))value="{{Input::get('to')}}"@endif type="text">
+        <input id="to" name="to" @if((Input::get('to')))value="{!!Input::get('to')!!}"@endif type="text">
         <input type="submit" value="search" class="btn-success"/>
 		
 		
@@ -29,7 +29,7 @@
 </script>
 
 <div class="admin2">
-    <a href="{{ URL::to('system_reports') }}">System Reports</a> > Bill Reports
+    <a href="{!! URL::to('system_reports') !!}">System Reports</a> > Bill Reports
     <div class="cl"></div>
     <h3><a href="<?php echo $csv_url ?>">Download CSV</a></h3>
     <div id="all_customers">

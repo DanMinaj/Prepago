@@ -11,7 +11,7 @@
 	<font style="font-size:15px;color:green">Details of error</font>
     @if ($message = Session::get('successMessage'))
 		
-		{{ $message }}
+		{!! $message !!}
 		
 	@endif
 	

@@ -7,9 +7,9 @@
     
     <form method="post" action="<?php echo URL::to('system_reports/search_supply_report_units_by_date') ?>"class="form-inline" style="float:left">
         <label>From</label>
-        <input id="from" name="from" value="{{ $from }}" type="text">
+        <input id="from" name="from" value="{!! $from !!}" type="text">
         <label>To</label>
-        <input id="to" name="to"  value="{{ $to }}" type="text">
+        <input id="to" name="to"  value="{!! $to !!}" type="text">
         <input type="submit" value="search" class="btn-success"/>
 
     </form>
@@ -28,7 +28,7 @@
 
 
 <div class="admin2">
-    <a href="{{ URL::to('system_reports') }}">System Reports</a> > Supply Report Units
+    <a href="{!! URL::to('system_reports') !!}">System Reports</a> > Supply Report Units
     <h3>Total KWh Usage: <?php echo $total_usage; ?></h3>
     <h4>Total Customers: <?php echo count($customers); ?></h4>
     <h4>Range: <?php echo "$from - $to"; ?></h4>
@@ -58,14 +58,14 @@
         <tbody>
         <?php foreach ($customers as $customer): ?>
             <tr>
-                <td><a target="_blank" href="{{ URL::to('customer/' . $customer->id) }}">({{ $customer->id }}) <?php echo $customer->first_name." ".$customer->surname; ?></a></td>
+                <td><a target="_blank" href="{!! URL::to('customer/' . $customer->id) !!}">({!! $customer->id !!}) <?php echo $customer->first_name." ".$customer->surname; ?></a></td>
                 <td><?php echo $customer->barcode; ?></td>
                 <td><?php echo $customer->total_usage; ?></td>
 				<td><?php echo $customer->permanent_meter_number; ?></td>
             </tr>
 			
 			@if (count($customer->readings))
-                <tr id="customer_readings_{{ $customer->id }}" class="customer_readings" style="background-color: #fff; display:none;">
+                <tr id="customer_readings_{!! $customer->id !!}" class="customer_readings" style="background-color: #fff; display:none;">
                     <td class="customer_readings_content">
                         <table width="90%" style="margin: 0 auto;" class="table-bordered payments_table" style="border: 1px solid #ddd">
                             <tr><th colspan="4">Readings</th></tr>
@@ -77,10 +77,10 @@
                             </tr>
                             @foreach ($customer->dhu as $dhu)
                                 <tr>
-                                    <td>{{ $dhu['date'] }}</td>
-                                    <td>{{ $dhu['start_day_reading'] }}</td>
-                                    <td>{{ $dhu['end_day_reading'] }}</td>
-                                    <td>{{ $dhu['end_day_reading'] - $dhu['start_day_reading'] }}</td>
+                                    <td>{!! $dhu['date'] !!}</td>
+                                    <td>{!! $dhu['start_day_reading'] !!}</td>
+                                    <td>{!! $dhu['end_day_reading'] !!}</td>
+                                    <td>{!! $dhu['end_day_reading'] - $dhu['start_day_reading'] !!}</td>
                                 </tr>
                             @endforeach
                         </table>

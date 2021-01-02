@@ -14,19 +14,19 @@
 	
 			<tr>
 				<th width="30%">
-					<b>{{$s->company_name}}</b>
+					<b>{!!$s->company_name!!}</b>
 				</th>
 				<th width="20%">
-					 {{ $s->viewable_count }}/{{ $s->actual_count }} customers showing
+					 {!! $s->viewable_count !!}/{!! $s->actual_count !!} customers showing
 				</th>
 				<th width="10%">
-					{{ $s->red_count }} reds
+					{!! $s->red_count !!} reds
 				</th>
 				<th width="10%">
-					{{ $s->yellow_count }} yellows
+					{!! $s->yellow_count !!} yellows
 				</th>
 				<th width="10%">
-					{{ $s->green_count }} greens
+					{!! $s->green_count !!} greens
 				</th>
 				<th width="20%">
 					<b>Visit</b>
@@ -34,11 +34,11 @@
 			</tr>
 			@foreach($s->customers as $c) 
 				<tr>
-					<td colspan="5" style="background-color: {{ $c->color }};">
-					 {{ $c->username }}
+					<td colspan="5" style="background-color: {!! $c->color !!};">
+					 {!! $c->username !!}
 					</td>
 					<td>
-						<a href="{{ URL::to('customer_tabview_controller/show', ['customer_id' => $c->id]) }}">
+						<a href="{!! URL::to('customer_tabview_controller/show', ['customer_id' => $c->id]) !!}">
 							<button type="button" class="btn btn-primary">View</button>
 						</a>
 					</td>

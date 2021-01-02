@@ -6,13 +6,13 @@
 
 
 <div class="admin2">
-<a href="{{ URL::to('system_reports') }}">System Reports</a> > Weather Reports
+<a href="{!! URL::to('system_reports') !!}">System Reports</a> > Weather Reports
 <br /><br />
     <div class="cl"></div>
 
     <ul>
-        <li class="" ><a href="{{ URL::to('weather_reports/topups') }}">Weather vs Top Ups</a></li>
-        <li class="" ><a href="{{ URL::to('weather_reports/heat_usage') }}">Weather vs Heat Usage</a></li>
+        <li class="" ><a href="{!! URL::to('weather_reports/topups') !!}">Weather vs Top Ups</a></li>
+        <li class="" ><a href="{!! URL::to('weather_reports/heat_usage') !!}">Weather vs Heat Usage</a></li>
     </ul>
 
 

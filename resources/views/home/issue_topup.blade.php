@@ -3,12 +3,12 @@
 
 <div><br/></div>
 
-<h1>{{ $title }}</h1>
+<h1>{!! $title !!}</h1>
             
 <div style="float: right">
     <form method="post" action="<?php echo URL::to($searchFormURL) ?>" onsubmit="add_remove_creditlist()">
 		
-		<input type="hidden" name="type" id="issue_topup_type" value="{{ $type }}" />
+		<input type="hidden" name="type" id="issue_topup_type" value="{!! $type !!}" />
 		<input type="submit" value="" style="height: 37px;width: 32px;float: right;background: url(/resources/images/search.png);"/>
 		<input id="search_box" name="search_box" type="text" style="height: 35px;padding: 0 0 0 5px;">
 
@@ -22,21 +22,21 @@
 <form class="well form-horizontal" id="issue_credit_form" onsubmit="$('#myModal').modal(); return false;">
 	<fieldset>
 		@if (Session::has('errorMsg'))
-			<div id="alert" class= "alert alert-error">{{ Session::get('errorMsg') }}</div>
+			<div id="alert" class= "alert alert-error">{!! Session::get('errorMsg') !!}</div>
 		@elseif (Session::has('successMsg'))
-			<div class= "alert alert-success">{{ Session::get('successMsg') }}</div>
+			<div class= "alert alert-success">{!! Session::get('successMsg') !!}</div>
 		@endif
 		<div class="control-group">
 			<label class="control-label" for="input01">Amount</label>
 			<div class="controls">
-				{{ Form::text('amount', null, ['id' => $type . '_amount', 'class' => 'input-xlarge']) }}
+				{!! Form::text('amount', null, ['id' => $type . '_amount', 'class' => 'input-xlarge']) !!}
 			</div>
 		</div>
 		
 		<div class="control-group">
 			<label class="control-label" for="input01">Reason</label>
 			<div class="controls">
-				<textarea type="text" class="input-xlarge" id="{{ $type }}_reason"></textarea>                   
+				<textarea type="text" class="input-xlarge" id="{!! $type !!}_reason"></textarea>                   
 			</div>
 		</div>
 		
@@ -44,7 +44,7 @@
 			<div class="control-group">
 				<label class="control-label" for="arrears_daily_repayment">Arrears Daily Repayment</label>
 				<div class="controls">
-					{{ Form::text('arrears_daily_repayment', 0.5, ['id' => 'arrears_daily_repayment', 'class' => 'input-xlarge']) }}              
+					{!! Form::text('arrears_daily_repayment', 0.5, ['id' => 'arrears_daily_repayment', 'class' => 'input-xlarge']) !!}              
 				</div>
 			</div>
 		@endif
@@ -53,7 +53,7 @@
 			<a href="#myModal" class="btn btn-primary"  data-toggle="modal">Issue credit</a>
 		</div>
 
-		<p style="font-size: 1.5em;">{{ $title }} to single or multiple customers</p>
+		<p style="font-size: 1.5em;">{!! $title !!} to single or multiple customers</p>
 		
 		<div id="credit_list">
 			<?php
@@ -90,7 +90,7 @@
 
 <div id="myModal" class="modal hide fade" >
 	<div class="modal-header">
-		<h3 id="myModalLabel">{{ $title }}</h3>
+		<h3 id="myModalLabel">{!! $title !!}</h3>
 	</div>
 	<div class="modal-body">
 		<form class="form-horizontal" id="admin_pass_form">
@@ -106,7 +106,7 @@
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-		<a href="#" class="btn btn-danger" onclick="issue('{{ $addAmountURL }}', '{{ $type }}')">Yes</a>
+		<a href="#" class="btn btn-danger" onclick="issue('{!! $addAmountURL !!}', '{!! $type !!}')">Yes</a>
 	</div>
 </div>
     
@@ -165,12 +165,12 @@
 </table>
 
 
-{{ HTML::script('resources/js/issue-credit.js') }}
+{!! HTML::script('resources/js/issue-credit.js') !!}
 <script type="text/javascript">
 $(function() {
 	$("#admin_pass_form").submit(function(e){
     	e.preventDefault();
-    	issue('{{ $addAmountURL }}', '{{ $type }}');
+    	issue('{!! $addAmountURL !!}', '{!! $type !!}');
 	});
 });
 </script>

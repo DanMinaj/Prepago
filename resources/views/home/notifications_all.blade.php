@@ -2,25 +2,25 @@
 </div>
 
 <div><br/></div>
-<h1>Notifications ({{ count($notifications) }})</h1>
+<h1>Notifications ({!! count($notifications) !!})</h1>
 
 
 <div class="admin2">
 	
 	@if(Session::has('successMessage'))
 	<div class="alert alert-success">
-	{{ Session::get('successMessage') }}
+	{!! Session::get('successMessage') !!}
 	</div>
 	@endif
 	
 	@if(Session::has('errorMessage'))
 	<div class="alert alert-danger">
-	{{ Session::get('errorMessage') }}
+	{!! Session::get('errorMessage') !!}
 	</div>
 	@endif
 	
 	<div>
-		<a href="{{ URL::to('notifications') }}"><button class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;<i class="fa fa-bell"></i> Create notification</button></a>
+		<a href="{!! URL::to('notifications') !!}"><button class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;<i class="fa fa-bell"></i> Create notification</button></a>
 	</div>
 	
 	<hr/>
@@ -39,17 +39,17 @@
 			
 			<tr>
 				<td>
-					{{ $n->title }}
+					{!! $n->title !!}
 				</td>
 				<td>
-					{{ $n->body }}
+					{!! $n->body !!}
 				</td>
 				<td>
 				<?php $stats = $n->getStats(); ?>
-					{{ $stats->views }}/{{ $stats->total }} Customers have viewed this notification
+					{!! $stats->views !!}/{!! $stats->total !!} Customers have viewed this notification
 				</td>
 				<td>
-					{{ $n->created_at }} &horbar; ({{ Carbon\Carbon::parse($n->created_at)->diffForHumans() }})
+					{!! $n->created_at !!} &horbar; ({!! Carbon\Carbon::parse($n->created_at)->diffForHumans() !!})
 				</td>
 			</tr>
 		

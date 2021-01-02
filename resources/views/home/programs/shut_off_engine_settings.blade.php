@@ -10,7 +10,7 @@
 @if(Session::has('successMessage'))
 <div class="alert alert-success">
 		
-		{{Session::get('successMessage')}}
+		{!!Session::get('successMessage')!!}
 
 </div>
 @endif
@@ -18,14 +18,14 @@
 @if(Session::has('errorMessage'))
 <div class="alert alert-danger">
 		
-		{{Session::get('errorMessage')}}
+		{!!Session::get('errorMessage')!!}
 
 </div>
 @endif
 
 @if($enabled)
 	
-<form action="{{ URL::to('settings/system_programs/shut_off_engine/save_programs') }}" method="POST">
+<form action="{!! URL::to('settings/system_programs/shut_off_engine/save_programs') !!}" method="POST">
 <table width="100%">
 	<tr>
 		<td width="10%">
@@ -68,21 +68,21 @@
 				
 					<tr>
 						
-						<form action="{{URL::to('settings/system_programs/shut_off_engine/save')}}" method="POST">
+						<form action="{!!URL::to('settings/system_programs/shut_off_engine/save')!!}" method="POST">
 						<td>
-							<input type="text" name="settings_name" value="{{$setting->name}}">
+							<input type="text" name="settings_name" value="{!!$setting->name!!}">
 						</td>
 						
 						<td>
 							@if(strlen($setting->value) > 30)
-								<textarea style='height:150px;width:90%;' name="settings_value">{{$setting->value}}</textarea>
+								<textarea style='height:150px;width:90%;' name="settings_value">{!!$setting->value!!}</textarea>
 							@else
-								<input type="text" name="settings_value" value="{{$setting->value}}">
+								<input type="text" name="settings_value" value="{!!$setting->value!!}">
 							@endif
 						</td>
 						
 						<td>
-							<input type="hidden" name="setting_id" value="{{$setting->id}}" />
+							<input type="hidden" name="setting_id" value="{!!$setting->id!!}" />
 							<button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save</button>
 							</form>
 						</td>
@@ -90,8 +90,8 @@
 						<td>
 						
 						
-						<form action="{{URL::to('settings/system_programs/shut_off_engine/delete')}}" method="POST">
-							<input type="hidden" name="setting_id" value="{{$setting->id}}" />
+						<form action="{!!URL::to('settings/system_programs/shut_off_engine/delete')!!}" method="POST">
+							<input type="hidden" name="setting_id" value="{!!$setting->id!!}" />
 							<button type="submit" class="btn btn-danger"><i class="fa fa-times"></i> Delete</button>
 						</form>
 						
@@ -104,7 +104,7 @@
 				<tr>
 					
 					<td>
-					<form action="{{URL::to('settings/system_programs/shut_off_engine/add')}}" method="POST">
+					<form action="{!!URL::to('settings/system_programs/shut_off_engine/add')!!}" method="POST">
 						<input type="text" name="setting_name" class="form-control" placeholder="Name">
 					</td>
 					

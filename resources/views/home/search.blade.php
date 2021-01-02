@@ -2,7 +2,7 @@
 
 <div><br/></div>
 
-  <h1>Result ({{ count($customers) }})
+  <h1>Result ({!! count($customers) !!})
   @include('includes.search_form', array('searchURL'=> URL::to('search') ))
   </h1>
 

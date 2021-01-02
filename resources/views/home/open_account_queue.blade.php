@@ -5,13 +5,13 @@
 <div class="admin2">
 	
 	@if (Session::has('successMsg') && Session::get('successMsg'))
-		<div class="alert alert-success">{{ Session::get('successMsg') }}</div>
+		<div class="alert alert-success">{!! Session::get('successMsg') !!}</div>
 	@endif
     @include('includes.notifications')
 	
 	
 	<hr/>
-	<h2>Currently in queue ({{ count($in_queue) }})</h2>
+	<h2>Currently in queue ({!! count($in_queue) !!})</h2>
 	<hr/>
    <table class="table table-bordered tablesorter sortthistable">
 		
@@ -26,13 +26,13 @@
 		<tbody>
 			@foreach($in_queue as $k => $v)
 				<tr>
-					<td> {{ $v->first_name }} {{ $v->surname }} </td>
-					<td> {{ $v->username }} </td>
-					<td> {{ $v->email_address }} </td>
-					<td> {{ $v->mobile_number }} </td>
+					<td> {!! $v->first_name !!} {!! $v->surname !!} </td>
+					<td> {!! $v->username !!} </td>
+					<td> {!! $v->email_address !!} </td>
+					<td> {!! $v->mobile_number !!} </td>
 					<td>
-						<a href="/open_account/queue/action?action=run&q={{ $v->id }}"><button class="btn btn-success">Force run</button></a>
-						<a href="/open_account/queue/action?action=cancel&q={{ $v->id }}"><button class="btn btn-danger">Cancel</button></a>
+						<a href="/open_account/queue/action?action=run&q={!! $v->id !!}"><button class="btn btn-success">Force run</button></a>
+						<a href="/open_account/queue/action?action=cancel&q={!! $v->id !!}"><button class="btn btn-danger">Cancel</button></a>
 					</td>
 				</tr>
 			@endforeach
@@ -41,7 +41,7 @@
     </table>
 	
 	<hr/>
-	<h2>Completed ({{ count($finished_queue) }})</h2>
+	<h2>Completed ({!! count($finished_queue) !!})</h2>
 	<hr/>
 	<table class="table table-bordered tablesorter sortthistable">
 		
@@ -56,12 +56,12 @@
 		<tbody>
 			@foreach($finished_queue as $k => $v)
 				<tr>
-					<td> {{ $v->first_name }} {{ $v->surname }} </td>
-					<td> {{ $v->username }} </td>
-					<td> {{ $v->email_address }} </td>
-					<td> {{ $v->mobile_number }} </td>
+					<td> {!! $v->first_name !!} {!! $v->surname !!} </td>
+					<td> {!! $v->username !!} </td>
+					<td> {!! $v->email_address !!} </td>
+					<td> {!! $v->mobile_number !!} </td>
 					<td>
-						<a href="/open_account/queue/action?action=undo&q={{ $v->id }}"
+						<a href="/open_account/queue/action?action=undo&q={!! $v->id !!}"
 						onclick="return confirm('Are you sure? You will be deleting the customer created from this queue!');"><button class="btn btn-warning">Undo</button></a>
 					</td>
 				</tr>
@@ -71,7 +71,7 @@
     </table>
 	
 	<hr/>
-	<h2>Failed ({{ count($failed_queue) }})</h2>
+	<h2>Failed ({!! count($failed_queue) !!})</h2>
 	<hr/>
 	<table class="table table-bordered tablesorter sortthistable">
 		
@@ -86,12 +86,12 @@
 		<tbody>
 			@foreach($failed_queue as $k => $v)
 				<tr>
-					<td> {{ $v->first_name }} {{ $v->surname }} </td>
-					<td> {{ $v->username }} </td>
-					<td> {{ $v->email_address }} </td>
-					<td> {{ $v->mobile_number }} </td>
+					<td> {!! $v->first_name !!} {!! $v->surname !!} </td>
+					<td> {!! $v->username !!} </td>
+					<td> {!! $v->email_address !!} </td>
+					<td> {!! $v->mobile_number !!} </td>
 					<td>
-						<a href="/open_account/queue/action?action=redo&q={{ $v->id }}"><button class="btn btn-primary">re-Queue</button></a>
+						<a href="/open_account/queue/action?action=redo&q={!! $v->id !!}"><button class="btn btn-primary">re-Queue</button></a>
 					</td>
 				</tr>
 			@endforeach

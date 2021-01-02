@@ -6,11 +6,11 @@
 	<body>
 		<div lang="en-us" style="width:100%!important;margin:0;padding:0">
    <div style="padding:10px;line-height:18px;font-family:'Lucida Grande',Verdana,Arial,sans-serif;font-size:12px;color:#444444">
-      <p dir="ltr">Hi {{ $customer->first_name }},</p>
+      <p dir="ltr">Hi {!! $customer->first_name !!},</p>
       
 	  
 	  @if(!$reminder)
-	  <p dir="ltr">We just wanted to follow up with you about your recent support ticket #{{ $query->id }} to make sure it was solved.</p>
+	  <p dir="ltr">We just wanted to follow up with you about your recent support ticket #{!! $query->id !!} to make sure it was solved.</p>
       <p dir="ltr">Could you spare a quick moment to let us know please?</p>
 	  @else
 		 <p dir="ltr">We recently emailed you asking if you could let us know if your issue was solved!</p>
@@ -18,12 +18,12 @@
 	  @endif
 	  
       <p dir="ltr">
-		<a href="https://www.snugzone.biz/support-feedback.html?cid={{ $customer->id }}&tid={{ $query->id }}&rid=1">
+		<a href="https://www.snugzone.biz/support-feedback.html?cid={!! $customer->id !!}&tid={!! $query->id !!}&rid=1">
 			<button style="margin-right:5px;padding: 7px; border-radius: 7px; background: #5687f5; border: 1px solid #29105f; color: white; font-weight: bold;">
 				🙂 Yes it was
 			</button>
 		</a>
-		<a href="https://www.snugzone.biz/support-feedback.html?cid={{ $customer->id }}&tid={{ $query->id }}&rid=0">
+		<a href="https://www.snugzone.biz/support-feedback.html?cid={!! $customer->id !!}&tid={!! $query->id !!}&rid=0">
 			<button style="padding: 7px; border-radius: 7px; background: #c54159; border: 1px solid #5f1012; color: white; font-weight: bold;">
 				☹️ No it wasn't
 			</button>
@@ -40,11 +40,11 @@
                         <tbody>
                            <tr>
                               <td width="100%" style="padding:0;margin:0" valign="top">
-                                 <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif;font-size:15px;line-height:18px;margin-bottom:0;margin-top:0;padding:0;color:#1b1d1e" dir="ltr">                                                                    <strong>{{ $customer->first_name }} {{ $customer->surname }} - {{ $customer->username}} </strong> (SnugZone App)                                                            </p>
-                                 <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif;font-size:13px;line-height:25px;margin-bottom:15px;margin-top:0;padding:0;color:#bbbbbb" dir="ltr">              {{ (new DateTime($query->created_at))->format('F j, Y, g:i a') }}            </p>
+                                 <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif;font-size:15px;line-height:18px;margin-bottom:0;margin-top:0;padding:0;color:#1b1d1e" dir="ltr">                                                                    <strong>{!! $customer->first_name !!} {!! $customer->surname !!} - {!! $customer->username!!} </strong> (SnugZone App)                                                            </p>
+                                 <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif;font-size:13px;line-height:25px;margin-bottom:15px;margin-top:0;padding:0;color:#bbbbbb" dir="ltr">              {!! (new DateTime($query->created_at))->format('F j, Y, g:i a') !!}            </p>
                                  <div dir="auto" style="color:#2b2e2f;font-family:'Lucida Sans Unicode','Lucida Grande','Tahoma',Verdana,sans-serif;font-size:14px;line-height:22px;margin:15px 0">
 								 <h3> Your issue: </h3>
-								 {{ nl2br($query->getIssueFiltered()) }}
+								 {!! nl2br($query->getIssueFiltered()) !!}
                                  </div>
                                  <p dir="ltr">                                  </p>
                               </td>
@@ -66,10 +66,10 @@
                            <tr>
                               <td width="100%" style="padding:0;margin:0" valign="top">
                                  <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif;font-size:15px;line-height:18px;margin-bottom:0;margin-top:0;padding:0;color:#1b1d1e" dir="ltr">                                                                    <strong>SnugZone Support </strong>                                                           </p>
-                                 <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif;font-size:13px;line-height:25px;margin-bottom:15px;margin-top:0;padding:0;color:#bbbbbb" dir="ltr">              {{ (new DateTime($query->created_at))->format('F j, Y, g:i a') }}            </p>
+                                 <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif;font-size:13px;line-height:25px;margin-bottom:15px;margin-top:0;padding:0;color:#bbbbbb" dir="ltr">              {!! (new DateTime($query->created_at))->format('F j, Y, g:i a') !!}            </p>
                                  <div dir="auto" style="color:#2b2e2f;font-family:'Lucida Sans Unicode','Lucida Grande','Tahoma',Verdana,sans-serif;font-size:14px;line-height:22px;margin:15px 0">
 								 <h3> Our response: </h3>
-								 {{ nl2br($query->getResponseFiltered()) }}
+								 {!! nl2br($query->getResponseFiltered()) !!}
                                  </div>
                                  <p dir="ltr">                                  </p>
                               </td>
@@ -94,10 +94,10 @@
 								   <tr>
 									  <td width="100%" style="padding:0;margin:0" valign="top">
 										 <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif;font-size:15px;line-height:18px;margin-bottom:0;margin-top:0;padding:0;color:#1b1d1e" dir="ltr">                                                                    <strong>SnugZone Support </strong>                                                           </p>
-										 <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif;font-size:13px;line-height:25px;margin-bottom:15px;margin-top:0;padding:0;color:#bbbbbb" dir="ltr">              {{ (new DateTime($v->date_time))->format('F j, Y, g:i a') }}            </p>
+										 <p style="font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Verdana,Tahoma,sans-serif;font-size:13px;line-height:25px;margin-bottom:15px;margin-top:0;padding:0;color:#bbbbbb" dir="ltr">              {!! (new DateTime($v->date_time))->format('F j, Y, g:i a') !!}            </p>
 										 <div dir="auto" style="color:#2b2e2f;font-family:'Lucida Sans Unicode','Lucida Grande','Tahoma',Verdana,sans-serif;font-size:14px;line-height:22px;margin:15px 0">
 										  <h3> Our response: </h3>
-										 {{ nl2br($v->message) }}
+										 {!! nl2br($v->message) !!}
 										 </div>
 										 <p dir="ltr">                                  </p>
 									  </td>

@@ -11,7 +11,7 @@
 	<table width="100%">
 		<tr>
 					
-			<td width="80%"><a href="{{ URL::to('admin/specialist') }}"><button type="button" class="btn btn-primary">&lt;&lt; Go back</button></a></td>
+			<td width="80%"><a href="{!! URL::to('admin/specialist') !!}"><button type="button" class="btn btn-primary">&lt;&lt; Go back</button></a></td>
 			
 			<td width="20%">
 			
@@ -22,18 +22,18 @@
 					@if(isset($_GET['option']))
 						
 						@if($_GET['option'] == 'All Schemes')
-						<option value="{{ $_GET['option'] }}">{{ $_GET['option'] }}</option>
-						<option value="{{ $scheme->company_name }}">{{ $scheme->company_name }}</option>
+						<option value="{!! $_GET['option'] !!}">{!! $_GET['option'] !!}</option>
+						<option value="{!! $scheme->company_name !!}">{!! $scheme->company_name !!}</option>
 						@endif
 						
 						@if($_GET['option'] == $scheme->company_name)
-						<option value="{{ $_GET['option'] }}">{{ $_GET['option'] }}</option>
+						<option value="{!! $_GET['option'] !!}">{!! $_GET['option'] !!}</option>
 						<option value="All Schemes">All Schemes</option>
 						@endif
 						
 					@else
 						
-						<option value="{{ $scheme->company_name }}">{{ $scheme->company_name }}</option>
+						<option value="{!! $scheme->company_name !!}">{!! $scheme->company_name !!}</option>
 						<option value="All Schemes">All Schemes</option>			
 						
 					@endif
@@ -66,10 +66,10 @@
 		
 		<tr>
 			
-			<td> <a href="{{ URL::to('customer_tabview_controller/show', ['customer_id' => $c->id]) }}">{{ $c->id }}</a> </td>
-			<td> <a href="{{ URL::to('customer_tabview_controller/show', ['customer_id' => $c->id]) }}">{{ $c->username }}</a> </td>
-			<td> {{ $c->dhu_count }} </td>
-			<td> {{ $c->dhu_count_post_nov }} </td>
+			<td> <a href="{!! URL::to('customer_tabview_controller/show', ['customer_id' => $c->id]) !!}">{!! $c->id !!}</a> </td>
+			<td> <a href="{!! URL::to('customer_tabview_controller/show', ['customer_id' => $c->id]) !!}">{!! $c->username !!}</a> </td>
+			<td> {!! $c->dhu_count !!} </td>
+			<td> {!! $c->dhu_count_post_nov !!} </td>
 		
 		</tr>
 		@endforeach

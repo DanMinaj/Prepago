@@ -9,17 +9,17 @@
 	
 	@if(Session::has('successMessage'))
 	<div class="alert alert-success">	
-		{{Session::get('successMessage')}}
+		{!!Session::get('successMessage')!!}
 	</div>
 	@endif
 	@if(Session::has('errorMessage'))
 	<div class="alert alert-danger">
-		{{Session::get('errorMessage')}}
+		{!!Session::get('errorMessage')!!}
 	</div>
 	@endif
 
 	<form action="" method="POST">
-	<input id="holiday_days" name="holiday_days" type="hidden" value={{json_encode($holiday_days)}}>
+	<input id="holiday_days" name="holiday_days" type="hidden" value={!!json_encode($holiday_days)!!}>
 	<table width="100%">
 		<tr>
 		
@@ -42,10 +42,10 @@
 						</tr>
 					@else
 						@foreach($holiday_days as $key => $day)
-						<tr class="day" day_name="{{ str_replace(' ', '', ($day->name)) }}">
-							<td> {{ $day->name }} </td>
-							<td> {{ $day->date }} </td>
-							<td> <i day_name="{{ str_replace(' ', '', ($day->name)) }}" style='color:red;cursor:pointer;' class="fa fa-minus-circle holiday_day_remove"></i> </td>
+						<tr class="day" day_name="{!! str_replace(' ', '', ($day->name)) !!}">
+							<td> {!! $day->name !!} </td>
+							<td> {!! $day->date !!} </td>
+							<td> <i day_name="{!! str_replace(' ', '', ($day->name)) !!}" style='color:red;cursor:pointer;' class="fa fa-minus-circle holiday_day_remove"></i> </td>
 						</tr>
 						@endforeach
 					@endif

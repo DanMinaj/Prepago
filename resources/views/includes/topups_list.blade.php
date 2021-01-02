@@ -15,20 +15,20 @@
         <tbody>
         @foreach ($topups as $key => $topup)
             <tr>
-                <td>{{ $topup['ref_number'] }}</td>
-                <td>{{{ $topup['time_date'] }}}</td>
-                <td>{{ $currencySign }} {{{ $topup['amount'] }}}</td>
-                <td> {{ $topup['acceptor_name_location'] }} </td>
+                <td>{!! $topup['ref_number'] !!}</td>
+                <td>{{ $topup['time_date'] }}</td>
+                <td>{!! $currencySign !!} {{ $topup['amount'] }}</td>
+                <td> {!! $topup['acceptor_name_location'] !!} </td>
 				<td>
 					@if($topup['balance_before'] == NULL || $topup['balance_after'] == NULL)
 						<center>-</center>
 					@else
-						<center> {{ $topup['balance_before'] }} -&gt; {{ $topup['balance_after'] }} </center>
+						<center> {!! $topup['balance_before'] !!} -&gt; {!! $topup['balance_after'] !!} </center>
 					@endif
 				</td>
 				<td>
 					@if($topup['acceptor_name_location'] == 'stripe' && Auth::user()->isUserTest())
-					<button type="button" amount="{{ $topup['amount'] }}" ref_number="{{ $topup['ref_number'] }}" class="btn btn-primary refund_btn" ype="button" >Refund</button>
+					<button type="button" amount="{!! $topup['amount'] !!}" ref_number="{!! $topup['ref_number'] !!}" class="btn btn-primary refund_btn" ype="button" >Refund</button>
 					@else
 					N/A
 					@endif
@@ -45,9 +45,9 @@
 	  <h3 id="myModalLabel">Refund Stripe Payment</h3>
    </div>
 	<div class="modal-body">
-	<form action="/customer_tabview_controller/refund_payment/{{ $data['id'] }}" method="POST">
+	<form action="/customer_tabview_controller/refund_payment/{!! $data['id'] !!}" method="POST">
 	<input type="hidden" class="ref_number" name="ref_number">
-	<input type="hidden" name="customer_id" value="{{ $data['id'] }}">
+	<input type="hidden" name="customer_id" value="{!! $data['id'] !!}">
 	<table width="100%">
 		<tr>
 			<td width="50%"><b style="font-size: 1.5rem;">Partial refund</b></td>

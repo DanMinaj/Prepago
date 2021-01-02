@@ -18,8 +18,8 @@
 
 					<tr>
 						@if(isset($data) && isset($data['permanent_meter_id']) && isset($data['id']))
-						<input type='hidden' name='permanent_meter_id' value="{{ $data['permanent_meter_id'] }}">
-						<input type='hidden' name='customer_id' value="{{ $data['id'] }}">
+						<input type='hidden' name='permanent_meter_id' value="{!! $data['permanent_meter_id'] !!}">
+						<input type='hidden' name='customer_id' value="{!! $data['id'] !!}">
 						<td width="15%"><b>Port: </b> </td>
 						<td width="25%"> <input id="port" readonly name="port" style="width:30%" class="form-control" type="number" value="2221"> </td>
 						@endif
@@ -80,7 +80,7 @@
 						</form>
 					@else
 						<td style='float:left;vertical-align:top;'>
-							<form action="{{URL::to('stop_watchdog')}}" method="POST">
+							<form action="{!!URL::to('stop_watchdog')!!}" method="POST">
 								<button type="submit" class="btn btn-danger">Stop</button>
 							</form>
 						</td>

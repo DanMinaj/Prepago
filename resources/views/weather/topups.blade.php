@@ -115,7 +115,7 @@
 
         if(from&&to&&!from2&&!to2){
 
-            $.post("{{ URL::to('weather_reports/topups/get') }}",
+            $.post("{!! URL::to('weather_reports/topups/get') !!}",
             {
                 from : from,
                 to : to
@@ -133,7 +133,7 @@
             $('#clear2').attr('disabled', false);
             $('#clear2').attr('checked', true);
 
-            $.post("{{ URL::to('weather_reports/topups/get') }}",
+            $.post("{!! URL::to('weather_reports/topups/get') !!}",
             {
                 from : from2,
                 to : to2
@@ -150,7 +150,7 @@
     }
 
     function loadExtraData(div, from, to){
-        $.post("{{ URL::to('weather_reports/topups/extra') }}",
+        $.post("{!! URL::to('weather_reports/topups/extra') !!}",
             {
                 from : from,
                 to : to
@@ -170,7 +170,7 @@
         var from2 = $('#from2').val();
         var to2 = $('#to2').val();
 
-        $.post("{{ URL::to('weather_reports/topups/csv') }}",
+        $.post("{!! URL::to('weather_reports/topups/csv') !!}",
         {
             from : from,
             to : to,

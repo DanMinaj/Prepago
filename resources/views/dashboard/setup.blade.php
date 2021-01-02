@@ -25,7 +25,7 @@
 <div class="iniSetup-container">
 
 	<div class="iniSetupTitle">Set Main Reading Valve</div>
-	{{ Form::text('mainReadingValve') }}
+	{!! Form::text('mainReadingValve') !!}
 
 	<button class="btn_setup">Set</button>
 

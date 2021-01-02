@@ -2,7 +2,7 @@
 </div>
 
 <div><br/></div>
-<h1>ARREGLO <font style='font-size: 1.2rem; font-family: arial; color: #a4a4a4;'>Last updated: {{ $todaysGraphData->updated_at }}</font> </h1>
+<h1>ARREGLO <font style='font-size: 1.2rem; font-family: arial; color: #a4a4a4;'>Last updated: {!! $todaysGraphData->updated_at !!}</font> </h1>
 
 <div class="admin2">
 
@@ -110,8 +110,8 @@
 					<table width="100%">
 						<tr>
 							<td width="60%">
-								<font style="font-size:1.3rem;">SMS Credit Balance: {{ $sms_data["credit"] }} - </font>
-								<font style="font-size:1.1rem">{{ $sms_data["used_today"] }} used today</font>
+								<font style="font-size:1.3rem;">SMS Credit Balance: {!! $sms_data["credit"] !!} - </font>
+								<font style="font-size:1.1rem">{!! $sms_data["used_today"] !!} used today</font>
 							</td>
 							<td width="40%">
 								<a href="https://app.sendmode.com/index.aspx?tab=login">
@@ -127,7 +127,7 @@
 						<table width="100%">
 						<tr>
 							<td colspan='2' style="height:200" width="100%">
-								{{ $smsChart }}
+								{!! $smsChart !!}
 							</td>
 						</tr>
 					</table>
@@ -158,7 +158,7 @@
 													<td class='title'>Green Customers</td>
 												</tr>
 												<tr>
-													<td class='figure'><b>{{ $customer_statuses->greenCustomers }}</b></td>
+													<td class='figure'><b>{!! $customer_statuses->greenCustomers !!}</b></td>
 												</tr>
 											</table>
 										</td>
@@ -175,9 +175,9 @@
 										<td colspan='2'>
 											<br/>
 											@if($customer_statuses->greenCustomers_pc > 0) 
-												<font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {{ number_format(abs($customer_statuses->greenCustomers_pc), 0) }}%</font> Since yesterday
+												<font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {!! number_format(abs($customer_statuses->greenCustomers_pc), 0) !!}%</font> Since yesterday
 											@else
-												<font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {{ number_format(abs($customer_statuses->greenCustomers_pc), 0) }}%</font> Since yesterday
+												<font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {!! number_format(abs($customer_statuses->greenCustomers_pc), 0) !!}%</font> Since yesterday
 											@endif
 										</td>
 									</tr>
@@ -199,7 +199,7 @@
 													<td class='title'>Yellow Customers</td>
 												</tr>
 												<tr>
-													<td class='figure'><b>{{ $customer_statuses->yellowCustomers }}</b></td>
+													<td class='figure'><b>{!! $customer_statuses->yellowCustomers !!}</b></td>
 												</tr>
 											</table>
 										</td>
@@ -216,9 +216,9 @@
 										<td colspan='2'>
 											<br/>
 											@if($customer_statuses->yellowCustomers_pc > 0) 
-												<font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {{ number_format(abs($customer_statuses->yellowCustomers_pc), 0) }}%</font> Since yesterday
+												<font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {!! number_format(abs($customer_statuses->yellowCustomers_pc), 0) !!}%</font> Since yesterday
 											@else
-												<font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {{ number_format(abs($customer_statuses->yellowCustomers_pc), 0) }}%</font> Since yesterday
+												<font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {!! number_format(abs($customer_statuses->yellowCustomers_pc), 0) !!}%</font> Since yesterday
 											@endif
 										</td>
 									</tr>
@@ -239,7 +239,7 @@
 													<td class='title'>Red Customers</td>
 												</tr>
 												<tr>
-													<td class='figure'><b>{{ $customer_statuses->redCustomers }}</b></td>
+													<td class='figure'><b>{!! $customer_statuses->redCustomers !!}</b></td>
 												</tr>
 											</table>
 										</td>
@@ -256,9 +256,9 @@
 										<td colspan='2'>
 											<br/>
 											@if($customer_statuses->redCustomers_pc > 0) 
-												<font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {{ number_format(abs($customer_statuses->redCustomers_pc), 0) }}%</font> Since yesterday
+												<font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {!! number_format(abs($customer_statuses->redCustomers_pc), 0) !!}%</font> Since yesterday
 											@else
-												<font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {{ number_format(abs($customer_statuses->redCustomers_pc), 0) }}%</font> Since yesterday
+												<font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {!! number_format(abs($customer_statuses->redCustomers_pc), 0) !!}%</font> Since yesterday
 											@endif
 										</td>
 									</tr>
@@ -280,7 +280,7 @@
 													<td class='title'>Blue Customers</td>
 												</tr>
 												<tr>
-													<td class='figure'><b>{{ $customer_statuses->blueCustomers }}</b></td>
+													<td class='figure'><b>{!! $customer_statuses->blueCustomers !!}</b></td>
 												</tr>
 											</table>
 										</td>
@@ -297,9 +297,9 @@
 										<td colspan='2'>
 											<br/>
 											@if($customer_statuses->blueCustomers_pc > 0) 
-												<font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {{ number_format(abs($customer_statuses->blueCustomers_pc), 0) }}%</font> Since yesterday
+												<font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {!! number_format(abs($customer_statuses->blueCustomers_pc), 0) !!}%</font> Since yesterday
 											@else
-												<font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {{ number_format(abs($customer_statuses->blueCustomers_pc), 0) }}%</font> Since yesterday
+												<font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {!! number_format(abs($customer_statuses->blueCustomers_pc), 0) !!}%</font> Since yesterday
 											@endif
 										</td>
 									</tr>
@@ -320,7 +320,7 @@
 													<td class='title'>Unoccupied Apts.</td>
 												</tr>
 												<tr>
-													<td class='figure'><b>{{ $customer_statuses->whiteCustomers }}</b></td>
+													<td class='figure'><b>{!! $customer_statuses->whiteCustomers !!}</b></td>
 												</tr>
 											</table>
 										</td>
@@ -337,9 +337,9 @@
 										<td colspan='2'>
 											<br/>
 											@if($customer_statuses->whiteCustomers_pc > 0) 
-												<font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {{ number_format(abs($customer_statuses->whiteCustomers_pc), 2) }}%</font> Since yesterday
+												<font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {!! number_format(abs($customer_statuses->whiteCustomers_pc), 2) !!}%</font> Since yesterday
 											@else
-												<font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {{ number_format(abs($customer_statuses->whiteCustomers_pc), 2) }}%</font> Since yesterday
+												<font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {!! number_format(abs($customer_statuses->whiteCustomers_pc), 2) !!}%</font> Since yesterday
 											@endif
 										</td>
 									</tr>
@@ -371,14 +371,14 @@
 						</td>
 						<td style="vertical-align:middle" width="80%">
 							<font style="font-size:0.9rem;font-weight:bold"> 
-							{{ $misc_data['statements_this_month'] }} Statements issued this month </font>
+							{!! $misc_data['statements_this_month'] !!} Statements issued this month </font>
 						</td>
 					</tr>
 					<tr>
 						<td width="100%" colspan="2">
 							<br/>
 							<center style="font-size: 0.7rem">
-								{{ $misc_data['statements_last_month'] }} statements issued last month 
+								{!! $misc_data['statements_last_month'] !!} statements issued last month 
 							</center>
 						</td>
 					</tr>
@@ -394,7 +394,7 @@
 						</td>
 						<td style="vertical-align:middle" width="80%">
 							<font style="font-size:0.9rem;font-weight:bold"> 
-							{{ $misc_data['autotopup_subscriptions_this_month'] }} auto topup renewals this month
+							{!! $misc_data['autotopup_subscriptions_this_month'] !!} auto topup renewals this month
 							</font>
 						</td>
 					</tr>
@@ -402,7 +402,7 @@
 						<td width="100%" colspan="2">
 							<br/>
 							<center style="font-size: 0.7rem">
-								{{ $misc_data['autotopup_subscriptions_last_month'] }} auto topup renewals last month
+								{!! $misc_data['autotopup_subscriptions_last_month'] !!} auto topup renewals last month
 							</center>
 						</td>
 					</tr>
@@ -418,14 +418,14 @@
 						</td>
 						<td style="vertical-align:middle" width="80%">
 							<font style="font-size:0.9rem;font-weight:bold"> 
-							{{ $misc_data['closed_accounts_this_month'] }} closed accounts this month </font>
+							{!! $misc_data['closed_accounts_this_month'] !!} closed accounts this month </font>
 						</td>
 					</tr>
 					<tr>
 						<td width="100%" colspan="2">
 							<br/>
 							<center style="font-size: 0.7rem">
-								{{ $misc_data['closed_accounts_last_month'] }} closed accounts last month
+								{!! $misc_data['closed_accounts_last_month'] !!} closed accounts last month
 							</center>
 						</td>
 					</tr>
@@ -441,14 +441,14 @@
 						</td>
 						<td style="vertical-align:middle" width="80%">
 							<font style="font-size:0.9rem;font-weight:bold"> 
-							{{ $misc_data['opened_accounts_this_month'] }} opened accounts this month </font>
+							{!! $misc_data['opened_accounts_this_month'] !!} opened accounts this month </font>
 						</td>
 					</tr>
 					<tr>
 						<td width="100%" colspan="2">
 							<br/>
 							<center style="font-size: 0.7rem">
-								{{ $misc_data['opened_accounts_last_month'] }} opened accounts last month
+								{!! $misc_data['opened_accounts_last_month'] !!} opened accounts last month
 							</center>
 						</td>
 					</tr>
@@ -459,41 +459,41 @@
 	<div class="row-fluid">
 		<div class="span3">
 		<div class="well">
-		{{	$weekTopupChart	}}
+		{!!	$weekTopupChart	!!}
 		@if($topupWeekPercent > 0) 
-			<center><font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {{ number_format($topupWeekPercent, 0) }}%</font> More Topups This Week</center>
+			<center><font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {!! number_format($topupWeekPercent, 0) !!}%</font> More Topups This Week</center>
 		@else
-			<center><font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {{ number_format(abs($topupWeekPercent), 0) }}%</font> Less Topups This Week</center>
+			<center><font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {!! number_format(abs($topupWeekPercent), 0) !!}%</font> Less Topups This Week</center>
 		@endif
 		</div>
 		</div>
 		<div class="span3">
 		<div class="well">
-		{{	$awayModeChart	}}
+		{!!	$awayModeChart	!!}
 		@if($awayModePercent > 0) 
-			<center><font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {{ number_format($awayModePercent, 0) }}%</font> More Away modes This Week</center>
+			<center><font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {!! number_format($awayModePercent, 0) !!}%</font> More Away modes This Week</center>
 		@else
-			<center><font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {{ number_format(abs($awayModePercent), 0) }}%</font> Less Away modes This Week</center>
+			<center><font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {!! number_format(abs($awayModePercent), 0) !!}%</font> Less Away modes This Week</center>
 		@endif
 		</div>
 		</div>
 		<div class="span3">
 		<div class="well">
-		{{ $iouChart }}
+		{!! $iouChart !!}
 		@if($IOUPercent > 0) 
-			<center><font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {{ number_format($IOUPercent, 0) }}%</font> More IOUs This Week</center>
+			<center><font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {!! number_format($IOUPercent, 0) !!}%</font> More IOUs This Week</center>
 		@else
-			<center><font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {{ number_format(abs($IOUPercent), 0) }}%</font> Less IOUs This Week</center>
+			<center><font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {!! number_format(abs($IOUPercent), 0) !!}%</font> Less IOUs This Week</center>
 		@endif
 		</div>
 		</div>
 		<div class="span3">
 		<div class="well">
-		{{ $shutOffChart }}
+		{!! $shutOffChart !!}
 		@if($shutOffPercent > 0) 
-			<center><font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {{ number_format($shutOffPercent, 0) }}%</font> More Shutoffs This Week</center>
+			<center><font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {!! number_format($shutOffPercent, 0) !!}%</font> More Shutoffs This Week</center>
 		@else
-			<center><font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {{ number_format(abs($shutOffPercent), 0) }}%</font> Less Shutoffs This Week</center>
+			<center><font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {!! number_format(abs($shutOffPercent), 0) !!}%</font> Less Shutoffs This Week</center>
 		@endif
 		</div>
 		</div>
@@ -512,8 +512,8 @@
 			</div>
 			@foreach($last5BugReports as $b)
 			<div class="row-fluid custom">
-				<div class="span5" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'><a href="/bug/reports/view/{{ $b->id }}">{{ $b->preview }}</a></div>
-				<div class="span4" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>{{ Carbon\Carbon::parse($b->created_at)->diffForHumans() }}</div>
+				<div class="span5" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'><a href="/bug/reports/view/{!! $b->id !!}">{!! $b->preview !!}</a></div>
+				<div class="span4" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>{!! Carbon\Carbon::parse($b->created_at)->diffForHumans() !!}</div>
 				<div class="span3" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>
 					@if($b->resolved == 1)
 							<i style="color:#62c462" class="fa fa-check"></i>
@@ -537,9 +537,9 @@
 			</div>
 			@foreach($last5OnlineUsers as $o)
 			<div class="row-fluid custom">
-				<div class="span5" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'><a href="{{ URL::to('settings/scheme_settings/manage_operator/' . $o->id) }}">{{ $o->username }}</a></div>
-				<div class="span4" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>{{ Carbon\Carbon::parse($o->is_online_time)->diffForHumans() }}</div>
-				<div class="span3" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'><a href="{{ $o->is_online_page }}">{{ $o->is_online_page }}</a></div>
+				<div class="span5" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'><a href="{!! URL::to('settings/scheme_settings/manage_operator/' . $o->id) !!}">{!! $o->username !!}</a></div>
+				<div class="span4" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>{!! Carbon\Carbon::parse($o->is_online_time)->diffForHumans() !!}</div>
+				<div class="span3" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'><a href="{!! $o->is_online_page !!}">{!! $o->is_online_page !!}</a></div>
 			</div>
 			<br/>
 			@endforeach
@@ -555,21 +555,21 @@
 			</div>
 			@foreach($last5OfflineSchemes as $o)
 			<div class="row-fluid custom">
-				<div class="span5" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'><a href="{{ URL::to('system_reports/sim_reports#s_' . $o->scheme_number ) }}">{{ Scheme::find($o->scheme_number)->scheme_nickname }}</a></div>
-				<div class="span4" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>{{ Carbon\Carbon::parse($o->last_offline)->diffForHumans() }}</div>
-				<div class="span3" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>{{ number_format($o->uptime_percentage, 0) }}%</div>
+				<div class="span5" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'><a href="{!! URL::to('system_reports/sim_reports#s_' . $o->scheme_number ) !!}">{!! Scheme::find($o->scheme_number)->scheme_nickname !!}</a></div>
+				<div class="span4" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>{!! Carbon\Carbon::parse($o->last_offline)->diffForHumans() !!}</div>
+				<div class="span3" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>{!! number_format($o->uptime_percentage, 0) !!}%</div>
 			</div>
 			<br/>
 			@endforeach
 			<table width="100%">
 				<tr>
 					<td>
-						<a href="{{ URL::to('settings/ping') }}">
+						<a href="{!! URL::to('settings/ping') !!}">
 							<button type="button" class="btn btn-info"><i class="fas fa-sim-card"></i>  Manage SIMs</button>
 						</a>
 					</td>
 					<td>
-						<a href="{{ URL::to('system_reports/sim_reports') }}">
+						<a href="{!! URL::to('system_reports/sim_reports') !!}">
 							<button type="button" class="btn btn-warning"><i class="fas fa-chart-line"></i>  Graph</button>
 						</a>
 					</td>
@@ -592,23 +592,23 @@
 					<h4>
 					Topup method usage
 					</h4>
-					{{ $topupTypeChart }}
+					{!! $topupTypeChart !!}
 					
 					<hr/>
 					<center> 
 					<div clas="row-fluid">
 						<div class="span6">
 							@if($topupPercent > 0) 
-								<font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {{ number_format($topupPercent, 0) }}%</font> More Topups a Month This Year
+								<font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {!! number_format($topupPercent, 0) !!}%</font> More Topups a Month This Year
 							@else
-								<font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {{ number_format($topupPercent, 0) }}%</font> Less Topups a Month This Year	
+								<font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {!! number_format($topupPercent, 0) !!}%</font> Less Topups a Month This Year	
 							@endif
 						</div>
 						<div class="span6">
 							@if($customerPercent > 0) 
-								<font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {{ number_format($customerPercent, 0) }}%</font> More Customers This Year
+								<font color="#2dce89"><i class="fa fa fa-arrow-up"></i> {!! number_format($customerPercent, 0) !!}%</font> More Customers This Year
 							@else
-								<font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {{ number_format($customerPercent, 0) }}%</font> Less Customers This Year	
+								<font color="#f5365c"><i class="fa fa fa-arrow-down"></i> {!! number_format($customerPercent, 0) !!}%</font> Less Customers This Year	
 							@endif
 						</div>
 					</div>
@@ -627,12 +627,12 @@
 							<tr>
 								<td>
 									<font style='color: #8898aa'>
-										In transit to bank: <b>&euro;{{ number_format($stripe['total_in_transit'], 2) }}</b>
+										In transit to bank: <b>&euro;{!! number_format($stripe['total_in_transit'], 2) !!}</b>
 									</font>
 								</td>
 								<td>
 									<font style='color: #8898aa'>
-										Pending: <b>&euro;{{ number_format($stripe['total_pending'], 2) }}</b>
+										Pending: <b>&euro;{!! number_format($stripe['total_pending'], 2) !!}</b>
 									</font>
 								</td>
 							</tr>
@@ -653,13 +653,13 @@
 											@endif
 										</td>
 										<td width="40%">
-												<br/><b>&euro;{{ number_format($v->amount, 2) }}</b>
+												<br/><b>&euro;{!! number_format($v->amount, 2) !!}</b>
 										</td>
 										<td width="40%" style="vertical-align:middle;">
 												@if($v->status == 'paid')
-													<font color="green"><b>Delivered {{ $v->arrival_date }}</b>&nbsp;<i class="fa fa-check-double"></i></font>
+													<font color="green"><b>Delivered {!! $v->arrival_date !!}</b>&nbsp;<i class="fa fa-check-double"></i></font>
 												@else
-													est. {{ $v->arrival_date }} &nbsp;<i class="fa fa-spinner"></i></b>
+													est. {!! $v->arrival_date !!} &nbsp;<i class="fa fa-spinner"></i></b>
 												@endif
 										</td>
 									</tr>
@@ -692,7 +692,7 @@
 					<tr>
 						<td width="50%">
 						<h4> Top App platforms </h4>
-						{{ $appPlatformsChart }}
+						{!! $appPlatformsChart !!}
 						</td>
 						
 						<td width="50%">
@@ -708,41 +708,41 @@
 									</tr>
 									<tr>
 										<td style="padding:5%;"><b> Tickets (30 days)</b> </td> 
-										<td style="padding:5%;"> {{ $support_data['last_30_days'] }} </td>
+										<td style="padding:5%;"> {!! $support_data['last_30_days'] !!} </td>
 									</tr>
 									<!--
 									<tr>
 										<td style="padding:5%;"><b> Tickets (All Time)</b> </td> 
-										<td style="padding:5%;"> {{ $support_data['all_time']['count'] }} </td>
+										<td style="padding:5%;"> {!! $support_data['all_time']['count'] !!} </td>
 									</tr>
 									-->
 									<tr>
 										<td style="padding:5%;"><b> Responses (30 days)</b> </td> 
 										<td style="padding:5%;"> 
-										{{ number_format((($support_data['responses']/$support_data['last_30_days'])*100), 0) }}% response rate &horbar; ({{ $support_data['responses'] }}/{{ $support_data['last_30_days'] }})
+										{!! number_format((($support_data['responses']/$support_data['last_30_days'])*100), 0) !!}% response rate &horbar; ({!! $support_data['responses'] !!}/{!! $support_data['last_30_days'] !!})
 										</td>
 									</tr>
 									<!--
 									<tr>
 										<td style="padding:5%;"><b> Responses (All Time)</b> </td> 
 										<td style="padding:5%;"> 
-										{{ number_format((($support_data["all_time"]['responses']/$support_data["all_time"]['count'])*100), 0) }}% response rate &horbar; ({{ $support_data["all_time"]['responses'] }}/{{ $support_data["all_time"]['count'] }})
+										{!! number_format((($support_data["all_time"]['responses']/$support_data["all_time"]['count'])*100), 0) !!}% response rate &horbar; ({!! $support_data["all_time"]['responses'] !!}/{!! $support_data["all_time"]['count'] !!})
 										</td>
 									</tr>
 									-->
 									<tr>
 										<td style="padding:5%;"><b> Satisfaction (30 days)</b> </td> 
 										<td style="padding:5%;"> 
-										<b>{{ number_format((($support_data['happy']/$support_data['responses'])*100), 0)  }}%</b> <span style="font-weight:bold;color:green;">happy</span> ({{ $support_data['happy'] }})
+										<b>{!! number_format((($support_data['happy']/$support_data['responses'])*100), 0)  !!}%</b> <span style="font-weight:bold;color:green;">happy</span> ({!! $support_data['happy'] !!})
 											&horbar;
-										<b>{{ number_format((($support_data['unhappy']/$support_data['responses'])*100), 0)  }}%</b> <span style="font-weight:bold;color:red;">unhappy</span> ({{ $support_data['unhappy'] }})  </td>
+										<b>{!! number_format((($support_data['unhappy']/$support_data['responses'])*100), 0)  !!}%</b> <span style="font-weight:bold;color:red;">unhappy</span> ({!! $support_data['unhappy'] !!})  </td>
 									</tr>
 									<tr>
 										<td style="padding:5%;"><b> Satisfaction (All Time)</b> </td> 
 										<td style="padding:5%;"> 
-										<b>{{ number_format((($support_data["all_time"]['happy']/$support_data["all_time"]['responses'])*100), 0)  }}%</b> <span style="font-weight:bold;color:green;">happy</span> ({{ $support_data["all_time"]['happy'] }})
+										<b>{!! number_format((($support_data["all_time"]['happy']/$support_data["all_time"]['responses'])*100), 0)  !!}%</b> <span style="font-weight:bold;color:green;">happy</span> ({!! $support_data["all_time"]['happy'] !!})
 											&horbar;
-										<b>{{ number_format((($support_data["all_time"]['unhappy']/$support_data["all_time"]['responses'])*100), 0)  }}%</b> <span style="font-weight:bold;color:red;">unhappy</span> ({{ $support_data["all_time"]['unhappy'] }})  </td>
+										<b>{!! number_format((($support_data["all_time"]['unhappy']/$support_data["all_time"]['responses'])*100), 0)  !!}%</b> <span style="font-weight:bold;color:red;">unhappy</span> ({!! $support_data["all_time"]['unhappy'] !!})  </td>
 									</tr>
 								</table>
 							</p>
@@ -764,7 +764,7 @@
 										<td><b> Ticket growth (Past 13 weeks)</b> <hr/></td>
 									</tr>
 									<tr>
-										<td>{{ $ticketResponseChart }}</td>
+										<td>{!! $ticketResponseChart !!}</td>
 									</tr>
 								</table>
 							</td> 
@@ -776,7 +776,7 @@
 									<tr>
 										<td>
 											@foreach($support_data['follow_up_reply'] as $k => $c) 
-									{{ $k }} <br/><span class="badge badge-success">{{ number_format((($c/$support_data['responses'])*100), 0) }}% &horbar; {{ $c }}</span><br/><br/>
+									{!! $k !!} <br/><span class="badge badge-success">{!! number_format((($c/$support_data['responses'])*100), 0) !!}% &horbar; {!! $c !!}</span><br/><br/>
 								@endforeach
 										</td>
 									</tr>
@@ -802,15 +802,15 @@
 			@foreach($announcements as $k => $a)
 			<div class="row-fluid custom">
 				<div class="span6" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>
-					<a href="/announcements/view/{{ $a->id }}">
-						 {{ $a->title }}
+					<a href="/announcements/view/{!! $a->id !!}">
+						 {!! $a->title !!}
 					</a>
 				</div>
 				<div class="span3" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>
-					{{ $a->total_views }}
+					{!! $a->total_views !!}
 				</div>
 				<div class="span3" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>
-					{{ ($a->total_views > 0) ? number_format(((count($a->comments)/$a->total_views) * 100), 0) : 0 }}%
+					{!! ($a->total_views > 0) ? number_format(((count($a->comments)/$a->total_views) * 100), 0) : 0 !!}%
 				</div>
 			</div>
 			@endforeach
@@ -826,7 +826,7 @@
 			@foreach($top5Faqs as $k => $f)
 			<div class="row-fluid custom">
 				<div class="span12" style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>
-					{{ $f->title }}
+					{!! $f->title !!}
 				</div>
 			</div>
 			@endforeach
@@ -834,7 +834,7 @@
 		</div>
 		<div class="span4">
 			<div class="well" style='height: 23rem;'>
-			{{	$customerTrendChart	}}
+			{!!	$customerTrendChart	!!}
 			</div>
 		</div>
 	</div>
@@ -842,7 +842,7 @@
 	<div class="row-fluid">
 		<div class="span3">
 		<div class='well' style='min-height: 23rem;max-height: 23rem;overflow:scroll;'>
-			<h4>Customers pending restoration <a href='/temperature_control'>({{ count($tcpCustomers['require_restoration']) }})</a></h4><hr/>
+			<h4>Customers pending restoration <a href='/temperature_control'>({!! count($tcpCustomers['require_restoration']) !!})</a></h4><hr/>
 			<div class="row-fluid">
 				
 				<!--<button type="button" class="btn btn-success">Restore</button>-->
@@ -850,9 +850,9 @@
 				<br/><br/>
 				@foreach($tcpCustomers['require_restoration'] as $k => $v) 
 				<div class="row-fluid">
-					<div class="span4"><a href="/customer/{{ $v['customer']->username }}">{{ $v['customer']->username }}</a></div>
+					<div class="span4"><a href="/customer/{!! $v['customer']->username !!}">{!! $v['customer']->username !!}</a></div>
 					<div class="span4"></div>
-					<div class="span4">{{ $v->last_flow_temp }}&deg;C</div>
+					<div class="span4">{!! $v->last_flow_temp !!}&deg;C</div>
 				</div>
 				@endforeach
 				
@@ -861,15 +861,15 @@
 		</div>
 		<div class="span3">
 		<div class="well" style='min-height: 23rem;max-height: 23rem;overflow:scroll;'>
-			<h4>Customers pending shut off <a href='/temperature_control'>({{ count($tcpCustomers['require_shut_off']) }})</a></h4><hr/>
+			<h4>Customers pending shut off <a href='/temperature_control'>({!! count($tcpCustomers['require_shut_off']) !!})</a></h4><hr/>
 			<!--<button type="button" class="btn btn-success">Restore</button>-->
 				
 				<br/><br/>
 				@foreach($tcpCustomers['require_shut_off'] as $k => $v) 
 				<div class="row-fluid">
-					<div class="span4"><a href="/customer/{{ $v['customer']->username }}">{{ $v['customer']->username }}</a></div>
+					<div class="span4"><a href="/customer/{!! $v['customer']->username !!}">{!! $v['customer']->username !!}</a></div>
 					<div class="span4"></div>
-					<div class="span4">{{ $v->last_flow_temp }}&deg;C</div>
+					<div class="span4">{!! $v->last_flow_temp !!}&deg;C</div>
 				</div>
 				@endforeach
 				
@@ -877,15 +877,15 @@
 		</div>
 		<div class="span3">
 		<div class="well" style='min-height: 23rem;max-height: 23rem;overflow:scroll;'>
-			<h4>Customers pending away mode <a href='/temperature_control'>({{ count($tcpCustomers['require_away_mode']) }})</a></h4><hr/>
+			<h4>Customers pending away mode <a href='/temperature_control'>({!! count($tcpCustomers['require_away_mode']) !!})</a></h4><hr/>
 			<!--<button type="button" class="btn btn-success">Restore</button>-->
 				
 				<br/><br/>
 				@foreach($tcpCustomers['require_away_mode'] as $k => $v) 
 				<div class="row-fluid">
-					<div class="span4"><a href="/customer/{{ $v['customer']->username }}">{{ $v['customer']->username }}</a></div>
+					<div class="span4"><a href="/customer/{!! $v['customer']->username !!}">{!! $v['customer']->username !!}</a></div>
 					<div class="span4"></div>
-					<div class="span4">{{ $v->last_flow_temp }}&deg;C</div>
+					<div class="span4">{!! $v->last_flow_temp !!}&deg;C</div>
 				</div>
 				@endforeach
 				
@@ -893,24 +893,24 @@
 		</div>
 		<div class="span3">
 		<div class="well" style='min-height: 23rem;max-height: 23rem;overflow:scroll;'>
-			<h4>Reconnections <a href='/shut_offs'>({{ count($reconnection_data['restored']) }}/{{ $reconnection_data['total'] }})</a></h4><hr/>
+			<h4>Reconnections <a href='/shut_offs'>({!! count($reconnection_data['restored']) !!}/{!! $reconnection_data['total'] !!})</a></h4><hr/>
 			<!--<button type="button" class="btn btn-success">Restore</button>-->
 				
 				<br/><br/>
 				<b> Restored </b><hr/>
 				@foreach($reconnection_data['restored'] as $k => $v) 
 				<div class="row-fluid">
-					<div class="span4"><a href="/customer/{{ $v->username }}">{{ $v->username }}</a></div>
+					<div class="span4"><a href="/customer/{!! $v->username !!}">{!! $v->username !!}</a></div>
 					<div class="span4"></div>
-					<div class="span4">{{ $v->temp }}&deg;C</div>
+					<div class="span4">{!! $v->temp !!}&deg;C</div>
 				</div>
 				@endforeach
 				<b> Unrestored </b><hr/>
 				@foreach($reconnection_data['unrestored'] as $k => $v) 
 				<div class="row-fluid">
-					<div class="span4"><a href="/customer/{{ $v->username }}">{{ $v->username }}</a></div>
+					<div class="span4"><a href="/customer/{!! $v->username !!}">{!! $v->username !!}</a></div>
 					<div class="span4"></div>
-					<div class="span4">{{ $v->temp }}&deg;C</div>
+					<div class="span4">{!! $v->temp !!}&deg;C</div>
 				</div>
 				@endforeach
 		</div>
@@ -921,10 +921,10 @@
 	
 @section('extra_scripts')
 <!--
-{{ HTML::script('resources/js/Chart.min.js')	}}
-{{ HTML::script('resources/js/driver.js')	}}
+{!! HTML::script('resources/js/Chart.min.js')	!!}
+{!! HTML::script('resources/js/driver.js')	!!}
 -->
-{{ HTML::script('resources/chartjs/apexcharts.min.js')	}}
+{!! HTML::script('resources/chartjs/apexcharts.min.js')	!!}
 @endsection
 <script type="text/javascript">
 

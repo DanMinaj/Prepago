@@ -1,8 +1,8 @@
 	
 @section('extra_scripts')
 
-	{{ HTML::script('resources/js/datatable/datatables.min.js') }}
-	{{ HTML::style('resources/js/datatable/datatables.min.css') }}
+	{!! HTML::script('resources/js/datatable/datatables.min.js') !!}
+	{!! HTML::style('resources/js/datatable/datatables.min.css') !!}
 	
 @stop
 
@@ -16,14 +16,14 @@
 @if(Session::has('successMessage'))
 <div class="alert alert-success alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('successMessage')}}
+{!!Session::get('successMessage')!!}
 </div>
 @endif
 
 @if(Session::has('errorMessage'))
 <div class="alert alert-danger alert-block" id="support-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{Session::get('errorMessage')}}
+{!!Session::get('errorMessage')!!}
 </div>
 @endif
 <script>
@@ -86,12 +86,12 @@ $(document).ready(function() {
 			
 				<tr>
 					
-					<td>{{ $cs->id }}</td>
+					<td>{!! $cs->id !!}</td>
 					
 					<td>
 					
 						<div class="prevent_overflow">
-							<a class="changeset" href="{{ URL::to('changelog/view', ['id' => $cs->id]) }}">{{ $cs->title }}</a>
+							<a class="changeset" href="{!! URL::to('changelog/view', ['id' => $cs->id]) !!}">{!! $cs->title !!}</a>
 						</div>
 						
 					</td>
@@ -99,24 +99,24 @@ $(document).ready(function() {
 					<td>
 						
 						<div class="prevent_overflow">
-						{{ $cs->details }}
+						{!! $cs->details !!}
 						</div>
 						
 					</td>
 					
 					<td>
 					
-						<div style="margin:0px;" change_id="{{ $cs->id }}" class="percent_div progress {{ $cs->progressClass }} active">
-						  <div id="" change_id="{{ $cs->id }}" class="scheme_progress bar" style="width: {{ $cs->progress }}%;">&nbsp;{{ $cs->progress }}%</div>
+						<div style="margin:0px;" change_id="{!! $cs->id !!}" class="percent_div progress {!! $cs->progressClass !!} active">
+						  <div id="" change_id="{!! $cs->id !!}" class="scheme_progress bar" style="width: {!! $cs->progress !!}%;">&nbsp;{!! $cs->progress !!}%</div>
 						</div>
 									
 					</td>
 					
 					<td>
 							
-						<button type="button" change_id="{{ $cs->id }}" class="btn btn-success slim mark-completed"><i class="fa fa-check"></i> Mark completed</button>
-						<button type="button" change_id="{{ $cs->id }}" class="btn btn-warning slim send-reminder"><i class="fa fa-bell"></i> Send reminder</button>
-						<button type="button" disabled class="btn btn-primary slim"><i class="fa fa-comment-alt"></i>&nbsp;{{ $cs->comments()->count() }}</button>	
+						<button type="button" change_id="{!! $cs->id !!}" class="btn btn-success slim mark-completed"><i class="fa fa-check"></i> Mark completed</button>
+						<button type="button" change_id="{!! $cs->id !!}" class="btn btn-warning slim send-reminder"><i class="fa fa-bell"></i> Send reminder</button>
+						<button type="button" disabled class="btn btn-primary slim"><i class="fa fa-comment-alt"></i>&nbsp;{!! $cs->comments()->count() !!}</button>	
 						
 					</td>
 				
@@ -149,12 +149,12 @@ $(document).ready(function() {
 			
 				<tr>
 					
-					<td>{{ $cs->id }}</td>
+					<td>{!! $cs->id !!}</td>
 					
 					<td>
 					
 						<div class="prevent_overflow">
-						<a class="changeset" href="{{ URL::to('changelog/view', ['id' => $cs->id]) }}">{{ $cs->title }}</a>
+						<a class="changeset" href="{!! URL::to('changelog/view', ['id' => $cs->id]) !!}">{!! $cs->title !!}</a>
 						</div>
 						
 					</td>
@@ -162,22 +162,22 @@ $(document).ready(function() {
 					<td>
 						
 						<div class="prevent_overflow">
-						{{ $cs->details }}
+						{!! $cs->details !!}
 						</div>
 						
 					</td>
 					
 					<td>
 					
-						<div style="margin:0px;"  change_id="{{ $cs->id }}" class="percent_div progress {{ $cs->progressClass }} active">
-						  <div id="" change_id="{{ $cs->id }}" class="scheme_progress bar" style="width: {{ $cs->progress }}%;">&nbsp;{{ $cs->progress }}%</div>
+						<div style="margin:0px;"  change_id="{!! $cs->id !!}" class="percent_div progress {!! $cs->progressClass !!} active">
+						  <div id="" change_id="{!! $cs->id !!}" class="scheme_progress bar" style="width: {!! $cs->progress !!}%;">&nbsp;{!! $cs->progress !!}%</div>
 						</div>
 									
 					</td>
 					
 					<td>
 							
-						<button type="button" change_id="{{ $cs->id }}" class="btn btn-warning slim mark-uncompleted"><i class="fa fa-times"></i> Mark un-completed</button>
+						<button type="button" change_id="{!! $cs->id !!}" class="btn btn-warning slim mark-uncompleted"><i class="fa fa-times"></i> Mark un-completed</button>
 						
 					</td>
 				
@@ -195,6 +195,6 @@ $(document).ready(function() {
 	
 
 @include('modals.changelog')	
-{{ HTML::script('resources/js/util/changelog.js?0193') }}
+{!! HTML::script('resources/js/util/changelog.js?0193') !!}
 
 </div>

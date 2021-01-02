@@ -14,14 +14,14 @@
 
         <div id="accordion">
             @foreach ($groups as $group)
-                <h3>{{{ $group['name'] }}}</h3>
+                <h3>{{ $group['name'] }}</h3>
                 <div>
                     <p><strong>Group Permissions:</strong></p>
 
                     <table class="table table-bordered">
                         <tr>
                         @foreach ($group['permissions'] as $key => $permission)
-                            <td>{{ trans("permissions." . $permission) }}</td>
+                            <td>{!! trans("permissions." . $permission) !!}</td>
                             @if ($key != 0 && $key%2 !== 0)
                                 </tr><tr>
                             @endif
@@ -30,22 +30,22 @@
                     </table>
 
                     <br />
-                    {{ Form::button('Edit Permissions', ['class' => 'btn btn-success', 'id' => 'edit_permissions_' . $group['id']]) }}
+                    {!! Form::button('Edit Permissions', ['class' => 'btn btn-success', 'id' => 'edit_permissions_' . $group['id']]) !!}
 
-                    <div style="display: none; margin-top: 40px;" id="permissions_{{ $group['id'] }}">
+                    <div style="display: none; margin-top: 40px;" id="permissions_{!! $group['id'] !!}">
                         <p><strong>Available Permissions:</strong></p>
-                        {{ Form::open(['url' => URL::to('groups'), 'method' => 'PUT']) }}
+                        {!! Form::open(['url' => URL::to('groups'), 'method' => 'PUT']) !!}
 
-                            {{ Form::hidden('group_id', $group['id']) }}
+                            {!! Form::hidden('group_id', $group['id']) !!}
 
                             <div style="float:left">
                                 @foreach (Config::get('permissions.all') as $key => $permission)
                                     @if ($key == 22)
                                     </div><div style="float:right;">
                                     @endif
-                                    <label style="display:inline;margin-bottom:0px;font-size:12px" for="{{ "group_" . $group['id'] . "_permission_" . $key }}">
-                                        <input type="checkbox" value="{{ $permission }}" name="permissions[]" id="{{ "group_" . $group['id'] . "_permission_" . $key }}" {{ in_array($permission, $group['permissions']) ? 'checked="checked"' : "" }} />
-                                        {{ trans("permissions." . $permission) }}
+                                    <label style="display:inline;margin-bottom:0px;font-size:12px" for="{!! "group_" . $group['id'] . "_permission_" . $key !!}">
+                                        <input type="checkbox" value="{!! $permission !!}" name="permissions[]" id="{!! "group_" . $group['id'] . "_permission_" . $key !!}" {!! in_array($permission, $group['permissions']) ? 'checked="checked"' : "" !!} />
+                                        {!! trans("permissions." . $permission) !!}
                                     </label>
                                     <br />
                                 @endforeach
@@ -54,9 +54,9 @@
                             <div style="clear:both"></div>
 
                             <br />
-                            {{ Form::submit('Save Permissions', ['class' => 'btn btn-success pull-right']) }}
+                            {!! Form::submit('Save Permissions', ['class' => 'btn btn-success pull-right']) !!}
 
-                        {{ Form::close() }}
+                        {!! Form::close() !!}
                     </div>
                 </div>
             @endforeach

@@ -1,9 +1,9 @@
 	
 @section('extra_scripts')
 
-	{{ HTML::script('resources/js/datatable/datatables.min.js') }}
-	{{ HTML::style('resources/js/datatable/datatables.min.css') }}
-	{{ HTML::script('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js') }}
+	{!! HTML::script('resources/js/datatable/datatables.min.js') !!}
+	{!! HTML::style('resources/js/datatable/datatables.min.css') !!}
+	{!! HTML::script('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js') !!}
 	
 @stop
 

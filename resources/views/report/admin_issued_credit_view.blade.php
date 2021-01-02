@@ -4,7 +4,7 @@
 <h1>Admin Issued Credit</h1>
 
 <div class="admin2">
-    <a href="{{ URL::to('system_reports') }}">System Reports</a> > <a href="{{ URL::to('system_reports/credit_issue_reports') }}">Credit Issue Reports</a> > Admin Issued Credit
+    <a href="{!! URL::to('system_reports') !!}">System Reports</a> > <a href="{!! URL::to('system_reports/credit_issue_reports') !!}">Credit Issue Reports</a> > Admin Issued Credit
     <h3><a href="<?php echo "{$csv_url}"?>">Download CSV</a></h3>
     <div class="cl"></div>
 
@@ -21,11 +21,11 @@
         <tbody>
         <?php foreach ($customers as $customer): ?>
         <tr>
-            <td>{{{ $customer->first_name." ".$customer->surname }}}</td>
-            <td>{{{ $customer->date_time }}}</td>
-            <td>{{{ $customer->admin_name }}}</td>
-            <td>{{ $currencySign }}{{{ $customer->amount }}}</td>
-            <td>{{{ $customer->reason }}}</td>
+            <td>{{ $customer->first_name." ".$customer->surname }}</td>
+            <td>{{ $customer->date_time }}</td>
+            <td>{{ $customer->admin_name }}</td>
+            <td>{!! $currencySign !!}{{ $customer->amount }}</td>
+            <td>{{ $customer->reason }}</td>
         </tr>
         <?php endforeach; ?>
         </tbody>

@@ -17,9 +17,9 @@
             <tbody>
                 @foreach ($readings as $reading)
                     <tr>
-                        <td>{{{ $reading->username }}}</td>
-                        <td>{{{ $reading->reading1 }}}</td>
-                        <td>{{{ $reading->time_date }}}</td>
+                        <td>{{ $reading->username }}</td>
+                        <td>{{ $reading->reading1 }}</td>
+                        <td>{{ $reading->time_date }}</td>
                     </tr>
                 @endforeach
             </tbody>

@@ -32,21 +32,21 @@
         <tbody>
             @foreach ($customers as $customer)
                 <tr>
-                    <td>{{{ $customer->first_name . ' ' . $customer->surname }}}</td>
-                    <td>{{{ $customer->username }}}</td>
-                    <td>{{{ $customer->email_address }}}</td>
+                    <td>{{ $customer->first_name . ' ' . $customer->surname }}</td>
+                    <td>{{ $customer->username }}</td>
+                    <td>{{ $customer->email_address }}</td>
                     <td>
-                        {{{ $customer->house_number_name ? $customer->house_number_name . ', ' : '' }}}
-                        {{{ $customer->street1 ? $customer->street1 . ', ' : '' }}}
-                        {{{ $customer->street2 ? $customer->street2 . ', ' : '' }}}
-                        {{{ $customer->town ? $customer->town . ', ' : ''  }}}
-                        {{{ $customer->county ? $customer->county . ($customer->country ? ', ' : '') : '' }}}
-                        {{{ $customer->country ? $customer->country : '' }}}
+                        {{ $customer->house_number_name ? $customer->house_number_name . ', ' : '' }}
+                        {{ $customer->street1 ? $customer->street1 . ', ' : '' }}
+                        {{ $customer->street2 ? $customer->street2 . ', ' : '' }}
+                        {{ $customer->town ? $customer->town . ', ' : '' }}
+                        {{ $customer->county ? $customer->county . ($customer->country ? ', ' : '') : '' }}
+                        {{ $customer->country ? $customer->country : '' }}
                     </td>
-                    <td>{{{ $customer->barcode }}}</td>
+                    <td>{{ $customer->barcode }}</td>
                 </tr>
                 @if (count($customer->missing_readings))
-                    <tr id="customer_missing_readings_{{ $customer->id }}" class="customer_missing_readings" style="background-color: #fff; display:none;">
+                    <tr id="customer_missing_readings_{!! $customer->id !!}" class="customer_missing_readings" style="background-color: #fff; display:none;">
                         <td class="customer_missing_readings_content">
                             <table width="90%" style="margin: 0 auto;" class="table-bordered customer_missing_readings_table" style="border: 1px solid #ddd">
                                 <tr><th colspan="5" style="text-align: center">Missing Readings</th></tr>
@@ -59,11 +59,11 @@
                                 </tr>
                                 @foreach ($customer->missing_readings as $missingReading)
                                     <tr>
-                                        <td>{{ $missingReading['missing_reading_start_date'] }}</td>
-                                        <td>{{ $missingReading['missing_reading_start_value'] }}</td>
-                                        <td>{{ $missingReading['missing_reading_end_date'] }}</td>
-                                        <td>{{ $missingReading['missing_reading_end_value'] }}</td>
-                                        <td{{$missingReading['missing_reading_end_value'] - $missingReading['missing_reading_start_value'] > 200 ? " style='background:#F9A9A6'" : '' }}>{{ $missingReading['missing_reading_end_value'] - $missingReading['missing_reading_start_value'] }}</td>
+                                        <td>{!! $missingReading['missing_reading_start_date'] !!}</td>
+                                        <td>{!! $missingReading['missing_reading_start_value'] !!}</td>
+                                        <td>{!! $missingReading['missing_reading_end_date'] !!}</td>
+                                        <td>{!! $missingReading['missing_reading_end_value'] !!}</td>
+                                        <td{!!$missingReading['missing_reading_end_value'] - $missingReading['missing_reading_start_value'] > 200 ? " style='background:#F9A9A6'" : '' !!}>{!! $missingReading['missing_reading_end_value'] - $missingReading['missing_reading_start_value'] !!}</td>
                                     </tr>
                                 @endforeach
                             </table>

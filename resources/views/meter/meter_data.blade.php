@@ -5,7 +5,7 @@
 <h1>Meter Info</h1>
 
 
-<a href="{{ URL::to('installed_meters') }}" class="btn btn-primary">&laquo; Back</a>
+<a href="{!! URL::to('installed_meters') !!}" class="btn btn-primary">&laquo; Back</a>
 <br /><br />
 
 <ul class="nav nav-tabs">
@@ -17,20 +17,20 @@
 
 	    <div class="custome_left">
 			<label>Username</label>
-	        <input type="text" class="cus-in" value="{{ $meter['username'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['username'] !!}" disabled="disabled" />
 	        <label>Meter Type</label>
-	        <input type="text" class="cus-in" value="{{ $meter['meter_type'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['meter_type'] !!}" disabled="disabled" />
 	        <label>Meter Number</label>
-	        <input type="text" class="cus-in" value="{{ $meter['meter_number'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['meter_number'] !!}" disabled="disabled" />
 	        <label>Install Date</label>
-	        <input type="text" class="cus-in" value="{{ $meter['install_date'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['install_date'] !!}" disabled="disabled" />
 	        <label>SCU Number</label>
-	        <input type="text" class="cus-in" value="{{ $meter['scu_number'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['scu_number'] !!}" disabled="disabled" />
 	        <label>SCU Port</label>
-	        <input type="text" class="cus-in" value="{{ $meter['scu_port'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['scu_port'] !!}" disabled="disabled" />
 	        @if($meter['heat_port'] != -1)
 	        <label>Heat Port</label>
-	        <input type="text" class="cus-in" value="{{ $meter['heat_port'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['heat_port'] !!}" disabled="disabled" />
 	        @endif
 	        <label>In Use</label>
 	        <input type="text" class="cus-in" value="<?php echo ($meter['in_use'] == 0)? 'No': 'Yes'; ?>" disabled="disabled" />
@@ -43,15 +43,15 @@
 		<div class="custome_left" style="margin-left: 2em;">
 
 			<label>House Name or Number</label>
-	        <input type="text" class="cus-in" value="{{ $meter['house_name_number'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['house_name_number'] !!}" disabled="disabled" />
 	        <label>Street</label>
-	        <input type="text" class="cus-in" value="{{ $meter['street1'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['street1'] !!}" disabled="disabled" />
 	        <label>Town</label>
-	        <input type="text" class="cus-in" value="{{ $meter['town'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['town'] !!}" disabled="disabled" />
 	        <label>County</label>
-	        <input type="text" class="cus-in" value="{{ $meter['county'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['county'] !!}" disabled="disabled" />
 	        <label>Country</label>
-	        <input type="text" class="cus-in" value="{{ $meter['country'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['country'] !!}" disabled="disabled" />
 
 	    </div>
 
@@ -59,33 +59,33 @@
 
 		<div class="custome_left" style="margin-top: 2em;">
 			<label>Meter Make</label>
-	        <input type="text" class="cus-in" value="{{ $meter['meter_make'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['meter_make'] !!}" disabled="disabled" />
 	        <label>Meter Model</label>
-	        <input type="text" class="cus-in" value="{{ $meter['meter_model'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['meter_model'] !!}" disabled="disabled" />
 	        <label>Meter Manufacturer</label>
-	        <input type="text" class="cus-in" value="{{ $meter['meter_manufacturer'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['meter_manufacturer'] !!}" disabled="disabled" />
 	        <label>Meter Baud Rate</label>
-	        <input type="text" class="cus-in" value="{{ $meter['meter_baud_rate'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['meter_baud_rate'] !!}" disabled="disabled" />
 	        <label>Meter Readings Per Day</label>
-	        <input type="text" class="cus-in" value="{{ $meter['readings_per_day'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['readings_per_day'] !!}" disabled="disabled" />
 		</div>
 
 		<div class="custome_left" style="margin-left: 2em; margin-top: 2em;">
 			<label>HIU Make</label>
-	        <input type="text" class="cus-in" value="{{ $meter['HIU_make'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['HIU_make'] !!}" disabled="disabled" />
 	        <label>HIU Model</label>
-	        <input type="text" class="cus-in" value="{{ $meter['HIU_model'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['HIU_model'] !!}" disabled="disabled" />
 	        <label>HIU Manufacturer</label>
-	        <input type="text" class="cus-in" value="{{ $meter['HIU_manufacturer'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['HIU_manufacturer'] !!}" disabled="disabled" />
 		</div>
 
 		<div class="custome_left" style="margin-left: 2em; margin-top: 2em;">
 			<label>Valve Make</label>
-	        <input type="text" class="cus-in" value="{{ $meter['valve_make'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['valve_make'] !!}" disabled="disabled" />
 	        <label>Valve Model</label>
-	        <input type="text" class="cus-in" value="{{ $meter['valve_model'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['valve_model'] !!}" disabled="disabled" />
 	        <label>Valve Manufacturer</label>
-	        <input type="text" class="cus-in" value="{{ $meter['valve_manufacturer'] }}" disabled="disabled" />
+	        <input type="text" class="cus-in" value="{!! $meter['valve_manufacturer'] !!}" disabled="disabled" />
 		</div>
 
 
@@ -98,7 +98,7 @@
 	        <input id="from" name="from" type="text">
 	        <label>To</label>
 	        <input id="to" name="to" type="text">
-	        <input name="meter_id" type="hidden" value="{{ $meter['ID'] }}">
+	        <input name="meter_id" type="hidden" value="{!! $meter['ID'] !!}">
 	        <input type="submit" value="search" class="btn-success"/>
 	    </form>
 
@@ -116,7 +116,7 @@
 
 			@foreach($readings as $reading)
 				
-				<tr><td>{{ date('d-m-Y', strtotime($reading['time_date'])) }}</td><td>{{ $reading['reading1'] }} {{ $abb }}</td></tr>
+				<tr><td>{!! date('d-m-Y', strtotime($reading['time_date'])) !!}</td><td>{!! $reading['reading1'] !!} {!! $abb !!}</td></tr>
 
 			@endforeach
 		</table>	

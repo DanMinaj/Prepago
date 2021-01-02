@@ -10,21 +10,21 @@
 @if ($message = Session::get('successMessage'))
 <div class="alert alert-success alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
 @if ($message = Session::get('warningMessage'))
 <div class="alert alert-warning alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
 @if ($message = Session::get('errorMessage'))
 <div class="alert alert-danger alert-block">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	{{ $message }}
+	{!! $message !!}
 </div>
 @endif
 
@@ -50,16 +50,16 @@
 		</tr>
 		@foreach($stripeCustomers as $c)
 			<tr>
-				<td><a href="/customer/{{ $c->customer_id }}" target="_blank">({{ $c->customer_id }}) {{ $c->customer->username }}</a></td>
-				<td><a href="https://dashboard.stripe.com/customers/{{ $c->token }}" target="_blank">{{ $c->token }}</a></td>
+				<td><a href="/customer/{!! $c->customer_id !!}" target="_blank">({!! $c->customer_id !!}) {!! $c->customer->username !!}</a></td>
+				<td><a href="https://dashboard.stripe.com/customers/{!! $c->token !!}" target="_blank">{!! $c->token !!}</a></td>
 				<td>
 					@if($c->lastTopup)
-					   &euro;{{ number_format($c->lastTopup->amount, 2) }} &horbar; ({{ Carbon\Carbon::parse($c->lastTopup->created_at)->diffForHumans() }})
+					   &euro;{!! number_format($c->lastTopup->amount, 2) !!} &horbar; ({!! Carbon\Carbon::parse($c->lastTopup->created_at)->diffForHumans() !!})
 					@else
 						n/a 
 					@endif
 				</td>
-				<td>{{ $c->created_at }} &horbar; ({{ Carbon\Carbon::parse($c->created_at)->diffForHumans() }})</td>
+				<td>{!! $c->created_at !!} &horbar; ({!! Carbon\Carbon::parse($c->created_at)->diffForHumans() !!})</td>
 			</tr>
 		@endforeach
 	 </table>
@@ -75,12 +75,12 @@
 		</tr>
 		@foreach($stripeSources as $s)
 			<tr>
-				<td><a href="/customer/{{ $s->customer_id }}" target="_blank">({{ $s->customer_id }}) {{ $s->customer->username }}</a></td>
-				<td><a href="https://dashboard.stripe.com/cards/{{ $s->source_type_token }}" target="_blank">{{ $s->source_type_token }}</a></td>
+				<td><a href="/customer/{!! $s->customer_id !!}" target="_blank">({!! $s->customer_id !!}) {!! $s->customer->username !!}</a></td>
+				<td><a href="https://dashboard.stripe.com/cards/{!! $s->source_type_token !!}" target="_blank">{!! $s->source_type_token !!}</a></td>
 				<td>
-					{{ $s->type_br }}
+					{!! $s->type_br !!}
 				</td>
-				<td>{{ $s->created_at }} &horbar; ({{ Carbon\Carbon::parse($s->created_at)->diffForHumans() }})</td>
+				<td>{!! $s->created_at !!} &horbar; ({!! Carbon\Carbon::parse($s->created_at)->diffForHumans() !!})</td>
 			</tr>
 		@endforeach
 	 </table>
@@ -97,9 +97,9 @@
 		</tr>
 		@foreach($stripeLogs as $l)
 			<tr>
-				<td> {{ $l->type }} </td>
-				<td> {{ $l->logFormatted }} </td>
-				<td> {{ $l->created_at }} &horbar; ({{ Carbon\Carbon::parse($l->created_at)->diffForHumans() }})</td>
+				<td> {!! $l->type !!} </td>
+				<td> {!! $l->logFormatted !!} </td>
+				<td> {!! $l->created_at !!} &horbar; ({!! Carbon\Carbon::parse($l->created_at)->diffForHumans() !!})</td>
 			</tr>
 		@endforeach
 	 </table>
@@ -113,9 +113,9 @@
 		</tr>
 		@foreach($stripeErrorLogs as $l)
 			<tr>
-				<td> {{ $l->type }} </td>
-				<td> {{ $l->logFormatted }} </td>
-				<td> {{ $l->created_at }} &horbar; ({{ Carbon\Carbon::parse($l->created_at)->diffForHumans() }})</td>
+				<td> {!! $l->type !!} </td>
+				<td> {!! $l->logFormatted !!} </td>
+				<td> {!! $l->created_at !!} &horbar; ({!! Carbon\Carbon::parse($l->created_at)->diffForHumans() !!})</td>
 			</tr>
 		@endforeach
 	 </table>
@@ -134,14 +134,14 @@
 		</tr>
 		@foreach($stripePayments as $p)
 			<tr>
-				<td><a href="/customer/{{ $p->customer_id }}" target="_blank">
-				({{ $p->customer_id }}) {{ $p->customer->username }}
+				<td><a href="/customer/{!! $p->customer_id !!}" target="_blank">
+				({!! $p->customer_id !!}) {!! $p->customer->username !!}
 				</a></td>
-				<td><a href="https://dashboard.stripe.com/payments/{{ $p->source_type_token }}" target="_blank">
-				{{ $p->token }}
+				<td><a href="https://dashboard.stripe.com/payments/{!! $p->source_type_token !!}" target="_blank">
+				{!! $p->token !!}
 				</a></td>
 				<td>
-					&euro;{{ number_format($p->amount, 2) }}
+					&euro;{!! number_format($p->amount, 2) !!}
 				</td>
 				<td>
 					@if($p->notified_customer)
@@ -150,7 +150,7 @@
 						No
 					@endif
 				</td>
-				<td>{{ $p->created_at }} &horbar; ({{ Carbon\Carbon::parse($p->created_at)->diffForHumans() }})</td>
+				<td>{!! $p->created_at !!} &horbar; ({!! Carbon\Carbon::parse($p->created_at)->diffForHumans() !!})</td>
 			</tr>
 		@endforeach
 	 </table>
@@ -167,15 +167,15 @@
 		</tr>
 		@foreach($stripeFailedPayments as $p)
 			<tr>
-				<td><a href="/customer/{{ $p->customer_id }}" target="_blank">
-				({{ $p->customer_id }}) 
-					@if($p->customer) {{ $p->customer->username }} @else n/a @endif
+				<td><a href="/customer/{!! $p->customer_id !!}" target="_blank">
+				({!! $p->customer_id !!}) 
+					@if($p->customer) {!! $p->customer->username !!} @else n/a @endif
 				</a></td>
-				<td><a href="https://dashboard.stripe.com/payments/{{ $p->source_type_token }}" target="_blank">
-				{{ $p->token }}
+				<td><a href="https://dashboard.stripe.com/payments/{!! $p->source_type_token !!}" target="_blank">
+				{!! $p->token !!}
 				</a></td>
 				<td>
-					&euro;{{ number_format($p->amount, 2) }}
+					&euro;{!! number_format($p->amount, 2) !!}
 				</td>
 				<td>
 					@if($p->notified_customer)
@@ -184,7 +184,7 @@
 						No
 					@endif
 				</td>
-				<td>{{ $p->created_at }} &horbar; ({{ Carbon\Carbon::parse($p->created_at)->diffForHumans() }})</td>
+				<td>{!! $p->created_at !!} &horbar; ({!! Carbon\Carbon::parse($p->created_at)->diffForHumans() !!})</td>
 			</tr>
 		@endforeach
 	 </table>
