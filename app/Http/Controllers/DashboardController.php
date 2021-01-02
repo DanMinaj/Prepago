@@ -169,7 +169,7 @@ class DashboardController extends Controller
             die();
         }
 
-        $this->layout->page = View::make('dashboardv2.index', [
+        $this->layout->page = view('dashboardv2.index', [
                 'todaysGraphData'				=> $todaysGraphData,
                 'customer_statuses' 			=> $customer_statuses,
                 'awayModeChart'					=> $awayModeChart,

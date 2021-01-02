@@ -13,7 +13,7 @@ class AnnouncementsController extends Controller
         try {
             $announcements = Announcement::orderBy('id', 'DESC')->get();
 
-            $this->layout->page = View::make('home.announcements_all', [
+            $this->layout->page = view('home.announcements_all', [
                 'announcements' => $announcements,
             ]);
         } catch (Exception $e) {
@@ -22,7 +22,7 @@ class AnnouncementsController extends Controller
 
     public function create_announcement()
     {
-        $this->layout->page = View::make('home.announcements', [
+        $this->layout->page = view('home.announcements', [
 
         ]);
     }
@@ -53,7 +53,7 @@ class AnnouncementsController extends Controller
             //$announcement->scheme_id = date('Y-m-d');
             $announcement->save();
 
-            return Redirect::to('announcements/all')->with([
+            return redirect('announcements/all')->with([
                 'successMessage' => 'Successfully created new announcement',
             ]);
         } catch (Exception $e) {
@@ -73,7 +73,7 @@ class AnnouncementsController extends Controller
             ]);
         }
 
-        $this->layout->page = View::make('home.announcements_view', [
+        $this->layout->page = view('home.announcements_view', [
 
             'announcement' => $announcement,
             'announcement_id' => $announcement_id,
@@ -91,7 +91,7 @@ class AnnouncementsController extends Controller
             ]);
         }
 
-        $this->layout->page = View::make('home.announcements_edit', [
+        $this->layout->page = view('home.announcements_edit', [
 
             'announcement' => $announcement,
             'announcement_id' => $announcement_id,

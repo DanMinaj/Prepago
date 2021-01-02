@@ -22,7 +22,7 @@ class SchemeSetUpController extends Controller
             $newSchemeId = 1;
         }
 
-        $this->layout->page = View::make('home/scheme_setup/index', [
+        $this->layout->page = view('home/scheme_setup/index', [
 
             'newSchemeId' => $newSchemeId,
 
@@ -275,13 +275,13 @@ class SchemeSetUpController extends Controller
             $user->isInstaller = Input::get('isInstaller');
 
             if (! $user->save()) {
-                return Redirect::to('scheme-setup/user-setup')->with('errorMessage', 'There was an error setting up a new user');
+                return redirect('scheme-setup/user-setup')->with('errorMessage', 'There was an error setting up a new user');
             }
 
-            return Redirect::to('scheme-setup/scheme-setup?user_id='.$user->id);
+            return redirect('scheme-setup/scheme-setup?user_id='.$user->id);
         }
 
-        $this->layout->page = View::make('home/scheme_setup/user_setup');
+        $this->layout->page = view('home/scheme_setup/user_setup');
     }
 
     public function schemeSetup()
@@ -294,14 +294,14 @@ class SchemeSetUpController extends Controller
             if (! $this->validator->isValid(Scheme::$rules)) {
                 $errors = $this->validator->getErrors();
 
-                return Redirect::to('scheme-setup/scheme-setup?user_id='.$userID)->withInput()->withErrors($errors);
+                return redirect('scheme-setup/scheme-setup?user_id='.$userID)->withInput()->withErrors($errors);
             }
 
             $data = $this->prepareData(Input::all(), $fieldsVersions);
 
             //insert data in the schemes table
             if (! $scheme = Scheme::create($data)) {
-                return Redirect::to('scheme-setup/scheme-setup?user_id='.$userID)->with('errorMessage', 'There was an error adding the new scheme');
+                return redirect('scheme-setup/scheme-setup?user_id='.$userID)->with('errorMessage', 'There was an error adding the new scheme');
             }
 
             //insert data in the users_schemes table
@@ -311,7 +311,7 @@ class SchemeSetUpController extends Controller
             $user = User::findOrFail($userID);
             if ($user->group_id !== 5) {
                 if (! $user->update(['charge' =>  (int) $scheme['prepago_new_admin_charge']])) {
-                    return Redirect::to('scheme-setup/scheme-setup?user_id='.$userID)->with('errorMessage', 'There was an error updating the user\'s charge information');
+                    return redirect('scheme-setup/scheme-setup?user_id='.$userID)->with('errorMessage', 'There was an error updating the user\'s charge information');
                 }
             }
 
@@ -328,7 +328,7 @@ class SchemeSetUpController extends Controller
                 $simData['in_use_datetime'] = Carbon::now()->toDateTimeString();
 
                 if (! $simcard = Simcard::create($simData)) {
-                    return Redirect::to('scheme-setup/scheme-setup?user_id='.$userID)->with('errorMessage', 'There was an error adding the sim card information');
+                    return redirect('scheme-setup/scheme-setup?user_id='.$userID)->with('errorMessage', 'There was an error adding the sim card information');
                 }
 
                 // insert data in data_loggers table
@@ -337,17 +337,17 @@ class SchemeSetUpController extends Controller
                 $dataLoggerData['scheme_number'] = $scheme->scheme_number;
                 $dataLoggerData['name'] = $scheme->company_name;
                 if (! DataLogger::insert($dataLoggerData)) {
-                    return Redirect::to('scheme-setup/scheme-setup?user_id='.$userID)->with('errorMessage', 'There was an error adding the data logger information');
+                    return redirect('scheme-setup/scheme-setup?user_id='.$userID)->with('errorMessage', 'There was an error adding the data logger information');
                 }
             }
 
-            return Redirect::to('scheme-setup/tariff-setup?scheme_id='.$scheme->id);
+            return redirect('scheme-setup/tariff-setup?scheme_id='.$scheme->id);
         }
 
         //get latest scheme info
         $scheme = Scheme::orderBy('start_date', 'desc')->orderBy('scheme_number', 'DESC')->first();
 
-        $this->layout->page = View::make('home/scheme_setup/scheme_setup')
+        $this->layout->page = view('home/scheme_setup/scheme_setup')
                                 ->with('scheme', $scheme)
                                 ->with('fieldsVersions', $fieldsVersions)
                                 ->with('user_id', $userID);
@@ -376,7 +376,7 @@ class SchemeSetUpController extends Controller
             $simcard->Name = $sim_name;
             $simcard->save();
 
-            return Redirect::to('welcome-schemes')
+            return redirect('welcome-schemes')
              ->with('successMessage', "Successfully created the Sim ' <b> $sim_name ($sim_ip) </b>'");
         }
     }
@@ -409,18 +409,18 @@ class SchemeSetUpController extends Controller
             $data['tariff_5_name'] = Input::get('tariff_5_name');
 
             if (! Tariff::create($data)) {
-                return Redirect::to('scheme-setup/tariff-setup?scheme_id='.$schemeID)->with('errorMessage', 'There was an error adding the tariff information');
+                return redirect('scheme-setup/tariff-setup?scheme_id='.$schemeID)->with('errorMessage', 'There was an error adding the tariff information');
             }
 
-            return Redirect::to('scheme-setup/success');
+            return redirect('scheme-setup/success');
         }
 
-        $this->layout->page = View::make('home/scheme_setup/tariff_setup')->with('scheme_id', $schemeID);
+        $this->layout->page = view('home/scheme_setup/tariff_setup')->with('scheme_id', $schemeID);
     }
 
     public function success()
     {
-        $this->layout->page = View::make('home/scheme_setup/success');
+        $this->layout->page = view('home/scheme_setup/success');
     }
 
     public function prepareSchemeObject($scheme_obj)

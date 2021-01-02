@@ -11,7 +11,7 @@ class CreditController extends Controller
         ->where('scheme_number', '=', Auth::user()->scheme_number)
         ->get();
 
-        $this->layout->page = View::make('home/issue_credit', ['customers' => $customers]);
+        $this->layout->page = view('home/issue_credit', ['customers' => $customers]);
     }
 
     public function ic_search_customers()
@@ -34,7 +34,7 @@ class CreditController extends Controller
         ->orWhere('nominated_telephone', 'like', '%'.$search_key.'%')
         ->get();
 
-        $this->layout->page = View::make('home/issue_credit', ['customers' => $customers]);
+        $this->layout->page = view('home/issue_credit', ['customers' => $customers]);
     }
 
     public function add_creditlist($customer_id, $customer_email)
@@ -44,7 +44,7 @@ class CreditController extends Controller
             $credit_list[0]['email'] = $customer_email;
             Session::put('credit_list', $credit_list);
 
-            return Redirect::to('issue_credit');
+            return redirect('issue_credit');
         } else {
             $credit_list = Session::get('credit_list');
             $keytracker = 0;
@@ -58,7 +58,7 @@ class CreditController extends Controller
             $new_credit_list[$keytracker]['email'] = $customer_email;
             Session::put('credit_list', $new_credit_list);
 
-            return Redirect::to('issue_credit');
+            return redirect('issue_credit');
         }
     }
 
@@ -79,7 +79,7 @@ class CreditController extends Controller
             Session::put('credit_list', $new_credit_list);
         }
 
-        return Redirect::to('issue_credit');
+        return redirect('issue_credit');
     }
 
     public function check_login($password)
@@ -165,12 +165,12 @@ class CreditController extends Controller
             }
         }
 
-        return Redirect::to('issue_credit');
+        return redirect('issue_credit');
     }
 
     public function issue_admin_iou()
     {
-        $this->layout->page = View::make('home/issue_admin_iou');
+        $this->layout->page = view('home/issue_admin_iou');
     }
 
     public function iai_search_customers()
@@ -193,12 +193,12 @@ class CreditController extends Controller
         ->orWhere('nominated_telephone', 'like', '%'.$search_key.'%')
         ->get();
 
-        $this->layout->page = View::make('home/issue_admin_iou_search_view', ['customers' => $customers]);
+        $this->layout->page = view('home/issue_admin_iou_search_view', ['customers' => $customers]);
     }
 
     public function issue_admin_iou_amount($customer_id)
     {
-        $this->layout->page = View::make('home/issue_admin_iou_amount_view', ['customer_id' => $customer_id]);
+        $this->layout->page = view('home/issue_admin_iou_amount_view', ['customer_id' => $customer_id]);
     }
 
     public function iai_add_amount($customer_id, $amount, $reason)
@@ -262,14 +262,14 @@ class CreditController extends Controller
             curl_close($ch); // Closing cURL
         }
 
-        return Redirect::to('issue_admin_iou');
+        return redirect('issue_admin_iou');
     }
 
     ////////////////////////////////////////////////
 
     public function issue_topup_arrears()
     {
-        $this->layout->page = View::make('home/issue_topup_arrears');
+        $this->layout->page = view('home/issue_topup_arrears');
     }
 
     public function ita_search_customers()
@@ -292,12 +292,12 @@ class CreditController extends Controller
         ->orWhere('nominated_telephone', 'like', '%'.$search_key.'%')
         ->get();
 
-        $this->layout->page = View::make('home/issue_topup_arrears_search_view', ['customers' => $customers]);
+        $this->layout->page = view('home/issue_topup_arrears_search_view', ['customers' => $customers]);
     }
 
     public function issue_topup_arrears_amount($customer_id)
     {
-        $this->layout->page = View::make('home/issue_topup_arrears_amount_view', ['customer_id' => $customer_id]);
+        $this->layout->page = view('home/issue_topup_arrears_amount_view', ['customer_id' => $customer_id]);
     }
 
     public function ita_add_amount($customer_id, $amount, $reason)
@@ -330,6 +330,6 @@ class CreditController extends Controller
 
         $customer->save();
 
-        return Redirect::to('issue_topup_arrears');
+        return redirect('issue_topup_arrears');
     }
 }

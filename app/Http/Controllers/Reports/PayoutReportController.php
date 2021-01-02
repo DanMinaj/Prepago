@@ -18,21 +18,21 @@ class PayoutReportController extends ReportsBaseController
     public function index($schemeNumber = null)
     {
 
-        //return Redirect::to('system_reports/advice_notes');
+        //return redirect('system_reports/advice_notes');
         if (Request::isMethod('post') || (Input::get('from') && Input::get('to'))) {
             if (
                 (Input::get('to') && ! $this->repo->validateDatepickerDate(Input::get('to'))) ||
                 (Input::get('from') && ! $this->repo->validateDatepickerDate(Input::get('from')))
             ) {
-                return Redirect::to('system_reports/payout_reports')->with('errorMessage', 'Invalid date format');
+                return redirect('system_reports/payout_reports')->with('errorMessage', 'Invalid date format');
             }
 
             if (! Input::get('from')) {
-                return Redirect::to('system_reports/payout_reports')->with('errorMessage', 'Select a From Date');
+                return redirect('system_reports/payout_reports')->with('errorMessage', 'Select a From Date');
             }
 
             if (! Input::get('to')) {
-                return Redirect::to('system_reports/payout_reports')->with('errorMessage', 'Select a To Date');
+                return redirect('system_reports/payout_reports')->with('errorMessage', 'Select a To Date');
             }
 
             $this->repo->setFromDate(Input::get('from'), true);
@@ -89,14 +89,14 @@ class PayoutReportController extends ReportsBaseController
         $this->csvURL = is_null($schemeNumber) ? $this->repo->getCsvURL() : $this->repo->getCsvURL().'/'.$currentSchemeNumber;
 
         if (is_null($schemeNumber)) {
-            $this->layout->page = View::make('report/payout')
+            $this->layout->page = view('report/payout')
                                         ->with('csvURL', $this->csvURL)
                                         ->with('schemes', $schemes)
                                         ->with('scheme_number', $currentSchemeNumber)
                                         ->with('scheme_name', $currentSchemeName)
                                         ->with('data', $data);
         } else {
-            return View::make('report/payout_content')
+            return view('report/payout_content')
                             ->with('csvURL', $this->csvURL)
                             ->with('scheme_number', $currentSchemeNumber)
                             ->with('scheme_name', $currentSchemeName)

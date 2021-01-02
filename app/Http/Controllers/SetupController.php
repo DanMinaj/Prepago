@@ -35,7 +35,7 @@ class SetupController extends Controller
 
     public function setupChoose()
     {
-        $this->layout->page = View::make('setup.setup_choose', [
+        $this->layout->page = view('setup.setup_choose', [
 
         ]);
     }
@@ -69,7 +69,7 @@ class SetupController extends Controller
 
         Session::put('scheme_data', $scheme_data);
 
-        return Redirect::to('setup/scheme');
+        return redirect('setup/scheme');
     }
 
     public function schemeSetup()
@@ -78,7 +78,7 @@ class SetupController extends Controller
         $scheme_data = Session::get('scheme_data');
 
         if ($option == null && ! (Session::has('scheme_data') && $scheme_data->scheme != null)) {
-            return Redirect::to('setup/choose');
+            return redirect('setup/choose');
         }
 
         $step1_complete = true;
@@ -89,7 +89,7 @@ class SetupController extends Controller
             }
         }
 
-        $this->layout->page = View::make('setup.setup_scheme', [
+        $this->layout->page = view('setup.setup_scheme', [
 
             'option' 			=> $option,
             'scheme_data' 		=> $scheme_data,

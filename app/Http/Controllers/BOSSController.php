@@ -22,7 +22,7 @@ class BOSSController extends Controller
 
         $users = $this->getAssignedUsers($userID);
 
-        $this->layout->page = View::make('boss/index', [
+        $this->layout->page = view('boss/index', [
             'userID'            => $userID ?: Auth::user()->id,
             'user'              => $user,
             'users'             => $users,
@@ -36,12 +36,12 @@ class BOSSController extends Controller
     public function displayBossRestrictionsSettings()
     {
         if ($this->bossLevel > 1) {
-            return Redirect::to('welcome');
+            return redirect('welcome');
         }
 
         $settings = Auth::user()->settings;
 
-        $this->layout->page = View::make('settings/boss_restrictions', ['settings' => $settings]);
+        $this->layout->page = view('settings/boss_restrictions', ['settings' => $settings]);
     }
 
     public function saveBossRestrictionsSettings()
@@ -57,15 +57,15 @@ class BOSSController extends Controller
 
         if ($userSettingsQuery->count()) {
             if (! Auth::user()->settings()->update($settings)) {
-                return Redirect::to('settings/boss_restrictions')->with('errorMessage', 'The restrictions settings cannot be updated');
+                return redirect('settings/boss_restrictions')->with('errorMessage', 'The restrictions settings cannot be updated');
             }
         } else {
             if (! Auth::user()->settings()->save(new UserSetting($settings))) {
-                return Redirect::to('settings/boss_restrictions')->with('errorMessage', 'The restrictions settings cannot be saved');
+                return redirect('settings/boss_restrictions')->with('errorMessage', 'The restrictions settings cannot be saved');
             }
         }
 
-        return Redirect::to('settings/boss_restrictions')->with('successMessage', 'The restrictions settings were saved successfully');
+        return redirect('settings/boss_restrictions')->with('successMessage', 'The restrictions settings were saved successfully');
     }
 
     protected function getAssignedUsers($userID)
@@ -77,6 +77,6 @@ class BOSSController extends Controller
 
     public function displayHierarchyPage()
     {
-        $this->layout->page = View::make('boss/hierarchy');
+        $this->layout->page = view('boss/hierarchy');
     }
 }

@@ -32,7 +32,7 @@ class CustomerDuplicatesController extends Controller
             //print_r($results);echo '<br/><br/><br/><br/>';
         }
         View::share('fromSystemReports', 1);
-        $this->layout->page = View::make('customerduplicates/index', ['customerduplicates' => $output]);
+        $this->layout->page = view('customerduplicates/index', ['customerduplicates' => $output]);
     }
 
     /**

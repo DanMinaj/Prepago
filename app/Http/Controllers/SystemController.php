@@ -143,7 +143,7 @@ class SystemController extends Controller
         }
         */
 
-        $this->layout->page = View::make('home.system_monitor', [
+        $this->layout->page = view('home.system_monitor', [
 
             'uninserted_s' => $uninserted_s,
             'other_charges' => $other_charges,

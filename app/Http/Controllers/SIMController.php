@@ -21,7 +21,7 @@ class SIMController extends Controller
             }
         }
 
-        $this->layout->page = View::make('settings.scheme_ping_new', [
+        $this->layout->page = view('settings.scheme_ping_new', [
             'schemes' => $schemes,
         ]);
     }
@@ -86,7 +86,7 @@ class SIMController extends Controller
 
         $scheme = $sim->scheme;
 
-        $this->layout->page = View::make('settings.scheme_sms', [
+        $this->layout->page = view('settings.scheme_sms', [
             'sms' => $sms,
             'iccid' => $iccid,
             'scheme' => $scheme,

@@ -918,7 +918,7 @@ class Customer extends Model
         $customer = self::find($this->id);
 
         $pdf = new Dompdf\Dompdf();
-        $pdf->loadHtml(View::make('pdfs.statement', [
+        $pdf->loadHtml(view('pdfs.statement', [
             'customer' => $customer,
             'address_1' => $address_1,
             'address_2' => $address_2,
@@ -955,7 +955,7 @@ class Customer extends Model
 
         // generate pdf using data
         // $dompdf->loadHtml(
-        // View::make('pdfs.statement', [)
+        // view('pdfs.statement', [)
         // );
         // $dompdf->setPaper('A4', 'portrait');
         // $dompdf->render();

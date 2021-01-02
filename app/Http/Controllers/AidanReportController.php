@@ -169,7 +169,7 @@ class AidanReportController extends Controller
 
                 return $pdf->download('CoverNote-'.$schemes[0]->ref_pa.'-'.$company_name.'.pdf');
             } else {
-                return $this->layout->page = View::make('report.aidan.cover_note', [
+                return $this->layout->page = view('report.aidan.cover_note', [
                     'company_name' 			=> $company_name,
                     'schemes' 				=> $schemes,
                     'collected' 			=> $collected,
@@ -204,7 +204,7 @@ class AidanReportController extends Controller
 
             $payments_per_total = ($payments_out_vat / $collected);
 
-            return $this->layout->page = View::make('report.aidan.total_report', [
+            return $this->layout->page = view('report.aidan.total_report', [
                 'company_name' 			=> $company_name,
                 'schemes' 				=> $schemes,
                 'collected' 			=> $collected,
@@ -251,7 +251,7 @@ class AidanReportController extends Controller
                     $s = Scheme::getReportInformation($s, $start_date, $end_date, $vat, $payments_charge, $app_charge, $meter_charge, $iou_charge, $statements_charge, $app_support, $vat_number, $company_name, $autotopup_charge, $sms_cost, $premium_sms_cost, $deleted_customers_charge, $blue_accounts_charge);
 
                     $dompdf = new Dompdf\Dompdf();
-                    $dompdf->loadHtml(View::make('report.aidan.advice_notes_pdf', [
+                    $dompdf->loadHtml(view('report.aidan.advice_notes_pdf', [
                         'company_name'	=> $company_name,
                             's'				=> $s,
                             'fullscreen' 	=> false,
@@ -291,7 +291,7 @@ class AidanReportController extends Controller
             }
             $scheme = $s;
 
-            return View::make('report.aidan.advice_notes_pdf', [
+            return view('report.aidan.advice_notes_pdf', [
                 'start_date' 		=> $start_date,
                 'end_date' 			=> $end_date,
                 'company_name' 		=> $company_name,
@@ -319,7 +319,7 @@ class AidanReportController extends Controller
             return;
         }
 
-        $this->layout->page = View::make('report/aidan/advice_notes', [
+        $this->layout->page = view('report/aidan/advice_notes', [
             'start_date' 		=> $start_date,
             'end_date' 			=> $end_date,
             'days' 				=> $days,

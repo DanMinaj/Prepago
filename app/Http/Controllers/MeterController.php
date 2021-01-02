@@ -18,13 +18,13 @@ class MeterController extends Controller
             $csv_url = URL::to('create_csv/meter_readings/'.$to.'/'.$from);
 
             if (Request::isMethod('post')) {
-                return Redirect::to('installed_meters?from='.$from.'&to='.$toWithoutTime);
+                return redirect('installed_meters?from='.$from.'&to='.$toWithoutTime);
             }
         }
 
         $meterReadings = $meterReadingsQuery->orderBy('time_date', 'desc')->paginate(500);
 
-        $this->layout->page = View::make('meter/list_meters', [
+        $this->layout->page = view('meter/list_meters', [
             'meters' 		=> $meters,
             'meterReadings' => $meterReadings,
             'csv_url'		=> $csv_url,
@@ -43,7 +43,7 @@ class MeterController extends Controller
             ->orderby('in_use', 'asc')
             ->get();
 
-        $this->layout->page = View::make('meter/list_meters', ['meters' => $meters]);
+        $this->layout->page = view('meter/list_meters', ['meters' => $meters]);
     }
 
     public function meter_data($meter_id)
@@ -53,7 +53,7 @@ class MeterController extends Controller
 
         $abb = Scheme::where('scheme_number', '=', Auth::user()->scheme_number)->get()->first();
 
-        $this->layout->page = View::make('meter/meter_data', ['meter' => $meter, 'readings' => $readings, 'abb' => $abb['unit_abbreviation']]);
+        $this->layout->page = view('meter/meter_data', ['meter' => $meter, 'readings' => $readings, 'abb' => $abb['unit_abbreviation']]);
     }
 
     public function meter_data_search()
@@ -71,14 +71,14 @@ class MeterController extends Controller
 
         $abb = Scheme::where('scheme_number', '=', Auth::user()->scheme_number)->get()->first();
 
-        $this->layout->page = View::make('meter/meter_data', ['meter' => $meter, 'readings' => $readings, 'abb' => $abb['unit_abbreviation']]);
+        $this->layout->page = view('meter/meter_data', ['meter' => $meter, 'readings' => $readings, 'abb' => $abb['unit_abbreviation']]);
     }
 
     public function meterLookup()
     {
         $meter_lookup = MeterLookup::all();
 
-        $this->layout->page = View::make('settings/meter_lookup', [
+        $this->layout->page = view('settings/meter_lookup', [
             'meter_lookup' => $meter_lookup,
         ]);
     }
@@ -118,13 +118,13 @@ class MeterController extends Controller
         $meter = MeterLookup::find($id);
 
         if (! $meter) {
-            $this->layout->page = View::make('settings/meter_lookup_edit', [
+            $this->layout->page = view('settings/meter_lookup_edit', [
                 'meter' => null,
                 'id' => $id,
             ]);
         }
 
-        $this->layout->page = View::make('settings/meter_lookup_edit', [
+        $this->layout->page = view('settings/meter_lookup_edit', [
             'meter' => $meter,
             'id' => $id,
         ]);
@@ -280,7 +280,7 @@ class MeterController extends Controller
             $lookup = MeterLookup::first();
         }
 
-        $this->layout->page = View::make('settings/bulk_meter_setup', [
+        $this->layout->page = view('settings/bulk_meter_setup', [
             'lookup' => $lookup,
             'scheme' => $scheme,
         ]);
@@ -373,7 +373,7 @@ class MeterController extends Controller
     {
         $meterLookup = Auth::user()->scheme->lookup;
 
-        $this->layout->page = View::make('settings.scan_setup', [
+        $this->layout->page = view('settings.scan_setup', [
             'meterLookup' => $meterLookup,
         ]);
     }

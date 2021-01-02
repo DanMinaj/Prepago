@@ -9,7 +9,7 @@ class PaypalAdminController extends Controller
         $from = date('Y-m-d');
         $to = date('Y-m-d');
 
-        $this->layout->page = View::make('report.paypal.payments', [
+        $this->layout->page = view('report.paypal.payments', [
             'from' => $from,
             'to' => $to,
         ]);
@@ -42,7 +42,7 @@ class PaypalAdminController extends Controller
 
     public function generateTopup()
     {
-        $this->layout->page = View::make('', [
+        $this->layout->page = view('', [
 
         ]);
     }
@@ -55,7 +55,7 @@ class PaypalAdminController extends Controller
     {
         $settings = SystemSetting::where('type', 'paypal')->get();
 
-        $this->layout->page = View::make('settings/paypal', ['settings' => $settings]);
+        $this->layout->page = view('settings/paypal', ['settings' => $settings]);
     }
 
     public function settings_add()

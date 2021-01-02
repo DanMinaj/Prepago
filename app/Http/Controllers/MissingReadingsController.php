@@ -42,7 +42,7 @@ class MissingReadingsController extends Controller
             $customerMissingReadings->push($customerInfo);
         }
 
-        $this->layout->page = View::make('missing_readings', [
+        $this->layout->page = view('missing_readings', [
             'csv_url' => URL::to('create_csv/missing_readings_reports'),
             'customers' => $customerMissingReadings->filter(function ($item) {
                 return count($item->missing_readings);

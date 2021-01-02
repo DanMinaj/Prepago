@@ -49,7 +49,7 @@ class PaypointController extends Controller
             ];
         }
 
-        $this->layout->page = View::make('report/paypoint/index_paypoint_reports',
+        $this->layout->page = view('report/paypoint/index_paypoint_reports',
             [
                 'most_recent_paypoint' => $most_recent_paypoint,
                 'total_paypoint_no' => $total_paypoint_no,

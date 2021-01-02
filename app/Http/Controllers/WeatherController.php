@@ -6,7 +6,7 @@ class WeatherController extends Controller
 
     public function topups()
     {
-        $this->layout->page = View::make('weather/topups');
+        $this->layout->page = view('weather/topups');
     }
 
     public function get_topups2()
@@ -219,7 +219,7 @@ class WeatherController extends Controller
 
     public function heatUsage()
     {
-        $this->layout->page = View::make('weather/heatUsage');
+        $this->layout->page = view('weather/heatUsage');
     }
 
     public function get_heatUsage2()

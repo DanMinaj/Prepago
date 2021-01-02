@@ -9,7 +9,7 @@ class CustomerSetupController extends Controller
 
     public function index()
     {
-        $this->layout->page = View::make('home/customer_setup/index', [
+        $this->layout->page = view('home/customer_setup/index', [
 
           ]);
     }

@@ -11,7 +11,7 @@ class DataLoggerController extends Controller
      */
     public function test()
     {
-        return View::make('datalogger.testui');
+        return view('datalogger.testui');
     }
 
     public function index()
@@ -33,7 +33,7 @@ class DataLoggerController extends Controller
         whereIn('scheme_number', $scheme_ids)
         ->get();
 
-        $this->layout->page = View::make('home/datalogger',
+        $this->layout->page = view('home/datalogger',
         [
             'dataloggers' => $dataloggers,
             'scheme_ids' => $scheme_ids,

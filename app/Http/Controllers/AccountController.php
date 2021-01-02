@@ -28,7 +28,7 @@ class AccountController extends Controller
         if ($customer_id) {
             $customerToSwap = Customer::find($customer_id);
             if (! $customerToSwap) {
-                return Redirect::to('close_account')->with('errorMsg', 'Customer Not Found');
+                return redirect('close_account')->with('errorMsg', 'Customer Not Found');
             }
 
             //get customer to swap's username from permanent_meter_data table
@@ -50,11 +50,11 @@ class AccountController extends Controller
                 ->get();
         }
 
-        $this->layout->page = View::make('home/customer_setup_view')->with('usernames', $usernames)->with('customerToSwap', $customerToSwap);
+        $this->layout->page = view('home/customer_setup_view')->with('usernames', $usernames)->with('customerToSwap', $customerToSwap);
 
         //Saving this code for a change made by David Byrne on the 12/09/2014, the fix is to stop other schemes meters showing up in the add new customer page
         //$usernames = PermanentMeterData::join('sim_cards', 'sim_cards.ID', '=', 'permanent_meter_data.sim_ID')->where('in_use', '=', 0)->where('is_boiler_room_meter', '=', 0)->where('is_boiler_room_meter', '!=', 1)->where('permanent_meter_data.installation_confirmed', '=', 1)->groupby('username')->get();
-        //$this->layout->page = View::make('home/customer_setup_view', array('usernames' => $usernames));
+        //$this->layout->page = view('home/customer_setup_view', array('usernames' => $usernames));
     }
 
     public function open_account_queue()
@@ -63,7 +63,7 @@ class AccountController extends Controller
         $finished_queue = CustomerQueue::orderBy('id', 'DESC')->whereRaw('(completed = 1 AND failed = 0)')->get();
         $failed_queue = CustomerQueue::orderBy('id', 'DESC')->whereRaw('(completed = 1 AND failed = 1)')->get();
 
-        $this->layout->page = View::make('home/open_account_queue')
+        $this->layout->page = view('home/open_account_queue')
         ->with('in_queue', $in_queue)
         ->with('finished_queue', $finished_queue)
         ->with('failed_queue', $failed_queue);
@@ -84,26 +84,26 @@ class AccountController extends Controller
                 case 'run':
                     $queue->execute();
 
-                    return Redirect::to('open_account/queue')->with(['successMessage' => "Successfully ran queue #$queue_id"]);
+                    return redirect('open_account/queue')->with(['successMessage' => "Successfully ran queue #$queue_id"]);
                 break;
                 case 'cancel':
                     $queue->cancel();
 
-                    return Redirect::to('open_account/queue')->with(['successMessage' => "Successfully cancelled queue #$queue_id"]);
+                    return redirect('open_account/queue')->with(['successMessage' => "Successfully cancelled queue #$queue_id"]);
                 break;
                 case 'undo':
                     $queue->undo();
 
-                    return Redirect::to('open_account/queue')->with(['successMessage' => "Successfully un-did queue #$queue_id"]);
+                    return redirect('open_account/queue')->with(['successMessage' => "Successfully un-did queue #$queue_id"]);
                 break;
                 case 'redo':
                     $queue->redo();
 
-                    return Redirect::to('open_account/queue')->with(['successMessage' => "Successfully restarted queue #$queue_id"]);
+                    return redirect('open_account/queue')->with(['successMessage' => "Successfully restarted queue #$queue_id"]);
                 break;
             }
         } catch (\Exception $e) {
-            return Redirect::to('open_account/queue')
+            return redirect('open_account/queue')
             ->with([
                 'errorMessage' => $e->getMessage().' ('.$e->getLine().')',
             ]);
@@ -148,7 +148,7 @@ class AccountController extends Controller
                 $customer_queue->commencement_date = $commencement_date;
                 $customer_queue->save();
 
-                return Redirect::to('open_account')->with('successMessage', "Successfully queue customer setup of $username for $commencement_date. (Queue #".$customer_queue->id.')')->withInput();
+                return redirect('open_account')->with('successMessage', "Successfully queue customer setup of $username for $commencement_date. (Queue #".$customer_queue->id.')')->withInput();
             } else {
                 $customerQueue->type = 'open_account';
                 $customerQueue->scheme_number = $scheme_number;
@@ -169,12 +169,12 @@ class AccountController extends Controller
                 $customerQueue->failed_msg = '';
                 $customerQueue->save();
 
-                return Redirect::to('open_account')->with('successMessage', "Updated queue of $username for $commencement_date. (Queue #".$customerQueue->id.')')->withInput();
+                return redirect('open_account')->with('successMessage', "Updated queue of $username for $commencement_date. (Queue #".$customerQueue->id.')')->withInput();
             }
 
             //$this->log->addInfo('The customer was set up successfully');
 
-            return Redirect::to('open_account')->with('errorMessage', 'Disabled')->withInput();
+            return redirect('open_account')->with('errorMessage', 'Disabled')->withInput();
         } else {
 
             //validate user's data
@@ -197,7 +197,7 @@ class AccountController extends Controller
             $action = Input::get('swap_from_id') ? 'swap' : 'create';
 
             if (count($errors)) {
-                return Redirect::to($action === 'swap' ? 'open_account/swap/'.(int) Input::get('swap_from_id') : 'open_account')->withInput()->withErrors($errors);
+                return redirect($action === 'swap' ? 'open_account/swap/'.(int) Input::get('swap_from_id') : 'open_account')->withInput()->withErrors($errors);
             }
 
             $this->log->addInfo('Validation passed. Starting the transaction');
@@ -216,11 +216,11 @@ class AccountController extends Controller
                             if ($permanentMeterNumber) {
                                 $permanentMeterData = $this->get_prepopulation($permanentMeterNumber);
                             } else {
-                                //return Redirect::to('open_account')->with('errorMessage', '<b> An error occured: </b> No entry in the permanent meters for this customer was found');
+                                //return redirect('open_account')->with('errorMessage', '<b> An error occured: </b> No entry in the permanent meters for this customer was found');
                                 throw new \Exception('No entry in the permanent meters for this customer was found');
                             }
                         } else {
-                            //return Redirect::to('open_account')->with('errorMessage', '<b> An error occured: </b> No entry in the district heating meters for this customer was found');
+                            //return redirect('open_account')->with('errorMessage', '<b> An error occured: </b> No entry in the district heating meters for this customer was found');
                             throw new \Exception('No entry in the district heating meters for this customer was found');
                         }
                     } else {
@@ -228,7 +228,7 @@ class AccountController extends Controller
                         //permanent_meter_data joined with sim_cards
                         $permanentMeterData = $this->get_prepopulation(Input::get('select_units'));
                         if (! $permanentMeterData->count()) {
-                            //return Redirect::to('open_account')->with('errorMessage', '<b> An error occured: </b> No information about the selected permanent meter was found.');
+                            //return redirect('open_account')->with('errorMessage', '<b> An error occured: </b> No information about the selected permanent meter was found.');
                             $this->log->addInfo('No information about the selected permanent meter was found');
                             throw new \Exception('No information about the selected permanent meter was found.');
                         }
@@ -256,13 +256,13 @@ class AccountController extends Controller
                                 throw new \Exception('A district heating meter with this meter number "'.$dhmData['meter_number'].'" already exists! It is in use by customer '.$dhmExists->customers()->first()->id);
                             }
 
-                            //return Redirect::to('open_account')->with('errorMessage', $error_res);
+                            //return redirect('open_account')->with('errorMessage', $error_res);
                             $this->log->addInfo('A district heating meter with this meter number "'.$dhmData['meter_number'].'" already exists!');
                             throw new \Exception('A district heating meter with this meter number "'.$dhmData['meter_number'].'" already exists!');
                         }
 
                         if (! $dhmInfo = DistrictHeatingMeter::create($dhmData)) {
-                            //return Redirect::to('open_account')->with('errorMessage', '<b> An error occured: </b> The district heating meter data cannot be saved.');
+                            //return redirect('open_account')->with('errorMessage', '<b> An error occured: </b> The district heating meter data cannot be saved.');
                             $this->log->addInfo('The district heating meter data cannot be saved');
                             throw new \Exception('The district heating meter data cannot be saved.');
                         }
@@ -373,7 +373,7 @@ class AccountController extends Controller
             if (isset($trans['error']) || ! $trans['customer_id']) {
                 $this->log->addInfo('There was an error with the transaction');
 
-                return Redirect::to('open_account/customer_setup_error');
+                return redirect('open_account/customer_setup_error');
             }
 
             $customerID = $trans['customer_id'];
@@ -413,7 +413,7 @@ class AccountController extends Controller
                 if (! $smsSent) {
                     $this->log->addInfo('SMS cannot be sent to the customer');
 
-                    return Redirect::to('open_account')->with('errorMessage', 'SMS cannot be sent to the customer.');
+                    return redirect('open_account')->with('errorMessage', 'SMS cannot be sent to the customer.');
                 }
             }
 
@@ -427,19 +427,19 @@ class AccountController extends Controller
                 $this->log->addInfo('The customer was set up successfully');
 
                 if ($schemeInfo != null && $schemeInfo->isBlueScheme && $customerID) {
-                    return Redirect::to('open_account')->with('successMessage', "The customer was set up successfully. <a href='/customer_tabview_controller/show/".$customerID."'>Visit the customer.</a>");
+                    return redirect('open_account')->with('successMessage', "The customer was set up successfully. <a href='/customer_tabview_controller/show/".$customerID."'>Visit the customer.</a>");
                 } else {
-                    return Redirect::to('open_account')->with('successMessage', 'The customer was set up successfully.');
+                    return redirect('open_account')->with('successMessage', 'The customer was set up successfully.');
                 }
             } else {
-                return Redirect::to('close_account')->with('successMessage', 'The customer was set up successfully in place of the deleted one.');
+                return redirect('close_account')->with('successMessage', 'The customer was set up successfully in place of the deleted one.');
             }
         }
     }
 
     public function customer_setup_error()
     {
-        $this->layout->page = View::make('home/customer_setup_error');
+        $this->layout->page = view('home/customer_setup_error');
     }
 
     public function get_prepopulation($meter_number)
@@ -499,7 +499,7 @@ class AccountController extends Controller
                 $res = $this->close_account_action((int) Input::get('swap_from_id'));
 
                 if ($res['errors']) {
-                    Redirect::to('close_account')->with('errorMessage', $res['errors']);
+                    redirect('close_account')->with('errorMessage', $res['errors']);
                 }
             } else {
                 $trans = DB::transaction(function () {
@@ -519,11 +519,11 @@ class AccountController extends Controller
                 });
 
                 if (isset($trans['error'])) {
-                    return Redirect::to('close_account')->with('errorMessage', 'Customer cannot be deleted');
+                    return redirect('close_account')->with('errorMessage', 'Customer cannot be deleted');
                 }
             }
 
-            return Redirect::to('close_account')->with('successMessage', 'Customer was deleted successfully');
+            return redirect('close_account')->with('successMessage', 'Customer was deleted successfully');
         } else {
             $customers = Customer::where('status', '=', 1)->where('scheme_number', '=', Auth::user()->scheme_number)->get();
             $deletedLandlordsList = new \Illuminate\Database\Eloquent\Collection();
@@ -531,7 +531,7 @@ class AccountController extends Controller
                 //get deleted landlords list (needed if we're deleting a normal customer)
                 $deletedLandlordsList[$customer->id] = Customer::onlyTrashed()->where('role', '=', 'landlord')->where('meter_ID', '=', $customer->meter_ID)->get(['id', 'username']);
             }
-            $this->layout->page = View::make('home/close_account_view')->withCustomers($customers)->withLandlords($deletedLandlordsList);
+            $this->layout->page = view('home/close_account_view')->withCustomers($customers)->withLandlords($deletedLandlordsList);
         }
     }
 
@@ -539,7 +539,7 @@ class AccountController extends Controller
     {
         $customers = Customer::where('status', '=', 1)->where('scheme_number', '=', Auth::user()->scheme_number)->get();
 
-        $this->layout->page = View::make('home/close_account_alternative_view')->withCustomers($customers);
+        $this->layout->page = view('home/close_account_alternative_view')->withCustomers($customers);
     }
 
     public function close_account_alt_download($id)
@@ -606,12 +606,12 @@ class AccountController extends Controller
             $res = $this->close_account_action($id);
 
             if ($res['errors']) {
-                Redirect::to('close_account_alt')->with('errorMessage', $res['errors']);
+                redirect('close_account_alt')->with('errorMessage', $res['errors']);
             }
 
-            return Redirect::to('close_account_alt')->with('successMessage', 'Customer was deleted successfully');
+            return redirect('close_account_alt')->with('successMessage', 'Customer was deleted successfully');
         } else {
-            $this->layout->page = View::make('home/close_account_alternative_view_confirm')->with(['customer' => $customer]);
+            $this->layout->page = view('home/close_account_alternative_view_confirm')->with(['customer' => $customer]);
         }
     }
 
@@ -621,7 +621,7 @@ class AccountController extends Controller
 
         $customers = $this->search_customers($search_term);
 
-        $this->layout->page = View::make('home/close_account_view', ['customers' => $customers]);
+        $this->layout->page = view('home/close_account_view', ['customers' => $customers]);
     }
 
     public function close_account_action($customer_number)
@@ -630,7 +630,7 @@ class AccountController extends Controller
         //delete customer
         $customer = Customer::find($customer_number);
         if (! $customer) {
-            return Redirect::to('close_account')->with('errorMsg', 'Customer Not Found');
+            return redirect('close_account')->with('errorMsg', 'Customer Not Found');
         }
 
         $trans = DB::transaction(function () use ($customer) {
@@ -676,7 +676,7 @@ class AccountController extends Controller
 
         return ['errors' => ''];
 
-        //$this->layout->page = View::make('home/close_account_actions')->with('customer', $customer)->with('deletedLandlordsList', $deletedLandlordsList);
+        //$this->layout->page = view('home/close_account_actions')->with('customer', $customer)->with('deletedLandlordsList', $deletedLandlordsList);
 
         /*Customer::where('id', '=', $customer_number)->update(array('status' => 2, 'username' => $username.'_d'));*/
         /*$customerInfo = Customer::where('id', '=', $customer_number)->get()->first();
@@ -693,13 +693,13 @@ class AccountController extends Controller
             }
         }
 
-        return Redirect::to('close_account')->with('successMsg', 'The customer was deleted successfully');*/
+        return redirect('close_account')->with('successMsg', 'The customer was deleted successfully');*/
     }
 
     public function multiple_close()
     {
         $customers = Customer::where('status', '=', 1)->where('scheme_number', '=', Auth::user()->scheme_number)->get();
-        $this->layout->page = View::make('home/multiple_close_view', ['customers' => $customers]);
+        $this->layout->page = view('home/multiple_close_view', ['customers' => $customers]);
     }
 
     public function multiple_close_account_action()
@@ -731,7 +731,7 @@ class AccountController extends Controller
             }
         }
 
-        return Redirect::to('settings/multiple_close')->with('successMsg', 'The customer was deleted successfully');
+        return redirect('settings/multiple_close')->with('successMsg', 'The customer was deleted successfully');
     }
 
     public function multiple_close_account_search()
@@ -740,7 +740,7 @@ class AccountController extends Controller
 
         $customers = $this->search_customers($search_term);
 
-        $this->layout->page = View::make('home/multiple_close_view', ['customers' => $customers]);
+        $this->layout->page = view('home/multiple_close_view', ['customers' => $customers]);
     }
 
     /* Close Account Procedure */
@@ -797,7 +797,7 @@ class AccountController extends Controller
         //delete customer
         $customer = Customer::find($customerID);
         if (! $customer) {
-            return Redirect::to('close_account')->with('errorMessage', 'Customer Not Found');
+            return redirect('close_account')->with('errorMessage', 'Customer Not Found');
         }
 
         $data = [];
@@ -805,10 +805,10 @@ class AccountController extends Controller
         $data['customer_id'] = $customerID;
 
         if (is_null($data['meter_id'])) {
-            return Redirect::to('close_account')->with('errorMessage', 'The customer doesn\'t have a permanent meter assigned');
+            return redirect('close_account')->with('errorMessage', 'The customer doesn\'t have a permanent meter assigned');
         }
 
-        $this->layout->page = View::make('home/close_account_step1')->with('data', $data);
+        $this->layout->page = view('home/close_account_step1')->with('data', $data);
     }
 
     public function closeAccountStep2($customerID)
@@ -816,7 +816,7 @@ class AccountController extends Controller
         $customer = Customer::findOrFail($customerID);
         $dhm = $customer->districtHeatingMeter;
         if (! $dhm) {
-            return Redirect::to('close_account')->with('errorMessage', 'Customer doesn\'t have a district heating meter');
+            return redirect('close_account')->with('errorMessage', 'Customer doesn\'t have a district heating meter');
         }
 
         $totalUsage = $dhm->latest_reading - $dhm->sudo_reading;
@@ -828,7 +828,7 @@ class AccountController extends Controller
         $data['customer'] = $customer;
         $data['landlords'] = $landlords;
 
-        $this->layout->page = View::make('home/close_account_step2')->with('data', $data);
+        $this->layout->page = view('home/close_account_step2')->with('data', $data);
     }
 
     public function closeAccountStep3($customerID)
@@ -837,12 +837,12 @@ class AccountController extends Controller
             $customer = Customer::findOrFail($customerID);
             $dhm = $customer->districtHeatingMeter;
             if (! $dhm) {
-                return Redirect::to('close_account')->with('errorMessage', 'Customer doesn\'t have a district heating meter');
+                return redirect('close_account')->with('errorMessage', 'Customer doesn\'t have a district heating meter');
             }
 
             $tariff = Tariff::where('scheme_number', '=', Auth::user()->scheme_number)->first();
             if (! $tariff) {
-                return Redirect::to('close_account/'.$customerID.'/step3')->with('errorMessage', 'No tariff assigned for the current scheme');
+                return redirect('close_account/'.$customerID.'/step3')->with('errorMessage', 'No tariff assigned for the current scheme');
             }
             $tariffType = \Input::get('tariff_type');
 
@@ -859,13 +859,13 @@ class AccountController extends Controller
                         'balance' => $customer->balance - $charge,
                         'total_unit_charge' => $customer->total_unit_charge + $charge,
                     ])) {
-                        return Redirect::to('close_account/'.$customerID.'/step3')->with('errorMessage', 'Cannot update customer\'s balance');
+                        return redirect('close_account/'.$customerID.'/step3')->with('errorMessage', 'Cannot update customer\'s balance');
                     }
 
                     if (! DistrictHeatingMeter::where('meter_ID', $dhm->meter_ID)->update([
                         'latest_reading' => $dhm->sudo_reading,
                     ])) {
-                        return Redirect::to('close_account/'.$customerID.'/step3')->with('errorMessage', 'Could not update the latest meter reading');
+                        return redirect('close_account/'.$customerID.'/step3')->with('errorMessage', 'Could not update the latest meter reading');
                     }
 
                     DistrictHeatingUsage::where('customer_id', $customerID)->where('date', date('Y-m-d'))->orderBy('id', 'desc')->first()->update([
@@ -874,7 +874,7 @@ class AccountController extends Controller
                 }
             }
 
-            return Redirect::to('close_account/'.$customerID.'/step4');
+            return redirect('close_account/'.$customerID.'/step4');
         }
 
         $tariffs = Tariff::where('scheme_number', '=', Auth::user()->scheme_number)->first();
@@ -883,7 +883,7 @@ class AccountController extends Controller
         $data['tariffs'] = $tariffs;
         $data['customer_id'] = $customerID;
 
-        $this->layout->page = View::make('home/close_account_step3')->with('data', $data);
+        $this->layout->page = view('home/close_account_step3')->with('data', $data);
     }
 
     public function closeAccountStep4($customerID)
@@ -897,7 +897,7 @@ class AccountController extends Controller
         $data['customer'] = $customer;
         $data['landlords'] = $landlords;
 
-        $this->layout->page = View::make('home/close_account_step4')->with('data', $data);
+        $this->layout->page = view('home/close_account_step4')->with('data', $data);
     }
 
     /* Close Account Procedure */
@@ -1027,7 +1027,7 @@ class AccountController extends Controller
             $searched_by = '';
         }
 
-        $this->layout->page = View::make('home/advanced_search')
+        $this->layout->page = view('home/advanced_search')
         ->with(
         [
 
@@ -1217,7 +1217,7 @@ class AccountController extends Controller
             $results = [];
         }
 
-        return Redirect::to('advanced_search')->with([
+        return redirect('advanced_search')->with([
             'results' => $results,
             'searched_by' => $searched_by,
         ]);
@@ -1265,7 +1265,7 @@ class AccountController extends Controller
             $s->green_count = $normal_customers->count();
         }
 
-        $this->layout->page = View::make('home/missing_customers', [
+        $this->layout->page = view('home/missing_customers', [
             'schemes' => $schemes,
         ]);
     }
@@ -1292,7 +1292,7 @@ class AccountController extends Controller
             $a->pmd = $pmd;
         }
 
-        $this->layout->page = View::make('home/away_modes', [
+        $this->layout->page = view('home/away_modes', [
             'away_modes' => $away_modes,
         ]);
     }
@@ -1408,7 +1408,7 @@ class AccountController extends Controller
             }
         }
 
-        $this->layout->page = View::make('home/shut_offs', [
+        $this->layout->page = view('home/shut_offs', [
             'date' => $date,
             'shut_offs' => $shut_offs,
         ]);
@@ -1441,7 +1441,7 @@ class AccountController extends Controller
             $iou->info = $iou_storage;
         }
 
-        $this->layout->page = View::make('home/ious', [
+        $this->layout->page = view('home/ious', [
             'ious' => $ious,
             'date' => new DateTime($date),
         ]);
@@ -1464,7 +1464,7 @@ class AccountController extends Controller
             }
         }
 
-        $this->layout->page = View::make('home/customers_deleted')
+        $this->layout->page = view('home/customers_deleted')
         ->with([
             'deletedCustomers' => $deletedCustomers,
         ]);
@@ -1482,7 +1482,7 @@ class AccountController extends Controller
             $customer->replacement = $replaced;
         }
 
-        $this->layout->page = View::make('home/customers_reinstate')
+        $this->layout->page = view('home/customers_reinstate')
         ->with([
             'customer' => $customer,
         ]);
@@ -1501,7 +1501,7 @@ class AccountController extends Controller
                 $customer->replaced = true;
                 $customer->replacement = $replaced;
 
-                return Redirect::to('reinstate_account')
+                return redirect('reinstate_account')
                 ->with([
                     'customer' => $customer,
                     'warningMessage' => "Didn't reinstate <a href='/customer/$customer_id'>Customer #$customer_id</a>. This customer was already replaced..",
@@ -1540,14 +1540,14 @@ class AccountController extends Controller
                 $customerReinstation->reason = 'n/a';
                 $customerReinstation->save();
 
-                return Redirect::to('reinstate_account')
+                return redirect('reinstate_account')
                 ->with([
                     'customer' => $customer,
                     'successMessage' => "Successfully reinstated <a href='/customer/$customer_id'>Customer #$customer_id</a>",
                 ]);
             }
         } catch (Exception $e) {
-            return Redirect::to('reinstate_account')
+            return redirect('reinstate_account')
             ->with([
                 'customer' => $customer,
                 'errorMessage' => "Failed to reinstate <a href='/customer/$customer_id'>Customer #$customer_id</a>: ".$e->getMessage().' ('.$e->getLine().')',

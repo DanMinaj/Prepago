@@ -15,7 +15,7 @@ class PrepayGoReportController extends ReportsBaseController
         ->where('ev_timestamp', '>=', '2019-11-08')->get();
 
         $topups = PaymentStorageTest::where('acceptor_name_location_', 'stripe_prepaygo')->orderBy('time_date', 'DESC')->get();
-        $this->layout->page = View::make('report/prepaygo/index')->with([
+        $this->layout->page = view('report/prepaygo/index')->with([
             'recharges' => $recharges,
             'topups' => $topups,
         ]);

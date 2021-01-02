@@ -64,7 +64,7 @@ class PermanentMeterDataMeterReadWebsite extends Model
 
     public function belongsToUserWithReadingsAutomationPermissions()
     {
-        return in_array($this->automated_by_user_ID, Config::get('prepago.meter_readings_automation_users'));
+        return in_array($this->automated_by_user_ID, config('prepago.meter_readings_automation_users'));
     }
 
     /**

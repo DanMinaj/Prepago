@@ -401,7 +401,7 @@ class TestRouteController extends Controller
 
     public function loadSubView($name)
     {
-        return View::make("modals.ajax.$name", [
+        return view("modals.ajax.$name", [
 
         ]);
     }

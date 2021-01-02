@@ -15,7 +15,7 @@ class NotificationsController extends Controller
             ->groupBy('body')
             ->get();
 
-            $this->layout->page = View::make('home.notifications_create', [
+            $this->layout->page = view('home.notifications_create', [
 
             ]);
         } catch (Exception $e) {
@@ -72,7 +72,7 @@ class NotificationsController extends Controller
             ->groupBy('body')
             ->get();
 
-            $this->layout->page = View::make('home.notifications_all', [
+            $this->layout->page = view('home.notifications_all', [
                 'notifications' => $notifications,
             ]);
         } catch (Exception $e) {

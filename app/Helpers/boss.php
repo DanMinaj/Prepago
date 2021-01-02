@@ -106,7 +106,7 @@ function getSettings()
 
     //if admin didn't provide boss settings -> get the default values from the config file
     if (! $settings) {
-        $settings = \Config::get('boss.settings');
+        $settings = config('boss.settings');
     }
 
     return $settings;

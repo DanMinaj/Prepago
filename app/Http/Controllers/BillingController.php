@@ -44,7 +44,7 @@ class BillingController extends Controller
         ->whereRaw("(created_at >= '$from 00:00:00' AND created_at <= '$to 23:59:59')")
         ->orderBy('id', 'DESC')->get();
 
-        $this->layout->page = View::make('home.customer_billing', [
+        $this->layout->page = view('home.customer_billing', [
 
             'customer' => $customer,
             'logs' => $logs,
@@ -61,7 +61,7 @@ class BillingController extends Controller
         try {
             $log = BillingEngineLogsNew::getLogs($customer_id, date('Y-m-d'));
 
-            return Redirect::to($log->download());
+            return redirect($log->download());
         } catch (Exception $e) {
             return Redirect::back()->with([
                 'errorMessage' => 'Error occurred: '.$e->getMessage(),
@@ -159,7 +159,7 @@ class BillingController extends Controller
         try {
             $flags = BillingEngineFlag::pending()->get();
 
-            $this->layout->page = View::make('home.flags', [
+            $this->layout->page = view('home.flags', [
                 'flags' => $flags,
             ]);
         } catch (Exception $e) {

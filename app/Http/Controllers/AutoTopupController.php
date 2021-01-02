@@ -16,7 +16,7 @@ class AutoTopupController extends Controller
         $autotopup_terms = SystemSetting::get('autotopup_terms');
         $vars = SystemSetting::whereRaw("(name LIKE '%vars_autotopup_%')")->get();
         //
-        $this->layout->page = View::make('settings.autotopup.settings', [
+        $this->layout->page = view('settings.autotopup.settings', [
             'autotopup_title' 		=> $autotopup_title,
             'autotopup_subtitle' 	=> $autotopup_subtitle,
             'autotopup_body' 		=> $autotopup_body,

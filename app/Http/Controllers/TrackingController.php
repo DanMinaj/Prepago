@@ -74,7 +74,7 @@ class TrackingController extends Controller
 
     public function whosOnline()
     {
-        $this->layout->page = View::make('home/whos_online',
+        $this->layout->page = view('home/whos_online',
         [
             'whosonline' => System::whosOnline(),
             'whosoffline' => System::whosOffline(),

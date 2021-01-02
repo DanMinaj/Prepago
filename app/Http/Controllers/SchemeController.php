@@ -15,7 +15,7 @@ class SchemeController extends Controller
     public function index()
     {
         $schemes = Scheme::withoutArchived()->orderBy('scheme_number', 'ASC')->get();
-        $this->layout->page = View::make('schemes/index', ['schemes' => $schemes]);
+        $this->layout->page = view('schemes/index', ['schemes' => $schemes]);
     }
 
     public function show($schemeID)
@@ -23,12 +23,12 @@ class SchemeController extends Controller
         $fieldsVersions = getSchemeSetupCountryVersions();
         $scheme = Scheme::find($schemeID);
 
-        $this->layout->page = View::make('schemes/show')
+        $this->layout->page = view('schemes/show')
             ->with('scheme', $scheme)
             ->with('fieldsVersions', $fieldsVersions);
 
-        return Redirect::to('welcome');
-        $this->layout->page = View::make('schemes/show')->with('scheme', $scheme);
+        return redirect('welcome');
+        $this->layout->page = view('schemes/show')->with('scheme', $scheme);
     }
 
     public function update($schemeID)
@@ -38,7 +38,7 @@ class SchemeController extends Controller
         if (! $this->validator->isValid(Scheme::rules($schemeID))) {
             $errors = $this->validator->getErrors();
 
-            return Redirect::to('schemes/'.$schemeID)->withInput()->withErrors($errors);
+            return redirect('schemes/'.$schemeID)->withInput()->withErrors($errors);
         }
 
         $schemeSetupCtrl = App::make('SchemeSetUpController');
@@ -53,7 +53,7 @@ class SchemeController extends Controller
         $scheme->fill($data);
         //update the scheme info
         if (! $scheme->save()) {
-            return Redirect::to('schemes/'.$schemeID)->with('errorMessage', 'There was an error updating the scheme information');
+            return redirect('schemes/'.$schemeID)->with('errorMessage', 'There was an error updating the scheme information');
         }
 
         //update the vat_rate in the tariffs table
@@ -64,11 +64,11 @@ class SchemeController extends Controller
                 'vat_rate_new' => $data['vat_rate'],
             ]);
             if (! $tariff->save()) {
-                return Redirect::to('schemes/'.$schemeID)->with('errorMessage', 'There was an error updating the tariff vat information');
+                return redirect('schemes/'.$schemeID)->with('errorMessage', 'There was an error updating the tariff vat information');
             }
         }
 
-        return Redirect::to('schemes')->with('successMessage', 'The scheme information was updated successfully');
+        return redirect('schemes')->with('successMessage', 'The scheme information was updated successfully');
     }
 
     public function destroy($schemeID)
@@ -79,7 +79,7 @@ class SchemeController extends Controller
             Session::flash('successMessage', 'Scheme was deleted successfully');
         }
 
-        return Redirect::to('schemes');
+        return redirect('schemes');
     }
 
     public function scheme_settings()
@@ -89,7 +89,7 @@ class SchemeController extends Controller
         $scheme = Scheme::find(Auth::user()->scheme_number);
 
         if (! $scheme) {
-            return Redirect::to('welcome-schemes')->with([
+            return redirect('welcome-schemes')->with([
                 'errorMessage' => 'Invalid scheme ID. Please re-select a scheme',
             ]);
         }
@@ -132,7 +132,7 @@ class SchemeController extends Controller
             $scheme_daily_readings = $scheme_daily_readings->readings_per_day;
         }
 
-        $this->layout->page = View::make('settings/scheme_settings', [
+        $this->layout->page = view('settings/scheme_settings', [
             'dl' => $dl,
             'dl_sim' => $dl_sim,
             'meter' => $meter,
@@ -402,7 +402,7 @@ class SchemeController extends Controller
             $operator = false;
         }
 
-        $this->layout->page = View::make('settings/scheme_settings_manage_operator', [
+        $this->layout->page = view('settings/scheme_settings_manage_operator', [
             'operator' => $operator,
         ]);
     }
@@ -488,7 +488,7 @@ class SchemeController extends Controller
             $meter = PermanentMeterData::where('ID', $pmd_id)->first();
         }
 
-        $this->layout->page = View::make('settings/scheme_settings_manage_meter', [
+        $this->layout->page = view('settings/scheme_settings_manage_meter', [
             'meter' => $meter,
         ]);
     }
@@ -726,7 +726,7 @@ class SchemeController extends Controller
             $scheme = Scheme::find($scheme_id);
             $tariff = $scheme->tariff;
 
-            $this->layout->page = View::make('settings.tariff_setup', [
+            $this->layout->page = view('settings.tariff_setup', [
                 'scheme' => $scheme,
                 'tariff' => $tariff,
             ]);

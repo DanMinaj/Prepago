@@ -20,7 +20,7 @@ class BossUsersController extends BOSSController
         $bossLevelUser = ! $userID ? 'Admin' : getBossLevelName($bossLevel);
         $bossLevelDownUser = ! $userID ? 'Agent' : getBossLevelName($bossLevel + 1);
 
-        $this->layout->page = View::make('boss/assign_users', [
+        $this->layout->page = view('boss/assign_users', [
             'user'              => $user,
             'users'             => $unassignedUsers,
             'bossLevelUser'     => $bossLevelUser,
@@ -43,7 +43,7 @@ class BossUsersController extends BOSSController
 
         //check the selected users count against the settings for the children level
         if (($childrenCount + count($userIDs)) > $settings['number_'.$childrenLevelName.'s']) {
-            return Redirect::to('boss'.($currentUserID !== Auth::user()->id ? '/'.$currentUserID : '').'/assign')
+            return redirect('boss'.($currentUserID !== Auth::user()->id ? '/'.$currentUserID : '').'/assign')
                     ->with('errorMessage', 'The assigned users count exceeds the maximum allowed');
         }
 
@@ -59,13 +59,13 @@ class BossUsersController extends BOSSController
                 $userSchemeCount = User::find($userID) ? User::find($userID)->schemes()->withoutArchived()->count() : 0;
                 $schemesCount += $userSchemeCount;
                 if ($schemesCount > $settings['number_schemes_per_level']) {
-                    return Redirect::to('boss'.($currentUserID !== Auth::user()->id ? '/'.$currentUserID : '').'/assign')
+                    return redirect('boss'.($currentUserID !== Auth::user()->id ? '/'.$currentUserID : '').'/assign')
                         ->with('errorMessage', 'The number of schemes exceeds the maximum allowed');
                 }
             }
         } else {
             if ($schemesCount > $settings['number_schemes_per_level']) {
-                return Redirect::to('boss'.($currentUserID !== Auth::user()->id ? '/'.$currentUserID : '').'/assign')
+                return redirect('boss'.($currentUserID !== Auth::user()->id ? '/'.$currentUserID : '').'/assign')
                     ->with('errorMessage', 'The number of schemes exceeds the maximum allowed');
             }
         }
@@ -74,14 +74,14 @@ class BossUsersController extends BOSSController
             foreach ($userIDs as $userID) {
                 $user = User::where('id', $userID);
                 if (! $user->update(['parent_id' => $currentUserID])) {
-                    return Redirect::to('boss/'.$currentUserID)->with('errorMessage', 'The user '.$user->first()->username.' cannot be assigned');
+                    return redirect('boss/'.$currentUserID)->with('errorMessage', 'The user '.$user->first()->username.' cannot be assigned');
                 }
             }
 
-            return Redirect::to('boss/'.$currentUserID)->with('successMessage', 'The users were assigned successfully');
+            return redirect('boss/'.$currentUserID)->with('successMessage', 'The users were assigned successfully');
         }
 
-        return Redirect::to('boss/'.$currentUserID);
+        return redirect('boss/'.$currentUserID);
     }
 
     public function unassign($userID)
@@ -93,18 +93,18 @@ class BossUsersController extends BOSSController
 
         //set parent id of the user we're unassigning to 0
         if (! $user->update(['parent_id' => 0])) {
-            return Redirect::to('boss/'.$parentID)->with('errorMessage', 'The user cannot be unassigned');
+            return redirect('boss/'.$parentID)->with('errorMessage', 'The user cannot be unassigned');
         }
 
         //set the parent id of the children of the user we're unassigning to 0
         $childrenIDs = getChildren($user->id);
         if ($childrenIDs) {
             if (! User::whereIN('id', $childrenIDs)->update(['parent_id' => 0])) {
-                return Redirect::to('boss/'.$parentID)->with('errorMessage', 'The user\'s children cannot be unassigned');
+                return redirect('boss/'.$parentID)->with('errorMessage', 'The user\'s children cannot be unassigned');
             }
         }
 
-        return Redirect::to('boss/'.$parentID)->with('successMessage', 'The user was unassigned successfully');
+        return redirect('boss/'.$parentID)->with('successMessage', 'The user was unassigned successfully');
     }
 
     public function displayReassignPage($userID)
@@ -112,7 +112,7 @@ class BossUsersController extends BOSSController
         $user = User::findOrFail($userID);
         $usersToMoveTo = $this->getUsersToMoveTo($userID);
 
-        $this->layout->page = View::make('boss/move_user', [
+        $this->layout->page = view('boss/move_user', [
             'user'              => $user,
             'users'             => $usersToMoveTo,
         ]);
@@ -126,9 +126,9 @@ class BossUsersController extends BOSSController
         $isAllowedToMove = $this->isAllowedToMove($userID, $moveToUserID);
 
         if ($isAllowedToMove === 'exceed_user_number') {
-            return Redirect::to('boss/'.$userID.'/reassign')->with('errorMessage', 'The user you\'re trying to assign to already has the maximum number of allowed users. Try reassigning the current user to another one');
+            return redirect('boss/'.$userID.'/reassign')->with('errorMessage', 'The user you\'re trying to assign to already has the maximum number of allowed users. Try reassigning the current user to another one');
         } elseif ($isAllowedToMove === 'exceed_scheme_number') {
-            return Redirect::to('boss/'.$userID.'/reassign')->with('errorMessage', 'The number of schemes would exceed the allowed number. Try reassigning the current user to another one');
+            return redirect('boss/'.$userID.'/reassign')->with('errorMessage', 'The number of schemes would exceed the allowed number. Try reassigning the current user to another one');
         }
 
         $user = User::findOrFail($userID);
@@ -142,16 +142,16 @@ class BossUsersController extends BOSSController
             $childrenIDs = $children->lists('id');
             //set the children's parent to $parentID
             if (! User::whereIn('id', $childrenIDs)->update(['parent_id' => $parentID])) {
-                return Redirect::to('boss/'.$userID.'/reassign')->with('errorMessage', 'Cannot set the new parent');
+                return redirect('boss/'.$userID.'/reassign')->with('errorMessage', 'Cannot set the new parent');
             }
         }
 
         //set the parent of the user we're moving to the $moveToUserID
         if (! $user->update(['parent_id' => $moveToUserID])) {
-            return Redirect::to('boss/'.$userID.'/reassign')->with('errorMessage', 'Cannot reassign the user');
+            return redirect('boss/'.$userID.'/reassign')->with('errorMessage', 'Cannot reassign the user');
         }
 
-        return Redirect::to('boss'.($parentID !== Auth::user()->id ? '/'.$parentID : ''))->with('successMessage', 'The user was successfully reassigned');
+        return redirect('boss'.($parentID !== Auth::user()->id ? '/'.$parentID : ''))->with('successMessage', 'The user was successfully reassigned');
     }
 
     private function isAllowedToMove($userID, $moveToUserID)

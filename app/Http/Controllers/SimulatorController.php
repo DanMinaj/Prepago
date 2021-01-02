@@ -13,7 +13,7 @@ class SimulatorController extends Controller
     {
         $simulatedScheme = $this->getSimulatedScheme();
 
-        $this->layout->page = View::make('settings.simulator.simulator', [
+        $this->layout->page = view('settings.simulator.simulator', [
             'simulatedScheme' => $simulatedScheme,
         ]);
     }

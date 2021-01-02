@@ -9,11 +9,11 @@ class ErrorController extends Controller
         $page = Session::get('page');
 
         if (Auth::check()) {
-            $this->layout->page = View::make('error/404', [
+            $this->layout->page = view('error/404', [
                 'page' => $page,
             ]);
         } else {
-            return View::make('error/404_guest', [
+            return view('error/404_guest', [
                 'page' => $page,
             ]);
         }
@@ -60,7 +60,7 @@ class ErrorController extends Controller
             }
         }
 
-        $this->layout->page = View::make('home/exceptions', [
+        $this->layout->page = view('home/exceptions', [
 
             'exception_file' => $exception_file,
             'exceptions' => $exceptions,

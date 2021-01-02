@@ -24,7 +24,7 @@ class CarlinnReportController extends ReportController
 
         $csv_url = URL::to('create_csv/carlinn_report');
 
-        $this->layout->page = View::make('report/carlinn_report', [
+        $this->layout->page = view('report/carlinn_report', [
             'customers' => $customers,
             'csv_url' => $csv_url,
         ]);

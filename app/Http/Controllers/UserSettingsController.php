@@ -15,14 +15,14 @@ class UserSettingsController extends Controller
         } catch (Exception $e) {
         }
 
-        $this->layout->page = View::make('settings/signins', [
+        $this->layout->page = view('settings/signins', [
             'signins' => $signins,
         ]);
     }
 
     public function change_username()
     {
-        $this->layout->page = View::make('settings/change_username');
+        $this->layout->page = view('settings/change_username');
     }
 
     public function change_admin_username($username)
@@ -31,12 +31,12 @@ class UserSettingsController extends Controller
 
         Auth::logout();
 
-        return Redirect::to('/');
+        return redirect('/');
     }
 
     public function change_password()
     {
-        $this->layout->page = View::make('settings/change_password');
+        $this->layout->page = view('settings/change_password');
     }
 
     public function change_admin_password($password)
@@ -45,7 +45,7 @@ class UserSettingsController extends Controller
 
         Auth::logout();
 
-        return Redirect::to('/');
+        return redirect('/');
     }
 
     private function ip_info($ip = null, $purpose = 'location', $deep_detect = true)

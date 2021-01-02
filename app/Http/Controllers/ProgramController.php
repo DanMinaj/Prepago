@@ -9,14 +9,14 @@ class ProgramController extends Controller
         $cronjob = Cronjob::where('name', $name)->first();
 
         if (! $cronjob) {
-            return Redirect::to('settings/system_programs/cronjobs')->with([
+            return redirect('settings/system_programs/cronjobs')->with([
                 'errorMessage' => 'No cronjob called '.$name,
             ]);
         }
 
         $cronjob->execute(true);
 
-        return Redirect::to('settings/system_programs/cronjobs')->with([
+        return redirect('settings/system_programs/cronjobs')->with([
             'successMessage' => 'Successfully ran cronjob '.$cronjob->name.' ['.$cronjob->artisan_command.']',
         ]);
     }
@@ -25,7 +25,7 @@ class ProgramController extends Controller
     {
         $cronjobs = Cronjob::where('active', 1)->groupBy('name')->orderByRaw('count(name) DESC')->get();
 
-        $this->layout->page = View::make('home/programs/cronjobs', [
+        $this->layout->page = view('home/programs/cronjobs', [
             'cronjobs' => $cronjobs,
         ]);
     }
@@ -103,7 +103,7 @@ class ProgramController extends Controller
 
     public function index_programs()
     {
-        $this->layout->page = View::make('home/programs/index_programs', []);
+        $this->layout->page = view('home/programs/index_programs', []);
     }
 
     public function index_remote_execution()
@@ -111,7 +111,7 @@ class ProgramController extends Controller
         $schemes = Scheme::withoutArchived()->get(['id', 'company_name']);
         $calendar_remote_executions = CalendarRemoteProgram::where('completed', false)->get();
 
-        $this->layout->page = View::make('home/programs/remote_execution', ['schemes' => $schemes, 'calendar_remote_executions' => $calendar_remote_executions]);
+        $this->layout->page = view('home/programs/remote_execution', ['schemes' => $schemes, 'calendar_remote_executions' => $calendar_remote_executions]);
     }
 
     public function create_remote_execution()
@@ -137,10 +137,10 @@ class ProgramController extends Controller
             $newRemoteProgram->created_at = Carbon\Carbon::now();
             $newRemoteProgram->save();
         } catch (Exception $e) {
-            return Redirect::to('system_programs/remote_execution')->with('errorMessage', '<b>Error:</b> '.$e->getMessage());
+            return redirect('system_programs/remote_execution')->with('errorMessage', '<b>Error:</b> '.$e->getMessage());
         }
 
-        return Redirect::to('system_programs/remote_execution')->with('successMessage', '<b>Success:</b> Created scheduled execution of '.$program.' run-type '.$run_type.'  for  '.(($run_for == 'all') ? 'all' : ((! empty($run_for_customer) ? ('Customer'.$run_for_customer) : 'Scheme '.$run_for_scheme))));
+        return redirect('system_programs/remote_execution')->with('successMessage', '<b>Success:</b> Created scheduled execution of '.$program.' run-type '.$run_type.'  for  '.(($run_for == 'all') ? 'all' : ((! empty($run_for_customer) ? ('Customer'.$run_for_customer) : 'Scheme '.$run_for_scheme))));
     }
 
     public function stop_remote_execution()
@@ -156,17 +156,17 @@ class ProgramController extends Controller
                 throw new Exception("This remote program does not exist!'");
             }
         } catch (Exception $e) {
-            return Redirect::to('system_programs/remote_execution')->with('errorMessage', '<b>Error:</b> '.$e->getMessage());
+            return redirect('system_programs/remote_execution')->with('errorMessage', '<b>Error:</b> '.$e->getMessage());
         }
 
-        return Redirect::to('system_programs/remote_execution')->with('successMessage', 'Successfully stopped remote execution of task #'.$runningRemoteProgram->id.'-'.$runningRemoteProgram->program.$runningRemoteProgram->run_type);
+        return redirect('system_programs/remote_execution')->with('successMessage', 'Successfully stopped remote execution of task #'.$runningRemoteProgram->id.'-'.$runningRemoteProgram->program.$runningRemoteProgram->run_type);
     }
 
     public function index_manage_schedule()
     {
         $daily_schedules = CalendarDailySchedule::orderBy('time', 'ASC')->get();
 
-        $this->layout->page = View::make('home/programs/manage_schedule', ['daily_schedules'  => $daily_schedules]);
+        $this->layout->page = view('home/programs/manage_schedule', ['daily_schedules'  => $daily_schedules]);
     }
 
     public function switch_schedule($old, $new)
@@ -281,7 +281,7 @@ class ProgramController extends Controller
             $old_enabled = true;
         }
 
-        $this->layout->page = View::make('home/programs/billing_engine_settings',
+        $this->layout->page = view('home/programs/billing_engine_settings',
         [
             'settings' => $settings,
             'enabled' => $enabled,
@@ -396,7 +396,7 @@ class ProgramController extends Controller
             $old_enabled = true;
         }
 
-        $this->layout->page = View::make('home/programs/shut_off_engine_settings',
+        $this->layout->page = view('home/programs/shut_off_engine_settings',
         [
             'settings' => $settings,
             'enabled' => $enabled,
@@ -512,7 +512,7 @@ class ProgramController extends Controller
         $holiday_enabled = SystemSetting::get('holiday_service');
         $holiday_days = SystemSetting::get('holiday_days');
 
-        $this->layout->page = View::make('home/programs/shut_off_engine', [
+        $this->layout->page = view('home/programs/shut_off_engine', [
             'holiday_enabled' => $holiday_enabled,
             'holiday_days' => json_decode($holiday_days),
         ]);

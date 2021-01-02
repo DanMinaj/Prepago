@@ -6,7 +6,7 @@ class PrepagoIEController extends Controller
 
     public function index()
     {
-        $this->layout->page = View::make('prepago_ie.index', [
+        $this->layout->page = view('prepago_ie.index', [
 
         ]);
     }

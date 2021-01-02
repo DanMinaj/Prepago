@@ -17,8 +17,8 @@ class CreditController extends Controller
         $data['addAmountURL'] = '/issue_credit/add_amount/';
         $data['type'] = 'issue_credit';
 
-        //$this->layout->page = View::make('home/issue_credit')->with($data);
-        $this->layout->page = View::make('home/issue_topup')->with($data);
+        //$this->layout->page = view('home/issue_credit')->with($data);
+        $this->layout->page = view('home/issue_topup')->with($data);
     }
 
     public function ic_add_amount($amount, $reason)
@@ -57,13 +57,13 @@ class CreditController extends Controller
         $selectedCustomerID = Session::get('issue_credit_credit_list')[0]['id'];
 
         if (isset($trans['error'])) {
-            //return Redirect::to('issue_credit')->with('errorMsg', 'An error occured.');
-            return Redirect::to('customer_tabview_controller/show/'.$selectedCustomerID)->with('errorMessage', 'An error occured.');
+            //return redirect('issue_credit')->with('errorMsg', 'An error occured.');
+            return redirect('customer_tabview_controller/show/'.$selectedCustomerID)->with('errorMessage', 'An error occured.');
         }
 
         Session::forget('issue_credit_credit_list');
-        //return Redirect::to('issue_credit')->with('successMsg', 'The credit is issued successfully.');
-        return Redirect::to('customer_tabview_controller/show/'.$selectedCustomerID)->with('successMessage', 'The credit is issued successfully.');
+        //return redirect('issue_credit')->with('successMsg', 'The credit is issued successfully.');
+        return redirect('customer_tabview_controller/show/'.$selectedCustomerID)->with('successMessage', 'The credit is issued successfully.');
     }
 
     public function issue_admin_iou_quick($customer_id)
@@ -80,9 +80,9 @@ class CreditController extends Controller
                 throw new Exception('Could not issue IOU!');
             }
 
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('successMessage', 'The IOU was issued successfully.');
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('successMessage', 'The IOU was issued successfully.');
         } catch (Exception $e) {
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'Error issuing IOU: '.$e->getMessage());
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'Error issuing IOU: '.$e->getMessage());
         }
     }
 
@@ -99,8 +99,8 @@ class CreditController extends Controller
         $data['addAmountURL'] = '/issue_admin_iou/add_amount/';
         $data['type'] = 'issue_admin_iou';
 
-        //$this->layout->page = View::make('home/issue_admin_iou');
-        $this->layout->page = View::make('home/issue_topup')->with($data);
+        //$this->layout->page = view('home/issue_admin_iou');
+        $this->layout->page = view('home/issue_topup')->with($data);
     }
 
     public function iai_add_amount($amount, $reason)
@@ -164,13 +164,13 @@ class CreditController extends Controller
 
         $selectedCustomerID = Session::get('issue_admin_iou_credit_list')[0]['id'];
         if (isset($trans['error'])) {
-            //return Redirect::to('issue_admin_iou')->with('errorMsg', 'An error occured.');
-            return Redirect::to('customer_tabview_controller/show/'.$selectedCustomerID)->with('errorMessage', 'An error occured - '.$trans['error']);
+            //return redirect('issue_admin_iou')->with('errorMsg', 'An error occured.');
+            return redirect('customer_tabview_controller/show/'.$selectedCustomerID)->with('errorMessage', 'An error occured - '.$trans['error']);
         }
 
         Session::forget('issue_admin_iou_credit_list');
-        //return Redirect::to('issue_admin_iou')->with('successMsg', 'The admin IOU is issued successfully.');
-        return Redirect::to('customer_tabview_controller/show/'.$selectedCustomerID)->with('successMessage', 'The admin IOU is issued successfully.');
+        //return redirect('issue_admin_iou')->with('successMsg', 'The admin IOU is issued successfully.');
+        return redirect('customer_tabview_controller/show/'.$selectedCustomerID)->with('successMessage', 'The admin IOU is issued successfully.');
     }
 
     public function issue_topup_arrears($customersAfterSearch = false)
@@ -186,8 +186,8 @@ class CreditController extends Controller
         $data['addAmountURL'] = '/issue_topup_arrears/add_amount/';
         $data['type'] = 'issue_topup_arrears';
 
-        //$this->layout->page = View::make('home/issue_topup_arrears');
-        $this->layout->page = View::make('home/issue_topup')->with($data);
+        //$this->layout->page = view('home/issue_topup_arrears');
+        $this->layout->page = view('home/issue_topup')->with($data);
     }
 
     public function ita_add_amount()
@@ -242,13 +242,13 @@ class CreditController extends Controller
         $selectedCustomerID = Session::get('issue_topup_arrears_credit_list')[0]['id'];
 
         if (isset($trans['error'])) {
-            //return Redirect::to('issue_topup_arrears')->with('errorMsg', 'An error occured.');
-            return Redirect::to('customer_tabview_controller/show/'.$selectedCustomerID)->with('errorMessage', 'An error occured.');
+            //return redirect('issue_topup_arrears')->with('errorMsg', 'An error occured.');
+            return redirect('customer_tabview_controller/show/'.$selectedCustomerID)->with('errorMessage', 'An error occured.');
         }
 
         Session::forget('issue_topup_arrears_credit_list');
-        //return Redirect::to('issue_topup_arrears')->with('successMsg', 'The topup is issued successfully.');
-        return Redirect::to('customer_tabview_controller/show/'.$selectedCustomerID)->with('successMessage', 'The topup is issued successfully.');
+        //return redirect('issue_topup_arrears')->with('successMsg', 'The topup is issued successfully.');
+        return redirect('customer_tabview_controller/show/'.$selectedCustomerID)->with('successMessage', 'The topup is issued successfully.');
     }
 
     public function add_creditlist($customer_id, $customer_email, $type = 'issue_credit')
@@ -259,7 +259,7 @@ class CreditController extends Controller
 
             Session::put($type.'_credit_list', $credit_list);
 
-            return Redirect::to($type);
+            return redirect($type);
         } else {
             $credit_list = Session::get($type.'_credit_list');
             $keytracker = 0;
@@ -274,7 +274,7 @@ class CreditController extends Controller
 
             Session::put($type.'_credit_list', $new_credit_list);
 
-            return Redirect::to($type);
+            return redirect($type);
         }
     }
 
@@ -295,7 +295,7 @@ class CreditController extends Controller
             Session::put($type.'_credit_list', $new_credit_list);
         }
 
-        return Redirect::to($type);
+        return redirect($type);
     }
 
     public function check_login($password = '')

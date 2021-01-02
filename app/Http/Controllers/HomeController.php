@@ -109,7 +109,7 @@ class HomeController extends Controller
 
         $scheme_info = Scheme::find(Auth::user()->scheme_number);
 
-        $this->layout->page = View::make('home/welcome', [
+        $this->layout->page = view('home/welcome', [
             'show_meter_readings_automation_button' => $showMeterReadingsAutomationButton,
             'white'         => $white,
             'red'           => $red,
@@ -128,17 +128,17 @@ class HomeController extends Controller
         Auth::logout();
         Session::flush();
 
-        return Redirect::to('/');
+        return redirect('/');
     }
 
     public function customer_search()
     {
-        $this->layout->page = View::make('home/customer_search');
+        $this->layout->page = view('home/customer_search');
     }
 
     public function edit_customer_details()
     {
-        $this->layout->page = View::make('home/edit_customer_details');
+        $this->layout->page = view('home/edit_customer_details');
     }
 
     public function search()
@@ -198,7 +198,7 @@ class HomeController extends Controller
         ->orWhere('email_address', 'like', '%'.Input::get('search_box').'%')
                         ->orWhere('mobile_number', 'like', '%'.Input::get('search_box').'%')
                         */
-        $this->layout->page = View::make('home/search', ['customers' => $results]);
+        $this->layout->page = view('home/search', ['customers' => $results]);
     }
 
     public function usageFromBillingEngineLogs($customer, $date)
@@ -540,7 +540,7 @@ class HomeController extends Controller
 
     public function customer_view_shortcut($customer_id)
     {
-        return Redirect::to("customer_tabview_controller/show/$customer_id");
+        return redirect("customer_tabview_controller/show/$customer_id");
     }
 
     private function customerError($customer_id, $custom = null)
@@ -560,7 +560,7 @@ class HomeController extends Controller
             $customerInfo = null;
         }
 
-        $this->layout->page = View::make('error/customer_404', [
+        $this->layout->page = view('error/customer_404', [
             'customer_id' => $customer_id,
             'customerInfo' => $customerInfo,
             'dhmInfo' => $dhmInfo,
@@ -603,7 +603,7 @@ class HomeController extends Controller
                 Session::put('scheme_number', $customer->c_scheme_number);
             } else {
                 if ($customer['c_scheme_number'] != Auth::user()->scheme_number) {
-                    return Redirect::to('customer_search');
+                    return redirect('customer_search');
                 }
             }
 
@@ -945,7 +945,7 @@ class HomeController extends Controller
             return $this->customerError($customer_id, $e->getMessage());
         }
 
-        $this->layout->page = View::make('home/customer_tab_view', [
+        $this->layout->page = view('home/customer_tab_view', [
             'dates'             => $dates,
             'currency'          => $currency,
             'currencySign'      => $currency,
@@ -989,7 +989,7 @@ class HomeController extends Controller
     {
         $date = Input::get('on');
 
-        return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('search_date', $date);
+        return redirect('customer_tabview_controller/show/'.$customer_id)->with('search_date', $date);
     }
 
     public function topupsDateSearch($customerID)
@@ -1015,7 +1015,7 @@ class HomeController extends Controller
         // ->whereRaw("(start_time >= '" . ($balanceInfo['from_bal'] . " 00:00:00") . "' AND end_time <= '" . ($balanceInfo['to_bal'] . " 23:59:59") . "')")->get();
         $balanceInfo['search'] = [];
 
-        return Redirect::to('customer_tabview_controller/show/'.$customerID)->with('action', 'topups_dates_search')->with('dates', $dates)->with('balanceInfo', $balanceInfo);
+        return redirect('customer_tabview_controller/show/'.$customerID)->with('action', 'topups_dates_search')->with('dates', $dates)->with('balanceInfo', $balanceInfo);
     }
 
     public function readingsDateSearch($customerID)
@@ -1028,7 +1028,7 @@ class HomeController extends Controller
             $readingsDates['to'] = $today;
         }
 
-        return Redirect::to('customer_tabview_controller/show/'.$customerID)->with('action', 'readings_dates_search')->with('readingsDates', $readingsDates);
+        return redirect('customer_tabview_controller/show/'.$customerID)->with('action', 'readings_dates_search')->with('readingsDates', $readingsDates);
     }
 
     public function getReadings($customerID, $from = null, $to = null)
@@ -1090,7 +1090,7 @@ class HomeController extends Controller
             }
         }
 
-        $this->layout->page = View::make('home/boiler_meter', ['meter_id' => $meterID, 'meter' => $meterData]);
+        $this->layout->page = view('home/boiler_meter', ['meter_id' => $meterID, 'meter' => $meterData]);
     }
 
     /*public function edit_utility_action($customer_id)
@@ -1099,7 +1099,7 @@ class HomeController extends Controller
 
         Customer::where('id', '=', $customer_id)->update(array('utility_notes' => $textarea));
 
-        return Redirect::to('customer_tabview_controller/show/'.$customer_id);
+        return redirect('customer_tabview_controller/show/'.$customer_id);
     }*/
 
     public function addUtilityNote($customer_id)
@@ -1114,10 +1114,10 @@ class HomeController extends Controller
         ];
 
         if (! UtilityNote::create($utilityNotesData)) {
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'The Utility Note information was not inserted successfully.');
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'The Utility Note information was not inserted successfully.');
         }
 
-        return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('successMessage', 'The Utility note information was inserted successfully.');
+        return redirect('customer_tabview_controller/show/'.$customer_id)->with('successMessage', 'The Utility note information was inserted successfully.');
     }
 
     public function deleteUtilityNote($customerID)
@@ -1125,10 +1125,10 @@ class HomeController extends Controller
         $utilityNoteID = (int) Input::get('utility_note_id');
 
         if (! UtilityNote::find($utilityNoteID)->delete()) {
-            return Redirect::to('customer_tabview_controller/show/'.$customerID)->with('errorMessage', 'The Utility Note information cannot be deleted.');
+            return redirect('customer_tabview_controller/show/'.$customerID)->with('errorMessage', 'The Utility Note information cannot be deleted.');
         }
 
-        return Redirect::to('customer_tabview_controller/show/'.$customerID)->with('successMessage', 'The Utility note information was deleted successfully.');
+        return redirect('customer_tabview_controller/show/'.$customerID)->with('successMessage', 'The Utility note information was deleted successfully.');
     }
 
     public function edit_common_action($customer_id)
@@ -1136,7 +1136,7 @@ class HomeController extends Controller
         $customer = Customer::find($customer_id);
 
         if (! $customer) {
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id);
+            return redirect('customer_tabview_controller/show/'.$customer_id);
         }
 
         $number = Input::get('formid');
@@ -1195,36 +1195,36 @@ class HomeController extends Controller
             $customer->first_name = Input::get('first_name');
             $customer->surname = Input::get('surname');
         // if ( ! Input::get('first_name') || ! Input::get('surname')) {
-                // return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'First Name and Surname are both required.');
+                // return redirect('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'First Name and Surname are both required.');
             // }
             // }
         } elseif ($number == 21) {
             if (! Input::get('commencement_date')) {
-                return Redirect::to('customer_tabview_controller/show/'.$customer_id);
+                return redirect('customer_tabview_controller/show/'.$customer_id);
             }
 
             $customer->commencement_date = Input::get('commencement_date');
             // if ( Input::get('commencement_date') && \Carbon\Carbon::createFromFormat('Y-m-d', Input::get('commencement_date')) < \Carbon\Carbon::now() ) {
-                // return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'The Commencement date can only be set to a date in the future.');
+                // return redirect('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'The Commencement date can only be set to a date in the future.');
             // }
         }
 
         $customer->save();
 
-        return Redirect::to('customer_tabview_controller/show/'.$customer_id);
+        return redirect('customer_tabview_controller/show/'.$customer_id);
     }
 
     public function editMaxRechargeFee($customerID)
     {
         if (! Input::get('maximum_recharge_fee')) {
-            return Redirect::to('customer_tabview_controller/show/'.$customerID)->with('errorMessage', 'The value for the Maximum Recharge Fee is not valid.');
+            return redirect('customer_tabview_controller/show/'.$customerID)->with('errorMessage', 'The value for the Maximum Recharge Fee is not valid.');
         }
 
         Customer::where('id', '=', $customerID)->update([
             'maximum_recharge_fee' => Input::get('maximum_recharge_fee'),
         ]);
 
-        return Redirect::to('customer_tabview_controller/show/'.$customerID)->with('successMessage', 'The Maximum Recharge Fee was updated successfully.');
+        return redirect('customer_tabview_controller/show/'.$customerID)->with('successMessage', 'The Maximum Recharge Fee was updated successfully.');
     }
 
     public function edit_nominated_phone_action($customer_id)
@@ -1233,7 +1233,7 @@ class HomeController extends Controller
 
         Customer::where('id', '=', $customer_id)->update(['nominated_telephone' => $textarea]);
 
-        return Redirect::to('customer_tabview_controller/show/'.$customer_id);
+        return redirect('customer_tabview_controller/show/'.$customer_id);
     }
 
     /*public function date_search_action($customer_id)
@@ -1243,7 +1243,7 @@ class HomeController extends Controller
         // Check if customer is users customer
         if($customer['scheme_number'] != Auth::user()->scheme_number)
         {
-            return Redirect::to('customer_search');
+            return redirect('customer_search');
         }
 
         $c_data = $customer;
@@ -1347,7 +1347,7 @@ class HomeController extends Controller
         //Utility Notes tab info
         $utilityNotesList = UtilityNote::all();
 
-        $this->layout->page = View::make('home/customer_tab_view', array(
+        $this->layout->page = view('home/customer_tab_view', array(
             'dates' => $dates,
             'currency'=>  $currency,
             'abbreviation' => $abbreviation,
@@ -1373,17 +1373,17 @@ class HomeController extends Controller
         $ca->date = date('Y-m-d');
         $ca->save();
 
-        return Redirect::to('customer_tabview_controller/show/'.$user_id);
+        return redirect('customer_tabview_controller/show/'.$user_id);
     }
 
     public function issue_arrears()
     {
-        $this->layout->page = View::make('home/issue_arrears');
+        $this->layout->page = view('home/issue_arrears');
     }
 
     public function issue_top_up()
     {
-        $this->layout->page = View::make('home/issue_top_up');
+        $this->layout->page = view('home/issue_top_up');
     }
 
     public function populate_c_data(&$c_data, $function_name = 'customer_view')
@@ -1452,7 +1452,7 @@ class HomeController extends Controller
         $customer->password = '';
         $customer->save();
 
-        return Redirect::to('customer_tabview_controller/show/'.$customerID)->with('successMessage', 'The customer\'s password was successfully reset.');
+        return redirect('customer_tabview_controller/show/'.$customerID)->with('successMessage', 'The customer\'s password was successfully reset.');
     }
 
     public function stop_at($customer_id)
@@ -1466,9 +1466,9 @@ class HomeController extends Controller
             }
             $res = $customer->stopAutotopup($reason);
 
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('successMessage', 'Successfully cancelled autotopup.');
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('successMessage', 'Successfully cancelled autotopup.');
         } catch (Exception $e) {
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'Failed to cancel autotopup: '.$e->getMessage().' ('.$e->getLine().')');
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'Failed to cancel autotopup: '.$e->getMessage().' ('.$e->getLine().')');
         }
     }
 
@@ -1481,9 +1481,9 @@ class HomeController extends Controller
             }
             $res = $customer->startAutotopup();
 
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('successMessage', 'Successfully started autotopup.');
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('successMessage', 'Successfully started autotopup.');
         } catch (Exception $e) {
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'Failed to start autotopup: '.$e->getMessage().' ('.$e->getLine().')');
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'Failed to start autotopup: '.$e->getMessage().' ('.$e->getLine().')');
         }
     }
 
@@ -1497,9 +1497,9 @@ class HomeController extends Controller
             }
             $customer->useIOU();
 
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('successMessage', 'Successfully applied IOU.');
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('successMessage', 'Successfully applied IOU.');
         } catch (Exception $e) {
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'Failed to apply IOU: '.$e->getMessage().' ('.$e->getLine().')');
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'Failed to apply IOU: '.$e->getMessage().' ('.$e->getLine().')');
         }
     }
 
@@ -1511,9 +1511,9 @@ class HomeController extends Controller
                 throw new Exception("Customer $customer_id not found");
             }
 
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('successMessage', 'Successfully removed payment method.');
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('successMessage', 'Successfully removed payment method.');
         } catch (Exception $e) {
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'Failed to remove payment method: '.$e->getMessage().' ('.$e->getLine().')');
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'Failed to remove payment method: '.$e->getMessage().' ('.$e->getLine().')');
         }
     }
 
@@ -1525,9 +1525,9 @@ class HomeController extends Controller
                 throw new Exception("Customer $customer_id not found");
             }
 
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('successMessage', 'Successfully synced payment methods.');
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('successMessage', 'Successfully synced payment methods.');
         } catch (Exception $e) {
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'Failed to sync payment methods: '.$e->getMessage().' ('.$e->getLine().')');
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'Failed to sync payment methods: '.$e->getMessage().' ('.$e->getLine().')');
         }
     }
 
@@ -1542,9 +1542,9 @@ class HomeController extends Controller
                 throw new Exception("Customer $customer_id not found");
             }
 
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('successMessage', 'Successfully sent account statement');
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('successMessage', 'Successfully sent account statement');
         } catch (Exception $e) {
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'Failed to send account statement: '.$e->getMessage().' ('.$e->getLine().')');
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', 'Failed to send account statement: '.$e->getMessage().' ('.$e->getLine().')');
         }
     }
 
@@ -1659,7 +1659,7 @@ class HomeController extends Controller
 
         $this->log->addInfo('Shut off MANUAL reset', ['customer_id' => $customer->id, 'balance' => $customer->balance]);
 
-        return Redirect::to('customer_tabview_controller/show/'.$customerID)->with('successMessage', 'The customer is set back to green.');
+        return redirect('customer_tabview_controller/show/'.$customerID)->with('successMessage', 'The customer is set back to green.');
     }
 
     public function save_meter_info($customerID)
@@ -1936,13 +1936,13 @@ class HomeController extends Controller
 
     public function adminSpecialist()
     {
-        $this->layout->page = View::make('home/specialist');
+        $this->layout->page = view('home/specialist');
     }
 
     public function requestTest()
     {
         try {
-            $this->layout->page = View::make('home.request_test', [
+            $this->layout->page = view('home.request_test', [
 
             ]);
         } catch (Exception $e) {
@@ -2078,9 +2078,9 @@ class HomeController extends Controller
 
             $res = $customer->refundPayment($ref_number, $refund_reason, $partial_refund, $refund_amount);
 
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('successMessage', "Successfully refunded payment ' $ref_number '.");
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('successMessage', "Successfully refunded payment ' $ref_number '.");
         } catch (Exception $e) {
-            return Redirect::to('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', "Failed to refund payment $ref_number: ".$e->getMessage().' ('.$e->getLine().')');
+            return redirect('customer_tabview_controller/show/'.$customer_id)->with('errorMessage', "Failed to refund payment $ref_number: ".$e->getMessage().' ('.$e->getLine().')');
         }
     }
 }

@@ -6,8 +6,8 @@ class SchemesReadingsController extends Controller
     {
         $schemes = Scheme::where('schemes.archived', 0)->get();
 
-        $layout = View::make('layouts.admin_website');
-        $layout->page = View::make('home/schemes-readings', [
+        $layout = view('layouts.admin_website');
+        $layout->page = view('home/schemes-readings', [
             'schemes' => $schemes,
         ]);
 
@@ -24,8 +24,8 @@ class SchemesReadingsController extends Controller
                             ->where('time_date', 'LIKE', '2016-09-30%')
                             ->get();
 
-        $layout = View::make('layouts.admin_website');
-        $layout->page = View::make('carlinn-readings-2016-09-30', [
+        $layout = view('layouts.admin_website');
+        $layout->page = view('carlinn-readings-2016-09-30', [
             'readings' => $readings,
         ]);
 

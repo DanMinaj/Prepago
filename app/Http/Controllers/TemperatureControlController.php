@@ -28,7 +28,7 @@ class TemperatureControlController extends Controller
             $next_tc->tomorrow = true;
         }
 
-        $this->layout->page = View::make('home/programs/temp_control',
+        $this->layout->page = view('home/programs/temp_control',
         [
             'settings' => $settings,
             'restored' => $restored, // require restoration

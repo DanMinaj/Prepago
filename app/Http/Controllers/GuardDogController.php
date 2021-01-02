@@ -13,7 +13,7 @@ class GuardDogController extends Controller
     {
         $guarddogs = GuardDog::active();
 
-        $this->layout->page = View::make('home.programs.guard_dog', [
+        $this->layout->page = view('home.programs.guard_dog', [
             'guarddogs' => $guarddogs,
         ]);
     }

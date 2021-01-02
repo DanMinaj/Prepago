@@ -42,7 +42,7 @@ class InstallerController extends Controller
             */
         }
         //print_r($installed_units);exit;
-        $this->layout->page = View::make('dashboard.index')->with(['installed_units' => $installed_units, 'searched' => $searched]);
+        $this->layout->page = view('dashboard.index')->with(['installed_units' => $installed_units, 'searched' => $searched]);
     }
 
     public function access_control()
@@ -63,7 +63,7 @@ class InstallerController extends Controller
 
         $baseURL = URL::to('settings/access_control');
 
-        $this->layout->page = View::make('dashboard/access_control', [
+        $this->layout->page = view('dashboard/access_control', [
             'is_installer' => true,
             'customers' => $customers,
             'schemes' => $schemes,
@@ -84,7 +84,7 @@ class InstallerController extends Controller
 
         $last_installed_unit = PermanentMeterData::where('scheme_number', '=', Auth::user()->scheme_number)->orderby('ID', 'desc')->get()->first();
         if ($last_installed_unit) {
-            $this->layout->page = View::make('dashboard.addUnits')->with([
+            $this->layout->page = view('dashboard.addUnits')->with([
                     'is_ev'					=> $isEV,
                     'type' 					=> $type,
                     'last_installed_unit' 	=> $last_installed_unit,
@@ -92,7 +92,7 @@ class InstallerController extends Controller
                     'dataLoggers'			=> $dataLoggers,
             ]);
         } else {
-            $this->layout->page = View::make('dashboard.addUnitsBlank')->with([
+            $this->layout->page = view('dashboard.addUnitsBlank')->with([
                     'is_ev'			=> $isEV,
                     'type' 			=> $type,
                     'schemeStreet2' => $schemeStreet2,
@@ -183,7 +183,7 @@ class InstallerController extends Controller
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
-            return Redirect::to('prepago_installer/add-units'.($isEV ? '?type=ev' : ''))->withErrors($validator)->withInput();
+            return redirect('prepago_installer/add-units'.($isEV ? '?type=ev' : ''))->withErrors($validator)->withInput();
         }
 
         try {
@@ -349,18 +349,18 @@ class InstallerController extends Controller
                 Session::flash('successMessage', 'Successfully inserted meter into mbus_address_translations.');
             }
 
-            return Redirect::to('prepago_installer/test-unit/'.$pmd->ID);
+            return redirect('prepago_installer/test-unit/'.$pmd->ID);
         } catch (Exception $e) {
             Session::flash('unitAddError', 'Please double check your input or try again later: '.$e->getMessage());
 
-            return Redirect::to('prepago_installer/add-units'.($isEV ? '?type=ev' : ''))->withInput();
+            return redirect('prepago_installer/add-units'.($isEV ? '?type=ev' : ''))->withInput();
         }
     }
 
     public function testUnit($unitID)
     {
         $unit = PermanentMeterData::where('ID', '=', $unitID)->get()->first();
-        $this->layout->page = View::make('dashboard.test-unit', ['unitID' => $unitID, 'unit' => $unit]);
+        $this->layout->page = view('dashboard.test-unit', ['unitID' => $unitID, 'unit' => $unit]);
     }
 
     public function readAllCustomersMeters()
@@ -389,12 +389,12 @@ class InstallerController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
 
-            return Redirect::to('welcome')->with('errorMessage', 'There was an error while automatically taking the customers\' meter readings.');
+            return redirect('welcome')->with('errorMessage', 'There was an error while automatically taking the customers\' meter readings.');
         }
 
         DB::commit();
 
-        return Redirect::to('welcome')->with('successMessage', 'We are collecting the meter readings now.');
+        return redirect('welcome')->with('successMessage', 'We are collecting the meter readings now.');
     }
 
     public function meter_read_test($unitID)
@@ -793,7 +793,7 @@ class InstallerController extends Controller
         $unitID = Input::get('unitID');
         PermanentMeterData::where('ID', '=', $unitID)->update(['installation_confirmed' => 1]);
 
-        return Redirect::to('prepago_installer');
+        return redirect('prepago_installer');
     }
 
     public function incomplete_install()
@@ -801,7 +801,7 @@ class InstallerController extends Controller
         $unitID = Input::get('unitID');
         PermanentMeterData::where('ID', '=', $unitID)->update(['installation_confirmed' => 0]);
 
-        return Redirect::to('prepago_installer');
+        return redirect('prepago_installer');
     }
 
     public function editUnit($unitID)
@@ -832,7 +832,7 @@ class InstallerController extends Controller
 
         $simcard = Simcard::where('ID', '=', $unit['sim_ID'])->get()->first();
 
-        $this->layout->page = View::make('dashboard.editUnit', [
+        $this->layout->page = view('dashboard.editUnit', [
             'unitID' => $unitID,
             'unit' => $unit,
             'simcard' => $simcard,
@@ -847,9 +847,9 @@ class InstallerController extends Controller
         $code = Input::get('ev_rs_code');
 
         if (Input::has('ev_rs_code') && ! $code) {
-            return Redirect::to('prepago_installer/edit-unit/'.$unitID)->with('errorMessage', 'The Recharge Station Code is required.');
+            return redirect('prepago_installer/edit-unit/'.$unitID)->with('errorMessage', 'The Recharge Station Code is required.');
         } elseif ($code && PermanentMeterData::where('ID', '!=', $unitID)->where('ev_rs_code', $code)->count()) {
-            return Redirect::to('prepago_installer/edit-unit/'.$unitID)->with('errorMessage', 'The entered Recharge Station Code already exists.');
+            return redirect('prepago_installer/edit-unit/'.$unitID)->with('errorMessage', 'The entered Recharge Station Code already exists.');
         }
 
         // save the information in the DB
@@ -864,17 +864,17 @@ class InstallerController extends Controller
             ::where('ID', '=', $unitID)
             ->update($dataToUpdate);
 
-        return Redirect::to('prepago_installer/edit-unit/'.$unitID)->with('successMessage', 'The unit information was updated successfully.');
+        return redirect('prepago_installer/edit-unit/'.$unitID)->with('successMessage', 'The unit information was updated successfully.');
     }
 
     public function deleteUnit($unitID)
     {
         $unitID = (int) $unitID;
         if (! PermanentMeterData::find($unitID)->delete()) {
-            return Redirect::to('prepago_installer')->with('errorMessage', 'The unit information cannot be deleted');
+            return redirect('prepago_installer')->with('errorMessage', 'The unit information cannot be deleted');
         }
 
-        return Redirect::to('prepago_installer')->with('successMessage', 'The unit information was deleted successfully');
+        return redirect('prepago_installer')->with('successMessage', 'The unit information was deleted successfully');
     }
 
     public function saveUnit($unitID = null)
@@ -903,8 +903,8 @@ class InstallerController extends Controller
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
-            //return Redirect::to('prepago_installer/save-unit')->withErrors($validator)->withInput();
-            return Redirect::to('prepago_installer/edit-unit/'.$unitID)->withErrors($validator)->withInput();
+            //return redirect('prepago_installer/save-unit')->withErrors($validator)->withInput();
+            return redirect('prepago_installer/edit-unit/'.$unitID)->withErrors($validator)->withInput();
         }
 
         try {
@@ -938,22 +938,22 @@ class InstallerController extends Controller
             $pmd->postcode = $schemePostcode;
             $pmd->save();
 
-            return Redirect::to('prepago_installer');
+            return redirect('prepago_installer');
         } catch (Exception $e) {
             Session::flash('unitSaveError', 'Please double check your input or try again later.');
-            //return Redirect::to('prepago_installer/save-unit')->withInput();
-            return Redirect::to('prepago_installer/edit-unit/'.$unitID)->withInput();
+            //return redirect('prepago_installer/save-unit')->withInput();
+            return redirect('prepago_installer/edit-unit/'.$unitID)->withInput();
         }
     }
 
     public function tools()
     {
-        $this->layout->page = View::make('dashboard.tools');
+        $this->layout->page = view('dashboard.tools');
     }
 
     public function help()
     {
-        $this->layout->page = View::make('dashboard.help');
+        $this->layout->page = view('dashboard.help');
     }
 
     private function composeUsername($houseNameNumber = '', $street1 = '')
@@ -974,7 +974,7 @@ class InstallerController extends Controller
         if ($code && PermanentMeterData::getModel()->rsCodeExists($code)) {
             Session::flash('unitAddError', 'The entered Recharge Station Code already exists.');
 
-            return Redirect::to('prepago_installer/add-units?type=ev')->withInput();
+            return redirect('prepago_installer/add-units?type=ev')->withInput();
         }
 
         return $code;
@@ -992,7 +992,7 @@ class InstallerController extends Controller
 			(select 16digit from mbus_address_translations where mbus_address_translations.8digit = substring(p.meter_number, locate("_",p.meter_number)+1 ) ) as sixteen, p.*
 			FROM `permanent_meter_data` as p  WHERE p.`scheme_number` = '.Auth::user()->scheme_number.'  '));
 
-        $this->layout->page = View::make('dashboard.address_translations')
+        $this->layout->page = view('dashboard.address_translations')
         ->with('scu_translations', $scu_translations)
         ->with('meter_translations', $meter_translations)
         ->with('search', false);
@@ -1002,13 +1002,13 @@ class InstallerController extends Controller
     {
         $search_key = Input::get('search');
         if (! $search_key) {
-            $this->layout->page = View::make('dashboard.address_translations');
+            $this->layout->page = view('dashboard.address_translations');
         }
 
         $addresstranslations = MBusAddressTranslation::where('8digit', 'like', "%$search_key%")
         ->orWhere('16digit', 'like', '%search_key%')->get();
 
-        $this->layout->page = View::make('dashboard.address_translations')
+        $this->layout->page = view('dashboard.address_translations')
         ->with('addresstranslations', $addresstranslations)
         ->with('search', true)
         ->with('searching', $search_key);
@@ -1023,7 +1023,7 @@ class InstallerController extends Controller
         ->orWhere('16digit', $sixteen)->first();
 
         if ($addresstranslations) {
-            return Redirect::to('prepago_installer/address_translations')->with('errorMessage', 'The unit information cannot be deleted');
+            return redirect('prepago_installer/address_translations')->with('errorMessage', 'The unit information cannot be deleted');
         }
 
         $new_addresstranslation = new MBusAddressTranslation();
@@ -1031,7 +1031,7 @@ class InstallerController extends Controller
         $new_addresstranslation['16digit'] = $sixteen;
         $new_addresstranslation->save();
 
-        return Redirect::to('prepago_installer/address_translations')->with('successMessage', "Successfully created new address translation: $eight - $sixteen");
+        return redirect('prepago_installer/address_translations')->with('successMessage', "Successfully created new address translation: $eight - $sixteen");
     }
 
     public function deleteAddressTranslation($digit)
@@ -1045,10 +1045,10 @@ class InstallerController extends Controller
 
             DB::table('mbus_address_translations')->where('8digit', $eight)->delete();
 
-            return Redirect::to('prepago_installer/address_translations')->with('successMessage', "Successfully deleted address translation: $cached8 - $cached16");
+            return redirect('prepago_installer/address_translations')->with('successMessage', "Successfully deleted address translation: $cached8 - $cached16");
         }
 
-        return Redirect::to('prepago_installer/address_translations')->with('errorMessage', "Failed to delete address translation: $eight");
+        return redirect('prepago_installer/address_translations')->with('errorMessage', "Failed to delete address translation: $eight");
     }
 
     public function editAddressTranslation($digit)
@@ -1056,7 +1056,7 @@ class InstallerController extends Controller
         $addresstranslation = MBusAddressTranslation::where('8digit', $digit)->first();
         $eight = $addresstranslation['8digit'];
         $sixteen = $addresstranslation['16digit'];
-        $this->layout->page = View::make('dashboard.editAddressTranslation', ['eight' => $eight, 'sixteen' => $sixteen]);
+        $this->layout->page = view('dashboard.editAddressTranslation', ['eight' => $eight, 'sixteen' => $sixteen]);
     }
 
     public function editSubmitAddressTranslation($digit)
@@ -1072,10 +1072,10 @@ class InstallerController extends Controller
 
             DB::table('mbus_address_translations')->where('8digit', $old_eight)->update(['8digit' => $new_eight, '16digit' => $new_sixteen]);
 
-            return Redirect::to('prepago_installer/edit-address-translation/'.$new_eight)->with('successMessage', "Successfully edited address translation: from $old_eight::$old_sixteen to $new_eight::$new_sixteen");
+            return redirect('prepago_installer/edit-address-translation/'.$new_eight)->with('successMessage', "Successfully edited address translation: from $old_eight::$old_sixteen to $new_eight::$new_sixteen");
         }
 
-        return Redirect::to('prepago_installer/edit-address-translation/'.$digit)->with('errorMessage', "Failed to edit address translation: $old_eight");
+        return redirect('prepago_installer/edit-address-translation/'.$digit)->with('errorMessage', "Failed to edit address translation: $old_eight");
     }
 
     public function cancelShutOffSchedule($unitID)

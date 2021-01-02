@@ -23,7 +23,7 @@ class ValveTestController extends Controller
             }
         }
 
-        $this->layout->page = View::make('home/programs/valve_control',
+        $this->layout->page = view('home/programs/valve_control',
         [
             'running_tasks' => $running_tasks,
         ]);

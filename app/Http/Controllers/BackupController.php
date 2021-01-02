@@ -18,7 +18,7 @@ class BackupController extends Controller
         $tables = Data::getDatabaseTables();
         $estimatedTime = $databaseSize / 46;
 
-        $this->layout->page = View::make('backup.database', [
+        $this->layout->page = view('backup.database', [
             'databaseBackups' => $databaseBackups,
             'databaseSize' => $databaseSize,
             'estimatedTime' => $estimatedTime,

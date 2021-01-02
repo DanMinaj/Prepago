@@ -19,15 +19,15 @@ class BoilerReportController extends ReportsBaseController
                 (Input::get('to') && ! $this->repo->validateDatepickerDate(Input::get('to'))) ||
                 (Input::get('from') && ! $this->repo->validateDatepickerDate(Input::get('from')))
             ) {
-                return Redirect::to('system_reports/boiler_report')->with('errorMessage', 'Invalid date format');
+                return redirect('system_reports/boiler_report')->with('errorMessage', 'Invalid date format');
             }
 
             if (! Input::get('from')) {
-                return Redirect::to('system_reports/boiler_report')->with('errorMessage', 'Select a From Date');
+                return redirect('system_reports/boiler_report')->with('errorMessage', 'Select a From Date');
             }
 
             if (! Input::get('to')) {
-                return Redirect::to('system_reports/boiler_report')->with('errorMessage', 'Select a To Date');
+                return redirect('system_reports/boiler_report')->with('errorMessage', 'Select a To Date');
             }
 
             $this->repo->setFromDate(Input::get('from'), true);
@@ -39,6 +39,6 @@ class BoilerReportController extends ReportsBaseController
         //get the csv URL
         $csvURL = $this->repo->getCsvURL();
 
-        $this->layout->page = View::make('report/boiler_report')->with('csv_url', $csvURL)->with('meters', $meters);
+        $this->layout->page = view('report/boiler_report')->with('csv_url', $csvURL)->with('meters', $meters);
     }
 }

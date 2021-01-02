@@ -11,32 +11,32 @@ class ReportController extends Controller
 
     public function index()
     {
-        $this->layout->page = View::make('report/index');
+        $this->layout->page = view('report/index');
     }
 
     public function index_topup_reports()
     {
-        $this->layout->page = View::make('report/index_topup_reports');
+        $this->layout->page = view('report/index_topup_reports');
     }
 
     public function index_messaging_reports()
     {
-        $this->layout->page = View::make('report/index_messaging_reports');
+        $this->layout->page = view('report/index_messaging_reports');
     }
 
     public function index_customer_supply_status()
     {
-        $this->layout->page = View::make('report/index_customer_supply_status');
+        $this->layout->page = view('report/index_customer_supply_status');
     }
 
     public function index_credit_issue_reports()
     {
-        $this->layout->page = View::make('report/index_credit_issue_reports');
+        $this->layout->page = view('report/index_credit_issue_reports');
     }
 
     public function index_weather_reports()
     {
-        $this->layout->page = View::make('report/index_weather_reports');
+        $this->layout->page = view('report/index_weather_reports');
     }
 
     private function rand_color()
@@ -59,7 +59,7 @@ class ReportController extends Controller
         $to = (Input::get('to') ? Input::get('to') : "$today 00:00:00");
         $from = (Input::has('from') ? Input::get('from') : "$today 23:59:59");
 
-        $this->layout->page = View::make('report/sim_report',
+        $this->layout->page = view('report/sim_report',
         [
             'all_schemes' => $all_schemes,
             'from' => $from,
@@ -169,12 +169,12 @@ class ReportController extends Controller
     public function get_uptime_report($scheme, $pdf = false)
     {
         if (! $pdf || $pdf == null) {
-            return Redirect::to('system_reports/sim_reports')
+            return redirect('system_reports/sim_reports')
             ->with([
                 'set_scheme' => $scheme,
             ]);
         } else {
-            return Redirect::to('system_reports/sim_reports')
+            return redirect('system_reports/sim_reports')
             ->with([
                 'set_scheme' => $scheme,
                 'gen_report' => $scheme,
@@ -259,7 +259,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/supply_report_units');
 
-        $this->layout->page = View::make('report/supply_report_units', ['customers' => $customers, 'total_usage' => $totalKWhUsage, 'csv_url' => $csv_url, 'from' => $from, 'to' => $to]);
+        $this->layout->page = view('report/supply_report_units', ['customers' => $customers, 'total_usage' => $totalKWhUsage, 'csv_url' => $csv_url, 'from' => $from, 'to' => $to]);
     }
 
     public function search_supply_report_units()
@@ -356,7 +356,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/search_supply_report_units/'.$search_key);
 
-        $this->layout->page = View::make('report/supply_report_units', ['customers' => $customers, 'total_usage' => $totalKWhUsage, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/supply_report_units', ['customers' => $customers, 'total_usage' => $totalKWhUsage, 'csv_url' => $csv_url]);
     }
 
     public function search_supply_report_units_by_date()
@@ -433,7 +433,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/search_supply_report_units_by_date/'.$to.'/'.$from);
 
-        $this->layout->page = View::make('report/supply_report_units', ['customers' => $customers, 'total_usage' => $totalKWhUsage, 'csv_url' => $csv_url, 'from' => $from, 'to' => $to]);
+        $this->layout->page = view('report/supply_report_units', ['customers' => $customers, 'total_usage' => $totalKWhUsage, 'csv_url' => $csv_url, 'from' => $from, 'to' => $to]);
     }
 
     public function pending_topups()
@@ -448,7 +448,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/pending_topups');
 
-        $this->layout->page = View::make('report/customer_pending_topups', ['customers' => $customers, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/customer_pending_topups', ['customers' => $customers, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
     }
 
     public function pending_topups_by_search()
@@ -477,7 +477,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/pending_topups_by_search/'.$search_key);
 
-        $this->layout->page = View::make('report/customer_pending_topups', ['customers' => $customers, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/customer_pending_topups', ['customers' => $customers, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
     }
 
     public function pending_topups_search_by_date()
@@ -498,7 +498,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/pending_topups_by_search/'.$to.'/'.$from);
 
-        $this->layout->page = View::make('report/customer_pending_topups', ['customers' => $customers, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/customer_pending_topups', ['customers' => $customers, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
     }
 
     public function system_topup_history()
@@ -513,7 +513,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/system_topup_history');
 
-        $this->layout->page = View::make('report/customer_topup_history', ['customers' => $customers, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/customer_topup_history', ['customers' => $customers, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
     }
 
     public function customer_topup_history()
@@ -573,7 +573,7 @@ class ReportController extends Controller
         //$total_amount = PaymentStorage::where('scheme_number', '=', Auth::user()->scheme_number)->sum('amount');
 
         $csv_url = URL::to('create_csv/customer_topup_history');
-        $this->layout->page = View::make('report/customer_topup_history',
+        $this->layout->page = view('report/customer_topup_history',
         [
             'overload' => $overload,
             'payments' => $payments,
@@ -617,7 +617,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/customer_topup_history_by_search/'.$search_key);
 
-        $this->layout->page = View::make('report/customer_topup_history', ['customers' => $customers, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/customer_topup_history', ['customers' => $customers, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
     }
 
     public function customer_topup_history_search_by_date()
@@ -682,7 +682,7 @@ class ReportController extends Controller
         $to = $to_dt->format('d-m-Y');
         $from = $from_dt->format('d-m-Y');
 
-        $this->layout->page = View::make('report/customer_topup_history', [
+        $this->layout->page = view('report/customer_topup_history', [
             'from' => $from,
             'to' => $to,
             'overload' => false,
@@ -709,7 +709,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/tarrif_history');
 
-        $this->layout->page = View::make('report/tarrif_history_view', ['tarrifs' => $tarrifs, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/tarrif_history_view', ['tarrifs' => $tarrifs, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
     }
 
     public function tarrif_history_by_date()
@@ -727,7 +727,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/tarrif_history_by_date/'.$to.'/'.$from);
 
-        $this->layout->page = View::make('report/tarrif_history_view', ['tarrifs' => $tarrifs, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/tarrif_history_view', ['tarrifs' => $tarrifs, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
     }
 
     public function barcode_reports()
@@ -739,7 +739,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/barcode_reports');
 
-        $this->layout->page = View::make('report/barcode_reports', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/barcode_reports', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function search_barcode_reports()
@@ -765,7 +765,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/search_barcode_reports/'.$search_key);
 
-        $this->layout->page = View::make('report/barcode_reports', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/barcode_reports', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function sms_messages()
@@ -782,7 +782,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/sms_messages');
 
-        $this->layout->page = View::make('report/sms_messages', ['customers' => $customers, 'sms_count' => $sms_count, 'total_amount' => number_format((float) $total_amount, 2, '.', ''), 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/sms_messages', ['customers' => $customers, 'sms_count' => $sms_count, 'total_amount' => number_format((float) $total_amount, 2, '.', ''), 'csv_url' => $csv_url]);
     }
 
     public function search_sms_messages()
@@ -813,7 +813,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/search_sms_messages/'.$search_key);
 
-        $this->layout->page = View::make('report/sms_messages', ['customers' => $customers, 'sms_count' => $sms_count, 'total_amount' => number_format((float) $total_amount, 2, '.', ''), 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/sms_messages', ['customers' => $customers, 'sms_count' => $sms_count, 'total_amount' => number_format((float) $total_amount, 2, '.', ''), 'csv_url' => $csv_url]);
     }
 
     public function search_sms_messages_by_date()
@@ -834,7 +834,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/search_sms_messages_by_date/'.$to.'/'.$from);
 
-        $this->layout->page = View::make('report/sms_messages', ['customers' => $customers, 'sms_count' => $sms_count, 'total_amount' => number_format((float) $total_amount, 2, '.', ''), 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/sms_messages', ['customers' => $customers, 'sms_count' => $sms_count, 'total_amount' => number_format((float) $total_amount, 2, '.', ''), 'csv_url' => $csv_url]);
     }
 
     public function in_app_messages()
@@ -851,7 +851,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/in_app_messages');
 
-        $this->layout->page = View::make('report/in_app_messages', ['customers' => $customers, 'sms_count' => $sms_count, 'total_amount' => number_format((float) $total_amount, 2, '.', ''), 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/in_app_messages', ['customers' => $customers, 'sms_count' => $sms_count, 'total_amount' => number_format((float) $total_amount, 2, '.', ''), 'csv_url' => $csv_url]);
     }
 
     public function search_in_app_message()
@@ -882,7 +882,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/search_in_app_message/'.$search_key);
 
-        $this->layout->page = View::make('report/in_app_messages', ['customers' => $customers, 'sms_count' => $sms_count, 'total_amount' => number_format((float) $total_amount, 2, '.', ''), 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/in_app_messages', ['customers' => $customers, 'sms_count' => $sms_count, 'total_amount' => number_format((float) $total_amount, 2, '.', ''), 'csv_url' => $csv_url]);
     }
 
     public function search_in_app_message_by_date()
@@ -903,7 +903,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/search_in_app_message_by_date/'.$to.'/'.$from);
 
-        $this->layout->page = View::make('report/in_app_messages', ['customers' => $customers, 'sms_count' => $sms_count, 'total_amount' => number_format((float) $total_amount, 2, '.', ''), 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/in_app_messages', ['customers' => $customers, 'sms_count' => $sms_count, 'total_amount' => number_format((float) $total_amount, 2, '.', ''), 'csv_url' => $csv_url]);
     }
 
     public function names_notes()
@@ -915,7 +915,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/names_notes');
 
-        $this->layout->page = View::make('report/customer_name_notes_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/customer_name_notes_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function names_notes_by_search()
@@ -941,7 +941,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/names_notes_by_search/'.$search_key);
 
-        $this->layout->page = View::make('report/customer_name_notes_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/customer_name_notes_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function names_mobile_numbers()
@@ -953,7 +953,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/names_mobile_numbers');
 
-        $this->layout->page = View::make('report/customer_name_mobile_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/customer_name_mobile_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function names_mobile_numbers_by_search()
@@ -979,7 +979,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/names_mobile_numbers_by_search/'.$search_key);
 
-        $this->layout->page = View::make('report/customer_name_mobile_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/customer_name_mobile_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function name_address()
@@ -991,7 +991,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/name_address');
 
-        $this->layout->page = View::make('report/customer_name_address_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/customer_name_address_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function name_address_by_search()
@@ -1017,7 +1017,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/name_address_by_search/'.$search_key);
 
-        $this->layout->page = View::make('report/customer_name_address_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/customer_name_address_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function names()
@@ -1029,7 +1029,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/names');
 
-        $this->layout->page = View::make('report/customer_name_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/customer_name_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function names_by_search()
@@ -1055,7 +1055,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/names_by_search/'.$search_key);
 
-        $this->layout->page = View::make('report/customer_name_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/customer_name_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function total_balance()
@@ -1066,7 +1066,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/total_balance');
 
-        $this->layout->page = View::make('report/total_balance_view', ['balance' => $balance, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/total_balance_view', ['balance' => $balance, 'csv_url' => $csv_url]);
     }
 
     public function list_of_credit_user()
@@ -1079,7 +1079,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/list_of_credit_user');
 
-        $this->layout->page = View::make('report/credit_user_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/credit_user_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function total_credit_users_by_search()
@@ -1106,7 +1106,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/total_credit_users_by_search/'.$search_key);
 
-        $this->layout->page = View::make('report/credit_user_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/credit_user_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function list_of_debit_user()
@@ -1119,7 +1119,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/list_of_debit_user');
 
-        $this->layout->page = View::make('report/debit_user_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/debit_user_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function total_debit_users_by_search()
@@ -1146,7 +1146,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/total_debit_users_by_search/'.$search_key);
 
-        $this->layout->page = View::make('report/debit_user_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/debit_user_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function deposit_reports()
@@ -1162,7 +1162,7 @@ class ReportController extends Controller
         $deposite_count = Customer::join('customer_deposits', 'customer_deposits.customer_id', '=', 'customers.id')->where('customer_deposits.scheme_number', '=', Auth::user()->scheme_number)->count();
         $total_amount = Customer::join('customer_deposits', 'customer_deposits.customer_id', '=', 'customers.id')->where('customer_deposits.scheme_number', '=', Auth::user()->scheme_number)->sum('deposit_amount');
 
-        $this->layout->page = View::make('report/deposit_reports_view', ['customers' => $customers, 'deposite_count'=> $deposite_count, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/deposit_reports_view', ['customers' => $customers, 'deposite_count'=> $deposite_count, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
     }
 
     public function deposit_report_by_search()
@@ -1192,7 +1192,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/deposit_report_by_search/'.$search_key);
 
-        $this->layout->page = View::make('report/deposit_reports_view', ['customers' => $customers, 'deposite_count'=> $deposite_count, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/deposit_reports_view', ['customers' => $customers, 'deposite_count'=> $deposite_count, 'total_amount' => $total_amount, 'csv_url' => $csv_url]);
     }
 
     public function iou_usage_display()
@@ -1205,7 +1205,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/iou_usage_display');
 
-        $this->layout->page = View::make('report/iou_usage_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/iou_usage_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function iou_usage_display_by_search()
@@ -1232,7 +1232,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/iou_usage_display_by_search/'.$search_key);
 
-        $this->layout->page = View::make('report/iou_usage_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/iou_usage_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function iou_extra_usage_display()
@@ -1245,7 +1245,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/iou_extra_usage_display');
 
-        $this->layout->page = View::make('report/iou_extra_usage_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/iou_extra_usage_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function iou_extra_usage_display_by_search()
@@ -1272,7 +1272,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/iou_extra_usage_display_by_search/'.$search_key);
 
-        $this->layout->page = View::make('report/iou_extra_usage_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/iou_extra_usage_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function adminIssuedCredit()
@@ -1284,7 +1284,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/admin_issued_credit');
 
-        $this->layout->page = View::make('report/admin_issued_credit_view', ['customers' => $customers, 'csv_url' => $csv_url]);
+        $this->layout->page = view('report/admin_issued_credit_view', ['customers' => $customers, 'csv_url' => $csv_url]);
     }
 
     public function deletedCustomers()
@@ -1308,7 +1308,7 @@ class ReportController extends Controller
         $csv_url = $role === 'normal' ? URL::to('create_csv/deleted_customers') : URL::to('create_csv/inactive_landlords');
 
         $this->layout->page =
-        View::make('report/deleted_customers_view',
+        view('report/deleted_customers_view',
         [
         'customers' => $customers,
         'csv_url' => $csv_url,
@@ -1368,7 +1368,7 @@ class ReportController extends Controller
             $csv_url .= '/'.$from.'/'.$to;
         }
 
-        $this->layout->page = View::make('report/bill_report', [
+        $this->layout->page = view('report/bill_report', [
             'customers' => $regularCustomers,
             'blue_customers' => $billCustomers,
             'csv_url' => $csv_url,
@@ -1382,7 +1382,7 @@ class ReportController extends Controller
 
         $csv_url = URL::to('create_csv/not_read_meters');
 
-        $this->layout->page = View::make('report/not_read_meters', [
+        $this->layout->page = view('report/not_read_meters', [
             'meters'  => $meters,
             'csv_url' => $csv_url,
         ]);
@@ -1451,7 +1451,7 @@ class ReportController extends Controller
                 $total_topups++;
             }
 
-            $this->layout->page = View::make('report/paypal_payout_reports', [
+            $this->layout->page = view('report/paypal_payout_reports', [
             //'paypalTopups' => $paypalTopups,
             'mostPopularDay' => $mostPopularDay,
             'day_of_weeks' => $totals,
@@ -1533,7 +1533,7 @@ class ReportController extends Controller
                 $total_topups++;
             }
 
-            $this->layout->page = View::make('report/payzone_payout_reports', [
+            $this->layout->page = view('report/payzone_payout_reports', [
             'mostPopularDay' => $mostPopularDay,
             'day_of_weeks' => $totals,
             'default_to' => $topupTo->format('d-m-Y'),
@@ -1557,7 +1557,7 @@ class ReportController extends Controller
         /*
         if(Auth::user()->scheme_number <= 0 || is_null(Auth::user()->scheme_number) || DB::table('schemes')->where('id', Auth::user()->scheme_number)->first()->archived == 1) {
             Session::put('last_link', Route::getCurrentRoute()->getPath());
-            return Redirect::to('welcome-schemes')->with(['errorMessage' => "<b>Error occured with last action:</b> Please re-select a valid, active scheme in order to continue with this action."
+            return redirect('welcome-schemes')->with(['errorMessage' => "<b>Error occured with last action:</b> Please re-select a valid, active scheme in order to continue with this action."
             ]);
         }*/
 
@@ -1613,7 +1613,7 @@ class ReportController extends Controller
             $c->dhu = $dhu;
         }
 
-        $this->layout->page = View::make('report/missing_standing', [
+        $this->layout->page = view('report/missing_standing', [
             'all' => $all,
             'scheme' => $scheme,
             'customers' => $scheme_customers,
@@ -1672,7 +1672,7 @@ class ReportController extends Controller
         if (Auth::user()->scheme_number <= 0 || is_null(Auth::user()->scheme_number) || DB::table('schemes')->where('id', Auth::user()->scheme_number)->first()->archived == 1) {
             Session::put('last_link', Route::getCurrentRoute()->getPath());
 
-            return Redirect::to('welcome-schemes')->with(['errorMessage' => '<b>Error occured with last action:</b> Please re-select a valid, active scheme in order to continue with this action.',
+            return redirect('welcome-schemes')->with(['errorMessage' => '<b>Error occured with last action:</b> Please re-select a valid, active scheme in order to continue with this action.',
             ]);
         }
 
@@ -1709,7 +1709,7 @@ class ReportController extends Controller
             }
         }
 
-        $this->layout->page = View::make('report/missing_dhu', [
+        $this->layout->page = view('report/missing_dhu', [
             'all' => $all,
             'scheme' => $scheme,
             'customers' => $scheme_customers,
@@ -1728,7 +1728,7 @@ class ReportController extends Controller
         $num = $inconsistentDHU['inconsistent_usage'];
         $customers = $inconsistentDHU['inconsistent_usage_customers'];
 
-        $this->layout->page = View::make('report/inconsistent_dhu', [
+        $this->layout->page = view('report/inconsistent_dhu', [
             'num' => $num,
             'customers' => $customers,
             'date' => $date,
@@ -1790,7 +1790,7 @@ class ReportController extends Controller
         $num = $duplicateDHU['duplicate_dhu'];
         $customers = $duplicateDHU['duplicate_dhu_customers'];
 
-        $this->layout->page = View::make('report/duplicate_dhu', [
+        $this->layout->page = view('report/duplicate_dhu', [
             'num' => $num,
             'customers' => $customers,
         ]);
@@ -1853,7 +1853,7 @@ class ReportController extends Controller
         if (Auth::user()->scheme_number <= 0 || is_null(Auth::user()->scheme_number) || DB::table('schemes')->where('id', Auth::user()->scheme_number)->first()->archived == 1) {
             Session::put('last_link', Route::getCurrentRoute()->getPath());
 
-            return Redirect::to('welcome-schemes')->with(['errorMessage' => '<b>Error occured with last action:</b> Please re-select a <b>valid</b>, <b>active</b> scheme in order to continue with this action.',
+            return redirect('welcome-schemes')->with(['errorMessage' => '<b>Error occured with last action:</b> Please re-select a <b>valid</b>, <b>active</b> scheme in order to continue with this action.',
             ]);
         }
 
@@ -1886,7 +1886,7 @@ class ReportController extends Controller
             $c->duplicates = $c->duplicateMeters();
         }
 
-        $this->layout->page = View::make('report/duplicate_dhm', [
+        $this->layout->page = view('report/duplicate_dhm', [
             'all' => $all,
             'scheme' => $scheme,
             'customers' => $scheme_customers,
@@ -2031,7 +2031,7 @@ class ReportController extends Controller
         ->orderBy('settlement_date', 'ASC')
         ->get();
 
-        $this->layout->page = View::make('report.customer.report1', [
+        $this->layout->page = view('report.customer.report1', [
 
             'customer' => $customer,
             'usage365' => $usage365,

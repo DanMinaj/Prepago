@@ -17,7 +17,7 @@ class SupportController extends Controller
         $started = SupportIssue::where('started', true)->where('resolved', false)->orderBy('id', 'DESC')->get();
         $resolved = SupportIssue::where('resolved', true)->orderBy('id', 'DESC')->get();
 
-        $this->layout->page = View::make('home/support/index', ['un_viewed' => $un_viewed, 'started' => $started, 'resolved' => $resolved]);
+        $this->layout->page = view('home/support/index', ['un_viewed' => $un_viewed, 'started' => $started, 'resolved' => $resolved]);
     }
 
     public function view_ticket($id)
@@ -31,7 +31,7 @@ class SupportController extends Controller
         Session::put('scheme_number', $issue->scheme_ID);
 
         if ($issue->operator_ID == Auth::user()->id) {
-            $this->layout->page = View::make('home/support/view_ticket', ['issue' => $issue]);
+            $this->layout->page = view('home/support/view_ticket', ['issue' => $issue]);
         }
 
         if (! $issue->viewed) {
@@ -43,7 +43,7 @@ class SupportController extends Controller
             $issue->save();
         }
 
-        $this->layout->page = View::make('home/support/view_ticket', ['issue' => $issue]);
+        $this->layout->page = view('home/support/view_ticket', ['issue' => $issue]);
     }
 
     public function mark_solved($id)
@@ -67,7 +67,7 @@ class SupportController extends Controller
             $this->emailSolvedIssue($issue);
         }
 
-        return Redirect::to('support')->with('successMessage', 'The support issue #'.$id." has been marked as 'solved'");
+        return redirect('support')->with('successMessage', 'The support issue #'.$id." has been marked as 'solved'");
     }
 
     public function mark_reopened($id)
@@ -89,7 +89,7 @@ class SupportController extends Controller
             $this->emailReopenedIssue($issue);
         }
 
-        return Redirect::to('support')->with('successMessage', 'The support issue #'.$id." has been re-opened.'");
+        return redirect('support')->with('successMessage', 'The support issue #'.$id." has been re-opened.'");
     }
 
     public function submit_issue()
@@ -174,7 +174,7 @@ class SupportController extends Controller
         $started = SupportIssue::where('started', true)->where('operator_ID', Auth::user()->id)->where('resolved', false)->orderBy('id', 'DESC')->get();
         $resolved = SupportIssue::where('resolved', true)->where('operator_ID', Auth::user()->id)->orderBy('id', 'DESC')->get();
 
-        $this->layout->page = View::make('home/support/my_tickets', ['un_viewed' => $un_viewed, 'started' => $started, 'resolved' => $resolved]);
+        $this->layout->page = view('home/support/my_tickets', ['un_viewed' => $un_viewed, 'started' => $started, 'resolved' => $resolved]);
     }
 
     public function emailCopyOfIssue($new_issue)
@@ -347,7 +347,7 @@ class SupportController extends Controller
     public function report_a_bug()
     {
         if (! Auth::user()->isUserTest()) {
-            return Redirect::to('welcome')->with([
+            return redirect('welcome')->with([
                 'You do not have permission to view this',
             ]);
         }
@@ -364,7 +364,7 @@ class SupportController extends Controller
         $solved_bugs_prepaygo = ReportABugPrepayGO::orderBy('id', 'DESC')
         ->where('resolved', 1)->get();
 
-        $this->layout->page = View::make('app.report_a_bug', [
+        $this->layout->page = view('app.report_a_bug', [
             'bugs' => $bugs,
             'solved_bugs' => $solved_bugs,
             'bugs_prepaygo' => $bugs_prepaygo,
@@ -383,14 +383,14 @@ class SupportController extends Controller
         }
 
         if (! $bug) {
-            return Redirect::to('bug/reports')->with([
+            return redirect('bug/reports')->with([
                 'errorMessage' => 'This bug report does not exist or was deleted!',
             ]);
         }
 
         $sms_responses = SMSMessage::where('bug_report', $id)->orderBy('id', 'DESC')->get();
 
-        $this->layout->page = View::make('app.report_a_bug_view', [
+        $this->layout->page = view('app.report_a_bug_view', [
             'bug' => $bug,
             'sms_responses' => $sms_responses,
         ]);
@@ -413,7 +413,7 @@ class SupportController extends Controller
 
             $bug->sendFollowUpEmail();
 
-            return Redirect::to('bug/reports')->with([
+            return redirect('bug/reports')->with([
                 'successMessage' => 'Successfully marked Bug #'.$bug->id.' as resolved.',
             ]);
         } catch (Exception $e) {

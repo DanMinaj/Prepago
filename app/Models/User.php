@@ -172,7 +172,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     private function hasMeterReadingsAutomationPermissions()
     {
-        return in_array($this->id, Config::get('prepago.meter_readings_automation_users'));
+        return in_array($this->id, config('prepago.meter_readings_automation_users'));
     }
 
     public function hasAllAutomatedReadingsMarkedAsComplete()

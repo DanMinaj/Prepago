@@ -24,7 +24,7 @@ class CustomerController extends Controller
 
         $date = $dhu->date;
 
-        $this->layout->page = View::make('home.customer_edit_dhu', [
+        $this->layout->page = view('home.customer_edit_dhu', [
 
             'customer' => $customer,
             'date' => $date,
@@ -115,7 +115,7 @@ class CustomerController extends Controller
             }
         }
 
-        $this->layout->page = View::make('home.mass_spread_cost', [
+        $this->layout->page = view('home.mass_spread_cost', [
             'schemes' => $schemes,
         ]);
     }

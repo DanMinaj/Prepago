@@ -21,7 +21,7 @@ use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 Route::get('pdf', function () {
     $dompdf = new Dompdf();
     $scheme = Scheme::where('scheme_number', 17)->first();
-    $dompdf->loadHtml(View::make('report.aidan.advice_notes_pdf', [
+    $dompdf->loadHtml(view('report.aidan.advice_notes_pdf', [
                     'company_name'	=> 'test',
                     's'				=> $scheme,
                     'fullscreen' 	=> false,
@@ -375,7 +375,7 @@ Route::get('prepago_app/ev_login/{username}/{password}', [
  * Previously http://162.13.37.69/website/
  */
 Route::get('login/login_action', function () {
-    return Redirect::to('/');
+    return redirect('/');
 });
 
 Route::group(['middleware' => 'csrf'], function () {
@@ -516,7 +516,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     /*Route::get('scheme-setup', function()
     {
-        return Redirect::to('scheme-setup/user-setup');
+        return redirect('scheme-setup/user-setup');
     });
     Route::match(['get', 'post'], 'scheme-setup/user-setup', 'SchemeSetUpController@userSetup');
     Route::match(['get', 'post'], 'scheme-setup/scheme-setup', 'SchemeSetUpController@schemeSetup');

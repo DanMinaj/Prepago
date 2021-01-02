@@ -17,7 +17,7 @@ class SettingsController extends Controller
     {
         $settings = SystemSetting::all();
 
-        $this->layout->page = View::make('settings/system_settings', ['settings' => $settings]);
+        $this->layout->page = view('settings/system_settings', ['settings' => $settings]);
     }
 
     public function settings_add()
@@ -79,14 +79,14 @@ class SettingsController extends Controller
         $schemes = Scheme::where('scheme_number', '=', Auth::user()->scheme_number)->get()->first();
         $sms_password = $schemes['sms_password'];
 
-        $this->layout->page = View::make('settings/sms_settings_view', ['sms_password' => $sms_password, 'messages' => $schemes]);
+        $this->layout->page = view('settings/sms_settings_view', ['sms_password' => $sms_password, 'messages' => $schemes]);
     }
 
     public function change_sms_password($password)
     {
         Scheme::where('scheme_number', '=', Auth::user()->scheme_number)->update(['sms_password' => $password]);
 
-        return Redirect::to('settings/sms_settings');
+        return redirect('settings/sms_settings');
     }
 
     public function save_sms_message()
@@ -134,7 +134,7 @@ class SettingsController extends Controller
             Scheme::where('scheme_number', '=', Auth::user()->scheme_number)->update(['topup_message' => $text]);
         }
 
-        return Redirect::to('settings/sms_settings');
+        return redirect('settings/sms_settings');
     }
 
     public function faq($scheme_id = null)
@@ -145,7 +145,7 @@ class SettingsController extends Controller
             $schemes = Scheme::where('scheme_number', $scheme_id)->get();
         }
 
-        $this->layout->page = View::make('settings/faq', [
+        $this->layout->page = view('settings/faq', [
             'scheme_id' => $scheme_id,
             'schemes' => $schemes,
         ]);
@@ -213,16 +213,16 @@ class SettingsController extends Controller
             Scheme::where('scheme_number', '=', $scheme->scheme_number)->update(['FAQ' => $faqs]);
 
             if ($scheme_id != null) {
-                return Redirect::to('settings/faq/'.$scheme_id)->with([
+                return redirect('settings/faq/'.$scheme_id)->with([
                     'successMessage' => 'Successfully saved changes to <b>'.$scheme->scheme_nickname."'s</b> FAQ",
                 ]);
             } else {
-                return Redirect::to('settings/faq')->with([
+                return redirect('settings/faq')->with([
                     'successMessage' => 'Successfully saved changes to <b>'.$scheme->scheme_nickname."'s</b> FAQ",
                 ]);
             }
         } catch (Exception $e) {
-            return Redirect::to('settings/faq')->with([
+            return redirect('settings/faq')->with([
                 'errorMessage' => $e->getMessage().' on Line: '.$e->getLine(),
             ]);
         }
@@ -244,7 +244,7 @@ class SettingsController extends Controller
         $viewInfo['new_tarrifs'] = $new_tarrifs;
         $viewInfo['past_tarrifs'] = $past_tarrifs;
 
-        $this->layout->page = View::make('settings/tariff_view', $viewInfo);
+        $this->layout->page = view('settings/tariff_view', $viewInfo);
     }
 
     public function tariffadd()
@@ -266,21 +266,21 @@ class SettingsController extends Controller
 
         \Session::flash('tarrif-added', true);
 
-        return Redirect::to('settings/tariff'.(Input::get('tariff-all') ? '/all' : ''));
+        return redirect('settings/tariff'.(Input::get('tariff-all') ? '/all' : ''));
     }
 
     public function tariffcancel($tarrif_id)
     {
         TariffChanges::where('id', '=', $tarrif_id)->update(['cancelled' => 1]);
 
-        return Redirect::to('settings/tariff');
+        return redirect('settings/tariff');
     }
 
     public function credit_setting()
     {
         $shutoff = Scheme::where('scheme_number', '=', Auth::user()->scheme_number)->get()->first();
 
-        $this->layout->page = View::make('settings/credit_setting', ['shutoff' => $shutoff]);
+        $this->layout->page = view('settings/credit_setting', ['shutoff' => $shutoff]);
     }
 
     public function credit_setting_change()
@@ -350,7 +350,7 @@ class SettingsController extends Controller
 
         Scheme::where('scheme_number', '=', Auth::user()->scheme_number)->update(['shut_off_periods' => $json]);
 
-        return Redirect::to('settings/credit_setting');
+        return redirect('settings/credit_setting');
     }
 
     public function unassignedUsers()
@@ -358,7 +358,7 @@ class SettingsController extends Controller
         $users = User::where('parent_id', 0)->excludeAdmin()->get();
         $baseURL = URL::to('settings/unassigned_users');
 
-        $this->layout->page = View::make('settings/unassigned_users', [
+        $this->layout->page = view('settings/unassigned_users', [
             'customers' => $users,
             'baseURL' => $baseURL,
         ]);
@@ -384,7 +384,7 @@ class SettingsController extends Controller
 
         $baseURL = URL::to('settings/access_control');
 
-        $this->layout->page = View::make('settings/access_control', [
+        $this->layout->page = view('settings/access_control', [
             'customers' => $customers,
             'schemes' => $schemes,
             'baseURL' => $baseURL,
@@ -407,7 +407,7 @@ class SettingsController extends Controller
             $formURL = URL::to('settings/unassigned_users/'.$user->id.'/schemes');
         }
 
-        $this->layout->page = View::make('settings/access_control_schemes', [
+        $this->layout->page = view('settings/access_control_schemes', [
             'user' => $user,
             'schemes' => $schemes,
             'userSchemes' => $userSchemes,
@@ -425,10 +425,10 @@ class SettingsController extends Controller
 
         Session::flash('successMessage', 'The user schemes were successfully updated');
         if (stripos(Request::url(), 'unassigned_users') !== false) {
-            return Redirect::to('settings/unassigned_users');
+            return redirect('settings/unassigned_users');
         }
 
-        return Redirect::to('settings/access_control');
+        return redirect('settings/access_control');
     }
 
     public function editAccount($id)
@@ -441,10 +441,10 @@ class SettingsController extends Controller
 
         Session::flash('successMessage', 'The account information was updated successfully');
         if (stripos(Request::url(), 'unassigned_users') !== false) {
-            return Redirect::to('settings/unassigned_users');
+            return redirect('settings/unassigned_users');
         }
 
-        return Redirect::to('settings/access_control');
+        return redirect('settings/access_control');
     }
 
     public function close_account_action($id)
@@ -454,10 +454,10 @@ class SettingsController extends Controller
         $user->delete();
 
         if (stripos(Request::url(), 'unassigned_users') !== false) {
-            return Redirect::to('settings/unassigned_users');
+            return redirect('settings/unassigned_users');
         }
 
-        return Redirect::to('settings/access_control');
+        return redirect('settings/access_control');
     }
 
     public function add_account_action()
@@ -494,15 +494,15 @@ class SettingsController extends Controller
         }
 
         if ($fromInstallerWebsite) {
-            return Redirect::to('prepago_installer/access_control');
+            return redirect('prepago_installer/access_control');
         }
 
-        return Redirect::to('settings/access_control');
+        return redirect('settings/access_control');
     }
 
     public function utilityUserSetup()
     {
-        $this->layout->page = View::make('settings/utility_user_setup', [
+        $this->layout->page = view('settings/utility_user_setup', [
 
         ]);
     }
@@ -579,7 +579,7 @@ class SettingsController extends Controller
         $scans = TestScan::where('completed', 0)->orderBy('id', 'ASC')->get();
         $schemes = Scheme::where('archived', 0)->orderBy('id', 'DESC')->get();
 
-        $this->layout->page = View::make('home.test_scan', [
+        $this->layout->page = view('home.test_scan', [
             'scans' => $scans,
             'schemes' => $schemes,
         ]);
@@ -870,7 +870,7 @@ class SettingsController extends Controller
         $old_app_customers = $targets['old_app_customers'];
         $paypal_customers = $targets['paypal_customers'];
 
-        $this->layout->page = View::make('settings.sms_target', [
+        $this->layout->page = view('settings.sms_target', [
             'old_app_customers' => $old_app_customers,
             'paypal_customers' => $paypal_customers,
         ]);
@@ -934,7 +934,7 @@ class SettingsController extends Controller
         $presets = SMSMessagePreset::all();
         $categories = SMSMessagePreset::groupBy('category')->orderBy('id', 'ASC')->get();
 
-        $this->layout->page = View::make('settings/sms_presets', ['presets' => $presets, 'categories' => $categories]);
+        $this->layout->page = view('settings/sms_presets', ['presets' => $presets, 'categories' => $categories]);
     }
 
     public function sms_presets_add()

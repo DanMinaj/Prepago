@@ -84,7 +84,7 @@ class WatchDogController extends Controller
             $watchdogs = WatchDog::where('permanent_meter_id', $customer->permanentMeter()->ID)->orderBy('id', 'DESC')->get();
         }
 
-        $this->layout->page = View::make('home/watchdog/watchdogs', ['show_all' => $show_all, 'customer' => $customer, 'watchdogs' => $watchdogs]);
+        $this->layout->page = view('home/watchdog/watchdogs', ['show_all' => $show_all, 'customer' => $customer, 'watchdogs' => $watchdogs]);
     }
 
     public function view_watchdog($id)
@@ -97,7 +97,7 @@ class WatchDogController extends Controller
 
         $watchdog->markViewed();
 
-        $this->layout->page = View::make('home/watchdog/view_watchdog', ['watchdog' => $watchdog]);
+        $this->layout->page = view('home/watchdog/view_watchdog', ['watchdog' => $watchdog]);
     }
 
     public function view_csv_watchdog($id)

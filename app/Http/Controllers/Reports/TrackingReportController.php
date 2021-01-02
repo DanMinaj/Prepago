@@ -11,12 +11,12 @@ class TrackingReportController extends ReportsBaseController
 
     public function index()
     {
-        $this->layout->page = View::make('report/tracking/index_tracking_reports');
+        $this->layout->page = view('report/tracking/index_tracking_reports');
     }
 
     public function admin_tracking()
     {
-        $this->layout->page = View::make('report/tracking/admin_tracking');
+        $this->layout->page = view('report/tracking/admin_tracking');
     }
 
     public function admin_tracking_page_visit_data()

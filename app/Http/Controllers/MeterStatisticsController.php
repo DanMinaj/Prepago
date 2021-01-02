@@ -10,7 +10,7 @@ class MeterStatisticsController extends Controller
 
     public function index($customer_id)
     {
-        $this->layout->page = View::make('home/meter_stats/index', [
+        $this->layout->page = view('home/meter_stats/index', [
 
         ]);
     }

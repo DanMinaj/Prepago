@@ -7,7 +7,7 @@ class BossSchemesController extends BOSSController
      */
     public function welcome()
     {
-        $this->layout = View::make('layouts.admin_welcome_schemes');
+        $this->layout = view('layouts.admin_welcome_schemes');
 
         $schemes = Auth::user()->activeSchemes() ?: Auth::user()->scheme_number;
 
@@ -16,7 +16,7 @@ class BossSchemesController extends BOSSController
                 return Redirect::intended('prepago_installer');
             }
 
-            return Redirect::to('welcome');
+            return redirect('welcome');
         }
 
         $schemesInfo = [];
@@ -40,7 +40,7 @@ class BossSchemesController extends BOSSController
             ];
         }
 
-        $this->layout->page = View::make('boss/welcome', ['schemes' => $schemesInfo]);
+        $this->layout->page = view('boss/welcome', ['schemes' => $schemesInfo]);
     }
 
     public function welcome_scheme_info()
@@ -90,17 +90,17 @@ class BossSchemesController extends BOSSController
             $last_link = Session::get('last_link');
             Session::forget('last_link');
 
-            return Redirect::to($last_link);
+            return redirect($last_link);
         }
 
-        return Redirect::to('welcome');
+        return redirect('welcome');
     }
 
     public function setSchemeAndLoadPayoutReport($schemeNumber)
     {
         Session::put('scheme_number', $schemeNumber);
 
-        return Redirect::to('system_reports/payout_reports');
+        return redirect('system_reports/payout_reports');
     }
 
     public function displaySchemeRSCodesPage($userID, $schemeNumber)
@@ -112,7 +112,7 @@ class BossSchemesController extends BOSSController
 
         $rsCodes = PermanentMeterData::inScheme($schemeNumber)->isEV()->lists('ev_rs_code');
 
-        $this->layout->page = View::make('boss/scheme_rs_codes', [
+        $this->layout->page = view('boss/scheme_rs_codes', [
             'user'        => $user,
             'scheme_name' => $schemeName,
             'rs_codes'    => $rsCodes,
@@ -133,7 +133,7 @@ class BossSchemesController extends BOSSController
         //get schemes for the current operator
         $userSchemes = User::find($userID)->schemes()->select('schemes.id')->lists('id');
 
-        $this->layout->page = View::make('boss/user_schemes', [
+        $this->layout->page = view('boss/user_schemes', [
             'schemes'           => $schemes,
             'userSchemes'       => $userSchemes,
             'user'              => $user,
@@ -160,25 +160,25 @@ class BossSchemesController extends BOSSController
             }
 
             if (($childrenSchemesCount + count($schemeIDs)) > $settings['number_schemes_per_level']) {
-                return Redirect::to('/boss'.($userID !== Auth::user()->id ? '/'.$userID : '').'/schemes')
+                return redirect('/boss'.($userID !== Auth::user()->id ? '/'.$userID : '').'/schemes')
                         ->with('errorMessage', 'The schemes count exceeds the maximum allowed for this level');
             }
 
             if ($user->schemes()->sync($schemeIDs)) {
-                return Redirect::to('/boss'.($userID !== Auth::user()->id ? '/'.$userID : ''))
+                return redirect('/boss'.($userID !== Auth::user()->id ? '/'.$userID : ''))
                         ->with('successMessage', 'The schemes were saved successfully');
             }
 
-            return Redirect::to('/boss'.($userID !== Auth::user()->id ? '/'.$userID : ''))
+            return redirect('/boss'.($userID !== Auth::user()->id ? '/'.$userID : ''))
                     ->with('errorMessage', 'The schemes cannot be saved');
         }
 
-        return Redirect::to('/boss'.($userID !== Auth::user()->id ? '/'.$userID : ''));
+        return redirect('/boss'.($userID !== Auth::user()->id ? '/'.$userID : ''));
     }
 
     public function statusCodeInfo($status)
     {
-        $this->layout->page = View::make('boss.status_code_info', [
+        $this->layout->page = view('boss.status_code_info', [
             'status' => $status,
         ]);
     }

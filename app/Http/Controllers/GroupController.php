@@ -10,7 +10,7 @@ class GroupController extends Controller
     {
         $groups = Group::whereNotNull('permissions')->orderBy('name')->get();
 
-        $this->layout->page = View::make('group/index')->with('groups', $groups);
+        $this->layout->page = view('group/index')->with('groups', $groups);
     }
 
     public function update()
@@ -26,6 +26,6 @@ class GroupController extends Controller
             Session::flash('successMessage', 'The permissions were updated successfully');
         }
 
-        return Redirect::to('groups');
+        return redirect('groups');
     }
 }

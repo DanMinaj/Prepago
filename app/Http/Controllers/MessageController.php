@@ -8,7 +8,7 @@ class MessageController extends Controller
     {
         $customers = Customer::where('scheme_number', '=', Auth::user()->scheme_number)->get();
 
-        $this->layout->page = View::make('home/customer_messaging_single_customer', ['customers' => $customers]);
+        $this->layout->page = view('home/customer_messaging_single_customer', ['customers' => $customers]);
     }
 
     public function search_single_customer()
@@ -30,7 +30,7 @@ class MessageController extends Controller
         ->orWhere('nominated_telephone', 'like', '%'.$search_key.'%')
         ->get();
 
-        $this->layout->page = View::make('home/customer_messaging_single_customer', ['customers' => $customers]);
+        $this->layout->page = view('home/customer_messaging_single_customer', ['customers' => $customers]);
     }
 
     public function rem_smslist($customer_id)
@@ -50,7 +50,7 @@ class MessageController extends Controller
             Session::put('sms_list', $new_sms_list);
         }
 
-        return Redirect::to('customer_messaging/single_customer');
+        return redirect('customer_messaging/single_customer');
     }
 
     public function add_smslist($customer_id, $username)
@@ -60,7 +60,7 @@ class MessageController extends Controller
             $sms_list[0]['email'] = $username;
             Session::put('sms_list', $sms_list);
 
-            return Redirect::to('customer_messaging/single_customer');
+            return redirect('customer_messaging/single_customer');
         } else {
             $sms_list = Session::get('sms_list');
             $keytracker = 0;
@@ -74,7 +74,7 @@ class MessageController extends Controller
             $new_sms_list[$keytracker]['email'] = $username;
             Session::put('sms_list', $new_sms_list);
 
-            return Redirect::to('customer_messaging/single_customer');
+            return redirect('customer_messaging/single_customer');
         }
     }
 
@@ -171,13 +171,13 @@ class MessageController extends Controller
         $sms->message_sent = 1;
         $sms->save();
 
-        //$this->layout->page = View::make('home/message_sent');
+        //$this->layout->page = view('home/message_sent');
         $selectedCustomerID = Session::get('sms_list')[0]['id'];
         if ($error) {
-            return Redirect::to('customer_tabview_controller/show/'.$selectedCustomerID)->with('errorMessage', 'Your SMS was not sent.');
+            return redirect('customer_tabview_controller/show/'.$selectedCustomerID)->with('errorMessage', 'Your SMS was not sent.');
         }
 
-        return Redirect::to('customer_tabview_controller/show/'.$selectedCustomerID)->with('successMessage', 'Your SMS have been sent.');
+        return redirect('customer_tabview_controller/show/'.$selectedCustomerID)->with('successMessage', 'Your SMS have been sent.');
     }
 
     public function scheme()
@@ -189,7 +189,7 @@ class MessageController extends Controller
         }
         $all = stripos(Route::getCurrentRoute()->getPath(), 'all') ? true : false;
 
-        $this->layout->page = View::make('home/customer_messaging_scheme', [
+        $this->layout->page = view('home/customer_messaging_scheme', [
             'currentScheme' => $currentSchemeName,
             'all'           => $all,
         ]);
@@ -274,16 +274,16 @@ class MessageController extends Controller
         // $dataJson = json_decode($data);
         // if (isset($dataJson->error))
         // {
-            // /*$this->layout->page = View::make('home/message_sent_error')->with('customer_emails', $dataJson->customer_names);
+            // /*$this->layout->page = view('home/message_sent_error')->with('customer_emails', $dataJson->customer_names);
             // return;*/
             // return $dataJson->customer_names;
         // }
 
-        //$this->layout->page = View::make('home/message_sent');
+        //$this->layout->page = view('home/message_sent');
     }
 
     public function send_scheme_sms_result()
     {
-        $this->layout->page = View::make('home/message_sent');
+        $this->layout->page = view('home/message_sent');
     }
 }

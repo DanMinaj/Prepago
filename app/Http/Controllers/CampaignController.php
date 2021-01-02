@@ -11,7 +11,7 @@ class CampaignController extends Controller
     {
         $campaigns = Campaign::orderBy('id', 'DESC')->get();
 
-        $this->layout->page = View::make('home.campaign.index', [
+        $this->layout->page = view('home.campaign.index', [
             'campaigns' => $campaigns,
         ]);
     }
@@ -19,7 +19,7 @@ class CampaignController extends Controller
     public function create()
     {
         try {
-            $this->layout->page = View::make('home.campaign.create', [
+            $this->layout->page = view('home.campaign.create', [
 
             ]);
         } catch (Exception $e) {
@@ -62,7 +62,7 @@ class CampaignController extends Controller
             $campaign->active = 0;
             $campaign->save();
 
-            return Redirect::to('campaigns')->with([
+            return redirect('campaigns')->with([
                 'success' => 'Successfully created campaign',
             ]);
         } catch (Exception $e) {
@@ -82,7 +82,7 @@ class CampaignController extends Controller
             ]);
         }
 
-        $this->layout->page = View::make('home.campaign.view', [
+        $this->layout->page = view('home.campaign.view', [
 
             'campaign' => $campaign,
             'campaign_id' => $campaign_id,
@@ -100,7 +100,7 @@ class CampaignController extends Controller
             ]);
         }
 
-        $this->layout->page = View::make('home.campaign.edit', [
+        $this->layout->page = view('home.campaign.edit', [
 
             'campaign' => $campaign,
             'campaign_id' => $campaign_id,

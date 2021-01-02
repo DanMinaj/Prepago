@@ -34,7 +34,7 @@ Route::filter('auth', function () {
     if (Auth::guest()) {
         return Redirect::guest('/');
     }
-    //if (Auth::user()->isInstaller == 1) return Redirect::to('prepago_installer');
+    //if (Auth::user()->isInstaller == 1) return redirect('prepago_installer');
 });
 
 // Only installers can access this area
@@ -42,28 +42,28 @@ Route::filter('isInstaller', function () {
     if (Auth::guest()) {
         return Redirect::guest('/');
     } elseif (Auth::user()->isInstaller == 0) {
-        return Redirect::to('/');
+        return redirect('/');
     }
 });
 
 Route::filter('canAccessCRMFunction', function () {
     $groupPermissions = getGroupPermissions();
     if (! hasAccess('crm.functions', $groupPermissions)) {
-        return Redirect::to('/');
+        return redirect('/');
     }
 });
 
 Route::filter('canAccessSystemReports', function () {
     $groupPermissions = getGroupPermissions();
     if (! hasAccess('system.reports', $groupPermissions)) {
-        return Redirect::to('/');
+        return redirect('/');
     }
 });
 
 Route::filter('canAccessAdminSettings', function () {
     $groupPermissions = getGroupPermissions();
     if (! hasAccess('admin.settings', $groupPermissions)) {
-        return Redirect::to('/');
+        return redirect('/');
     }
 });
 
@@ -84,7 +84,7 @@ Route::filter('auth.basic', function () {
 
 Route::filter('guest', function () {
     if (Auth::check()) {
-        return Redirect::to('/');
+        return redirect('/');
     }
 });
 

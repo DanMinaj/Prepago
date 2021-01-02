@@ -16,13 +16,13 @@ class UserController extends Controller
 
         if (Auth::check()) {
             if (Auth::user()->isInstaller == 1) {
-                return Redirect::to('prepago_installer');
+                return redirect('prepago_installer');
             }
 
-            return Redirect::to('welcome');
+            return redirect('welcome');
         }
 
-        return View::make('login.login');
+        return view('login.login');
     }
 
     public function login_action()
@@ -38,13 +38,13 @@ class UserController extends Controller
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
-            return Redirect::to('/')->withErrors($validator);
+            return redirect('/')->withErrors($validator);
         }
 
         if (Auth::attempt(['username' => $username, 'password' => $password, 'locked' => 0], true)) {
             UserSignIn::stamp(Auth::user()->id, $_SERVER['REMOTE_ADDR']);
 
-            return Redirect::to('welcome-schemes');
+            return redirect('welcome-schemes');
         /*if(Auth::user()->isInstaller == 1){
             return Redirect::intended('prepago_installer');
         }
@@ -55,7 +55,7 @@ class UserController extends Controller
                 Session::flash('signinerror', 'Username or Password doesn\'t match: '.$username.'|'.$password);
             }
 
-            return Redirect::to('/')->withInput();
+            return redirect('/')->withInput();
         }
     }
 }

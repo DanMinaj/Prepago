@@ -12,7 +12,7 @@ class ChangelogController extends Controller
         $pendingChangesets = Changelog::where('progress', '!=', 100)->get();
         $completedChangesets = Changelog::where('progress', 100)->get();
 
-        $this->layout->page = View::make('home/changelog/index')->with([
+        $this->layout->page = view('home/changelog/index')->with([
             'pending' => $pendingChangesets,
             'completed' => $completedChangesets,
         ]);
@@ -28,7 +28,7 @@ class ChangelogController extends Controller
 
         $cs_comments = ChangelogComment::where('changelog_id', $id)->orderBy('id', 'DESC')->get();
 
-        $this->layout->page = View::make('home/changelog/view')->with([
+        $this->layout->page = view('home/changelog/view')->with([
             'cs' => $cs,
             'cs_comments' => $cs_comments,
         ]);

@@ -10,14 +10,14 @@ class EmailController extends Controller
 
     public function email()
     {
-        $this->layout->page = View::make('emails.template');
+        $this->layout->page = view('emails.template');
     }
 
     public function settings()
     {
         $settings = SystemSetting::where('type', 'email')->get();
 
-        $this->layout->page = View::make('settings/email_settings', ['settings' => $settings]);
+        $this->layout->page = view('settings/email_settings', ['settings' => $settings]);
     }
 
     public function settings_add()

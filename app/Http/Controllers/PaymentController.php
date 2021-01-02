@@ -10,7 +10,7 @@ class PaymentController extends Controller
 
     public function fm()
     {
-        $this->layout->page = View::make('fm', [
+        $this->layout->page = view('fm', [
 
         ]);
     }
@@ -326,7 +326,7 @@ class PaymentController extends Controller
         $stripePayments = StripeCustomerPayment::orderBy('id', 'DESC')->get();
         $stripeFailedPayments = StripeCustomerFailedPayment::orderBy('id', 'DESC')->get();
 
-        $this->layout->page = View::make('settings.payments.payment_settings', [
+        $this->layout->page = view('settings.payments.payment_settings', [
             'stripeCustomers' 	=> $stripeCustomers,
             'stripeSources' 	=> $stripeSources,
             'stripeLogs' 		=> $stripeLogs,

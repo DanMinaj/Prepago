@@ -85,7 +85,7 @@ class ReportScheduleCommand extends Command
                 // instantiate and use the dompdf class
 
                 $dompdf = new Dompdf\Dompdf();
-                $dompdf->loadHtml(View::make('report.aidan.advice_notes_pdf', [
+                $dompdf->loadHtml(view('report.aidan.advice_notes_pdf', [
                     'company_name'	=> $scheme->company_name,
                     's'				=> $scheme,
                     'fullscreen' 	=> false,
