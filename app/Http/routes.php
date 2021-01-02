@@ -378,11 +378,11 @@ Route::get('login/login_action', function () {
     return Redirect::to('/');
 });
 
-Route::group(['before' => 'csrf'], function () {
+Route::group(['middleware' => 'csrf'], function () {
     Route::post('login/login_action', 'UserController@login_action');
 });
 
-Route::group(['before' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
     //Route::resource('customerduplicates', 'SchemeController');
     Route::resource('customerduplicates', 'CustomerDuplicatesController');
 

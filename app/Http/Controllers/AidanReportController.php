@@ -8,7 +8,7 @@ class AidanReportController extends Controller
 
     public function __construct()
     {
-        $this->beforeFilter('canAccessSystemReports', ['except' => 'barcode_reports']);
+        $this->middleware('canAccessSystemReports', ['except' => 'barcode_reports']);
     }
 
     public function adviceNotes()

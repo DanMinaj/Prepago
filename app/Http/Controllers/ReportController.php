@@ -6,7 +6,7 @@ class ReportController extends Controller
 
     public function __construct()
     {
-        $this->beforeFilter('canAccessSystemReports', ['except' => 'barcode_reports']);
+        $this->middleware('canAccessSystemReports', ['except' => 'barcode_reports']);
     }
 
     public function index()

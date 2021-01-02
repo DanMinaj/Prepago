@@ -10,6 +10,6 @@ class ReportsBaseController extends Controller
 
     public function __construct()
     {
-        $this->beforeFilter('canAccessSystemReports');
+        $this->middleware('canAccessSystemReports');
     }
 }

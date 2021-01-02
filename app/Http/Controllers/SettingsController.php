@@ -10,7 +10,7 @@ class SettingsController extends Controller
 
     public function __construct()
     {
-        $this->beforeFilter('canAccessAdminSettings', ['except' => ['barcode_reports', 'add_account_action']]);
+        $this->middleware('canAccessAdminSettings', ['except' => ['barcode_reports', 'add_account_action']]);
     }
 
     public function settings()
